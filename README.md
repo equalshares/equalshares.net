@@ -6,13 +6,14 @@ To develop, you will need to install [Node.js](https://nodejs.org/en/), for exam
 
 For local development, go to the website directory and run:
 
-```
+```bash
+npm install
 npm run start
 ```
 
-This will start a local development server. The website can then be viewed at `http://localhost:3000`. Changes to the source files are immediately reflected in the browser.
+This will start a local development server. The website can then be viewed at `http://localhost:3000/docusaurus`. Changes to the source files are immediately reflected in the browser.
 
-```
+```bash
 npm run build
 ```
 
