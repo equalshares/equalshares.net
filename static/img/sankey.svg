@@ -1,0 +1,65 @@
+<svg height="750" width="1400" xmlns="http://www.w3.org/2000/svg">
+    <title>Your Diagram Title</title>
+    <!-- Generated with SankeyMATIC: 15/01/2023, 10:39:08 -->
+    <g transform="translate(72.54232421875,18)">
+        <g id="sankey_flows">
+            <path id="flow18" d="M15 115.34C192.15019 115.34 428.35045 58.668 605.50064 58.668" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 1: $3</title></path>
+            <path id="flow19" d="M15 184.1C192.15019 184.1 428.35045 143.62 605.50064 143.62" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 2: $3</title></path>
+            <path id="flow20" d="M15 252.86C192.15019 252.86 428.35045 228.572 605.50064 228.572" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 3: $3</title></path>
+            <path id="flow21" d="M15 321.62C192.15019 321.62 428.35045 313.524 605.50064 313.524" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 4: $3</title></path>
+            <path id="flow22" d="M15 390.38C192.15019 390.38 428.35045 398.476 605.50064 398.476" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 5: $3</title></path>
+            <path id="flow23" d="M15 459.14C192.15019 459.14 428.35045 483.428 605.50064 483.428" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 6: $3</title></path>
+            <path id="flow24" d="M15 527.9C192.15019 527.9 428.35045 568.38 605.50064 568.38" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 7: $3</title></path>
+            <path id="flow25" d="M15 596.66C192.15019 596.66 428.35045 653.332 605.50064 653.332" fill="none" stroke-width="68.76" stroke="#0081cc" opacity="0.45"><title>City → Voter 8: $3</title></path>
+            <path id="flow0" d="M620.50064 47.208C797.65084 47.208 1033.8511 89.03733 1211.00129 89.03733" fill="none" stroke-width="45.84" stroke="#0081cc" opacity="0.45"><title>Voter 1 → Project 1: $2</title></path>
+            <path id="flow2" d="M620.50064 132.16C797.65084 132.16 1033.8511 134.87733 1211.00129 134.87733" fill="none" stroke-width="45.84" stroke="#0081cc" opacity="0.45"><title>Voter 2 → Project 1: $2</title></path>
+            <path id="flow4" d="M620.50064 217.112C797.65084 217.112 1033.8511 180.71733 1211.00129 180.71733" fill="none" stroke-width="45.84" stroke="#0081cc" opacity="0.45"><title>Voter 3 → Project 1: $2</title></path>
+            <path id="flow6" d="M620.50064 302.064C797.65084 302.064 1033.8511 226.55733 1211.00129 226.55733" fill="none" stroke-width="45.84" stroke="#0081cc" opacity="0.45"><title>Voter 4 → Project 1: $2</title></path>
+            <path id="flow8" d="M620.50064 387.016C797.65084 387.016 1033.8511 272.39733 1211.00129 272.39733" fill="none" stroke-width="45.84" stroke="#0081cc" opacity="0.45"><title>Voter 5 → Project 1: $2</title></path>
+            <path id="flow11" d="M620.50064 471.968C797.65084 471.968 1033.8511 318.23733 1211.00129 318.23733" fill="none" stroke-width="45.84" stroke="#0081cc" opacity="0.45"><title>Voter 6 → Project 1: $2</title></path>
+            <path id="flow1" d="M620.50064 81.588C797.65084 81.588 1033.8511 368.80933 1211.00129 368.80933" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 1 → Project 2: $1</title></path>
+            <path id="flow3" d="M620.50064 166.54C797.65084 166.54 1033.8511 391.72933 1211.00129 391.72933" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 2 → Project 2: $1</title></path>
+            <path id="flow5" d="M620.50064 251.492C797.65084 251.492 1033.8511 414.64933 1211.00129 414.64933" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 3 → Project 2: $1</title></path>
+            <path id="flow7" d="M620.50064 336.444C797.65084 336.444 1033.8511 499.60133 1211.00129 499.60133" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 4 → Project 3: $1</title></path>
+            <path id="flow9" d="M620.50064 421.396C797.65084 421.396 1033.8511 522.52133 1211.00129 522.52133" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 5 → Project 3: $1</title></path>
+            <path id="flow10" d="M620.50064 506.348C797.65084 506.348 1033.8511 607.47333 1211.00129 607.47333" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 6 → Project 4: $1</title></path>
+            <path id="flow12" d="M620.50064 591.3C797.65084 591.3 1033.8511 630.39333 1211.00129 630.39333" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 7 → Project 4: $1</title></path>
+            <path id="flow13" d="M620.50064 568.38C797.65084 568.38 1033.8511 545.44133 1211.00129 545.44133" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 7 → Project 3: $1</title></path>
+            <path id="flow14" d="M620.50064 545.46C797.65084 545.46 1033.8511 437.56933 1211.00129 437.56933" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 7 → Project 2: $1</title></path>
+            <path id="flow15" d="M620.50064 676.252C797.65084 676.252 1033.8511 653.31333 1211.00129 653.31333" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 8 → Project 4: $1</title></path>
+            <path id="flow16" d="M620.50064 653.332C797.65084 653.332 1033.8511 568.36133 1211.00129 568.36133" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 8 → Project 3: $1</title></path>
+            <path id="flow17" d="M620.50064 630.412C797.65084 630.412 1033.8511 460.48933 1211.00129 460.48933" fill="none" stroke-width="22.92" stroke="#0081cc" opacity="0.45"><title>Voter 8 → Project 2: $1</title></path>
+        </g>
+        <g id="sankey_nodes">
+            <g class="node"><rect id="r0"  class="voter1 for_r0" x="605.50064" y="24.288" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 1: $3</title></rect></g>
+            <g class="node"><rect id="r3"  class="voter2 for_r3" x="605.50064" y="109.24" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 2: $3</title></rect></g>
+            <g class="node"><rect id="r4"  class="voter3 for_r4" x="605.50064" y="194.192" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 3: $3</title></rect></g>
+            <g class="node"><rect id="r5"  class="voter4 for_r5" x="605.50064" y="279.144" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 4: $3</title></rect></g>
+            <g class="node"><rect id="r7"  class="voter5 for_r7" x="605.50064" y="364.096" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 5: $3</title></rect></g>
+            <g class="node"><rect id="r8"  class="voter6 for_r8" x="605.50064" y="449.048" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 6: $3</title></rect></g>
+            <g class="node"><rect id="r10" class="voter7 for_r10" x="605.50064" y="534" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 7: $3</title></rect></g>
+            <g class="node"><rect id="r11" class="voter8 for_r11" x="605.50064" y="618.952" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Voter 8: $3</title></rect></g>
+
+            <g class="node"><rect id="r1" class="for_r1" x="1211.00129" y="66.11733" height="275.04" width="15" fill="#0081cc" fill-opacity="1"><title>Project 1: $12</title></rect></g>
+            <g class="node"><rect id="r2" class="for_r2" x="1211.00129" y="357.34933" height="114.6" width="15" fill="#0081cc" fill-opacity="1"><title>Project 2: $5</title></rect></g>
+            <g class="node"><rect id="r6" class="for_r6" x="1211.00129" y="488.14133" height="91.68" width="15" fill="#0081cc" fill-opacity="1"><title>Project 3: $4</title></rect></g>
+            <g class="node"><rect id="r9" class="for_r9" x="1211.00129" y="596.01333" height="68.76" width="15" fill="#0081cc" fill-opacity="1"><title>Project 4: $3</title></rect></g>
+            <g class="node"><rect id="r12" class="for_r12" x="0" y="80.96" height="550.08" width="15" fill="#0081cc" fill-opacity="1"><title>City: $24</title></rect></g>
+        </g>
+            <g id="sankey_labels" font-family="sans-serif" font-size="13px" font-weight="400" fill="#000000">
+            <text id="label0" class="for_r0" text-anchor="end" x="600.38066" y="58.668" dy="4.35">Voter 1: $3</text>
+            <text id="label3" class="for_r3" text-anchor="end" x="600.38066" y="143.62" dy="4.35">Voter 2: $3</text>
+            <text id="label4" class="for_r4" text-anchor="end" x="600.38066" y="228.572" dy="4.35">Voter 3: $3</text>
+            <text id="label5" class="for_r5" text-anchor="end" x="600.38066" y="313.524" dy="4.35">Voter 4: $3</text>
+            <text id="label7" class="for_r7" text-anchor="end" x="600.38066" y="398.476" dy="4.35">Voter 5: $3</text>
+            <text id="label8" class="for_r8" text-anchor="end" x="600.38066" y="483.428" dy="4.35">Voter 6: $3</text>
+            <text id="label10" class="for_r10" text-anchor="end" x="600.38066" y="568.38" dy="4.35">Voter 7: $3</text>
+            <text id="label11" class="for_r11" text-anchor="end" x="600.38066" y="653.332" dy="4.35">Voter 8: $3</text>
+            <text id="label12" class="for_r12" text-anchor="end" x="-5.11998" y="356" dy="4.35">City: $24</text>
+            <text id="label1" class="for_r1" text-anchor="start" x="1231.12127" y="203.63733" dy="4.35">Project 1: $12</text>
+            <text id="label2" class="for_r2" text-anchor="start" x="1231.12127" y="414.64933" dy="4.35">Project 2: $5</text>
+            <text id="label6" class="for_r6" text-anchor="start" x="1231.12127" y="533.98133" dy="4.35">Project 3: $4</text>
+            <text id="label9" class="for_r9" text-anchor="start" x="1231.12127" y="630.39333" dy="4.35">Project 4: $3</text>
+        </g>
+    </g>
+</svg>

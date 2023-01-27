@@ -1,0 +1,183 @@
+---
+sidebar_position: 1
+title: Explanation
+---
+
+import { CurrencySymbol, SemiBold, BudgetBars, WaterFilling } from '@site/src/components/MyComponents';
+
+# Explanation of the Method of Equal Shares
+
+On this page, we explain how the Method of Equal Share works.
+The method can be applied with two different input types:
+
+1. **Approval voting**, where each voter votes for some of the projects, but votes for each of them with the same "strength".
+2. **Utilities**, where each voter assigns a utility number to each project (0 or higher).
+
+Approval voting is a special case of utilities, where all projects are assigned the utility value 0 or 1.
+On this page, we explain the method for approval voting, and explain how it works for utilities in collapsible boxes.
+
+:::tip
+
+You can [jump down to a detailed example below](#example), if you prefer.
+
+:::
+
+## Main mechanism
+
+We start by giving the main principles of the method, and then we explain the technical details.
+
+1. The overall budget is <SemiBold>divided equally</SemiBold> among the voters.
+:::tip Example
+Suppose the overall budget is <CurrencySymbol/>1&thinsp;000&thinsp;000 (1 million), and there are 100&thinsp;000 voters. 
+Then each voter gets assigned a share of <CurrencySymbol/>10.
+:::
+
+2. We <SemiBold>remove</SemiBold> all projects from consideration that cost more than the combined share of all voters that voted for the project. 
+   (For utilities, the combined share of all voters who assigned a utility value of more than 0 to the project.)
+:::tip Example
+Suppose a project costs <CurrencySymbol/>10&thinsp;000, and it received 500 votes. 
+Because every voter was assigned a share of <CurrencySymbol/>10,
+these 500 votes together have a share of <CurrencySymbol/>5&thinsp;000.
+Since the project costs more than the combined share of all voters who voted for it, 
+it cannot be funded. We remove the project from consideration.
+:::
+3. If no projects remain, the computation of the method is finished.
+4. If projects remain, we calculate the "[<SemiBold>effective vote count</SemiBold>](#effective-vote-count)" of every project.
+:::note Explanation 
+For approval voting, the *vote count* is the number of voters who voted for the project.
+For utilities, the vote count is the sum of the utilities assigned to the project.
+The *effective* vote count is smaller than the vote count, 
+because we do not count voters who do not have enough money to pay an equal share for the project.
+:::
+5. We select the project with the <SemiBold>highest</SemiBold> effective vote count.
+   We split the cost of this project [as equally as possible](#equal-split) among the voters who voted for the project.
+   Each voter's share of the cost is subtracted from the voter's budget.
+6. We <SemiBold>repeat from Step 2</SemiBold> to determine the next project to be funded.
+
+:::info
+As written, the Method of Equal Shares may finish in Step 3 without having spent all the available budget.
+Therefore, in Step 1, we usually use an overall budget that is larger than the actually available budget.
+This is done to obtain a better outcome.
+See [Completion](implementation/completion) for more information about this.
+:::
+
+## How to split project costs equally {#equal-split}
+
+When determining the winning projects of the Method of Equal Shares, a key ingredient is to divide the cost of a project *as equally as possible*. 
+In this section, we will explain what this means.
+
+To be concrete, let's say that the overall budget is <CurrencySymbol/>100, and there are 10 voters.
+Thus, in Step 1, each voter is allocated a budget share of <CurrencySymbol/>10.
+We can represent this in the following picture, where each voter is represented by a bar of height <CurrencySymbol/>10.
+
+<BudgetBars budgets={[10,10,10,10,10,10,10,10,10,10]} showPayments={false} />
+
+Suppose there is a project that costs <CurrencySymbol/>25, and it received 5 votes from the 5 voters on the left.
+Then we can spread the cost equally, with each supporter paying <CurrencySymbol/>5.
+We can show this in the picture as follows:
+
+<BudgetBars budgets={[10,10,10,10,10,10,10,10,10,10]} payments={[5,5,5,5,5,0,0,0,0,0]} />
+
+After some time, the budget shares of some voters may be diminished, in which case a perfectly equal split of the cost is not possible anymore.
+In this case, we do it as indicated in the following picture. You can change the cost of the project using the slider.
+
+<WaterFilling />
+
+import EqualSharesLogo from '/img/equal-shares-logo.svg';
+
+:::info by the way
+<EqualSharesLogo width="20" height="20" style={{ marginBottom: '-3px', marginRight: '3px' }} /> Our logo is inspired by these pictures, and is meant to invoke the picture of a city skyline.
+:::
+
+<details><summary>For general utilities</summary>
+<p>
+todo
+</p>
+</details>
+
+## Computing the effective vote count {#effective-vote-count}
+
+When determining the winning projects of the Method of Equal Shares, we need to compute something called the *effective vote count*.
+In this section, we will explain what this means.
+
+## Example 1 {#example}
+
+*You can also watch a [video on YouTube](https://www.youtube.com/watch?v=RYK3heBDKJ4)* [5:14 min] *explaining this example.*
+
+Let us illustrate how the method works using a small example.
+Suppose the overall budget is <CurrencySymbol/>110, and there are 11 voters.
+
+There are 5 projects on the ballot, and we use approval voting. 
+The following table lists the projects and their costs.
+For each voter, there is a column that indicates all the projects that the voter voted for.
+For example, the left-most voter selected the bike path and the outdoor gym.
+
+| Project            | Costs    | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | vote count |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-1">🚲 bike path      </span> | <CurrencySymbol/>700 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   | ✗ | 7 |
+| <span className="project-2">🏋️ outdoor gym    </span> | <CurrencySymbol/>400 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   |   | 6 |
+| <span className="project-3">🌳 new park       </span> | <CurrencySymbol/>250 |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | 5 |
+| <span className="project-4">🛝 new playground </span> | <CurrencySymbol/>200 |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 library for kids</span> | <CurrencySymbol/>100 |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+Most cities use a simple method to select the winners of the participatory budgets, where
+they go through the projects in order of the number of votes. In this case, they would select
+the <span className="project-1">🚲 bike path</span> (with 7 votes), and then the <span className="project-2">🏋️ outdoor gym</span> (with 6 votes), and then stop because
+the budget is exhausted.
+Note that these two "sports" projects are both voted on by roughly the same voters.
+On the other hand, the "kids" projects (<span className="project-4">🛝 new playground</span>, <span className="project-5">📚 library for kids</span>) are 
+voted on by a different set of voters, who remain unrepresented. 
+
+:::info Spoiler
+As we will see, the Method of Equal Shares will select the <span className="project-1">🚲 bike path</span>, then the <span className="project-4">🛝 new playground</span>, and then the <span className="project-5">📚 library for kids</span>.
+:::
+
+We begin computing the outcome by dividing the budget equally among the voters.
+Thus, each voter gets assigned a share of <CurrencySymbol/>100.
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} showPayments={false} />
+
+We start by computing the so-called effective vote count for the project with the most votes, which is the <span className="project-1">🚲 bike path</span> with 7 votes. 
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[100,100,100,100,100,100,0,0,0,0,100]} />
+
+In this case, the effective vote count of the <span className="project-1">🚲 bike path</span> is 7. All the other projects have a lower effective vote count (because the effective vote count can only be lower than the vote count), and the next-most popular project (the <span className="project-2">🏋️ outdoor gym</span>) has a vote count of only 6.
+
+Thus, the Method of Equal Shares selects the <span className="project-1">🚲 bike path</span> as the first project to be funded, and divides its cost equally between its supporters. Thus, the 7 voters who voted for the <span className="project-1">🚲 bike path</span> each pay <CurrencySymbol/>100, and thus do not have any budget left anymore.
+
+<BudgetBars budgets={[0,0,0,0,0,0,100,100,100,100,0]} showPayments={false} />
+
+Note that none of the people who voted for the <span className="project-2">🏋️ outdoor gym</span> have any budget left, so its effective vote count has dropped to 0. 
+Similarly, 3 of the 5 people who voted for the <span className="project-3">🌳 new park</span> have no budget left, so its effective vote count has dropped to 2.
+
+| Project            | Costs    | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effective vote count |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-2">🏋️ outdoor gym    </span>  | <CurrencySymbol/>400 | — | — | — | — | — | — |   |   |   |   |   | **0** |
+| <span className="project-3">🌳 new park       </span>  | <CurrencySymbol/>250 |   | — |   | — | — |   | ✗ |   |   | ✗ |   | **2** |
+| <span className="project-4">🛝 new playground </span>  | <CurrencySymbol/>200 |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 library for kids</span> | <CurrencySymbol/>100 |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+
+Thus, the <span className="project-4">🛝 new playground</span> has the highest vote count with 4 votes.
+We can spread its cost of <CurrencySymbol/>200 equally among its supporters, and thus each of the 4 voters who voted for the <span className="project-4">🛝 new playground</span> pays <CurrencySymbol/>50:
+
+<BudgetBars budgets={[0,0,0,0,0,0,100,100,100,100,0]} payments={[0,0,0,0,0,0,50,50,50,50,0]} />
+
+We select the <span className="project-4">🛝 new playground</span> as a winning project, and subtract the payments. Thus, the 4 supporting voters have <CurrencySymbol/>50 left:
+
+<BudgetBars budgets={[0,0,0,0,0,0,50,50,50,50,0]} showPayments={false} overrideMax={100} />
+
+The <span className="project-5">📚 library for kids</span> costs <CurrencySymbol/>100. The 3 voters who voted for it together have <CurrencySymbol/>150 left, so this project is still affordable.
+They can each pay <CurrencySymbol/>33.3.
+
+<BudgetBars budgets={[0,0,0,0,0,0,50,50,50,50,0]} payments={[0,0,0,0,0,0,33.3,0,33.3,33.3,0]} overrideMax={100} />
+
+We select the <span className="project-5">📚 library for kids</span> as a winning project, and subtract the payments. The remaining budgets are:
+
+<BudgetBars budgets={[0,0,0,0,0,0,16.7,50,16.7,16.7,0]} showPayments={false} overrideMax={100} />
+
+None of the remaining projects can be afforded using the budgets of their supporters, so we have finished computing the election winners.
+
+**Final result**: The winning projects are the <span className="project-1">🚲 bike path</span>, the <span className="project-4">🛝 new playground</span>, and the <span className="project-5">📚 library for kids</span>.
+
+## Example 2 (more complicated)

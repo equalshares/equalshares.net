@@ -1,0 +1,321 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+ .hero {
+  background-color: hsl(202, 73%, 93%);
+  border-top: 1px solid var(--ifm-color-primary);
+ }
+[data-theme='dark'] .hero {
+  background-color: hsl(201, 73%, 35%);
+}
+
+ .hero > div {
+  display: flex;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  max-width: 1600px;
+  margin: 0 auto;
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
+}
+
+.sideInfo {
+  font-size: 80%;
+  line-height: 1.3em;
+  max-width: 23em;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: rgb(211, 235, 248, 0.9);
+  color: #000;
+  box-shadow: -0.1em 0 0.3em rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+[data-theme='dark'] .sideInfo {
+  background-color: hsla(201, 73%, 25%, 0.9);
+  color: #fff;
+}
+
+.sideInfo p {
+  margin: 0;
+  padding-top: 0.5em;
+  padding-bottom: 0.8em;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.sideInfo strong {
+  font-weight: 500;
+  color: hsl(202, 100%, 28%);
+}
+[data-theme='dark'] .sideInfo strong {
+  color: hsl(202, 100%, 85%);
+}
+
+.sideInfo ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.sideInfo li {
+  background-image: url('/static/icons/check-circle-fill.svg');
+  background-repeat: no-repeat;
+  background-position: 0 0.1em;
+  padding-left: 1.6em;
+  margin-bottom: 0.5em;
+}
+[data-theme='dark'] .sideInfo li {
+  background-image: url('/static/icons/check-circle-fill-dark.svg');
+}
+
+.describeMethod {
+  background-image: url("/img/cityscape.svg");
+  background-size: cover;
+  background-position: bottom right 40%;
+  flex: 1;
+  padding: 1em;
+  font-size: 1.5em;
+  line-height: 1.6;
+  min-height: 14em;
+  position: relative;
+}
+[data-theme='dark'] .describeMethod {
+  background-image: url("/img/cityscape-dark.svg");
+}
+
+.describeMethod p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1em;
+  max-width: 20em;
+  color: #000;
+  text-shadow: white 0 0 20px, white 0 0 12px, white 0 0 8px;
+}
+
+.describeMethod mark {
+  background-color: hsl(202, 100%, 36%);
+  color: #fff;
+  padding: 5px 7px;
+  margin: 0 5px;
+  text-shadow: none;
+}
+
+.describeMethod span {
+  background-color: white;
+  color: #000;
+  padding: 5px 7px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.universityLogos {
+  background-color: var(--ifm-color-primary);
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 1.2em;
+}
+[data-theme='dark'] .universityLogos {
+  background-color: var(--ifm-color-primary-darkest);
+}
+
+.universityLogos p {
+  color: #fff;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  padding-top: 0.3em;
+  font-variant: small-caps;
+  font-weight: 400;
+}
+
+.universityLogos .logoList {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  padding-bottom: 0.7em;
+  padding-top: 0.4em;
+  height: 4.1em;
+}
+
+.universityLogos .logoList img {
+  height: 100%;
+  max-width: 7em;
+}
+
+.contentSection {
+  clear: both;
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.contentSectionFlex {
+  clear: both;
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+}
+
+.contentSection p,
+.contentSectionFlex p
+{
+  font-size: 1.45em;
+  line-height: 1.5em;
+}
+
+.map {
+  border: 1px solid #0076ba;
+  float: left;
+  margin-right: 1.5em;
+}
+[data-theme='dark'] .map {
+  background-color: hsl(202, 100%, 20%);
+  filter: brightness(90%);
+}
+
+.approvalBallotExample {
+  display: none;
+  font-size: 1.1em;
+  /* float: right; */
+  flex: 1;
+  height: 470px;
+  width: 360px;
+  min-width: 360px;
+  border: 1px solid var(--ifm-color-primary);
+  box-sizing: border-box;
+  padding: 1em;
+  margin: 1.5em;
+  text-align: center;
+  transform: rotate(3deg) translate(0, -40px);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+[data-theme='dark'] .approvalBallotExample {
+  background-color: hsl(202, 100%, 10%);
+}
+
+.ballotExampleOption {
+  text-align: left;
+  font-size: 0.9em;
+  line-height: 1.2em;
+  padding-left: 2em;
+  margin-left: 0.5em;
+  user-select: none;
+  cursor: pointer;
+  background: url('/static/icons/ballot-box-uncrossed.svg') no-repeat left top;
+}
+[data-theme='dark'] .ballotExampleOption {
+  background: url('/static/icons/ballot-box-uncrossed-dark.svg') no-repeat left top;
+}
+
+.ballotExampleOption.selected {
+  background: url('/static/icons/ballot-box-crossed.svg') no-repeat left top;
+}
+[data-theme='dark'] .ballotExampleOption.selected {
+  background: url('/static/icons/ballot-box-crossed-dark.svg') no-repeat left top;
+}
+
+.sankeyContainer {
+  padding-top: 10px;
+}
+.sankeyContainer svg {
+  width: 100%;
+  height: auto;
+}
+[data-theme='dark'] .sankeyContainer svg text {
+  fill: white;
+  text-shadow: none;
+}
+
+@media screen and (max-width: 996px) {
+  .hero > div {
+    flex-direction: column;
+  }
+  .describeMethod {
+    font-size: 1.35em;
+    box-shadow: 0em 0.1em 0.15em rgba(0, 0, 0, 0.2), 0em 0em 0.1em rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    min-height: 12em;
+  }
+  .sideInfo {
+    max-width: none;
+    font-size: 90%;
+  }
+
+  .universityLogos .logoList {
+    height: 3em;
+  }
+  .universityLogos {
+    margin-bottom: 0;
+  }
+  .universityLogos .logoList img {
+    height: 100%;
+    max-width: 4.5em;
+  }
+
+  .contentSectionFlex {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  .contentSection p,
+  .contentSectionFlex p
+  {
+    font-size: 1.2em;
+  }
+
+  .approvalBallotExample {
+    order: 1;
+    margin: 0;
+    transform: rotate(3deg) translate(0, -30px);
+  }
+  .ballotExplanation {
+    order: 2;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .universityLogos p {
+    font-size: 0.9em;
+    line-height: 1em;
+  }
+  .universityLogos .logoList {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 1em;
+  }
+  .universityLogos .logoList img {
+    max-width: 2.8em;
+    max-height: 1.6em;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .universityLogos p {
+    font-size: 1em;
+    line-height: 1em;
+    max-width: 20em;
+    margin: 0 auto;
+  }
+  .universityLogos .logoList {
+    padding: 0.8em 2em;
+    flex-wrap: wrap;
+    height: auto;
+    gap: 1em;
+    row-gap: 0.3em;
+  }
+  .universityLogos .logoList img {
+    max-width: 3.5em;
+    max-height: 2em;
+    height: auto;
+  }
+}

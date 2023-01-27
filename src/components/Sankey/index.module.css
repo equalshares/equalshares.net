@@ -1,0 +1,17 @@
+.tooltipBallotList {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+.tooltipBallotList li {
+  font-size: 0.8em;
+  padding-left: 1.6em;
+  background: url('/static/icons/ballot-box-uncrossed.svg') no-repeat left top;
+  background-size: contain;
+}
+
+.tooltipBallotList li.selected {
+  background: url('/static/icons/ballot-box-crossed.svg') no-repeat left top;
+  background-size: contain;
+}

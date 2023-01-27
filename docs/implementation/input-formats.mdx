@@ -1,0 +1,165 @@
+---
+sidebar_position: 2
+title: Input formats
+---
+
+import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
+
+# Input Formats: How should voters express their preferences?
+
+An important part of deciding on a voting system for participatory budgeting is the choice of **input format**.
+The input format refers to the way the voting ballot is designed, and how voters are allowed to express their preferences.
+There are several different input formats in common use by cities:
+* **Approval voting** (for example, voters can choose up to 10 projects)
+* **Distributing points** (for example, voters can distribute 10 points between projects, being allowed to give several points to the same project)
+* **Knapsack voting** (voters can choose as many projects as they like, as long as the total cost of the chosen projects does not exceed the budget limit)
+* **Ranked voting** (for example, voters can rank 3 projects in order of preference)
+
+The Method of Equal Shares is compatible with all of these input formats, so cities can choose the input format that best suits their needs.
+In the following, we discuss the advantages and disadvantages of each input format.
+
+We **recommend using approval voting**, because it is the most common input format for participatory budgeting, and it is easy to understand.
+Distributing points is a good alternative that allows voters to express more detailed preferences.
+
+:::tip
+
+Wikipedia has a [list of cities using participatory budgeting](https://en.wikipedia.org/wiki/Draft:List_of_participatory_budgeting_votes) which mentions the input format used in each case.
+
+:::
+
+## Approval voting (recommended)
+
+In approval voting, voters can choose a certain number of projects that they "approve" (vote for).
+This is the most common input format for Participatory Budgeting.
+
+* Advantage: easy to understand
+* Advantage: the Method of Equal Shares is particularly easy to explain to voters when using approval
+
+### Maximum number of approvals
+
+Most cities impose a maximum number of approvals.
+
+* Up to **15** approvals: Warsaw (districts, since 2020)
+* Up to **10** approvals: Warsaw (city-wide projects, since 2020), Lyon (2022)
+* Up to **5** approvals: Warsaw (2015), Łódź (2017-21), Cambridge MA (2016&ndash;21), New York City (2015&ndash;19), Montreal (2021), Paris (2015&ndash;17)
+* Up to **4** approvals: Paris (2018&ndash;19)
+* Up to **3** approvals: Toulouse (2022), Milan (2018), Rome (2019), Gdynia (2020&ndash;21)
+
+We recommend a generous maximum to allow voters to express their entire preference.
+
+:::note
+
+Another possibility to consider is to not impose *any* maximum number of votes. This has a number of advantages:
+* Voters who like many projects can support all of them.
+* When there is a maximum, some voters will feel pressured to use every available vote; without a maximum this is avoided.
+* Note that due to the design of the Method of Equal Shares, voters are not advantaged by voting for few or for many projects, since every voter gets to control an equal share of the budget.
+
+
+:::
+
+### Minimum number of approvals
+
+Lausanne: minimum 3 (2022). Toulouse (2019) implicitly also had a 3-project minimum.
+Advantage: voters who are planning to vote for just 1 project will be encouraged to engage with the entire list of projects.
+Disadvantage: there may be voters who legitimately want to vote for just 1 project, and it could be frustrating for them to be forced to vote for projects that they do not wish to support.
+
+## Distributing points (recommended)
+
+For distributing points, each voter is given a certain number of *points* (for example, 10 points), and can assign them to projects as they wish.
+For example, they can give all 10 points to a single project, or they can give 1 point each to 10 different projects, or any other combination.
+They can also, for example, give 1 point each to 6 projects, and 2 points each to 2 other projects.
+
+This system is sometimes also known as [cumulative voting](https://en.wikipedia.org/wiki/Cumulative_voting). It is used by several cities:
+
+* Częstochowa: distribute **10 points**
+* Toulouse (2019): distribute **7 points**, with each project getting at most 3 points
+* Strasbourg (2019, 2021): distribute **5 points**
+* Gdańsk (2016&ndash;22): distribute **5 points**
+
+An advantage of this system is that voters have a lot of flexibility to express their preferences.
+Voters who feel strongly about some projects can give them a lot of points.
+At the same time, voters who like many different projects can give them each a small number of points.
+
+:::tip Advice
+
+Voters should be discouraged from placing all their points on a single project, 
+because if this project does not win then the vote has no influence.
+
+:::
+
+## Range voting
+
+[Range voting](https://en.wikipedia.org/wiki/Range_voting) is similar to distributing points, except that there is no upper limit on the number of points that a voter can distribute overall. 
+Instead, there is a limit on the number of points that a voter can distribute to a single project.
+For example, this limit could be 5 points; then voters can decide for each project whether to give it 0, 1, 2, 3, 4, or 5 points.
+This is similar to the familiar 5-star rating system on Amazon or Google Maps.
+
+The Method of Equal Shares works well with range voting, in the same way that it works for distributing points. Both range voting and distributing points are good input formats.
+
+Paris (2021&ndash;23) uses a version of range voting for its participatory budget, where voters may rate each project on a 4-point scale.
+However, the overall voting system is not based on range voting, because Paris uses the ["majority judgment" voting method](../benefits/comparisons#majority-judgment).
+
+## Knapsack voting
+
+Knapsack voting is similar to approval voting. Instead of imposing a maximum number of approvals, voters are allowed to approve as many projects as they like, as long as the selected projects do not exceed the budget limit.
+This is used by a number of cities, notably Madrid and Barcelona. Knapsack voting is the default input format of the `decidim` [voting platform](voting-platforms).
+An advantage of knapsack voting is that voters will be better aware of the budget limit.
+
+:::caution Not recommended
+We **do not recommend** knapsack voting for participatory budgeting. 
+Knapsack voting is difficult for voters to use when a large number of projects fit within the budget limit.
+In addition, when there are some very expensive projects, knapsack voting does not allow voters to express detailed preferences for these projects (because they can only choose few of them). This may lead to worse election outcomes.
+:::
+
+However, the Method of Equal Shares <SemiBold>is compatible with knapsack voting</SemiBold>, and works the same as with approval voting.
+
+## Ranked voting
+
+Some cities allow voters to first choose a small number of projects (usually 3&ndash;5), and then let them rank these projects in order of preference.
+For example, Kraków (2019&ndash;21) lets voters choose 3 projects and rank them, where 3 points are assigned to a voter's top choice, 2 points to the second choice, and 1 point to the third choice.
+
+:::caution Not recommended
+We **do not recommend** ranked voting for participatory budgeting. 
+We believe that it is better to let voters distribute points themselves, instead of forcing them to assign points according to a ranking.
+Additionally, the user interface (drag-and-drop) for ranked voting can be difficult to use.
+:::
+
+However, the Method of Equal Shares <SemiBold>is compatible with ranked voting</SemiBold>, because a ranking can be converted to a point distribution. 
+As discussed, Kraków does this by converting a ranking into 3-2-1 points. Brest (2022) uses the same system. Gdynia (2016&ndash;19) used 5-4-3-2-1. New South Wales (2019) used 10-5-3-2-1.
+
+There is no objective way of deciding how to convert rankings into points.
+
+## Voting for a single project
+
+Some cities ask voters to select just 1 project to vote for. 
+
+:::caution Not recommended
+We **strongly advise against** restricting votes to just 1 project, because then voters cannot express their preferences in a meaningful way.
+Voters who vote for a losing project have no influence on the election outcome.
+This input format is also biased against smaller projects, since voters are more likely to vote for a large project than for a small project.
+:::
+
+## Comparison of input formats
+
+### Ease of use
+
+[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) conducted an empirical study with 1 800 participants (recruited via Amazon Mechanical Turk)
+in order to compare different input formats in a participatory budgeting election. 
+They conclude that "k-approval leads to the best user experience". 
+The following chart shows how long study participants took to complete the voting process for each input format.
+
+In this study, approval voting was limited to approving 5 projects, point distribution involved distributing 100 points, and ranking involved ranking all projects (10 or 20).
+
+<Datawrapper src="//datawrapper.dwcdn.net/ioX3E/" />
+
+[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) also asked voters
+how easy they found the voting task. They report that
+"[distributing points] was rated as quite easy to use despite being one of the more time-intensive formats. 
+[Approval-voting] was rated as significantly easier to use than all other formats except [distributing points]."
+Participants who used approval voting also gave the highest agreement score when answering the question "How well did the input format capture your preferences?".
+
+### Robustness
+
+Experimental studies and simulation results suggest that the choice of input format has only a small impact on the election outcome.
+Therefore, the choice of input format does not matter very much. 
+This might be a reason to choose the input format that is easiest to use, which is probably approval voting.

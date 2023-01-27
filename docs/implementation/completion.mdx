@@ -1,0 +1,33 @@
+---
+sidebar_position: 5
+title: Completion
+---
+
+import { SemiBold, CurrencySymbol } from '@site/src/components/MyComponents';
+
+# Completion of the Method of Equal Shares
+
+In the [explanation](../explanation) of the Method of Equal Shares, Step 1 says:
+
+> The overall budget is divided equally among the voters.
+
+For example, if the overall budget is <CurrencySymbol/>100 000, and there are 1000 voters, then each voter would be allocated a share of <CurrencySymbol/>100.
+However, when we compute the Method of Equal Shares with this initial division of the budget, we will typically find that the election outcome does not use up the entire budget.
+This is because for some of the voters, the method cannot productively use the budget share assigned to them.
+For example, if a voter only votes for 1 project, and this project does not receive enough votes to win, then the method cannot spend the <CurrencySymbol/>100 assigned to this voter.
+
+In simulations using voting data from Warsaw, the Method of Equal Shares spends approximately 60-70% of the available budget.
+Of course, election officials would usually prefer to spend close to 100% of the budget.
+Therefore, the Method of Equal Shares needs to be **completed**, which means that its outcome needs to be modified so that almost the entire budget is used.
+
+## Recommended completion method
+
+The basic idea is to give voters a larger initial budget share. 
+In the example, instead of giving each voter <CurrencySymbol/>100, we could give them <CurrencySymbol/>130.
+More precisely, we go through each possible value <CurrencySymbol/>100, <CurrencySymbol/>101, <CurrencySymbol/>102, and so on.
+For each value, we compute the outcome of the Method of Equal Shares.
+We stop in one of two cases:
+* The outcome is _exhaustive_, which means that the budget limit would be exceeded if we added any additional project to the outcome.
+* If we were to run the Method of Equal Shares with the next higher value, then the resulting outcome would exceed the budget limit.
+
+## Other completion methods

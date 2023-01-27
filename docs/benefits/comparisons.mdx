@@ -1,0 +1,75 @@
+---
+sidebar_position: 10
+title: Comparison with other methods
+---
+
+import { SemiBold, CurrencySymbol } from '@site/src/components/MyComponents';
+
+# Comparison with other voting systems for participatory budgeting
+
+On this page, we compare the Method of Equal Shares with some other voting systems that have been used by cities, or that have been proposed by academics or election reform advocates.
+
+## Comparison with the standard voting system
+
+The voting system that is in use by almost every city selects all of the most popular projects, provided they fit in the budget limit.
+This is a "utilitarian method", in that it ensures an outcome that will (approximately) maximize the total "utility" of voters.
+In the computer science literature, this method is known as "utilitarian greedy". 
+It is "greedy" because it proceeds one step at a time, and at each step selects the most popular projects without considering the impact of this decision on future steps.
+
+**Advantages** of the standard method, when compared to the Method of Equal Shares:
+
+
+## Comparison with Majority Judgment in Paris {#majority-judgment}
+
+Paris used the standard voting system until 2019, allowing each voter to vote for 4-5 projects. 
+In 2021, the city government switched to a system known as _majority judgment_. 
+Under this voting system, each voter can _grade_ every project (no limit on how many projects are graded).
+In Paris, there are [four available grades](https://budgetparticipatif.paris.fr/bp/plugins/download/NoticeJugementMajoritaireBP.pdf):
+
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div> Favorite, I love it (<i>Coup de cœur / J'adore</i>)
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> I like it, it's interesting (<i>J'aime bien / C'est intéressant</i>)
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(230,254,86)', border: '0.5px solid #888' }}></div> Why not? (<i>Pourquoi pas ?</i>)
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(198,53,39)' }}></div> I'm not convinced (<i>Je ne suis pas convaincu.e</i>)
+
+Then, for each project, we compute the _median grade_, which is the grade such that half of the voters gave this or a higher grade, and half gave this or a lower grade.
+The city then selects the 2 projects with the highest median grade.
+(In practice, the best projects typically all have a median grade of "I like it, it's interesting". 
+Thus, the city uses a tie-breaking scheme to actually make its decision, but city hall has never precisely announced what tie-breaking scheme it uses.)
+
+An **advantage** of majority judgment is that it allows voters to express a fine-grained view on each project, including a negative view.
+
+A **major disadvantage** is that it may select projects that do not receive wide-spread support, as we will explain below.
+
+<h3>The difference between popular projects and high-quality projects</h3>
+
+The standard voting system used by most cities, and also the Method of Equal Shares, have as their aim to select projects that are popular: many people have voted for those projects, and thus we can assume that many residents of the city would be happy to see the project implemented. Thus, these voting systems allow the city to discover which projects have the broadest support in the population.
+
+The philosophy underlying majority judgment (as used in Paris) is very different: it will select projects that are "high quality", in that for each project, a large fraction of voters who evaluated it agree that it is a good project.
+This is true even if many people do not care about the project and do not express an opinion about it.
+In particular, this could lead to the selection of projects that are only of interest to people living in the immediate area affected by the project, as we will now illustrate using an example.
+
+Consider the following example: There are two projects. 
+
+* <SemiBold>Project 1</SemiBold> was graded by 2220 voters. 1000 of those voters (45%) gave it the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, 
+and another 550 voters (25%) gave it the second highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>. Therefore, the median grade of Project 1 is the second highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>.
+* <SemiBold>Project 2</SemiBold> was graded by 671 voters, many fewer than the 2220 voters who graded Project 1. Maybe this is the case because Project 2 is of <SemiBold>very local interest</SemiBold>, and people not living in the immediate area did not give Project 2 a grade. 400 of those 671 voters (60%) gave Project 2 the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
+Because that is more than half of the voters, the median grade of Project 2 is the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
+
+The situation is depicted in the following graphic.
+
+<img src="../../img/majority-judgment.svg" width="550" />
+
+Majority judgment thus selects **Project 2**, because it has a higher median grade. 
+
+However, note that 1000 voters gave Project 1 the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, while Project 2 only got the highest grade from 400 voters. Thus, Project 2 is less popular. Depending on the preferences of the city government, it may view Project 2 as a bad use of money since it will satisfy many fewer residents.
+
+In cities using the Method of Equal Shares (or even the standard voting method), Project 1 would be selected instead of Project 2.
+
+## Comparison with Quadratic Voting {#quadratic-voting}
+
+Quadratic voting is intended to avoid strategic misrepresentations of preference intensity, and to thereby avoid a tyrany of the majority.
+With the Method of Equal Shares, both of these problems are addressed by its design of giving each voter an equal share of the budget to decide over.
+Thus, claiming to have intense preferences will principally influence one's own share of the budget, and a minority always has a share that cannot be taken away by the majority.
+
+In principle, a quadratic voting interface could be combined with the Method of Equal Shares. 
+But we expect that the added complexity for voters to understand and use the system makes this not worth it.
