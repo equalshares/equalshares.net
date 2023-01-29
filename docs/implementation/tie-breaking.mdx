@@ -89,3 +89,31 @@ But they both have the same cost and the same initial vote count.
 Thus, the tie needs to be broken by lot, for example by having the election official flip a coin.
 
 ## Likelihood of ties
+
+Using simulations based on election data in the [Pabulib library](http://pabulib.org/), it is possible to estimate the likelihood of ties occurring.
+These simulations suggest that it is exceptionally infrequent for a tie to occur that needs to be broken using randomness.
+This is because in almost all cases, any tie can already be broken based on project costs and initial vote counts.
+
+In our simulation, we find that in **only 0.6% of cases**, there exist two projects with the exact same cost and the exact same vote count.
+Further, even in the 0.6% of cases with such similar projects, it is often not necessary to break this tie when computing the Method of Equal Shares
+(for example because the tied projects do not have a large-enough vote count to have a chance of winning).
+Our simulation suggests that in **only 0.15% of cases**, there occurs a tie when computing the Method of Equal Shares that needs to be broken by lot.
+
+Most of the ties found in our simulation occur in election in the city of Wrocław, which involve a fairly small number of voters.
+If we exclude the Wrocław elections from our simulation, then the likelihood of ties is even lower:
+two projects with the same cost and the same initial vote count occur in only 0.26% of cases, 
+and a tie during the computation of the Method of Equal Shares occurs in **only 0.09% of cases**.
+
+<details>
+<summary>Details of the simulation</summary>
+
+The simulation was performed in January 2023 using election data form Pabulib based on PB election that used approval voting, which concerns 480 datasets from the Polish cities of Gdansk, Warsaw, Wrocław, and Zabrze. When excluding the Wrocław elections, the simulation involves 383 datasets. 
+
+In order to get a more precise estimate of the likelihood of a tie occurring, for each dataset, we ran a simulation 100 times.
+In each iteration, we randomly sampled between 30% and 80% of the voters from the dataset (thereby obtaining a random smaller election), and then checked whether the smaller election contained a pair of projects with the same cost and the same initial vote count.
+For those instances where such a pair of projects was found, we then checked whether the Method of Equal Shares (using the standard [completion](completion) method) would encounter a tie when computing the election outcome.
+
+If we only look at the actual, original elections (without randomly sampling a subset of voters), then a pair of projects with the same cost and the same initial vote count occurs in 1.25% of elections, with Equal Shares encountering a tie in 0.21% of elections. Excluding the Wrocław elections, the numbers are 0.5% and 0.0% respectively.
+
+The simulation code is [available on GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
+</details>
