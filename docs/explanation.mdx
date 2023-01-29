@@ -181,3 +181,65 @@ None of the remaining projects can be afforded using the budgets of their suppor
 **Final result**: The winning projects are the <span className="project-1">🚲 bike path</span>, the <span className="project-4">🛝 new playground</span>, and the <span className="project-5">📚 library for kids</span>.
 
 ## Example 2 (more complicated)
+
+The computation turns out to be a bit more complicated if the right-most voter votes for the <span className="project-2">🏋️ outdoor gym</span> instead of the <span className="project-1">🚲 bike path</span>:
+
+| Project            | Costs    | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | vote count |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-1">🚲 bike path      </span> | <CurrencySymbol/>700 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   |   | 6 |
+| <span className="project-2">🏋️ outdoor gym    </span> | <CurrencySymbol/>400 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   | ✗ | 7 |
+| <span className="project-3">🌳 new park       </span> | <CurrencySymbol/>250 |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | 5 |
+| <span className="project-4">🛝 new playground </span> | <CurrencySymbol/>200 |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 library for kids</span> | <CurrencySymbol/>100 |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+Going through the details will be instructive.
+
+As before, the available budget is divided equally among the voters, and each is allocated a share of <CurrencySymbol/>100:
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} showPayments={false} />
+
+We take the project with the highest vote count, which this time is the <span className="project-2">🏋️ outdoor gym</span> with 7 votes, and divide its cost equally between its supporters, noting that <CurrencySymbol/>400/7 = <CurrencySymbol/>57.14. 
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[57,57,57,57,57,57,0,0,0,0,57]} />
+
+The <span className="project-2">🏋️ outdoor gym</span> is selected, and we subtract the payments. Now the remaining budgets are as follows:
+
+<BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} showPayments={false} />
+
+The project with the next-highest vote count is the <span className="project-1">🚲 bike path</span> with 6 votes.
+The 6 voters supporting it have 6 &middot; <CurrencySymbol/>43 = <CurrencySymbol/>258 left, which is not enough to pay for the <span className="project-1">🚲 bike path</span> which costs <CurrencySymbol/>700.
+Thus, the bike path is not affordable, and we denote this by giving it an effective vote count of 0.
+
+Thus, we move on to the project with the next-highest vote count, which is the <span className="project-3">🌳 new park</span> with 5 votes.
+If we divide its cost of <CurrencySymbol/>250 equally among its supporters, each of the 5 voters supporting it would need to pay <CurrencySymbol/>50.
+But some of the supporters of the <span className="project-3">🌳 new park</span> only have a budget share of <CurrencySymbol/>43 left, so they cannot afford to pay <CurrencySymbol/>50.
+Thus (as described [above](#equal-split)), we divide the cost so that the three supporters with a remaining budget share of <CurrencySymbol/>43 each pay <CurrencySymbol/>43, and the two supporters with a budget share of <CurrencySymbol/>100 divide the remaining <CurrencySymbol/>250 &minus; 3 &middot; <CurrencySymbol/>43 = <CurrencySymbol/>121 equally, so that each pays <CurrencySymbol/>60.5:
+
+<BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} payments={[0,43,0,43,43,0,60.5,0,0,60.5,0]} />
+
+Because we were not able to split the cost of the <span className="project-3">🌳 new park</span> completely equally, we have to compute the effective vote count of the <span className="project-3">🌳 new park</span> as follows:
+The two voters able to pay <CurrencySymbol/>60.5 each count as a full vote, while the three voters able to pay <CurrencySymbol/>43 each count as only a fraction of the vote, namely 0.7 each (because <CurrencySymbol/>43/60.5 &approx; 0.7). Thus we have:
+
+| Project            | Costs    | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effective vote count |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-1">🚲 bike path      </span> | <CurrencySymbol/>700 | — | — | — | — | — | — |   |   |   |   |   | **0** |
+| <span className="project-3">🌳 new park       </span> | <CurrencySymbol/>250 |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | **4.1** |
+| <span className="project-4">🛝 new playground </span> | <CurrencySymbol/>200 |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 library for kids</span> | <CurrencySymbol/>100 |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+(The effective vote count for the <span className="project-4">🛝 new playground</span> and <span className="project-5">📚 library for kids</span> is the same as before, because their costs can be equally split between its supporters.)
+
+Despite the reduction in its effective vote count, the <span className="project-3">🌳 new park</span> is still the project with the highest effective vote count, so we select it.
+We subtract the payments. Now the remaining budgets are as follows:
+
+<BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} showPayments={false} />
+
+In the next round, the <span className="project-4">🛝 new playground</span> is selected, obtaining an effective vote count of 3.2 (which is the highest):
+
+<BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} payments={[0,0,0,0,0,0,39.5,60.5,60.5,39.5,0]} />
+
+After subtracting the payments, the remaining budgets are as follows:
+
+<BudgetBars budgets={[43,0,43,0,0,43,0,39.5,39.5,0,43]} showPayments={false} overrideMax={100} />
+
+At this point, none of the remaining projects (in particular the <span className="project-5">📚 library for kids</span>) can be afforded using the remaining budgets of their supporters, so the computation of the method ends.
