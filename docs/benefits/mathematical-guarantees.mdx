@@ -3,9 +3,20 @@ sidebar_position: 5
 title: Mathematical fairness guarantees
 ---
 
+import { SemiBold } from '@site/src/components/MyComponents';
+
 # Mathematical fairness guarantees
 
-Academic researchers have proved that the Method of Equal Shares is mathematically fair. 
+The Method of Equal Shares was proposed and developed by mathematicians and computer scientists who proved
+mathematical theorems that say that the method guarantees fairness to voters in certain precise senses.
+On this page, we will describe some of their results, both on an intuitive level and in more technical terms.
+
+For more information, please also consult the following sources:
+[<img src="../../img/abcbook.png" style={{ float: 'right', width: '100px' }} />](https://link.springer.com/book/10.1007/978-3-031-09016-5)
+
+* The book "Multi-Winner Voting with Approval Preferences" (2023) by Martin Lackner and Piotr Skowron, published Open Access by Springer ([free PDF available](https://link.springer.com/book/10.1007/978-3-031-09016-5)).
+Note that this book mostly focusses on "multi-winner elections", where we assume that all projects have the same cost.
+* The paper "Proportional Participatory Budgeting with Additive Utilities" by Dominik Peters, Grzegorz Pierczyński, and Piotr Skowron. Available [on arXiv](https://arxiv.org/abs/2008.13276).
 
 ## Extended justified representation
 
@@ -14,3 +25,19 @@ Academic researchers have proved that the Method of Equal Shares is mathematical
 ## Proportionality degree
 
 ## Cost-EJR+
+
+## Other basic voting criteria
+
+There are other basic voting criteria that are not "fairness guarantees" in the senses above, but are still worth mentioning. The following criteria are satisfied by the Method of Equal Shares:
+
+* <SemiBold>Polynomial time computability</SemiBold>: The outcome of the Method of Equal Shares can be computed in polynomial time by a simple algorithm. Thus the winning projects can be determined quickly, usually in less than a minute even for elections in large cities.
+* <SemiBold>Unanimity</SemiBold>: If a project is supported by all voters, then it wins (assuming an approval election).
+* <SemiBold>Independence of clones</SemiBold>: By "cloning" a project, we mean proposing one or more identical copies of a project already on the ballot. We assume that each voter either supports all or none of the clones. Under the Method of Equal Shares, the following holds: if a losing project is cloned, none of the clones win; and if a winning project is cloned, then at least one of the clones wins.
+* <SemiBold>Monotonicity</SemiBold>: If a project wins, and a voter changes their ballot by adding an approval to the winning project, then that project continues to win.
+* <SemiBold>Discount monotonicity</SemiBold>: If a project wins, and its cost is reduced, then it stays winning. If a project loses, and its price is increased, then it stays losing.
+* <SemiBold>Independence to empty ballots</SemiBold>: If we add a voter to the election who approves none of the projects, then the outcome does not change (assuming we complete the method in the usual way).
+
+Several other criteria are failed, however, including:
+* Pareto-optimality
+* Budget limit monotonicity (a winning project should stay winning if the available budget is increased)
+* Strategyproofness (a voter should not be able to improve the outcome by changing their ballot)
