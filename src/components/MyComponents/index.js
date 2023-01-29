@@ -28,7 +28,7 @@ export function SemiBold({ children }) {
   return <span style={{ fontWeight: 500 }}>{children}</span>;
 }
 
-export function BudgetBars({ budgets, payments = [], unaffordable = false, height = '200px', showPayments = true, overrideMax = null }) {
+export function BudgetBars({ budgets, payments = [], unaffordable = false, height = '200px', showBudgets = true, showPayments = true, overrideMax = null }) {
   let maxBudget = Math.max(...budgets);
   if (overrideMax) {
     maxBudget = overrideMax;
@@ -36,6 +36,7 @@ export function BudgetBars({ budgets, payments = [], unaffordable = false, heigh
   let bars = budgets.map((budget, index) => {
     var barStyle = budget > 0 ? { height: 100 * budget/maxBudget + '%' } : {}; // make a larger hoverable area for height-0 bars
     return (<div className="budget-bar-container" key={index.toString()}>
+      {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{budget}</div>}
       <Tippy content={<span>
           Budget: <CurrencySymbol/>{budget} 
           {showPayments && <span><br/>Spending: <CurrencySymbol/>{payments[index]}</span>} 
