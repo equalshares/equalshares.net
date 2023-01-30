@@ -17,6 +17,16 @@ In the computer science literature, this method is known as "utilitarian greedy"
 It is "greedy" because it proceeds one step at a time, and at each step selects the most popular projects without considering the impact of this decision on future steps.
 
 **Advantages** of the standard method, when compared to the Method of Equal Shares:
+* It is simpler and easier to understand.
+* It leads to higher _average_ voter satisfaction because it selects the most popular projects (but the satisfaction is less equally distributed).
+* It tends to select only a small number of projects (which all have a high cost), making the implementation easier to administer.
+
+**Disadvantages** of the standard method, when compared to the Method of Equal Shares:
+* It cannot automatically handle geographic divisions of cities into districts and neighborhoods.
+* Some voters have much higher influence on the outcome than others, which can be seen as unfair.
+* Smaller cheap projects have a very low chance of being selected.
+* Project proposers have an incentive to be wasteful because a project's probability of being selected is almost independent of its cost.
+* Project proposers have incentives to "bundle" several projects into a big project, leading to outcomes that are worse overall.
 
 
 ## Comparison with Majority Judgment in Paris {#majority-judgment}
@@ -72,4 +82,4 @@ With the Method of Equal Shares, both of these problems are addressed by its des
 Thus, claiming to have intense preferences will principally influence one's own share of the budget, and a minority always has a share that cannot be taken away by the majority.
 
 In principle, a quadratic voting interface could be combined with the Method of Equal Shares. 
-But we expect that the added complexity for voters to understand and use the system makes this not worth it.
+But we expect that it is not worth using quadratic voting, given the added complexity for voters to understand and use the system.
