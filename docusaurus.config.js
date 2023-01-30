@@ -43,8 +43,8 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl:
+            'https://github.com/equalshares/equalshares.net/blob/master/',
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
@@ -173,6 +173,14 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      announcementBar: {
+        id: 'draft_bar',
+        content:
+          'This is a draft version of our website, to be published in February 2023. Please do not link to it yet.',
+        backgroundColor: '#e1e5fa',
+        textColor: '#303340',
+        isCloseable: true,
       },
     }),
     stylesheets: [
