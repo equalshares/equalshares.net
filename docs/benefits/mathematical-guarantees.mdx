@@ -28,6 +28,19 @@ Then, if at least 5% of voters vote for that project _and for no other projects_
 
 > **Theorem**. Let $P$ be a project and let $\text{cost}(P)$ be the cost of the proposal. Suppose $B$ is the overall budget, and $n$ is the total number of voters. If at least $n \cdot \text{cost}(P)/B$ voters vote for $P$ and no other projects, then $P$ will be among the projects selected by the Method of Equal Shares.
 
+<details>
+<summary>Proof</summary>
+
+Each of the voters who voted only for $P$ gets assigned a budget share of at least $B/n$ at the start of the computation of the method. (It could be more than $B/n$ because we [complete](../implementation/completion) the method.)
+
+Therefore, the total amount of budget assigned to voters who vote only for $P$ is at least
+$$
+\underbrace{n \cdot \frac{\text{cost}(P)}{B}}_{\text{number of voters}} \cdot \underbrace{\frac{B}{n}}_{\text{budget share}} = \text{cost}(P).
+$$
+
+By definition of the Method of Equal Shares, it finishes only when no more projects can be afforded by their supporters. But that means that $P$ must be among the selected projects, because the voters who only vote for $P$ retain all their money until $P$ is selected, and thus $P$ is always affordable.
+</details>
+
 Using the standard voting method for participatory budgeting (which just selects the most popular projects until the budget runs out), no similar guarantee holds. Even a very cost-effective project (for example, costing 1% of the budget) may need a large number of voters (for example, more than 30%) to win under the standard method.
 
 ## Groups with similar votes will be represented in the outcome
