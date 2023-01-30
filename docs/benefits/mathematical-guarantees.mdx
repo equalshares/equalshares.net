@@ -4,6 +4,7 @@ title: Mathematical fairness guarantees
 ---
 
 import { SemiBold } from '@site/src/components/MyComponents';
+import X from '/icons/x-circle.svg';
 
 # Mathematical fairness guarantees
 
@@ -18,13 +19,19 @@ For more information, please also consult the following sources:
 Note that this book mostly focusses on "multi-winner elections", where we assume that all projects have the same cost.
 * The paper "Proportional Participatory Budgeting with Additive Utilities" by Dominik Peters, Grzegorz Pierczyński, and Piotr Skowron. Available [on arXiv](https://arxiv.org/abs/2008.13276).
 
-## Extended justified representation
+## A project is guaranteed to be funded provided it gets a number of "bullet" votes that is proportionate to its cost {#bullet-votes}
 
-## Core approximation
+The first mathematical guarantee concerns individual projects: they are sure to be funded provided they get at least a certain minimum number of unique votes.
 
-## Proportionality degree
+For a precise example, consider a project proposal with a cost that would consume 5% of the overall available budget. 
+Then, if at least 5% of voters vote for that project _and for no other projects_, then this proposal will win under the Method of Equal Shares.
 
-## Cost-EJR+
+> **Theorem**. Let $P$ be a project and let $\text{cost}(P)$ be the cost of the proposal. Suppose $B$ is the overall budget, and $n$ is the total number of voters. If at least $n \cdot \text{cost}(P)/B$ voters vote for $P$ and no other projects, then $P$ will be among the projects selected by the Method of Equal Shares.
+
+Using the standard voting method for participatory budgeting (which just selects the most popular projects until the budget runs out), no similar guarantee holds. Even a very cost-effective project (for example, costing 1% of the budget) may need a large number of voters (for example, more than 30%) to win under the standard method.
+
+## Groups with similar votes will be represented in the outcome
+
 
 ## Other basic voting criteria
 
@@ -38,6 +45,8 @@ There are other basic voting criteria that are not "fairness guarantees" in the 
 * <SemiBold>Independence to empty ballots</SemiBold>: If we add a voter to the election who approves none of the projects, then the outcome does not change (assuming we complete the method in the usual way).
 
 Several other criteria are failed, however, including:
-* Pareto-optimality
-* Budget limit monotonicity (a winning project should stay winning if the available budget is increased)
-* Strategyproofness (a voter should not be able to improve the outcome by changing their ballot)
+<ul style={{ listStyleType: '"\\2717  "' }}>
+<li>Pareto-optimality</li>
+<li>Budget limit monotonicity (a winning project should stay winning if the available budget is increased)</li>
+<li>Strategyproofness (a voter should not be able to improve the outcome by changing their ballot)</li>
+</ul>
