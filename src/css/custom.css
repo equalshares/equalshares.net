@@ -68,7 +68,30 @@
   font-size: 0.9em;
 }
 
-/* Datawrapper embeds */
+details.alert {
+  padding: 0.5rem 0.8rem;
+}
+
+details.alert > div > div {
+  padding-top: 0.9rem;
+  padding-bottom: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+details.proof p:last-child {
+  position: relative;
+}
+
+details.proof p:last-child::after {
+  content: '□';
+  position: absolute;
+  bottom: 0rem;
+  right: 1rem;
+}
+
+/***************
+ * Datawrapper embeds
+ ***************/
 iframe[src*="datawrapper"] {
   margin-bottom: 5px;
   padding: 1em;
@@ -99,7 +122,9 @@ iframe[src*="datawrapper"] {
   }
 }
 
-/* Budget bars */
+/******************
+ * Budget bars
+ ******************/
 .budget-bars {
   height: 200px;
   display: flex;
@@ -176,6 +201,10 @@ iframe[src*="datawrapper"] {
   background-color: #aaa;
 }
 
+/******************
+ * Explanation page
+ ******************/
+
 .project-1,
 .project-2,
 .project-3,
@@ -240,7 +269,7 @@ iframe[src*="datawrapper"] {
   color: hsl(287, 60%, 90%);
 }
 
-/* sankey. to do refactor */
+/* sankey. to do: refactor */
 .st0{opacity:0.45;fill:none;stroke:#0081CC;stroke-width:68.76;enable-background:new;}
 .st1{opacity:0.45;fill:none;stroke:#0081CC;stroke-width:45.84;enable-background:new;}
 .st2{opacity:0.45;fill:none;stroke:#0081CC;stroke-width:22.92;enable-background:new;}

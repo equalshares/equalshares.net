@@ -26,9 +26,11 @@ The first mathematical guarantee concerns individual projects: they are sure to 
 For a precise example, consider a project proposal with a cost that would consume 5% of the overall available budget. 
 Then, if at least 5% of voters vote for that project _and for no other projects_, then this proposal will win under the Method of Equal Shares.
 
+Here is a formal way of describing this property:
+
 > **Theorem**. Let $P$ be a project and let $\text{cost}(P)$ be the cost of the proposal. Suppose $B$ is the overall budget, and $n$ is the total number of voters. If at least $n \cdot \text{cost}(P)/B$ voters vote for $P$ and no other projects, then $P$ will be among the projects selected by the Method of Equal Shares.
 
-<details>
+<details className="proof">
 <summary>Proof</summary>
 
 Each of the voters who voted only for $P$ gets assigned a budget share of at least $B/n$ at the start of the computation of the method. (It could be more than $B/n$ because we [complete](../implementation/completion) the method.)
@@ -38,13 +40,60 @@ $$
 \underbrace{n \cdot \frac{\text{cost}(P)}{B}}_{\text{number of voters}} \cdot \underbrace{\frac{B}{n}}_{\text{budget share}} = \text{cost}(P).
 $$
 
-By definition of the Method of Equal Shares, it finishes only when no more projects can be afforded by their supporters. But that means that $P$ must be among the selected projects, because the voters who only vote for $P$ retain all their money until $P$ is selected, and thus $P$ is always affordable.
+By definition of the Method of Equal Shares, it finishes only when no more projects can be afforded by their supporters. But that means that $P$ must be among the selected projects, because the voters who only vote for $P$ retain all their money until $P$ is selected, 
+and thus $P$ is always affordable.
 </details>
 
 Using the standard voting method for participatory budgeting (which just selects the most popular projects until the budget runs out), no similar guarantee holds. Even a very cost-effective project (for example, costing 1% of the budget) may need a large number of voters (for example, more than 30%) to win under the standard method.
 
 ## Groups with similar votes will be represented in the outcome
 
+Under the Method of Equal Shares, any group of voters who voted for similar projects can expect to be represented in the outcome to an extent that is proportional to the group size. For example, a group of 20% of the voters can expect to influence 20% of the budget spending.
+
+For example, such groups of voters could be the parents of children in a particular school, or the residents of a particular neighborhood, or people commuting by bike. The following properties will ensure that each of these groups will be represented in the outcome (provided they have enough members to justify the cost of the projects that they jointly support).
+
+### Groups of voters with identical votes
+
+Let us consider a PB election based on approval voting.
+Suppose that $t$ out of the $n$ voters submitted an identical ballot, that is, they all voted for the exact same set of projects.
+For concreteness, say that these $t$ voters vote for projects $P_1$, $P_2$, and $P_3$. 
+Intuitively, since this group forms a $t/n$ fraction of the voters, they should be represented in the outcome by a $t/n$ fraction of the budget.
+Let us assume for the moment that 
+$$
+\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) \leqslant \frac{t}{n} \cdot B,
+$$
+where $B$ is the overall budget. In other words, the group of voters is large enough to "deserve" to have all the projects they voted for funded.
+In this case, one can prove that the Method of Equal Shares will select all four projects.
+
+Formally, this property can be written as follows:
+
+> **Theorem**. Let $\{P_1, P_2, \ldots, P_k\}$ be a set of projects, and suppose that $t$ of the $n$ voters voted for all of these projects (and only these projects). Suppose that the total cost of these projects is at most $t/n \cdot B$. Then the Method of Equal Shares will select all $k$ projects.
+
+<details>
+<summary>
+    Info about the case when the projects cost more than the limit
+</summary>
+
+One can also prove a similar guarantee if the group of voters approves a collection of projects that costs more than $t/n \cdot B$ in total. Suppose $t$ voters vote exactly for the projects $P_1$, $P_2$, $P_3$, and $P_4$. Suppose that
+$$
+\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) + \text{cost}(P_4) > \frac{t}{n} \cdot B.
+$$
+Then, the Method of Equal Shares will select some of these projects that together cost "approximately" $t/n \cdot B$.
+
+> **Theorem**. Let $T = \{P_1, P_2, \ldots, P_k\}$ be a set of projects, and suppose that $t$ of the $n$ voters voted for all of these projects (and only these projects).  Then the Method of Equal Shares will select a subset $T' \subseteq T$ of projects such that for every project $P^* \in T$ that was not selected by the Method, 
+we have $\sum_{P \in T'} \text{cost}(P) + \text{cost}(P^*) > t/n \cdot B$.
+
+</details>
+
+### Groups of voters with overlapping votes
+
+In the mathematical guarantees described above, we assumed that the group of voters voted for exactly the same set of projects. In practice, however, even groups of voters with strong agreement will not always vote for exactly the same set of projects. Therefore, it is interesting to specify to what extent the Method of Equal Shares will select projects that are supported by a group of voters with high but not perfect agreement.
+
+Let us consider a PB election based on approval voting. 
+Suppose that a group of $t$ voters all approve the projects in the set $T = \{P_1, P_2, \ldots, P_k\}$, but some of the voters also approve some other projects not in $T$.
+Write $\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)$ for the total cost of the projects in $T$.
+Assume that $\text{cost}(T)\leqslant t/n \cdot B$.
+Then, the Method of Equal Shares guarantees that at least one of the $t$ voters will be sufficiently represented in the outcome.
 
 ## Other basic voting criteria
 
