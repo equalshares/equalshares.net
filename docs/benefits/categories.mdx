@@ -7,6 +7,13 @@ import { Datawrapper } from '@site/src/components/MyComponents';
 
 # Reduce overspending on the most popular categories
 
+<div class="summary">
+<b>Summary</b>:
+The standard voting method that most cities use can systematically lead to outcomes where too much money is spent on projects of one category, and too little is spent on projects of another category.
+For example, in the Bielany district of Warsaw in 2020, 35% of votes went to education projects, but only 6% of the funding went to education.
+Simulations show that using the Method of Equal Shares reduces this bias significantly. 
+</div>
+
 Usually, the projects on the ballot in participatory budgeting can be divided into some broad categories, such as:
 * Urban greenery and parks
 * Public transport and roads
@@ -57,6 +64,8 @@ Finally, we compute the fraction of the total cost that each category received (
 
 Having computed the vote and the budget share, we can compute the **distance** between the two outcomes.
 We do this using the "L1-distance": we sum over all the categories, taking the absolute value of the difference between the vote share and the budget share in that category.
+For example, if there were just 3 categories with vote shares (10%, 30%, 60%) and budget shares (20%, 30%, 50%), then the distance would be 10% + 0% + 10% = 20%.
+(The marks on the axes of the scatter plot have been rescaled so that the interesting points are in a [0, 10] square, so the numbers do not carry meaning.)
 Note that a lower distance means that the budget distribution is closer to the vote share distribution.
 
 We also used other distances (such as KL-divergence) but found that the L1-distance worked best; in any case, the results were similar in that the Method of Equal Shares was closer to the vote share than was the actual outcome, in the overwhelming number of cases.

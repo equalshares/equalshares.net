@@ -89,6 +89,14 @@ details.proof p:last-child::after {
   right: 1rem;
 }
 
+.summary {
+  padding: 0.8rem;
+  background-color: rgb(240, 240, 250);
+  border-radius: var(--ifm-pre-border-radius);
+  box-shadow: var(--ifm-alert-shadow);
+  margin-bottom: 1rem;
+}
+
 /***************
  * Datawrapper embeds
  ***************/
@@ -102,7 +110,9 @@ iframe[src*="datawrapper"] {
   background-color: rgb(18,18,18);
 }
 
-/* Explanation page */
+/***************
+ * Explanation page
+ ***************/
 
 @media screen and (max-width: 570px) {
   .docs-doc-id-explanation table {
