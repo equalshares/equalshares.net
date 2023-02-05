@@ -279,6 +279,102 @@ iframe[src*="datawrapper"] {
   color: hsl(287, 60%, 90%);
 }
 
+/***************
+ * Metrics page
+ ***************/
+
+.tabs {
+  /* justify-content: center; */
+  gap: 0.5em;
+}
+
+.tabs-container > div.margin-top--md {
+  margin-top: -3px !important;
+  padding: 0.8rem 0.5rem;
+  border: 3px solid hsl(240, 50%, 92%);
+  border-radius: var(--ifm-pre-border-radius);
+  box-shadow: var(--ifm-alert-shadow);
+  z-index: -1;
+}
+
+.tabs__item {
+  background-color: hsl(240, 50%, 98%);
+  border-bottom-color: hsl(240, 50%, 92%);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-bottom: calc(var(--ifm-tabs-padding-vertical) - 2px);
+}
+
+.tabs__item:hover {
+  background-color: hsl(240, 50%, 92%);
+  border-bottom-color: hsl(240, 50%, 83%);
+}
+
+.tabs__item--active {
+  background-color: hsl(240, 50%, 93%);
+  border-bottom-color: var(--ifm-tabs-color-active-border);
+  /* bevel */
+  box-shadow: inset 2px 2px 2px hsl(240, 50%, 95%), inset -2px 2px 2px hsl(240, 50%, 95%);
+  border-top: 1px solid hsl(240, 50%, 93%);
+  border-left: 1px solid hsl(240, 50%, 93%);
+  border-right: 1px solid hsl(240, 50%, 93%);
+}
+
+.tabs__item--active:hover {
+  background-color: hsl(240, 50%, 88%);
+  border-bottom-color: var(--ifm-tabs-color-active-border);
+}
+
+[data-theme='dark'] .tabs__item {
+  background-color: hsl(240, 50%, 10%);
+  border-bottom-color: hsl(240, 50%, 20%);
+  box-shadow: none;
+  border: 0;
+  border-bottom: 3px;
+}
+
+[data-theme='dark'] .tabs__item:hover {
+  background-color: hsl(240, 50%, 20%);
+  border-bottom-color: hsl(240, 50%, 30%);
+}
+
+[data-theme='dark'] .tabs__item--active {
+  background-color: hsl(240, 50%, 15%);
+  border-bottom-color: hsl(240, 50%, 60%);
+}
+
+[data-theme='dark'] .tabs-container > div.margin-top--md {
+  border: 3px solid hsl(240, 50%, 10%);
+  box-shadow: none;
+}
+
+.maps-display {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.map-with-label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0.7em;
+  gap: 0.5em;
+  min-width: 210px;
+}
+
+.map-with-label > img {
+  width: 100%;
+}
+
+.map-with-label > span {
+  display: block;
+  font-weight: 500;
+  width: 100%;
+  padding-right: 20%;
+  text-align: center;
+}
+
 /* sankey. to do: refactor */
 .st0{opacity:0.45;fill:none;stroke:#0081CC;stroke-width:68.76;enable-background:new;}
 .st1{opacity:0.45;fill:none;stroke:#0081CC;stroke-width:45.84;enable-background:new;}
