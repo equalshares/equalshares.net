@@ -40,6 +40,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -74,27 +75,27 @@ const config = {
         },
         items: [
           {
-            to: 'docs/explanation',
+            to: 'explanation',
             position: 'left',
             label: 'Explanation',
           },
           {
-            to: 'docs/benefits/metrics',
+            to: 'benefits/metrics',
             position: 'left',
             label: 'Benefits',
           },
           {
-            to: 'docs/implementation/input-formats',
+            to: 'implementation/input-formats',
             position: 'left',
             label: 'Implementation',
           },
           {
-            to: 'docs/resources',
+            to: 'resources',
             position: 'left',
             label: 'Resources',
           },
           {
-            to: 'docs/contacts',
+            to: 'contacts',
             position: 'left',
             label: 'Contacts',
           },
@@ -112,15 +113,15 @@ const config = {
           {
             items: [
               {
-                to: 'docs/explanation',
+                to: 'explanation',
                 label: 'Explanation',
               },
               {
-                to: 'docs/benefits/metrics',
+                to: 'benefits/metrics',
                 label: 'Benefits',
               },
               {
-                to: 'docs/implementation/input-formats',
+                to: 'implementation/input-formats',
                 label: 'Implementation',
               },
             ],
@@ -128,11 +129,11 @@ const config = {
           {
           items: [
             {
-              to: 'docs/resources',
+              to: 'resources',
               label: 'Resources',
             },
             {
-              to: 'docs/contacts',
+              to: 'contacts',
               label: 'Contacts',
             },
           ],
