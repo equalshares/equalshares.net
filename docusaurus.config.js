@@ -80,12 +80,12 @@ const config = {
             label: 'Explanation',
           },
           {
-            to: 'benefits/metrics',
+            to: 'benefits',
             position: 'left',
             label: 'Benefits',
           },
           {
-            to: 'implementation/input-formats',
+            to: 'implementation',
             position: 'left',
             label: 'Implementation',
           },
@@ -117,11 +117,11 @@ const config = {
                 label: 'Explanation',
               },
               {
-                to: 'benefits/metrics',
+                to: 'benefits',
                 label: 'Benefits',
               },
               {
-                to: 'implementation/input-formats',
+                to: 'implementation',
                 label: 'Implementation',
               },
             ],
