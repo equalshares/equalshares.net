@@ -7,19 +7,21 @@ import { Datawrapper, SemiBold, CurrencySymbol } from '@site/src/components/MyCo
 
 # How to break ties?
 
-## Summary
-
+<div class="summary">
+<b>Summary</b>:
 In rare cases, two or more projects may be tied (for example because they have exactly the same cost and received exactly the same number of votes).
-Implementations of the Method of Equal Shares are designed so as to minimize the likelihood of ties.
-However, if a tie still occurs, it may need to be broken by election officials by lot, i.e. by using randomness.
+This occurs with probability less than 1%.
+We describe how to minimize the likelihood of ties when implementating the Method of Equal Shares.
+However, if a tie still occurs, it may need to be broken by election officials by using randomness.
+</div>
+
+## Recommended tie-breaking procedure
 
 :::tip
 
 An easy way of definitely avoiding ties is to ensure that no two projects have the same cost (even if costs only differ by <CurrencySymbol/>1). Then a tie will never occur if the tie-breaking procedure below is followed.
 
 :::
-
-## Recommended tie-breaking procedure
 
 In the execution of the Method of Equal Shares, a tie can occur when two or more projects have the same effective vote count.
 In isolation, ties are unlikely to occur in large elections (such as those on the city scale).
