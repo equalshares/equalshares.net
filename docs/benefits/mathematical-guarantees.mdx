@@ -89,11 +89,21 @@ we have $\sum_{P \in T'} \text{cost}(P) + \text{cost}(P^*) > t/n \cdot B$.
 
 In the mathematical guarantees described above, we assumed that the group of voters voted for exactly the same set of projects. In practice, however, even groups of voters with strong agreement will not always vote for exactly the same set of projects. Therefore, it is interesting to specify to what extent the Method of Equal Shares will select projects that are supported by a group of voters with high but not perfect agreement.
 
+<details>
+<summary>Details about the mathematical guarantee</summary>
+
 Let us consider a PB election based on approval voting. 
-Suppose that a group of $t$ voters all approve the projects in the set $T = \{P_1, P_2, \ldots, P_k\}$, but some of the voters also approve some other projects not in $T$.
-Write $\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)$ for the total cost of the projects in $T$.
-Assume that $\text{cost}(T)\leqslant t/n \cdot B$.
-Then, the Method of Equal Shares guarantees that at least one of the $t$ voters will be sufficiently represented in the outcome.
+In general, if $T = \{P_1, P_2, \ldots, P_k\}$ is a set of projects, we write $\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)$ for the total cost of the projects in $T$.
+Suppose that a group of $t$ voters all approve the projects in the set $T$, but some of the voters also approve some other projects not in $T$.
+Assume that $\text{cost}(T)\leqslant t/n \cdot B$ (so that the group of voters can "afford" all the projects in $T$ using only the budget shares of the members of the group).
+Then, the Method of Equal Shares guarantees that at least one of the $t$ voters will be sufficiently represented in the outcome $W$: this means that there exists some member $i$ of the group (who voted for the set of projects $A_i$ (including all the projects in $T$, so $T \subseteq A_i$)) with
+$$
+\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_i) \qquad \text{for some $P_i \in T$}.
+$$
+In this expression, $A_i \cap W$ stands for the set of projects that are approved by both the voter $i$ that are included in the outcome $W$.
+
+This property is called "extended justified representation up to one project" in the academic literature. More details can be found in the paper by [Peters et al. (2021)](https://arxiv.org/abs/2008.13276).
+</details>
 
 ## Other basic voting criteria
 
@@ -105,6 +115,7 @@ There are other basic voting criteria that are not "fairness guarantees" in the 
 * <SemiBold>Monotonicity</SemiBold>: If a project wins, and a voter changes their ballot by adding an approval to the winning project, then that project continues to win.
 * <SemiBold>Discount monotonicity</SemiBold>: If a project wins, and its cost is reduced, then it stays winning. If a project loses, and its price is increased, then it stays losing.
 * <SemiBold>Independence to empty ballots</SemiBold>: If we add a voter to the election who approves none of the projects, then the outcome does not change (assuming we complete the method in the usual way).
+* <SemiBold>Extends the D'Hondt method</SemiBold>: The Method of Equal Shares (using standard completion) is a generalization of the <a href="https://en.wikipedia.org/wiki/D%27Hondt_method">D'Hondt method</a> which is used in many countries to elect members of parliament using a proportional party-list system. The D'Hondt method is a special case of the Method of Equal Shares where the "projects" are the candidates for parliament, the cost of each "project" is equal to 1, the budget equals the available number of seats, and each voter approves all the members of exactly one party.
 
 Several other criteria are failed, however, including:
 <ul style={{ listStyleType: '"\\2717  "' }}>
