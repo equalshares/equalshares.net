@@ -3,7 +3,7 @@ sidebar_position: 5
 title: Completion
 ---
 
-import { SemiBold, CurrencySymbol } from '@site/src/components/MyComponents';
+import { SemiBold, CurrencySymbol, Datawrapper } from '@site/src/components/MyComponents';
 
 # Completion of the Method of Equal Shares
 
@@ -19,6 +19,21 @@ For example, if a voter only votes for 1 project, and this project does not rece
 In simulations using voting data from Warsaw, the Method of Equal Shares spends approximately 60-70% of the available budget.
 Of course, election officials would usually prefer to spend close to 100% of the budget.
 Therefore, the Method of Equal Shares needs to be **completed**, which means that its outcome needs to be modified so that almost the entire budget is used.
+
+<details>
+<summary>Chart: If all voters vote for many projects, completion is less necessary.</summary>
+
+The root cause of the Method of Equal Shares often only spending 60-70% of the available budget is that some voters only vote for a small number of projects.
+We can see this effect by running a simulation based on data from Warsaw (2020-22). 
+
+In Warsaw, voters are allowed to vote for up to 15 projects.
+We can simulate what would have happened if Warsaw had a minimum number of votes in place by counting only those votes in the dataset that have voted for sufficiently many projects.
+This way, we can simulate a minimum vote count of 2, 3, 4, ..., 15.
+For each minimum, we can check what percent of the budget is used by the Method of Equal Shares when only run on the subset of votes that have voted for at least the minimum number of projects.
+
+The results suggest that once voters vote for at least 8 projects, more than 90% of the budget is used.
+<Datawrapper src="//datawrapper.dwcdn.net/bPA91/2/" />
+</details>
 
 ## Recommended completion method
 
