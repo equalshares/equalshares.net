@@ -24,6 +24,8 @@ Maaike Los, Zoé Christoff, and Davide Grossi. Published at the [IJCAI 2022](htt
 ## Press
 
 * Nauka w Polsce (*Science in Poland*): [Naukowcy proponują, jak efektywniej liczyć głosy w budżecie obywatelskim](https://naukawpolsce.pl/aktualnosci/news,95022,naukowcy-proponuja-jak-efektywniej-liczyc-glosy-w-budzecie-obywatelskim.html) (*Scientists propose how to count votes in the participatory budget more effectively*).
+* Polskie Radio RDC: [Sprawiedliwe liczenie głosów](https://www.rdc.pl/podcast/popoludnie-radia-dla-ciebie_FCt8vL79UA9lmdeTkti3?episode=1mkWT9aSOyTf7lExhqYK&active_page=1) (*Fairly counting votes*). Interview with Piotr Skowron (in Polish), 2023-01-26, 20:46 minutes.
+* Radia TOK FM: [Matematyka pomoże demokracji. Wymyśli lepsze zasady głosowania na budżet obywatelski](https://audycje.tokfm.pl/podcast/135332,Matematyka-pomoze-demokracji-Wymysli-lepsze-zasady-glosowania-na-budzet-obywatelski) (*Mathematics will help democracy: It will come up with better rules for voting for the participatory budget*). Interview with Piotr Skowron (in Polish), 2023-02-04, 15:40 minutes.
 
 ## Videos
 
