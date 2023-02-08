@@ -10,6 +10,8 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/light.css';
 
+import { CurrencySymbol } from '@site/src/components/MyComponents';
+
 import styles from './index.module.css';
 
 function Hero() {
@@ -140,15 +142,15 @@ function BallotExampleSection() {
     </div>
     <div className={styles.approvalBallotExample}>
         <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; PB Voting Ballot &mdash;</span>
-        <span>Available budget: € 3 000 000</span>
+        <span>Available budget: <CurrencySymbol/>3 000 000</span>
         <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Vote for up to 8 projects</span>
-        <BallotExampleOption selected>Extension of the Public Library <br /> Cost: €200 000</BallotExampleOption>
-        <BallotExampleOption>Bicycle Racks on Main Street <br /> Cost: €70 000</BallotExampleOption>
-        <BallotExampleOption selected>Sports Equipment in the Park <br /> Cost: €50 000</BallotExampleOption>
-        <BallotExampleOption selected>Additional Public Toilets <br /> Cost: €600 000</BallotExampleOption>
-        <BallotExampleOption>Free Language Courses <br /> Cost: €100 000</BallotExampleOption>
-        <BallotExampleOption>Improve Accesibility of Town Hall <br /> Cost: €800 000</BallotExampleOption>
-        <BallotExampleOption>Renovate Fountain in Market Square <br /> Cost: €65 000</BallotExampleOption>
+        <BallotExampleOption selected>Extension of the Public Library <br /> Cost: <CurrencySymbol/>200 000</BallotExampleOption>
+        <BallotExampleOption>Bicycle Racks on Main Street <br /> Cost: <CurrencySymbol/>70 000</BallotExampleOption>
+        <BallotExampleOption selected>Sports Equipment in the Park <br /> Cost: <CurrencySymbol/>50 000</BallotExampleOption>
+        <BallotExampleOption selected>Additional Public Toilets <br /> Cost: <CurrencySymbol/>600 000</BallotExampleOption>
+        <BallotExampleOption>Free Language Courses <br /> Cost: <CurrencySymbol/>100 000</BallotExampleOption>
+        <BallotExampleOption>Improve Accesibility of Town Hall <br /> Cost: <CurrencySymbol/>800 000</BallotExampleOption>
+        <BallotExampleOption>Renovate Fountain in Market Square <br /> Cost: <CurrencySymbol/>65 000</BallotExampleOption>
     </div>
   </section>
   );
@@ -186,6 +188,31 @@ function HowItWorksSection() {
   )
 }
 
+function OnThisWebsiteSection() {
+  return (
+    <section className={styles.contentSection} id="on-this-website-section">
+      <h2 style={{ textAlign: 'center' }}>What to Find on This Website</h2>
+      <div className={styles.columns}>
+        <div>
+          <Link to="explanation"><img src="img/fund.svg"/></Link>
+          <Link to="explanation"><strong>Explanation</strong></Link>
+          <Link to="explanation"><span>A detailed explanation, with examples, of how the Method of Equal Shares works.</span></Link>
+        </div>
+        <div>
+          <Link to="benefits"><img src="img/growth.svg"/></Link>
+          <Link to="benefits"><strong>Benefits</strong></Link>
+          <Link to="benefits"><span>Arguments that the Method of Equal Shares is better than other rules.</span></Link>
+        </div>
+        <div>
+          <Link to="implementation"><img src="img/clipboard.svg"/></Link>
+          <Link to="implementation"><strong>Implementation</strong></Link>
+          <Link to="implementation"><span>Details and advice on how to implement an election using the Method of Equal Shares.</span></Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -197,6 +224,7 @@ export default function Home() {
       <MapSection />
       <BallotExampleSection />
       <HowItWorksSection />
+      <OnThisWebsiteSection />
     </Layout>
   );
 }

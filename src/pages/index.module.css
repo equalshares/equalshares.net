@@ -76,7 +76,7 @@
   flex: 1;
   padding: 1em;
   font-size: 1.5em;
-  line-height: 1.6;
+  line-height: 1.5;
   min-height: 14em;
   position: relative;
 }
@@ -234,6 +234,47 @@
 [data-theme='dark'] .sankeyContainer svg text {
   fill: white;
   text-shadow: none;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 1.5em;
+}
+
+.columns div {
+  flex: 1;
+  display: flex;
+  gap: 0.3em;
+  flex-direction: column;
+  align-items: center;
+  max-width: 410px;
+  text-align: center;
+}
+
+.columns div img {
+  width: 200px;
+  margin-bottom: 0.3em;
+  height: auto;
+}
+
+.columns div a:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 680px) {
+  .columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
+  .columns div {
+    max-width: 300px;
+  }
 }
 
 @media screen and (max-width: 996px) {
