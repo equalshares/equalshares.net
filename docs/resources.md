@@ -13,10 +13,13 @@ This is a (non-exhaustive) list of academic papers that discuss the Method of Eq
 Dominik Peters, Grzegorz Pierczyński, and Piotr Skowron. Published at the [NeurIPS 2021](https://proceedings.neurips.cc/paper/2021/hash/69f8ea31de0c00502b2ae571fbab1f95-Abstract.html) conference. [PDF](https://arxiv.org/pdf/2008.13276.pdf) (Updated October 2022).
 
 * __Proportionality in Approval-Based Participatory Budgeting.__
-Markus Brill, Stefan Forster, Martin Lackner, Jan Maly, and Jannik Peters. To be published at the AAAI 2023 conference. [PDF](https://tubcloud.tu-berlin.de/s/RAM28cqMBgPowgp).
+Markus Brill, Stefan Forster, Martin Lackner, Jan Maly, and Jannik Peters. Published at the AAAI 2023 conference. [PDF](https://tubcloud.tu-berlin.de/s/RAM28cqMBgPowgp).
+
+* __Robust and Verifiable Proportionality Axioms for Multiwinner Voting.__
+Markus Brill and Jannik Peters. [PDF](https://arxiv.org/abs/2302.01989)
 
 * __Participatory Budgeting Design for the Real World.__
-Roy Fairstein, Gerdus Benadè, and Kobi Gal. To be published at the AAAI 2023 conference. [PDF](https://www.gerdusbenade.com/files/22_pb_stability.pdf) (10 MB).
+Roy Fairstein, Gerdus Benadè, and Kobi Gal. Published at the AAAI 2023 conference. [PDF](https://www.gerdusbenade.com/files/22_pb_stability.pdf) (10 MB).
 
 * __Proportional Budget Allocations: Towards a Systematization.__
 Maaike Los, Zoé Christoff, and Davide Grossi. Published at the [IJCAI 2022](https://ijcai-22.org/) conference. [PDF](https://www.ijcai.org/proceedings/2022/0057.pdf).

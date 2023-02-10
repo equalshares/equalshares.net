@@ -74,8 +74,8 @@ function UniversityLogos() {
           <UniversityLogo logo="img/logo-agh.svg" uniName="AGH University of Science and Technology, Kraków" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
           <UniversityLogo logo="img/logo-eth.svg" uniName="ETH Zurich" link={<a href="https://democracy.dsi.uzh.ch/member/joshua-yang/">Joshua Yang</a>} />
           <UniversityLogo logo="img/logo-tu-berlin.svg" uniName="TU Berlin" link={<a href="https://sites.google.com/view/jannikpeters">Jannik Peters</a>} />
-          <UniversityLogo logo="img/logo-tu-wien.svg" uniName="TU Wien" link={<a href="http://martin.lackner.xyz/">Martin Lackner</a>} />
-          <UniversityLogo logo="img/logo-amsterdam.svg" uniName="University of Amsterdam" link={<a href="https://staff.science.uva.nl/u.endriss/">Ulle Endriss</a>} />
+          {/* <UniversityLogo logo="img/logo-tu-wien.svg" uniName="TU Wien" link={<a href="http://martin.lackner.xyz/">Martin Lackner</a>} />
+          <UniversityLogo logo="img/logo-amsterdam.svg" uniName="University of Amsterdam" link={<a href="https://staff.science.uva.nl/u.endriss/">Ulle Endriss</a>} /> */}
       </div>
   </section>
   );
@@ -201,7 +201,7 @@ function OnThisWebsiteSection() {
         <div>
           <Link to="benefits"><img src="img/growth.svg"/></Link>
           <Link to="benefits"><strong>Benefits</strong></Link>
-          <Link to="benefits"><span>Arguments that the Method of Equal Shares is better than other rules.</span></Link>
+          <Link to="benefits"><span>Arguments that the Method of Equal Shares leads to better outcomes than other rules.</span></Link>
         </div>
         <div>
           <Link to="implementation"><img src="img/clipboard.svg"/></Link>
@@ -209,6 +209,19 @@ function OnThisWebsiteSection() {
           <Link to="implementation"><span>Details and advice on how to implement an election using the Method of Equal Shares.</span></Link>
         </div>
       </div>
+    </section>
+  )
+}
+
+function AboutThisWebsiteSection() {
+  return (
+    <section className={styles.contentSection} id="about-this-website-section">
+      <h2 style={{ textAlign: 'center' }}>About This Website</h2>
+      <p style={{ fontSize: '1.2em' }}>
+          This website was constructed and is maintained by Dominik Peters (CNRS, Université Paris Dauphine-PSL).
+          Its purpose is to collect resources about the Method of Equal Shares and to provide an explanation of the method to interested members of the public,
+          to city officials, and to researchers.
+      </p>
     </section>
   )
 }
@@ -225,6 +238,7 @@ export default function Home() {
       <BallotExampleSection />
       <HowItWorksSection />
       <OnThisWebsiteSection />
+      <AboutThisWebsiteSection />
     </Layout>
   );
 }

@@ -12,7 +12,7 @@ const config = {
   title: 'Method of Equal Shares',
   // tagline: 'Dinosaurs are cool',
   url: 'https://equalshares.net',
-  baseUrl: '/docusaurus/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.svg',
@@ -66,7 +66,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      metadata: [{name: 'robots', content: 'noindex'}],
+      // metadata: [{name: 'robots', content: 'noindex'}],
       navbar: {
         title: 'Method of Equal Shares',
         logo: {
@@ -175,14 +175,14 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      announcementBar: {
-        id: 'draft_bar',
-        content:
-          'This is a draft version of our website, to be published in February 2023. Please do not link to it yet.',
-        backgroundColor: '#e1e5fa',
-        textColor: '#303340',
-        isCloseable: true,
-      },
+      // announcementBar: {
+      //   id: 'draft_bar',
+      //   content:
+      //     'This is a draft version of our website, to be published in February 2023. Please do not link to it yet.',
+      //   backgroundColor: '#e1e5fa',
+      //   textColor: '#303340',
+      //   isCloseable: true,
+      // },
     }),
     stylesheets: [
       {

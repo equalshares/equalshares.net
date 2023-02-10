@@ -28,7 +28,16 @@ export function SemiBold({ children }) {
   return <span style={{ fontWeight: 500 }}>{children}</span>;
 }
 
-export function BudgetBars({ budgets, payments = [], unaffordable = false, height = '200px', showBudgets = true, showPayments = true, overrideMax = null }) {
+export function BudgetBars({ 
+    budgets, 
+    payments = [], 
+    unaffordable = false, 
+    height = '200px', 
+    showBudgets = true, 
+    showPayments = true, 
+    showEffectiveVoteCounts = false,
+    effectiveVoteCounts = [],
+    overrideMax = null }) {
   let maxBudget = Math.max(...budgets);
   if (overrideMax) {
     maxBudget = overrideMax;
@@ -45,17 +54,27 @@ export function BudgetBars({ budgets, payments = [], unaffordable = false, heigh
           {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: 100 * payments[index]/budget + '%' }}>{payments[index]}</div>}
         </div>
       </Tippy>
+      {
+        showEffectiveVoteCounts 
+          ? (!isNaN(effectiveVoteCounts[index])
+            ? <div className="vote-count">{effectiveVoteCounts[index]}</div>
+            : <div className="empty-vote-count"></div>)
+          : null
+      }
     </div>)
     }
   );
   return (
-    <div className={'budget-bars' + (unaffordable ? ' budget-bars-unaffordable' : '') } style={{ height: height }}>
+    <div className={'budget-bars' + (unaffordable ? ' budget-bars-unaffordable' : '') + (showEffectiveVoteCounts ? ' budget-bars-with-vote-counts' : '') } style={{ height: height }}>
       <div className="budget-bars-axis">
         <span><CurrencySymbol/>{maxBudget}</span>
         <div className="budget-bars-axis-line"></div>
         <span><CurrencySymbol/>{0}</span>
       </div>
       {bars}
+      <div className="budget-bar-container">
+      { showEffectiveVoteCounts && <div className="vote-count" style={{backgroundColor: "hsl(80, 80%, 88%)"}}><b>20</b></div> }
+      </div>
     </div>
   );
 }
