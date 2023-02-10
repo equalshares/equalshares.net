@@ -37,12 +37,12 @@ function Hero() {
             <li>Can be used in any participatory budgeting process, no matter the scale.</li>
             <li><strong>Theoretical guarantees</strong> that all interest groups will be represented in the
               outcome.</li>
+            <li><strong>Better reflects</strong> voter preferences across project categories.</li>
             <li>The voting experience is unchanged: the Method of Equal Shares works with all standard ballot
               types (approvals, knapsack voting, rankings, distributing points, etc.)</li>
             <li>Increased <strong>transparency</strong>: voters can see how their vote influenced the election.
             </li>
             <li>Straightforward to implement in any software system.</li>
-            <li><strong>Robust</strong> to low-turnout elections.</li>
           </ul>
         </div>
       </div>
