@@ -14,7 +14,7 @@ The method can be applied with two different input types:
 2. **Utilities**, where each voter assigns a utility number to each project (0 or higher).
 
 Approval voting is a special case of utilities, where all projects are assigned the utility value 0 or 1.
-On this page, we explain the method for approval voting, and explain how it works for utilities in collapsible boxes.
+On this page, we explain the method for approval voting, with more information about utilities coming soon.
 
 :::tip
 
@@ -66,7 +66,7 @@ See [Completion](implementation/completion) for more information about this.
 When determining the winning projects of the Method of Equal Shares, a key ingredient is to divide the cost of a project *as equally as possible*. 
 In this section, we will explain what this means.
 
-To be concrete, let's say that the overall budget is <CurrencySymbol/>300, and there are 30 voters.
+To be concrete, let's say that the overall budget is <CurrencySymbol/>300, and there are 10 voters.
 Thus, in Step 1, each voter is allocated a budget share of <CurrencySymbol/>30.
 We can represent this in the following picture, where each voter is represented by a bar of height <CurrencySymbol/>30.
 
@@ -86,7 +86,7 @@ Then we can only spread the cost of the project between the remaining 4 voters, 
 
 <BudgetBars budgets={[0,30,30,30,30,30,30,30,30,30]} payments={[0,12.5,12.5,12.5,12.5,0,0,0,0,0]} />
 
-Or for another example, suppose that the two voters on the left have only <CurrencySymbol/>5 left to spend (because they spent a total of <CurrencySymbol/>25 in prior rounds already).
+Or for another example, suppose that the two voters on the left have only <CurrencySymbol/>5 left to spend (because they each spent a total of <CurrencySymbol/>25 in prior rounds already).
 Then to spread the cost most equally, we charge those voters their entire remaining budget, which total <CurrencySymbol/>5 + <CurrencySymbol/>5 = <CurrencySymbol/>10.
 Then we split the remaining cost of <CurrencySymbol/>40 equally between the remaining 3 voters, who each have to pay <CurrencySymbol/>13.33 (because 3 &middot; <CurrencySymbol/>13.33 = <CurrencySymbol/>40).
 
@@ -121,7 +121,7 @@ todo
 When determining the winning projects of the Method of Equal Shares, we need to compute something called the *effective vote count*.
 In this section, we will explain what this means.
 
-The most important rule is that <SemiBold>we do not count voters if they have already spent their entire budget share</SemiBold>. The reasoning behind this rule is that if a voter has already spent her entire budget share, then she has already been satisfied by the projects were selected, and so it is more important to fund projects that other voters like. As an example, consider a project that has received 50 votes, but 10 of the voters who voted for the project have already spent their entire budget. Then the effective vote count of the project is 40.
+The most important rule is that <SemiBold>we do not count voters if they have already spent their entire budget share</SemiBold>. The reasoning behind this rule is that if a voter has already spent her entire budget share, then she has already been satisfied by the projects that were selected, and so it is more important to fund projects that other voters like. As an example, consider a project that has received 50 votes, but 10 of the voters who voted for the project have already spent their entire budget. Then the effective vote count of the project is 40.
 
 The second rule is that voters who still have money left, but not enough money to pay for the project when its cost is equally divided, will <SemiBold>count as a fraction</SemiBold>. For example, if a voter has only half as much as what others have to contribute to a project, she counts for half a vote. We will explain how to compute this fraction in the following examples.
 
@@ -162,7 +162,7 @@ Thus, each voter gets assigned a share of <CurrencySymbol/>100.
 
 <BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} showPayments={false} />
 
-We start by computing the so-called effective vote count for the project with the most votes, which is the <span className="project-1">🚲 bike path</span> with 7 votes. 
+We need to determine the so-called effective vote count for the project with the most votes, which is the <span className="project-1">🚲 bike path</span> with 7 votes. 
 
 <BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[100,100,100,100,100,100,0,0,0,0,100]} />
 

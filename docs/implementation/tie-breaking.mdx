@@ -35,7 +35,7 @@ the tie should be broken by the following procedure:
 * If two or more of the tied projects have the same lowest cost, then the (lowest-cost) project with the highest initial vote count is selected (that is, the raw vote count of the project before the vote count got reduced in the course of running the Method of Equal Shares).
 * If two or more projects have the lowest cost and the same initial vote count, then the tie is broken by lot, i.e. uniformly at random.
 
-As a procedural matter, there are two ways to proceed with regard to the potential use of randomness:
+As a procedural matter, there are two ways to handle the potential use of randomness:
 1. Before computing the election outcome, election officials check whether there are any collections of projects that have the same cost and the same initial vote count. For each such collection of potentially tied projects, they determine a tie-breaking order, for example by drawing names from a hat.
 2. Alternatively, compute the election outcome using an implementation of the Method of Equal Shares that ends with an error message if a tie is encountered. Only in this (unlikely) event, proceed like in Option 1.
 
@@ -69,9 +69,9 @@ Here is a similar example.
 
 | Project | Cost | Initial vote count | Effective vote count |
 | --- | --- | --- | --- |
-| Project 1 | <CurrencySymbol/>600 | 500 | **200** |
-| Project 2 | <CurrencySymbol/>600 | 300 | **200** |
-| Project 3 | <CurrencySymbol/>600 | 150 | **200** |
+| Project 1 | <CurrencySymbol/>400 | 500 | **200** |
+| Project 2 | <CurrencySymbol/>400 | 300 | **200** |
+| Project 3 | <CurrencySymbol/>400 | 150 | **200** |
 
 This time, all three projects have the same effective vote count, so again we need to break the tie.
 All three projects have the same cost, so we need to break the tie by looking at the initial vote count.
@@ -83,8 +83,8 @@ Here is a final example.
 
 | Project | Cost | Initial vote count | Effective vote count |
 | --- | --- | --- | --- |
-| Project 1 | <CurrencySymbol/>600 | 500 | **200** |
-| Project 2 | <CurrencySymbol/>600 | 500 | **200** |
+| Project 1 | <CurrencySymbol/>400 | 500 | **200** |
+| Project 2 | <CurrencySymbol/>400 | 500 | **200** |
 
 Projects 1 and 2 have the same effective vote count, so we need to break the tie.
 But they both have the same cost and the same initial vote count.

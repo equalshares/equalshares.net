@@ -24,7 +24,7 @@ For more information, please also consult the following sources:
 Note that this book mostly focusses on "multi-winner elections", where we assume that all projects have the same cost.
 * The paper "Proportional Participatory Budgeting with Additive Utilities" by Dominik Peters, Grzegorz Pierczyński, and Piotr Skowron. Available [on arXiv](https://arxiv.org/abs/2008.13276).
 
-## A project is guaranteed to be funded provided it gets a number of "bullet" votes that is proportionate to its cost {#bullet-votes}
+## A project is guaranteed to be funded provided it gets a number of "bullet" votes that is proportional to its cost {#bullet-votes}
 
 The first mathematical guarantee concerns individual projects: they are sure to be funded provided they get at least a certain minimum number of unique votes.
 
@@ -113,9 +113,9 @@ This property is called "extended justified representation up to one project" in
 ## Other basic voting criteria
 
 There are other basic voting criteria that are not "fairness guarantees" in the senses above, but are still worth mentioning. The following criteria are satisfied by the Method of Equal Shares:
+<!-- * <SemiBold>Unanimity</SemiBold>: If a project is supported by all voters, then it wins (assuming an approval election). -->
 
 * <SemiBold>Polynomial time computability</SemiBold>: The outcome of the Method of Equal Shares can be computed in polynomial time by a simple algorithm. Thus the winning projects can be determined quickly, usually in less than a minute even for elections in large cities.
-* <SemiBold>Unanimity</SemiBold>: If a project is supported by all voters, then it wins (assuming an approval election).
 * <SemiBold>Independence of clones</SemiBold>: By "cloning" a project, we mean proposing one or more identical copies of a project already on the ballot. We assume that each voter either supports all or none of the clones. Under the Method of Equal Shares, the following holds: if a losing project is cloned, none of the clones win; and if a winning project is cloned, then at least one of the clones wins.
 * <SemiBold>Monotonicity</SemiBold>: If a project wins, and a voter changes their ballot by adding an approval to the winning project, then that project continues to win.
 * <SemiBold>Discount monotonicity</SemiBold>: If a project wins, and its cost is reduced, then it stays winning. If a project loses, and its price is increased, then it stays losing.
