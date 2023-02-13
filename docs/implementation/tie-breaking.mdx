@@ -3,7 +3,7 @@ sidebar_position: 4
 title: Tie breaking
 ---
 
-import { Datawrapper, SemiBold, CurrencySymbol } from '@site/src/components/MyComponents';
+import { Datawrapper, SemiBold, Currency } from '@site/src/components/MyComponents';
 
 # How to break ties?
 
@@ -19,7 +19,7 @@ However, if a tie still occurs, it may need to be broken by election officials b
 
 :::tip
 
-An easy way of definitely avoiding ties is to ensure that no two projects have the same cost (even if costs only differ by <CurrencySymbol/>1). Then a tie will never occur if the tie-breaking procedure below is followed.
+An easy way of definitely avoiding ties is to ensure that no two projects have the same cost (even if costs only differ by <Currency>1</Currency>). Then a tie will never occur if the tie-breaking procedure below is followed.
 
 :::
 
@@ -55,13 +55,13 @@ As an example, suppose that the Method of Equal Shares ends up in the following 
 
 | Project | Cost | Initial vote count | Effective vote count |
 | --- | --- | --- | --- |
-| Project 1 | <CurrencySymbol/>600 | 500 | **200** |
-| Project 2 | <CurrencySymbol/>700 | 300 | **200** |
-| Project 3 | <CurrencySymbol/>100 | 150 | 100 |
+| Project 1 | <Currency>600</Currency> | 500 | **200** |
+| Project 2 | <Currency>700</Currency> | 300 | **200** |
+| Project 3 | <Currency>100</Currency> | 150 | 100 |
 
 Projects 1 and 2 have the highest effective vote count, so one of them should be selected. 
 Since they have the same effective vote count, we need to break the tie.
-Thus, the method selects **Project 1**, because its cost of <CurrencySymbol/>600 is lower than the cost of Project 2, which is <CurrencySymbol/>700.
+Thus, the method selects **Project 1**, because its cost of <Currency>600</Currency> is lower than the cost of Project 2, which is <Currency>700</Currency>.
 
 ### Example 2
 
@@ -69,9 +69,9 @@ Here is a similar example.
 
 | Project | Cost | Initial vote count | Effective vote count |
 | --- | --- | --- | --- |
-| Project 1 | <CurrencySymbol/>400 | 500 | **200** |
-| Project 2 | <CurrencySymbol/>400 | 300 | **200** |
-| Project 3 | <CurrencySymbol/>400 | 150 | **200** |
+| Project 1 | <Currency>400</Currency> | 500 | **200** |
+| Project 2 | <Currency>400</Currency> | 300 | **200** |
+| Project 3 | <Currency>400</Currency> | 150 | **200** |
 
 This time, all three projects have the same effective vote count, so again we need to break the tie.
 All three projects have the same cost, so we need to break the tie by looking at the initial vote count.
@@ -83,8 +83,8 @@ Here is a final example.
 
 | Project | Cost | Initial vote count | Effective vote count |
 | --- | --- | --- | --- |
-| Project 1 | <CurrencySymbol/>400 | 500 | **200** |
-| Project 2 | <CurrencySymbol/>400 | 500 | **200** |
+| Project 1 | <Currency>400</Currency> | 500 | **200** |
+| Project 2 | <Currency>400</Currency> | 500 | **200** |
 
 Projects 1 and 2 have the same effective vote count, so we need to break the tie.
 But they both have the same cost and the same initial vote count.

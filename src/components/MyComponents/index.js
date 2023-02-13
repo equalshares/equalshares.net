@@ -24,6 +24,14 @@ export function CurrencySymbol() {
   );
 }
 
+export function Currency({ children }) {
+  const { siteConfig } = useDocusaurusContext();
+  const currencySymbol = siteConfig.customFields.currencySymbol;
+  return (
+    <span>{currencySymbol}{children}</span>
+  );
+}
+
 export function SemiBold({ children }) {
   return <span style={{ fontWeight: 500 }}>{children}</span>;
 }
