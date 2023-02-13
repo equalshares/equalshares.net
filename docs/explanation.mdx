@@ -91,7 +91,7 @@ Then to spread the cost most equally, we charge those voters their entire remain
 Then we split the remaining cost of <CurrencySymbol/>40 equally between the remaining 3 voters, who each have to pay <CurrencySymbol/>13.33 (because 3 &middot; <CurrencySymbol/>13.33 = <CurrencySymbol/>40).
 
 <!--<BudgetBars budgets={[5,5,30,30,30,30,30,30,30,30]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} showEffectiveVoteCounts={true} effectiveVoteCounts={[5,5,13.3,13.3,13.3,"x",0,0,0,0]} />-->
-<BudgetBars budgets={[5,5,30,30,30,30,30,30,30,30]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} showEffectiveVoteCounts={true} effectiveVoteCounts={[5,5,13.3,13.3,13.3,"x",0,0,0,0]} />
+<BudgetBars budgets={[5,5,30,30,30,30,30,30,30,30]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} />
 
 In general, the procedure for splitting the cost as equally as possible between supporters is as follows. We first try to split the cost equally (so we divide the project's cost by the number of the project's supporters). If some voters do not have enough budget left to cover what they would have to pay, we instead take as much money as possible from those voters (namely their entire remaining budget). Then, in the next step, we try to split the remaining cost equally between the remaining voters. If this is again not possible, we take as much money as possible from the voters who do not have enough, and so on. (An alternative mathematical way of describing this is that we split the cost of the projects between its supporters in such a way that the maximum payment of any voter is as small as possible.)
 

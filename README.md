@@ -11,7 +11,7 @@ npm install
 npm run start
 ```
 
-This will start a local development server. The website can then be viewed at `http://localhost:3000/docusaurus`. Changes to the source files are immediately reflected in the browser.
+This will start a local development server. The website can then be viewed at `http://localhost:3000/`. Changes to the source files are immediately reflected in the browser.
 
 ```bash
 npm run build

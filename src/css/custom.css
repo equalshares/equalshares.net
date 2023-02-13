@@ -29,6 +29,12 @@
   accent-color: var(--ifm-color-primary-lighter);
 }
 
+@media (max-width: 1300px) {
+  :root {
+    --doc-sidebar-width: 230px !important;
+  }
+}
+
 .markdown {
   --ifm-h1-vertical-rhythm-bottom: 1;
   --ifm-heading-vertical-rhythm-bottom: 0.8;
@@ -370,7 +376,7 @@ iframe[src*="datawrapper"] {
   /* display: flex;
   flex-wrap: wrap; */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .map-with-label {

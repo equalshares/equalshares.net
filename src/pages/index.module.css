@@ -116,7 +116,7 @@
 .universityLogos {
   background-color: var(--ifm-color-primary);
   text-align: center;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
   font-size: 1.2em;
 }
 [data-theme='dark'] .universityLogos {
@@ -168,6 +168,57 @@
 {
   font-size: 1.45em;
   line-height: 1.5em;
+}
+
+/* .cities2023 {
+  padding: 0.58rem 2rem;
+  border-radius: var(--ifm-pre-border-radius);
+  border: 1px solid hsl(202, 73%, 70%);
+  box-shadow: var(--ifm-alert-shadow);
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+} */
+
+.cities2023 {
+  padding: 0.58rem 2rem;
+  padding-top: 0;
+  max-width: none;
+  width: 100%;
+  box-shadow: var(--ifm-alert-shadow);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  background-color: rgb(232,245,251);
+}
+
+.cities2023 h2 {
+  font-size: 1.4em;
+  /* margin-top: -1.05em; */
+  margin: 0.8em;
+  font-weight: 400;
+}
+
+.cities2023 h2 span {
+  /* background-color: white; */
+  /* background-color: var(--ifm-color-primary); */
+  /* color: #fff; */
+  /* padding: 0.3em 0.6em; */
+}
+
+.cities2023 .columns {
+  margin: 0;
+  gap: 0.5em;
+  justify-content: center;
+}
+
+.cities2023 .columns div {
+  gap: 0;
+  flex: 0 0 300px;
+}
+
+.cities2023 .columns div img {
+  width: 250px;
+  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.3);
+  margin-bottom: 0;
 }
 
 .map {

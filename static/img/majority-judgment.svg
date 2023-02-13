@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="a" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.02 147.69">
-  <text transform="translate(0 63.36)" style="font-family: Roboto-Medium, Roboto; font-size: 22px; font-weight: 500;"><tspan x="0" y="0">P</tspan><tspan x="14.06" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="21.41" y="0">oject 1</tspan></text>
-  <text transform="translate(0 117.39)" style="font-family: Roboto-Medium, Roboto; font-size: 22px; font-weight: 500;"><tspan x="0" y="0">P</tspan><tspan x="14.06" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="21.41" y="0">oject 2</tspan></text>
+  <defs>
+    <style>
+      .a {
+        font-family: Roboto-Medium, Roboto, -apple-system, BlinkMacSystemFont, Lato, Arial, Helvetica, sans-serif;
+        font-size: 20px; font-weight: 500;
+      }
+      .b {
+        font-family: Roboto-Regular, Roboto, -apple-system, BlinkMacSystemFont, Lato, Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <text transform="translate(0 63.36)" class="a"><tspan x="0" y="0">P</tspan><tspan x="14.06" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="21.41" y="0">oject 1</tspan></text>
+  <text transform="translate(0 117.39)" class="a"><tspan x="0" y="0">P</tspan><tspan x="14.06" y="0" style="letter-spacing: -.02em;">r</tspan><tspan x="21.41" y="0">oject 2</tspan></text>
   <rect x="109.46" y="42.98" width="458.56" height="25"/>
   <line x1="338.74" y1="21.81" x2="338.74" y2="147.69" style="fill: none; stroke: #030017; stroke-miterlimit: 10; stroke-width: 2px;"/>
   <rect x="109.46" y="42.98" width="206.35" height="25" style="fill: #237727;"/>
@@ -12,11 +25,11 @@
   <rect x="365.79" y="98.16" width="9.58" height="25" style="fill: #e0ff17;"/>
   <rect x="375.37" y="98.16" width="32.67" height="25" style="fill: #d81f16;"/>
   <rect x="351.99" y="98.16" width="13.8" height="25" style="fill: #00b51a;"/>
-  <text transform="translate(113.35 61.13)" style="fill: #fff; font-family: Roboto-Regular, Roboto; font-size: 16px;"><tspan x="0" y="0">1000</tspan></text>
-  <text transform="translate(319.84 61.13)" style="fill: #fff; font-family: Roboto-Regular, Roboto; font-size: 16px;"><tspan x="0" y="0">550</tspan></text>
-  <text transform="translate(434.15 61.29)" style="font-family: Roboto-Regular, Roboto; font-size: 16px;"><tspan x="0" y="0">450</tspan></text>
-  <text transform="translate(523.66 61.13)" style="fill: #fff; font-family: Roboto-Regular, Roboto; font-size: 16px;"><tspan x="0" y="0">220</tspan></text>
-  <text transform="translate(274.4 116.39)" style="fill: #fff; font-family: Roboto-Regular, Roboto; font-size: 16px;"><tspan x="0" y="0">400</tspan></text>
-  <text transform="translate(377.66 116.55)" style="fill: #fff; font-family: Roboto-Regular, Roboto; font-size: 16px;"><tspan x="0" y="0">160</tspan></text>
-  <text transform="translate(327.1 16.25)" style="font-family: Roboto-Medium, Roboto; font-size: 19px; font-weight: 500;"><tspan x="0" y="0">50%</tspan></text>
+  <text transform="translate(113.35 61.13)" class="b"><tspan x="0" y="0">1000</tspan></text>
+  <text transform="translate(319.84 61.13)" class="b"><tspan x="0" y="0">550</tspan></text>
+  <text transform="translate(434.15 61.29)" style="font-family: Roboto-Regular, Roboto, -apple-system, BlinkMacSystemFont, Lato, Arial, Helvetica, sans-serif; font-size: 16px;"><tspan x="0" y="0">450</tspan></text>
+  <text transform="translate(523.66 61.13)" class="b"><tspan x="0" y="0">220</tspan></text>
+  <text transform="translate(274.4 116.39)" class="b"><tspan x="0" y="0">400</tspan></text>
+  <text transform="translate(377.66 116.55)" class="b"><tspan x="0" y="0">160</tspan></text>
+  <text transform="translate(327.1 16.25)" class="a"><tspan x="0" y="0">50%</tspan></text>
 </svg>

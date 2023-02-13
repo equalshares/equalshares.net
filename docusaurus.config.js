@@ -18,7 +18,7 @@ const config = {
   favicon: 'img/favicon.svg',
 
   customFields: {
-    currencySymbol: '£',
+    currencySymbol: '€',
   },
 
   // GitHub pages deployment config.
