@@ -31,8 +31,9 @@ replacing `de` with the language code of the language you want to work on ('fr',
 
 The files to be translated are in the directory `i18n`. You need to translate the messages in the file `code.json`. Note that curly braces indicate variables that will be filled in at runtime. Do not translate these. For example, in `(contributes {amount})`, only translate `contributes`.
 
-The main text is contained in files in the folder `docusaurus-plugin-content-docs/current`. When editing the Markdown files, be careful with the HTML-like tags (which are React components). A common error is to not close a tag. React requires, for example, `<img/>`.
+The main text is contained in files in the folder `docusaurus-plugin-content-docs/current`. 
 
-For monetary examples, use the format `<Currency>10</Currency>`. I'm planning to implement a way to localize the use of the correct currency symbol, and perhaps allow users to change to their preferred currency.
-
-Some boxes begin with a line `:::tip Example`. The word `tip` is a keyword specifying the type of box (its symbol and color). The second word is a customized headline, which should be translated.
+* When editing the Markdown files, be careful with the HTML-like tags (which are React components). A common error is to not close a tag. React requires, for example, `<img/>`.
+* Do not change filenames.
+* For monetary examples, use the format `<Currency>10</Currency>`. I'm planning to implement a way to localize the use of the correct currency symbol, and perhaps allow users to change to their preferred currency.
+* Some boxes begin with a line `:::tip Example`. The word `tip` is a keyword specifying the type of box (its symbol and color). The second word is a customized headline, which should be translated.
