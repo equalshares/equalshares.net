@@ -154,6 +154,10 @@
   max-width: 1000px;
 }
 
+.contentSection h2 {
+  text-align: center;
+}
+
 .contentSectionFlex {
   clear: both;
   padding: 1em;
@@ -273,6 +277,11 @@
 }
 [data-theme='dark'] .ballotExampleOption.selected {
   background: url('/static/icons/ballot-box-crossed-dark.svg') no-repeat left top;
+}
+
+.sankeyImage {
+  position: relative; 
+  min-height: 100px;
 }
 
 .sankeyContainer {

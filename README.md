@@ -18,3 +18,15 @@ npm run build
 ```
 
 This command generates static content into the `build` directory. This can then be served using any static contents hosting service.
+
+## Translations
+
+To start the development server for a specific language, run:
+
+```bash
+npm run start -- --locale de
+```
+
+replacing `de` with the language code of the language you want to work on ('fr', 'pl').
+
+The files to be translated are in the directory `i18n`.

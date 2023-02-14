@@ -9,6 +9,8 @@ import "tippy.js/themes/light.css";
 import DWChart from 'react-datawrapper-chart';
 import { useColorMode } from '@docusaurus/theme-common';
 
+import Translate, {translate} from '@docusaurus/Translate';
+
 export function Datawrapper({src}) {
   const { isDarkTheme } = useColorMode();
   return (
@@ -55,8 +57,8 @@ export function BudgetBars({
     return (<div className="budget-bar-container" key={index.toString()}>
       {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{budget}</div>}
       <Tippy content={<span>
-          Budget: <CurrencySymbol/>{budget} 
-          {showPayments && <span><br/>Spending: <CurrencySymbol/>{payments[index]}</span>} 
+          <Translate id="explanation.budgetBars.tooltipBudget" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount.">Budget:</Translate> <CurrencySymbol/>{budget} 
+          {showPayments && <span><br/><Translate id="explanation.budgetBars.tooltipSpending" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount.">Spending:</Translate> <CurrencySymbol/>{payments[index]}</span>} 
         </span>} theme="light">
         <div className={budget > 0 ? 'budget-bar' : 'budget-bar budget-bar-zero'} style={barStyle}>
           {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: 100 * payments[index]/budget + '%' }}>{payments[index]}</div>}
@@ -160,7 +162,7 @@ export function WaterFilling () {
   return (
     <div>
       <BudgetBars budgets={budgets} payments={payments} unaffordable={!spread.affordable} />
-      {spread.affordable ? <span>Cost: <CurrencySymbol/>{cost}</span> : <span><s>Cost: <CurrencySymbol/>{cost}</s> (supporting voters do not have enough money)</span>} <br/>
+      {spread.affordable ? <span><Translate>Cost:</Translate> <CurrencySymbol/>{cost}</span> : <span><s><Translate>Cost:</Translate> <CurrencySymbol/>{cost}</s> <Translate>(supporting voters do not have enough money)</Translate></span>} <br/>
       <input onInput={handleClick} type="range" min="0" max="100" value={cost} step="5" style={{width:"20em"}} />
     </div>
   );

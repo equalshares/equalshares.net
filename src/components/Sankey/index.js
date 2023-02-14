@@ -9,17 +9,21 @@ import 'tippy.js/themes/light.css';
 
 import styles from './index.module.css';
 
+import { Currency } from '@site/src/components/MyComponents';
+
+import Translate, {translate} from '@docusaurus/Translate';
+
 function TooltippedVoter({name, contributions, children}) {
     const { siteConfig } = useDocusaurusContext();
     const currencySymbol = siteConfig.customFields.currencySymbol;
     return (
         <Tippy delay={[50,50]} content={<div>
-            <b>{name}</b> &middot; Budget share: {currencySymbol}150
+            <b><Translate id="sankey.voterLabel.prefix">Voter</Translate> {name}</b> &middot; <Translate id="sankey.tooltipBudgetShare" description="used in tooltips of voters in the Sankey diagram to say 'Budget share: [amount]'">Budget share</Translate>: {currencySymbol}150
             <ul className={styles.tooltipBallotList}>
-                <li className={'1' in contributions ? styles.selected : ''}>Project 1 {'1' in contributions ? `(contributes ${currencySymbol}${contributions[1]})` : ``}</li>
-                <li className={'2' in contributions ? styles.selected : ''}>Project 2 {'2' in contributions ? `(contributes ${currencySymbol}${contributions[2]})` : ``}</li>
-                <li className={'3' in contributions ? styles.selected : ''}>Project 3 {'3' in contributions ? `(contributes ${currencySymbol}${contributions[3]})` : ``}</li>
-                <li className={'4' in contributions ? styles.selected : ''}>Project 4 {'4' in contributions ? `(contributes ${currencySymbol}${contributions[4]})` : ``}</li>
+                <li className={'1' in contributions ? styles.selected : ''}><Translate id="sankey.projectLabel.prefix">Project</Translate> 1 {'1' in contributions ? <Translate id="sankey.tooltipContributesAmount" description="used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project" values={{ amount: (<Currency>{contributions[1]}</Currency>) }}>{'(contributes {amount})'}</Translate> : '' }</li>
+                <li className={'2' in contributions ? styles.selected : ''}><Translate id="sankey.projectLabel.prefix">Project</Translate> 2 {'2' in contributions ? <Translate id="sankey.tooltipContributesAmount" description="used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project" values={{ amount: (<Currency>{contributions[2]}</Currency>) }}>{'(contributes {amount})'}</Translate> : '' }</li>
+                <li className={'3' in contributions ? styles.selected : ''}><Translate id="sankey.projectLabel.prefix">Project</Translate> 3 {'3' in contributions ? <Translate id="sankey.tooltipContributesAmount" description="used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project" values={{ amount: (<Currency>{contributions[3]}</Currency>) }}>{'(contributes {amount})'}</Translate> : '' }</li>
+                <li className={'4' in contributions ? styles.selected : ''}><Translate id="sankey.projectLabel.prefix">Project</Translate> 4 {'4' in contributions ? <Translate id="sankey.tooltipContributesAmount" description="used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project" values={{ amount: (<Currency>{contributions[4]}</Currency>) }}>{'(contributes {amount})'}</Translate> : '' }</li>
             </ul>
         </div>} theme='light' animation='none' duration={[300,0]}>
             {children}
@@ -200,7 +204,7 @@ function Sankey() {
                   d="M605.501 24.288H620.501V93.048H605.501z"
                   className="voter1 for_r0"
                   ></path>
-              <TooltippedVoter name="Voter 1" contributions={{1: 100, 2: 50}}>
+              <TooltippedVoter name="1" contributions={{1: 100, 2: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535 24.288H620.501V93.048H535z"
@@ -214,7 +218,7 @@ function Sankey() {
                 d="M605.501 109.24H620.501V178H605.501z"
                 className="voter2 for_r3"
               ></path>
-              <TooltippedVoter name="Voter 2" contributions={{1: 100, 2: 50}}>
+              <TooltippedVoter name="2" contributions={{1: 100, 2: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535 109.24H620.501V178H535z"
@@ -228,7 +232,7 @@ function Sankey() {
                 d="M605.501 194.192H620.501V262.952H605.501z"
                 className="voter3 for_r4"
               ></path>
-              <TooltippedVoter name="Voter 3" contributions={{1: 100, 2: 50}}>
+              <TooltippedVoter name="3" contributions={{1: 100, 2: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535 194.192H620.501V262.952H535z"
@@ -242,7 +246,7 @@ function Sankey() {
                 d="M605.501 279.144H620.501V347.904H605.501z"
                 className="voter4 for_r5"
               ></path>
-              <TooltippedVoter name="Voter 4" contributions={{1: 100, 3: 50}}>
+              <TooltippedVoter name="4" contributions={{1: 100, 3: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535 279.144H620.501V347.904H535z"
@@ -256,7 +260,7 @@ function Sankey() {
                 d="M605.501 364.096H620.501V432.856H605.501z"
                 className="voter5 for_r7"
               ></path>
-              <TooltippedVoter name="Voter 5" contributions={{1: 100, 3: 50}}>
+              <TooltippedVoter name="5" contributions={{1: 100, 3: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535 364.096H620.501V432.856H535z"
@@ -270,7 +274,7 @@ function Sankey() {
                 d="M605.501 449.048H620.501V517.808H605.501z"
                 className="voter6 for_r8"
               ></path>
-              <TooltippedVoter name="Voter 6" contributions={{1: 100, 4: 50}}>
+              <TooltippedVoter name="6" contributions={{1: 100, 4: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535 449.048H620.501V517.808H535z"
@@ -284,7 +288,7 @@ function Sankey() {
                 d="M605.501 534H620.501V602.76H605.501z"
                 className="voter7 for_r10"
               ></path>
-              <TooltippedVoter name="Voter 7" contributions={{2: 50, 3: 50, 4: 50}}>
+              <TooltippedVoter name="7" contributions={{2: 50, 3: 50, 4: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535 534H620.501V602.76H535z"
@@ -298,7 +302,7 @@ function Sankey() {
                 d="M605.501 618.952H620.501V687.712H605.501z"
                 className="voter8 for_r11"
               ></path>
-              <TooltippedVoter name="Voter 8" contributions={{2: 50, 3: 50, 4: 50}}>
+              <TooltippedVoter name="8" contributions={{2: 50, 3: 50, 4: 50}}>
                   <path
                   fillOpacity={0}  
                   d="M535.501 618.952H620.501V687.712H535.501z"
@@ -314,12 +318,14 @@ function Sankey() {
                 d="M1211.001 66.117H1226.001V341.15700000000004H1211.001z"
                 className="for_r1"
               ></path>
-              <Tippy content={<span>
-                  Project 1 costs {currencySymbol}<b>600</b>.
-                  This cost is covered equally by the <b>6 voters</b> who voted for Project 1.
-                  Each of these voters contribute {currencySymbol}100
-                  from their budget share.
-              </span>} placement="left" theme="light">
+              <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '1',
+                projectCost: (<b><Currency>600</Currency></b>),
+                numVoters: (<b>6</b>),
+                contributionAmount: (<Currency>100</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="left" theme="light">
                   <path
                   fillOpacity="0"
                   d="M1180.001 66.117H1326.001V341.15700000000004H1180.001z"
@@ -334,12 +340,14 @@ function Sankey() {
                 d="M1211.001 357.349H1226.001V471.94899999999996H1211.001z"
                 className="for_r2"
               ></path>
-              <Tippy content={<span>
-                  Project 2 costs {currencySymbol}<b>250</b>.
-                  This cost is covered equally by the <b>5 voters</b> who voted for Project 2.
-                  Each of these voters contribute {currencySymbol}50
-                  from their budget share.
-              </span>} placement="left" theme="light">
+              <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '2',
+                projectCost: (<b><Currency>250</Currency></b>),
+                numVoters: (<b>5</b>),
+                contributionAmount: (<Currency>50</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="left" theme="light">
                   <path
                   fillOpacity="0"
                   d="M1180.001 357.349H1326.001V471.94896H1180.001z"
@@ -354,12 +362,14 @@ function Sankey() {
                 d="M1211.001 488.141H1226.001V579.821H1211.001z"
                 className="for_r6"
               ></path>
-              <Tippy content={<span>
-                  Project 3 costs {currencySymbol}<b>200</b>.
-                  This cost is covered equally by the <b>4 voters</b> who voted for Project 3.
-                  Each of these voters contribute {currencySymbol}50
-                  from their budget share.
-              </span>} placement="left" theme="light">
+              <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '3',
+                projectCost: (<b><Currency>200</Currency></b>),
+                numVoters: (<b>4</b>),
+                contributionAmount: (<Currency>50</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="left" theme="light">
                   <path
                   fillOpacity="0"
                   d="M1180.001 488.141H1326.001V579.821H1180.001z"
@@ -374,12 +384,14 @@ function Sankey() {
                 d="M1211.001 596.013H1226.001V664.773H1211.001z"
                 className="for_r9"
               ></path>
-              <Tippy content={<span>
-                  Project 4 costs {currencySymbol}<b>150</b>.
-                  This cost is covered equally by the <b>3 voters</b> who voted for Project 4.
-                  Each of these voters contribute {currencySymbol}50
-                  from their budget share.
-              </span>} placement="left" theme="light">
+              <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '4',
+                projectCost: (<b><Currency>150</Currency></b>),
+                numVoters: (<b>3</b>),
+                contributionAmount: (<Currency>50</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="left" theme="light">
                   <path
                   fillOpacity="0"
                   d="M1180.001 596.013H1326.001V664.773H1180.001z"
@@ -395,11 +407,12 @@ function Sankey() {
                 d="M0 80.96H15V631.0400000000001H0z"
                 className="for_r12"
               ></path>
-              <Tippy content={<span>
-                  The city budget is {currencySymbol}<b>1200</b>.<br/>
-                  It is divided equally between the 8 voters,<br/>
-                  so each voter gets {currencySymbol}<b>150</b>.
-              </span>} placement="right" theme="light">
+              <Tippy content={<Translate id="sankey.cityTooltip" values={{
+                cityBudget: (<b><Currency>1200</Currency></b>),
+                voterBudget: (<b><Currency>150</Currency></b>),
+              }}>
+                  {'The city budget is {cityBudget}. It is divided equally between the 8 voters, so each voter gets {voterBudget}.'}
+              </Translate>} placement="right" theme="light">
                   <path
                   fillOpacity="0"
                   d="M-60 80.96H50V631.0400000000001H-60z"
@@ -418,7 +431,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 1
+                  <Translate id="sankey.voterLabel.prefix">Voter</Translate> 1
               </text>
               <text
                   x="598.381"
@@ -437,7 +450,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 2
+                  <Translate id="sankey.voterLabel.prefix">Voter</Translate> 2
               </text>
               <text
                   x="598.381"
@@ -456,7 +469,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 3
+                  <Translate id="sankey.voterLabel.prefix">Voter</Translate> 3
               </text>
               <text
                   x="598.381"
@@ -475,7 +488,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 4
+                  <Translate id="sankey.voterLabel.prefix">Voter</Translate> 4
               </text>
               <text
                   x="598.381"
@@ -494,7 +507,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 5
+                  <Translate id="sankey.voterLabel.prefix">Voter</Translate> 5
               </text>
               <text
                   x="598.381"
@@ -513,7 +526,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 6
+                  <Translate id="sankey.voterLabel.prefix">Voter</Translate> 6
               </text>
               <text
                   x="598.381"
@@ -532,7 +545,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 7
+                  <Translate id="sankey.voterLabel.prefix">Voter</Translate> 7
               </text>
               <text
                   x="598.381"
@@ -551,7 +564,7 @@ function Sankey() {
                   fontWeight="500"
                   textAnchor="end"
               >
-                  Voter 8
+                  <Translate id="sankey.voterLabel.prefix" description="The word 'Voter' that will be used in 'Voter 1', 'Voter 2', etc.">Voter</Translate> 8
               </text>
               <text
                   x="598.381"
@@ -573,7 +586,7 @@ function Sankey() {
               fontWeight="500"
               textAnchor="end"
             >
-              City
+              <Translate id="sankey.cityLabel" description="Label for the City on the left of the Sankey figure">City</Translate>
             </text>
             <text
               x="-10.12"
@@ -594,7 +607,7 @@ function Sankey() {
               fontWeight="500"
               textAnchor="start"
             >
-              Project 1
+              <Translate id="sankey.projectLabel.prefix">Project</Translate> 1
             </text>
             <text
               x="1235.121"
@@ -613,7 +626,7 @@ function Sankey() {
               fontWeight="500"
               textAnchor="start"
             >
-              Project 2
+              <Translate id="sankey.projectLabel.prefix">Project</Translate> 2
             </text>
             <text
               x="1235.121"
@@ -632,7 +645,7 @@ function Sankey() {
               fontWeight="500"
               textAnchor="start"
             >
-              Project 3
+              <Translate id="sankey.projectLabel.prefix">Project</Translate> 3
             </text>
             <text
               x="1235.121"
@@ -651,7 +664,7 @@ function Sankey() {
               fontWeight="500"
               textAnchor="start"
             >
-              Project 4
+              <Translate id="sankey.projectLabel.prefix" description="The word 'Project' that will be used in 'Project 1', 'Project 2', etc.">Project</Translate> 4
             </text>
             <text
               x="1235.121"
@@ -665,16 +678,16 @@ function Sankey() {
           </g>
           <g fill="#000" fontFamily="Roboto,sans-serif" fontSize="24" fontWeight="400">
               <text x="0" y="-20" fontWeight="500" textAnchor="start">
-                  Step 1: The budget is divided equally
+                <Translate id="sankey.projectLabel.leftTextLine1">Step 1: The budget is divided equally</Translate>
               </text>
               <text x="0" y="-20" dy="29" fontWeight="500" textAnchor="start">
-                  among the voters
+                <Translate id="sankey.projectLabel.leftTextLine2">among the voters</Translate>
               </text>
               <text x="1226" y="-20" fontWeight="500" textAnchor="end">
-                  Step 2: Projects are funded with the shares
+                  <Translate id="sankey.projectLabel.rightTextLine1">Step 2: Projects are funded with the shares</Translate>
               </text>
               <text x="1226" y="-20" dy="29" fontWeight="500" textAnchor="end">
-                  of those who voted for them
+                <Translate id="sankey.projectLabel.rightTextLine2">of those who voted for them</Translate>
               </text>
           </g>
         </g>
@@ -701,39 +714,37 @@ function Sankey() {
             className="st2"
           ></path>
           <path d="M13.7 673.4v15h68.8v-15H13.7z" className="st3"></path>
-          <TooltippedVoter name="Voter 1" contributions={{1: 100, 2: 50}}>
+          <TooltippedVoter name="1" contributions={{1: 100, 2: 50}}>
             <path d="M13.7 602.9v85.5h68.8v-85.5H13.7z" className="st4"></path>
           </TooltippedVoter>
           <path d="M98.7 673.4v15h68.8v-15H98.7z" className="st3"></path>
-          <TooltippedVoter name="Voter 2" contributions={{1: 100, 2: 50}}>
+          <TooltippedVoter name="2" contributions={{1: 100, 2: 50}}>
             <path d="M98.7 602.9v85.5h68.8v-85.5H98.7z" className="st4"></path>
           </TooltippedVoter>
           <path d="M183.6 673.4v15h68.8v-15h-68.8z" className="st3"></path>
-          <TooltippedVoter name="Voter 3" contributions={{1: 100, 2: 50}}>
+          <TooltippedVoter name="3" contributions={{1: 100, 2: 50}}>
             <path d="M183.6 602.9v85.5h68.8v-85.5h-68.8z" className="st4"></path>
           </TooltippedVoter>
           <path d="M268.6 673.4v15h68.8v-15h-68.8z" className="st3"></path>
-          <TooltippedVoter name="Voter 4" contributions={{1: 100, 3: 50}}>
+          <TooltippedVoter name="4" contributions={{1: 100, 3: 50}}>
             <path d="M268.6 602.9v85.5h68.8v-85.5h-68.8z" className="st4"></path>
           </TooltippedVoter>
           <path d="M353.5 673.4v15h68.8v-15h-68.8z" className="st3"></path>
-          <TooltippedVoter name="Voter 5" contributions={{1: 100, 3: 50}}>
+          <TooltippedVoter name="5" contributions={{1: 100, 3: 50}}>
             <path d="M353.5 602.9v85.5h68.8v-85.5h-68.8z" className="st4"></path>
           </TooltippedVoter>
           <path d="M438.5 673.4v15h68.8v-15h-68.8z" className="st3"></path>
-          <TooltippedVoter name="Voter 6" contributions={{1: 100, 4: 50}}>
+          <TooltippedVoter name="6" contributions={{1: 100, 4: 50}}>
             <path d="M438.5 602.9v85.5h68.8v-85.5h-68.8z" className="st4"></path>
           </TooltippedVoter>
           <path d="M523.4 673.4v15h68.8v-15h-68.8z" className="st3"></path>
-          <TooltippedVoter name="Voter 7" contributions={{2: 50, 3: 50, 4: 50}}>
+          <TooltippedVoter name="7" contributions={{2: 50, 3: 50, 4: 50}}>
             <path d="M523.4 602.9v85.5h68.8v-85.5h-68.8z" className="st4"></path>
           </TooltippedVoter>
-          <g>
-            <path d="M608.4 673.4v15h68.8v-15h-68.8z" className="st3"></path>
-            <TooltippedVoter name="Voter 8" contributions={{2: 50, 3: 50, 4: 50}}>
+          <path d="M608.4 673.4v15h68.8v-15h-68.8z" className="st3"></path>
+          <TooltippedVoter name="8" contributions={{2: 50, 3: 50, 4: 50}}>
             <path d="M608.4 603.4v85h68.8v-85h-68.8z" className="st4"></path>
-            </TooltippedVoter>
-          </g>
+          </TooltippedVoter>
           <g>
             <path d="M55.5 1278.9v15h275v-15h-275z" className="st3"></path>
             <Tippy content={<span>
