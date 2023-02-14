@@ -29,4 +29,6 @@ npm run start -- --locale de
 
 replacing `de` with the language code of the language you want to work on ('fr', 'pl').
 
-The files to be translated are in the directory `i18n`.
+The files to be translated are in the directory `i18n`. You need to translate the messages in the file `code.json`. Note that curly braces indicate variables that will be filled in at runtime. Do not translate these. For example, in `(contributes {amount})`, only translate `contributes`.
+
+The main text is contained in files in the folder `docusaurus-plugin-content-docs/current`. When editing the Markdown files, be careful with the HTML-like tags (which are React components). A common error is to not close a tag. React requires, for example, `<img/>`.
