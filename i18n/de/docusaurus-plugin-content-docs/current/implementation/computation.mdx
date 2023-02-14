@@ -1,0 +1,176 @@
+---
+sidebar_position: 10
+title: Computation
+---
+
+import DWChart from 'react-datawrapper-chart';
+
+# How to compute the results?
+
+<!-- Todo: talk about using floats or fractions. -->
+
+## The `pabutools` package
+
+The [`pabutools`](https://github.com/Grzesiek3713/pabutools) package is a free and open-source Python package that contains implementations of several voting rules for participatory budgeting, including the Method of Equal Shares. 
+It is available on [GitHub](https://github.com/Grzesiek3713/pabutools). 
+The package can be installed via [PyPI](https://pypi.org/project/pabutools/) using `pip`:
+
+```bash
+pip install pabutools
+```
+
+## Code snippets
+
+Here, we provide short code snippets for computing the results of the Method of Equal Shares in several programming languages.
+
+<details>
+<summary>General trick to speed up the computation</summary>
+<div>
+<p>
+During the computation, the algorithm needs to repeatedly compute the "<a href="../explanation">effective vote count</a>" of each project,
+which is an expensive step. This part can be sped up by only recalculating the effective vote count
+if it matters. 
+</p>
+<p>
+The main observation is that the effective vote count <em>can only decrease</em> as the algorithm proceeds.
+What we do in the implementation is the following:
+we start with the project which had the highest effective vote count in the previous round.
+We re-calculate the effective vote count of this project.
+Then we compare its new effective vote count with the effective vote count of the project
+with the second-highest effective vote count in the previous round.
+If the new effective vote count is higher than the effective vote count of the second-highest project,
+then we know that we have found the project with the highest effective vote count in the current round
+(because all the other projects previously had a lower effective vote count, which in the mean
+time could only have decreased even further).
+Thus, we can immediately select it.
+</p>
+<p>
+This optimization is used in all the code snippets on this page.
+</p>
+</div>
+</details>
+
+### Python
+
+```python
+def equal_shares_fixed_budget(N, C, cost, u, initial_budget):
+    # u[i,c] = utility of voter i for candidate c
+    budget = {i : initial_budget/len(N) for i in N}
+    committee = []
+    total_utility = {c : sum(u[i,c] for i in N) for c in C}
+    remaining = {c for c in C if cost[c] > 0 and total_utility[c] > 0} # throw away dummy candidates
+    approvers = {c : [i for i in N if u[i,c] > 0] for c in C}
+    previous_rho = {c : cost[c] / total_utility[c] for c in remaining}
+    while True:
+        best = None
+        best_rho = float('inf')
+        for c in sorted(remaining, key=lambda c : previous_rho[c]):
+            if previous_rho[c] > best_rho: # best possible rho for this round still isn't good enough
+                break
+            if sum(budget[i] for i in approvers[c]) < cost[c]: # unaffordable, can delete
+                remaining.remove(c)
+                continue
+            approvers[c].sort(key=lambda i : budget[i] / u[i,c])
+            paid_so_far = 0
+            denominator = total_utility[c]
+            for j in range(len(approvers[c])):
+                rho = (cost[c] - paid_so_far) / denominator
+                if rho * u[approvers[c][j], c] <= budget[approvers[c][j]]:
+                    # found best rho for this candidate
+                    previous_rho[c] = rho
+                    if rho < best_rho:
+                        best_rho = rho
+                        best = c
+                    break
+                paid_so_far += budget[approvers[c][j]]
+                denominator -= u[approvers[c][j],c]
+        if not best:
+            break
+
+        committee.append(best)
+        remaining.remove(best)
+        for i in approvers[best]:
+            budget[i] -= min(budget[i], best_rho * u[i,best])
+
+    return tuple(sorted(committee))
+
+def equal_shares(N, C, cost, u, budget):
+    "Equal Shares with budget completion"
+    committee = equal_shares_fixed_budget(N, C, cost, u, budget)
+    for percent in range(101, 400):
+        new_committee = equal_shares_fixed_budget(N, C, cost, u, budget * percent / 100)
+        if sum(cost[c] for c in new_committee) > budget + 0.001:
+            break
+        committee = new_committee
+    return committee
+```
+
+### Javascript
+
+```javascript
+function sum(xs) {
+    return xs.reduce((a, b) => a + b);
+}
+
+function equal_shares_utility_based(N, C, cost, u, B) {
+    let budget = new Map();
+    for (let i of N) {
+        budget.set(i, B / N.length);
+    }
+    let remaining = new Map();
+    for (let c of C) {
+        let total_utility = sum(N.map(i => u[i][c]));
+        if (cost[c] > 0 && total_utility > 0) {
+            let info = {
+                total_utility: total_utility,
+                approvers: N.filter(i => u[i][c] > 0),
+                previous_rho: cost[c] / total_utility,
+            };
+            remaining.set(c, info);
+        }
+    }
+    let committee = [];
+    while (true) {
+        let best = null;
+        let best_rho = Infinity;
+        let remaining_sorted = [...remaining.keys()];
+        remaining_sorted.sort((a, b) => remaining.get(a).previous_rho - remaining.get(b).previous_rho);
+        for (let c of remaining_sorted) {
+            let info = remaining.get(c);
+            if (info.previous_rho > best_rho) {
+                break;
+            }
+            if (sum(info.approvers.map(i => budget.get(i))) < cost[c]) {
+                remaining.delete(c);
+                continue;
+            }
+            info.approvers.sort((a, b) => budget.get(a) / u[a][c] - budget.get(b) / u[b][c]);
+            let paid_so_far = 0;
+            let denominator = info.total_utility;
+            for (let j = 0; j < info.approvers.length; j++) {
+                let i = info.approvers[j];
+                let rho = (cost[c] - paid_so_far) / denominator;
+                if (rho * u[i][c] <= budget.get(i)) {
+                    info.previous_rho = rho;
+                    if (rho < best_rho) {
+                        best_rho = rho;
+                        best = c;
+                    }
+                    break;
+                }
+                paid_so_far += budget.get(i);
+                denominator -= u[i][c];
+            }
+        }
+        if (!best) {
+            break;
+        }
+        committee.push(best);
+        for (let i of remaining.get(best).approvers) {
+            budget.set(i, budget.get(i) - Math.min(budget.get(i), best_rho * u[i][best]));
+        }
+        remaining.delete(best);
+    }
+    return committee;
+}
+```

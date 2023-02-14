@@ -1,0 +1,38 @@
+{
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Explanation": {
+    "message": "Explanation",
+    "description": "The label of footer link with label=Explanation linking to explanation"
+  },
+  "link.item.label.Benefits": {
+    "message": "Benefits",
+    "description": "The label of footer link with label=Benefits linking to benefits"
+  },
+  "link.item.label.Implementation": {
+    "message": "Implementation",
+    "description": "The label of footer link with label=Implementation linking to implementation"
+  },
+  "link.item.label.Resources": {
+    "message": "Resources",
+    "description": "The label of footer link with label=Resources linking to resources"
+  },
+  "link.item.label.Contacts": {
+    "message": "Contacts",
+    "description": "The label of footer link with label=Contacts linking to contacts"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/equalshares"
+  },
+  "link.item.label.Wikipedia": {
+    "message": "Wikipedia",
+    "description": "The label of footer link with label=Wikipedia linking to https://en.wikipedia.org/wiki/Method_of_Equal_Shares"
+  },
+  "copyright": {
+    "message": "Website maintained by <a href=\"https://dominik-peters.de\" style=\"color:hsl(202, 100%, 70%)\">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL).",
+    "description": "The footer copyright"
+  }
+}

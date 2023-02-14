@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "Methode der gleichen Anteile",
+    "description": "The title in the navbar"
+  },
+  "item.label.Explanation": {
+    "message": "Explanation",
+    "description": "Navbar item with label Explanation"
+  },
+  "item.label.Benefits": {
+    "message": "Benefits",
+    "description": "Navbar item with label Benefits"
+  },
+  "item.label.Implementation": {
+    "message": "Implementation",
+    "description": "Navbar item with label Implementation"
+  },
+  "item.label.Resources": {
+    "message": "Resources",
+    "description": "Navbar item with label Resources"
+  },
+  "item.label.Contacts": {
+    "message": "Contacts",
+    "description": "Navbar item with label Contacts"
+  }
+}

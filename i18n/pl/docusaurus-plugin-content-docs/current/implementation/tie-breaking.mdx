@@ -1,0 +1,121 @@
+---
+sidebar_position: 4
+title: Tie breaking
+---
+
+import { Datawrapper, SemiBold, Currency } from '@site/src/components/MyComponents';
+
+# How to break ties?
+
+<div class="summary">
+<b>Summary</b>:
+In rare cases, two or more projects may be tied (for example because they have exactly the same cost and received exactly the same number of votes).
+This occurs with probability less than 1%.
+We describe how to minimize the likelihood of ties when implementating the Method of Equal Shares.
+However, if a tie still occurs, it may need to be broken by election officials by using randomness.
+</div>
+
+## Recommended tie-breaking procedure
+
+:::tip
+
+An easy way of definitely avoiding ties is to ensure that no two projects have the same cost (even if costs only differ by <Currency>1</Currency>). Then a tie will never occur if the tie-breaking procedure below is followed.
+
+:::
+
+In the execution of the Method of Equal Shares, a tie can occur when two or more projects have the same effective vote count.
+In isolation, ties are unlikely to occur in large elections (such as those on the city scale).
+But the Method of Equal Shares is usually run several times in a row to determine the best amount of money that the voters get assigned at the start of the method. 
+(See [Completions](completion) for details.)
+This makes it more likely that a tie is encountered, and the tie will need to be broken.
+
+We recommend that when there is a tie between two or more projects, because they have the same effective voting count at some step of the method,
+the tie should be broken by the following procedure:
+* The project with the lowest cost is selected.
+* If two or more of the tied projects have the same lowest cost, then the (lowest-cost) project with the highest initial vote count is selected (that is, the raw vote count of the project before the vote count got reduced in the course of running the Method of Equal Shares).
+* If two or more projects have the lowest cost and the same initial vote count, then the tie is broken by lot, i.e. uniformly at random.
+
+As a procedural matter, there are two ways to handle the potential use of randomness:
+1. Before computing the election outcome, election officials check whether there are any collections of projects that have the same cost and the same initial vote count. For each such collection of potentially tied projects, they determine a tie-breaking order, for example by drawing names from a hat.
+2. Alternatively, compute the election outcome using an implementation of the Method of Equal Shares that ends with an error message if a tie is encountered. Only in this (unlikely) event, proceed like in Option 1.
+
+:::info Technical info
+
+In the unlikely event that randomness must be used, we recommend that
+election officials proceed like in Option 2 described above:
+randomly draw a tie-breaking order, and then run the Method of Equal Shares (including the completion) using that tie-breaking order.
+While using the completion, it is not a good idea to break ties differently for different values of the initial budget.
+
+:::
+
+## Examples
+
+### Example 1
+As an example, suppose that the Method of Equal Shares ends up in the following situation, where three projects remain available for selection:
+
+| Project | Cost | Initial vote count | Effective vote count |
+| --- | --- | --- | --- |
+| Project 1 | <Currency>600</Currency> | 500 | **200** |
+| Project 2 | <Currency>700</Currency> | 300 | **200** |
+| Project 3 | <Currency>100</Currency> | 150 | 100 |
+
+Projects 1 and 2 have the highest effective vote count, so one of them should be selected. 
+Since they have the same effective vote count, we need to break the tie.
+Thus, the method selects **Project 1**, because its cost of <Currency>600</Currency> is lower than the cost of Project 2, which is <Currency>700</Currency>.
+
+### Example 2
+
+Here is a similar example.
+
+| Project | Cost | Initial vote count | Effective vote count |
+| --- | --- | --- | --- |
+| Project 1 | <Currency>400</Currency> | 500 | **200** |
+| Project 2 | <Currency>400</Currency> | 300 | **200** |
+| Project 3 | <Currency>400</Currency> | 150 | **200** |
+
+This time, all three projects have the same effective vote count, so again we need to break the tie.
+All three projects have the same cost, so we need to break the tie by looking at the initial vote count.
+Thus, the method selects **Project 1**, because its initial vote count of 500 is higher than the initial vote count of both Project 2 and of Project 3.
+
+### Example 3
+
+Here is a final example.
+
+| Project | Cost | Initial vote count | Effective vote count |
+| --- | --- | --- | --- |
+| Project 1 | <Currency>400</Currency> | 500 | **200** |
+| Project 2 | <Currency>400</Currency> | 500 | **200** |
+
+Projects 1 and 2 have the same effective vote count, so we need to break the tie.
+But they both have the same cost and the same initial vote count.
+Thus, the tie needs to be broken by lot, for example by having the election official flip a coin.
+
+## Likelihood of ties
+
+Using simulations based on election data in the [Pabulib library](http://pabulib.org/), it is possible to estimate the likelihood of ties occurring.
+These simulations suggest that it is exceptionally rare (<1%) to need to use randomness to break a tie.
+This is because in almost all cases, any tie can already be broken based on project costs and initial vote counts.
+
+In our simulation, we find that in **only 0.6% of cases**, there exist two projects with the exact same cost and the exact same vote count.
+Further, even in the 0.6% of cases with such similar projects, it is often not necessary to break this tie when computing the Method of Equal Shares
+(for example because the tied projects do not have a large-enough vote count to have a chance of winning).
+Our simulation suggests that in **only 0.15% of cases**, there occurs a tie when computing the Method of Equal Shares that needs to be broken by lot.
+
+Most of the ties found in our simulation occur in elections in the city of Wrocław, which involve a fairly small number of voters.
+If we exclude the Wrocław elections from our simulation, then the likelihood of ties is even lower:
+two projects with the same cost and the same initial vote count occur in only 0.26% of cases, 
+and a tie during the computation of the Method of Equal Shares occurs in **only 0.09% of cases**.
+
+<details>
+<summary>Details of the simulation</summary>
+
+The simulation was performed in January 2023 using election data from Pabulib based on PB elections that used approval voting. There are 480 such datasets, coming from the Polish cities of Gdansk, Warsaw, Wrocław, and Zabrze. When excluding the Wrocław elections, the simulation involves 383 datasets. 
+
+In order to get a more precise estimate of the likelihood of a tie occurring, for each dataset, we ran a simulation 100 times.
+In each iteration, we randomly sampled between 30% and 80% of the voters from the dataset (thereby obtaining a random smaller election), and then checked whether the smaller election contained a pair of projects with the same cost and the same initial vote count.
+For those instances where such a pair of projects was found, we then checked whether the Method of Equal Shares (using the standard [completion](completion) method) would encounter a tie when computing the election outcome.
+
+If we only look at the actual, original elections (without randomly sampling a subset of voters), then a pair of projects with the same cost and the same initial vote count occurs in 1.25% of elections, with Equal Shares encountering a tie in 0.21% of elections. Excluding the Wrocław elections, the numbers are 0.5% and 0.0% respectively.
+
+The simulation code is [available on GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
+</details>
