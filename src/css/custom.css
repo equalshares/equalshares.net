@@ -373,10 +373,8 @@ iframe[src*="datawrapper"] {
 }
 
 .maps-display {
-  /* display: flex;
-  flex-wrap: wrap; */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 }
 
 .map-with-label {
@@ -399,6 +397,19 @@ iframe[src*="datawrapper"] {
   width: 100%;
   padding-right: 20%;
   text-align: center;
+}
+
+@media screen and (max-width: 1230px) and (min-width: 997px) {
+  .maps-display {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  .map-with-label {
+    min-width: 180px;
+    padding-right: 0;
+  }
+  .map-with-label > span {
+    font-size: 90%;
+  }
 }
 
 /* sankey. to do: refactor */
