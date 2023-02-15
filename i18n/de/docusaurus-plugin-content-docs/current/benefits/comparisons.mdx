@@ -1,86 +1,74 @@
 ---
 sidebar_position: 10
-title: Comparison with other methods
+title: Vergleich mit anderen Methoden
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { SemiBold, CurrencySymbol } from '@site/src/components/MyComponents';
 
-# Comparison with other voting systems for participatory budgeting
+# Vergleich mit anderen Wahlmethoden für Bürgerbudgets
 
-On this page, we compare the Method of Equal Shares with some other voting systems that have been used by cities, or that have been proposed by academics or election reform advocates.
+Auf dieser Seite vergleichen wir die Methode der gleichen Anteile mit einigen anderen Wahlsystemen, die von Städten verwendet oder von Wissenschaftlern vorgeschlagen wurden.
 
-## Comparison with the standard voting system
+## Vergleich mit dem Standard-Wahlsystem
 
-The voting system that is in use by almost every city selects all of the most popular projects, provided they fit in the budget limit.
-This is a "utilitarian method", in that it ensures an outcome that will (approximately) maximize the total "utility" of voters.
-In the computer science literature, this method is known as "utilitarian greedy". 
-It is "greedy" because it proceeds one step at a time, and at each step selects the most popular projects without considering the impact of this decision on future steps.
+Bei dem von fast allen Städten angewandten Wahlsystem werden die Projekte mit den meisten Stimmen ausgewählt, sofern sie in das Budget passen.
+Dabei handelt es sich um eine "utilitaristische Methode", die ein Ergebnis gewährleistet, das den "Gesamtnutzen" der Wähler (annähernd) maximiert.
+In der Informatik-Literatur ist diese Methode als "Greedy-Algorithmus" bekannt. 
+Sie ist "gierig", weil sie schrittweise vorgeht und bei jedem Schritt die beliebtesten Projekte auswählt, ohne die Auswirkungen dieser Entscheidung auf zukünftige Schritte zu berücksichtigen.
 
-**Advantages** of the standard method, when compared to the Method of Equal Shares:
-* It is simpler and easier to understand.
-* It leads to higher _average_ voter satisfaction because it selects the most popular projects (but the satisfaction is less equally distributed).
-* It tends to select only a small number of projects (which all have a high cost), making the implementation easier to administer.
+**Vorteile** der Standardmethode im Vergleich zur Methode der gleichen Anteile
+* Sie ist einfacher zu verstehen.
+* Sie führt zu einer höheren _durchschnittlichen_ Wählerzufriedenheit, weil sie die beliebtesten Projekte auswählt (aber die Zufriedenheit ist ungleicher verteilt).
+* Es werden tendenziell nur wenige Projekte ausgewählt (die alle hohe Kosten haben), was für Städte die Durchführung einfacher machen kann.
 
-**Disadvantages** of the standard method, when compared to the Method of Equal Shares:
-* It cannot automatically handle geographic divisions of cities into districts and neighborhoods.
-* Some voters have much higher influence on the outcome than others, which can be seen as unfair.
-* Smaller cheap projects have a very low chance of being selected.
-* Project proposers have an incentive to be wasteful because a project's probability of being selected is almost independent of its cost.
-* Project proposers have incentives to "bundle" several projects into a big project, leading to outcomes that are worse overall.
+**Nachteile** der Standardmethode im Vergleich zur Methode der gleichen Anteile:
+* Sie kann nicht automatisch die geografische Aufteilung der Städte in Bezirke und Stadtteile berücksichtigen.
+* Einige Wähler haben einen viel größeren Einfluss auf das Ergebnis als andere, was als ungerecht empfunden werden kann.
+* Kleinere, günstigere Projekte haben eine sehr geringe Chance, ausgewählt zu werden.
+* Beim Entwerfen von Projektvorschlägen haben die Vorschlagenden einen Anreiz, etwas verschwenderisch zu planen, da die Wahrscheinlichkeit, dass ein Projekt ausgewählt wird, fast unabhängig von seinen Kosten ist.
+* Projektvorschlagende haben Anreize, mehrere Projekte zu einem großen Projekt zu bündeln, was zu insgesamt schlechteren Ergebnissen führt.
 
 
-## Comparison with Majority Judgment in Paris {#majority-judgment}
+## Vergleich mit Majority Judgment in Paris {#majority-judgment}
 
-Paris used the standard voting system until 2019, allowing each voter to vote for 4-5 projects. 
-In 2021, the city government switched to a system known as _majority judgment_. 
-Under this voting system, each voter can _grade_ every project (no limit on how many projects are graded).
-In Paris, there are [four available grades](https://budgetparticipatif.paris.fr/bp/plugins/download/NoticeJugementMajoritaireBP.pdf):
+Paris hat bis 2019 das Standard-Wahlsystem angewendet, bei dem jeder Wähler für 4-5 Projekte stimmen konnte. 
+Im Jahr 2021 ging die Stadtverwaltung zu einem System über, das als _Majority Judgment_ bekannt ist. 
+Bei diesem Abstimmungssystem kann jeder Wähler jedes Projekt _benoten_ (es gibt keine Begrenzung der Anzahl der Projekte, die benotet werden können).
+In Paris gibt es [vier mögliche Noten](https://budgetparticipatif.paris.fr/bp/plugins/download/NoticeJugementMajoritaireBP.pdf):
 
-* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div> Favorite, I love it (<i>Coup de cœur / J'adore</i>)
-* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> I like it, it's interesting (<i>J'aime bien / C'est intéressant</i>)
-* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(230,254,86)', border: '0.5px solid #888' }}></div> Why not? (<i>Pourquoi pas ?</i>)
-* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(198,53,39)' }}></div> I'm not convinced (<i>Je ne suis pas convaincu.e</i>)
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div> Mein Favorit, ich liebe es (<i>Coup de cœur / J'adore</i>)
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> Gefällt mir, ist interessant (<i>J'aime bien / C'est intéressant</i>)
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(230,254,86)', border: '0.5px solid #888' }}></div> Warum nicht? (<i>Pourquoi pas ?</i>)
+* <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(198,53,39)' }}></div> Ich bin nicht überzeugt (<i>Je ne suis pas convaincu.e</i>)
 
-Then, for each project, we compute the _median grade_, which is the grade such that half of the voters gave this or a higher grade, and half gave this or a lower grade.
-The city then selects the 2 projects with the highest median grade. (In large districts, it selects 3 projects.)
-Now, typically, the best projects all have a median grade of <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> "I like it, it's interesting". 
-Thus, the city uses a tie-breaking scheme to actually make its decision, but city hall has never precisely announced what tie-breaking scheme it uses.
+Dann berechnen wir für jedes Projekt die _Median-Note_, d. h. die Note, bei der die Hälfte der Wähler diese oder eine höhere Note und die Hälfte diese oder eine niedrigere Note vergeben hat. Die Stadt wählt dann die 2 Projekte mit der höchsten Median-Note aus. (In großen Bezirken wählt sie 3 Projekte aus.) Die besten Projekte haben in der Regel alle eine Durchschnittsnote von <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> "Gefällt mir, ist interessant". Die Stadt muss also ein Verfahren verwenden, um trotz Stimmengleichheit eine Entscheidung zu treffen, aber das Rathaus hat nie genau bekannt gegeben, welches Verfahren es verwendet.
 
-An **advantage** of majority judgment is that it allows voters to express a fine-grained view on each project, including a negative view.
+Ein **Vorteil** von Majority Judgment besteht darin, dass die Wählerinnen und Wähler eine differenzierte Meinung zu jedem Projekt äußern können, einschließlich einer negativen Meinung.
 
-A **major disadvantage** is that it may select projects that do not receive wide-spread support, as we will explain below.
+Ein großer **Nachteil** ist, dass dabei möglicherweise Projekte ausgewählt werden, die keine breite Unterstützung finden, wie wir gleich erläutern werden.
 
-<h3>The difference between popular projects and high-quality projects</h3>
+<h3>Der Unterschied zwischen populären Projekten und hochqualitativen Projekten</h3>
 
-The standard voting system used by most cities, and also the Method of Equal Shares, have as their aim to select projects that are popular: many people have voted for those projects, and thus we can assume that many residents of the city would be happy to see the project implemented. Thus, these voting systems allow the city to discover which projects have the broadest support in the population.
+Das Standard-Wahlsystem, das von den meisten Städten verwendet wird, und auch die Methode der gleichen Anteile, zielen darauf ab, Projekte auszuwählen, die beliebt sind: Viele Menschen haben für diese Projekte gestimmt, und daher können wir davon ausgehen, dass viele Einwohner der Stadt das Projekt gerne umgesetzt sehen würden. Diese Wahlsysteme ermöglichen es der Stadt also, herauszufinden, welche Projekte die größte Unterstützung in der Bevölkerung haben.
 
-The philosophy underlying majority judgment (as used in Paris) is very different: it will select projects that are "high quality", in that for each project, a large fraction of voters who evaluated it agree that it is a good project.
-This is true even if many people do not care about the project and do not express an opinion about it.
-In particular, this could lead to the selection of projects that are only of interest to people living in the immediate area affected by the project, as we will now illustrate using an example.
+Die Philosophie, die Majority Judgment (wie sie in Paris angewandt wird) zugrunde liegt, ist eine ganz andere: Es werden Projekte ausgewählt, die "qualitativ hochwertig" sind, da bei jedem Projekt ein großer Teil der Wähler, die es bewertet haben, der Meinung ist, dass es ein gutes Projekt ist.
+Dies gilt selbst dann, wenn viele Menschen sich nicht für das Projekt interessieren und sich nicht dazu äußern.
+Dies könnte insbesondere dazu führen, dass Projekte ausgewählt werden, die nur für die Menschen interessant sind, die in dem unmittelbar von dem Projekt betroffenen Gebiet leben, wie wir nun anhand eines Beispiels veranschaulichen wollen.
 
-Consider the following example, with two projects. For simplicity, assume that we only plan to select one winning project.
+Betrachten wir das folgende Beispiel mit zwei Projekten. Der Einfachheit halber gehen wir davon aus, dass wir nur ein Projekt als Gewinnprojekt auswählen wollen.
 
-* <SemiBold>Project 1</SemiBold> was graded by 2220 voters. 1000 of those voters (45%) gave it the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, 
-and another 550 voters (25%) gave it the second highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>. Therefore, the median grade of Project 1 is the second highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>.
-* <SemiBold>Project 2</SemiBold> was graded by 671 voters, many fewer than the 2220 voters who graded Project 1. Maybe this is the case because Project 2 is of <SemiBold>very local interest</SemiBold>, and people not living in the immediate area did not give Project 2 a grade. 400 of those 671 voters (60%) gave Project 2 the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
-Because that is more than half of the voters, the median grade of Project 2 is the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
+* <SemiBold>Projekt 1</SemiBold> wurde benotet von 2220 Wählern. 1000 von diesen Wählern (45 %) gaben die höchste Note <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, 
+und weitere 550 Wähler (25%) gaben die zweithöchste Note <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>. Daher ist die Median-Note von Projekt 1 die zweithöchste Note. <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>.
+* <SemiBold>Projekt 2</SemiBold> wurde benotet von 671 Wählern, deutlich weniger als die 2220 Wähler, die Projekt 1 benotet haben. Das könnte der Fall sein, weil Projekt 2 nur <SemiBold>von lokalem Interesse</SemiBold> ist, und Leute, die nicht in der unmittelbaren Umgebung wohnen, dem Projekt 2 keine Note gegeben haben. 400 von den 671 Wählern (60%) gaben Projekt 2 die höchste Note <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
+Weil das mehr als die Hälfte ist, ist damit die Median-Note von Projekt 2 die höchste Note <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
 
-The situation is depicted in the following graphic.
+Die Situation ist in der folgenden Grafik dargestellt.
 
 <img src={useBaseUrl('/img/majority-judgment.svg')} width="550" />
 
-Majority judgment thus selects **Project 2**, because it has a higher median grade. 
+Majority Judgment wählt also **Project 2** als Gewinnerprojekt, weil es eine höhere Median-Note hat. 
 
-However, note that 1000 voters gave Project 1 the highest grade <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, while Project 2 only got the highest grade from 400 voters. Thus, Project 2 is less popular. Depending on the preferences of the city government, it may view Project 2 as a bad use of money since it will satisfy many fewer residents.
+Es ist jedoch zu beachten, dass 1000 Wähler dem Projekt 1 die beste Note gaben <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, während Projekt 2 nur von 400 Wählern die höchste Note erhielt. Projekt 2 ist also weniger beliebt. Je nach den Präferenzen der Stadtverwaltung könnte sie Projekt 2 als eine schlechte Verwendung des Geldes ansehen, da es viel weniger Einwohner zufriedenstellen wird.
 
-In cities using the Method of Equal Shares (or even the standard voting method), Project 1 would be selected instead of Project 2.
-
-## Comparison with Quadratic Voting {#quadratic-voting}
-
-Quadratic voting is intended to avoid strategic misrepresentations of preference intensity, and to thereby avoid a tyrany of the majority.
-With the Method of Equal Shares, both of these problems are addressed by its design of giving each voter an equal share of the budget to decide over.
-Thus, claiming to have intense preferences will principally influence one's own share of the budget, and a minority always has a share that cannot be taken away by the majority.
-
-In principle, a quadratic voting interface could be combined with the Method of Equal Shares. 
-But we expect that it is not worth using quadratic voting, given the added complexity for voters to understand and use the system.
+In Städten, die die Methode der gleichen Anteile (oder sogar die Standard-Wahlmethode) verwenden, würde Projekt 1 anstelle von Projekt 2 ausgewählt werden.

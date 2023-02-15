@@ -1,51 +1,38 @@
 ---
 sidebar_position: 10
-title: Computation
+title: Ergebnisberechnung
 ---
 
 import DWChart from 'react-datawrapper-chart';
 
-# How to compute the results?
+# Ergebnisberechnung
 
 <!-- Todo: talk about using floats or fractions. -->
 
-## The `pabutools` package
+## Das `pabutools`-Package
 
-The [`pabutools`](https://github.com/Grzesiek3713/pabutools) package is a free and open-source Python package that contains implementations of several voting rules for participatory budgeting, including the Method of Equal Shares. 
-It is available on [GitHub](https://github.com/Grzesiek3713/pabutools). 
-The package can be installed via [PyPI](https://pypi.org/project/pabutools/) using `pip`:
+[`pabutools`](https://github.com/Grzesiek3713/pabutools) ist ein Open-Source-Python-Paket, das Implementierungen verschiedener Wahlregeln für Bürgerbudgets enthält, darunter die Methode der gleichen Anteile.
+Es kann mit [PyPI](https://pypi.org/project/pabutools/) installiert werden, mit `pip`:
 
 ```bash
 pip install pabutools
 ```
 
-## Code snippets
+## Code-Schnipsel
 
-Here, we provide short code snippets for computing the results of the Method of Equal Shares in several programming languages.
+Hier finden Sie kurze Code-Schnipsel zur Berechnung der Ergebnisse der Methode der gleichen Anteile in verschiedenen Programmiersprachen.
 
 <details>
-<summary>General trick to speed up the computation</summary>
+<summary>Algorithmischer Trick, um die Ergebnisse schneller zu berechnen</summary>
 <div>
 <p>
-During the computation, the algorithm needs to repeatedly compute the "<a href="../explanation">effective vote count</a>" of each project,
-which is an expensive step. This part can be sped up by only recalculating the effective vote count
-if it matters. 
+Während der Berechnung muss der Algorithmus wiederholt die "<a href="../explanation">effektive Stimmenzahl</a>" für jedes Projekt berechnen, was recht aufwendig ist. Dieser Teil kann beschleunigt werden, indem die effektive Stimmenzahl nur dann neu berechnet wird, wenn sie wichtig ist.
 </p>
 <p>
-The main observation is that the effective vote count <em>can only decrease</em> as the algorithm proceeds.
-What we do in the implementation is the following:
-we start with the project which had the highest effective vote count in the previous round.
-We re-calculate the effective vote count of this project.
-Then we compare its new effective vote count with the effective vote count of the project
-with the second-highest effective vote count in the previous round.
-If the new effective vote count is higher than the effective vote count of the second-highest project,
-then we know that we have found the project with the highest effective vote count in the current round
-(because all the other projects previously had a lower effective vote count, which in the mean
-time could only have decreased even further).
-Thus, we can immediately select it.
+Die wichtigste Beobachtung ist, dass die effektive Stimmenzahl über Dauer immer niedriger wird. Bei der Implementierung gehen wir wie folgt vor: Wir beginnen mit dem Projekt, das in der vorherigen Runde die höchste effektive Stimmenzahl hatte. Wir berechnen die effektive Stimmenzahl für dieses Projekt neu. Dann vergleichen wir seine neue effektive Stimmenzahl mit der effektiven Stimmenzahl des Projekts mit der zweithöchsten effektiven Stimmenzahl in der vorherigen Runde. Wenn die neue effektive Stimmenzahl höher ist als die vorherige effektive Stimmenzahl des zweithöchsten Projekts, dann wissen wir, dass wir das Projekt mit der höchsten effektiven Stimmenzahl in der aktuellen Runde gefunden haben (denn alle anderen Projekte hatten zuvor eine niedrigere effektive Stimmenzahl, die in der Zwischenzeit nur noch weiter gesunken sein kann). Wir können es also sofort auswählen.
 </p>
 <p>
-This optimization is used in all the code snippets on this page.
+Diese Optimierung wird in allen Algorithmen auf dieser Seite verwendet.
 </p>
 </div>
 </details>

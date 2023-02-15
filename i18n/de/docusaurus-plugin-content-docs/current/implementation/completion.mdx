@@ -1,64 +1,55 @@
 ---
 sidebar_position: 5
-title: Completion
+title: Vervollständigung
 ---
 
 import { SemiBold, Currency, Datawrapper } from '@site/src/components/MyComponents';
 
-# Completion of the Method of Equal Shares
+# Vervollständigung der Methode der gleichen Anteile
 
 <div class="summary">
-<b>Summary</b>:
-There are a few different variants of the Method of Equal Shares. In its simplest variant, the method may not spend all the available budget (but only about 70% of it). This is usually not desirable, so the method needs to be "completed". We describe the standard way to do this, and discuss some alternatives. Most users should use the standard method, which is also implemented in software packages.
+<b>Zusammenfassung</b>:
+Es gibt einige verschiedene Varianten der Methode der gleichen Anteile. In der einfachsten Variante wird möglicherweise nicht das gesamte verfügbare Budget ausgegeben (sondern nur etwa 70 % davon). Dies ist in der Regel nicht wünschenswert, so dass die Methode "vervollständigt" werden muss. Wir beschreiben die Standardmethode, um dies zu tun, und diskutieren einige Alternativen. Die meisten Benutzer sollten die Standardmethode verwenden, die auch in Softwarepaketen implementiert ist.
 </div>
 
-In the [explanation](../explanation) of the Method of Equal Shares, Step 1 says:
+In unserer [Erklärung](../explanation) der Methode der gleichen Anteile haben wir Schritt 1 wie folgt beschrieben:
 
-> The overall budget is divided equally among the voters.
+> Das Gesamtbudget wird in gleiche Anteile aufgeteilt und an die Wähler verteilt.
 
-For example, if the overall budget is <Currency>100 000</Currency>, and there are 1000 voters, then each voter would be allocated a share of <Currency>100</Currency>.
-However, when we compute the Method of Equal Shares with this initial division of the budget, we will typically find that the election outcome does not use up the entire budget.
-This is because for some of the voters, the method cannot productively use the budget share assigned to them.
-For example, if a voter only votes for 1 project, and this project does not receive enough votes to win, then the method cannot spend the <Currency>100</Currency> assigned to this voter.
+Wenn beispielsweise das Gesamtbudget <Currency>100 000</Currency> beträgt und es 1000 Wähler gibt, dann würde jeder Wähler einen Anteil von <Currency>100</Currency> erhalten. Wenn wir jedoch die Methode der gleichen Anteile mit dieser anfänglichen Aufteilung des Budgets berechnen, werden wir in der Regel feststellen, dass das Wahlergebnis nicht das gesamte Budget ausschöpft. Das liegt daran, dass die Methode bei einigen Wählern den ihnen zugewiesenen Budgetanteil nicht produktiv nutzen kann. Wenn ein Wähler zum Beispiel nur für ein Projekt stimmt und dieses Projekt nicht genügend Stimmen erhält, um zu gewinnen, kann die Methode die diesem Wähler zugewiesenen <Currency>100</Currency> nicht ausgeben.
 
-In simulations using voting data from Warsaw, the Method of Equal Shares spends approximately 60-70% of the available budget.
-Of course, election officials would usually prefer to spend close to 100% of the budget.
-Therefore, the Method of Equal Shares needs to be **completed**, which means that its outcome needs to be modified so that almost the entire budget is used.
+In Simulationen mit Wahldaten aus Warschau gibt die Methode der gleichen Anteile etwa 60-70 % der verfügbaren Mittel aus. Natürlich würde die Stadt es in der Regel vorziehen, nahezu 100 % des Budgets auszugeben. Daher muss die Methode der gleichen Anteile **vervollständigt** werden, was bedeutet, dass ihr Ergebnis so geändert werden muss, dass fast das gesamte Budget verwendet wird.
 
 <details>
-<summary><SemiBold>Chart</SemiBold>: If all voters vote for many projects, completion is not as crucial.</summary>
+<summary><SemiBold>Grafik</SemiBold>: Wenn alle Wähler für mehrere Projekte stimmen, ist die Vervollständigung nicht so wichtig.</summary>
 
-The root cause of the Method of Equal Shares often only spending 60-70% of the available budget is that some voters only vote for a small number of projects.
-We can see this effect by running a simulation based on data from Warsaw (2020-22). 
+Die Ursache dafür, dass bei der Methode der gleichen Anteile oft nur 60-70 % der verfügbaren Mittel ausgegeben werden, liegt darin, dass einige Wähler nur für eine kleine Anzahl von Projekten stimmen.
+Wir können diesen Effekt anhand einer Simulation auf der Grundlage von Daten aus Warschau (2020-22) sehen. 
 
-In Warsaw, voters are allowed to vote for up to 15 projects in their district.
-We can simulate what would have happened if Warsaw had a minimum number of votes in place by counting only those votes in the dataset that have voted for sufficiently many projects.
-This way, we can simulate a minimum vote count of 2, 3, 4, ..., 15.
-For each minimum, we can check what percent of the budget is used by the Method of Equal Shares when only run on the subset of votes that have voted for at least the minimum number of projects.
+In Warschau dürfen die Wähler für bis zu 15 Projekte in ihrem Bezirk stimmen.
+Wir können simulieren, was passiert wäre, wenn es in Warschau eine Mindestanzahl von Stimmen gegeben hätte, indem wir nur diejenigen Stimmen im Datensatz zählen, die für ausreichend viele Projekte gestimmt haben.
+Auf diese Weise können wir eine Mindeststimmenzahl von 2, 3, 4, ..., 15 simulieren.
+Für jedes Minimum können wir prüfen, wie viel Prozent des Budgets von der Methode der gleichen Anteile verwendet wird, wenn sie nur auf die Teilmenge der Stimmen angewendet wird, die für mindestens die Mindestanzahl von Projekten gestimmt haben.
 
-The results suggest that once voters vote for at least 8 projects, more than 90% of the budget is used.
+Die Ergebnisse deuten darauf hin, dass, sobald die Wähler für mindestens 8 Projekte gestimmt haben, mehr als 90 % des Budgets verwendet werden.
 <Datawrapper src="//datawrapper.dwcdn.net/bPA91/2/" />
 </details>
 
-## Recommended completion method
+## Empfohlener Vervollständigungsprozess
 
-The basic idea is to give voters a larger initial budget share. 
-In the example, instead of giving each voter <Currency>100</Currency>, we could give them <Currency>130</Currency>.
-More precisely, we go through each possible value <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, and so on.
-For each value, we compute the outcome of the Method of Equal Shares.
-We stop in one of two cases:
-* The outcome is _exhaustive_, which means that the budget limit would be exceeded if we added any additional project to the outcome.
-* If we were to run the Method of Equal Shares with the next higher value, then the resulting outcome would exceed the budget limit.
+Die Grundidee besteht darin, den Wählern einen größeren Anteil am Anfangsbudget zu geben. In unserem Beispiel könnten wir jedem Wähler statt <Currency>100</Currency> zum Beispiel <Currency>130</Currency> geben. Genauer gesagt, gehen wir jeden möglichen Wert durch: <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, usw. Für jeden Wert berechnen wir das Ergebnis der Methode der gleichen Anteile. In einem von zwei Fällen hören wir auf, den Anfangswert zu erhöhen:
 
-Simulation results suggest that the Method of Equal Shares, completed in this way, retains its desirable fairness properties.
+* Das Ergebnis ist _erschöpfend_, was bedeutet, dass die Budgetgrenze überschritten würde, wenn wir dem Ergebnis ein weiteres Projekt hinzufügen würden.
+* Wenn wir die Methode der gleichen Anteile mit dem nächsthöheren Wert durchführen würden, würde das Ergebnis das Budgetlimit überschreiten.
 
-Note that in general, it is not a good sign if we have to increase the voters' initial budget share too much in the completion process. In this case, there will be much more virtual money distributed to voters than is actually spent, and thus some voters will have been left with a lot of unspent virtual money. This means that some voters got to spend much more money than other voters on their preferred projects. This leads to an inequality of the amount of influence that voters have on the outcome.
-A way to avoid having to increase the initial budget share too much is to ask voters to vote for several projects. For example, some cities [require voters to vote for at least 3 projects](input-formats#minimum-number-of-approvals). This helps because a major cause of unspent virtual money is because some voters only vote for a single project, which does not receive enough votes to win. In this case, it is impossible for the Method of Equal Shares to spend the virtual money assigned to the voter.
+Die Simulationsergebnisse deuten darauf hin, dass die Methode der gleichen Anteile, die auf diese Weise vervollständigt wird, ihre Fairness-Eigenschaften beibehält.
 
-## Other completion methods
+Beachten Sie, dass es im Allgemeinen kein gutes Zeichen ist, wenn wir den anfänglichen Budgetanteil der Wähler während des Vervollständigungsprozesses zu stark erhöhen müssen. In diesem Fall wird viel mehr virtuelles Geld an die Wähler verteilt, als tatsächlich ausgegeben wird, so dass bei einigen Wählern viel nicht ausgegebenes virtuelles Geld übrig bleibt. Das bedeutet, dass einige Wähler sehr viel mehr Geld für ihre bevorzugten Projekte ausgeben konnten als andere Wähler. Dies führt zu einer Ungleichheit in Bezug auf den Einfluss, den die Wähler auf das Ergebnis haben. Eine Möglichkeit, den ursprünglichen Budgetanteil nicht zu stark zu erhöhen, besteht darin, die Wähler aufzufordern, für mehrere Projekte zu stimmen. In einigen Städten müssen die Wähler zum Beispiel für mindestens 3 Projekte stimmen. Dies ist hilfreich, da eine der Hauptursachen für nicht ausgegebene virtuelle Gelder darin liegt, dass einige Wähler nur für ein einziges Projekt stimmen, das nicht genügend Stimmen erhält, um zu gewinnen. In diesem Fall ist es für die Methode der gleichen Anteile unmöglich, das dem Wähler zugeteilte virtuelle Geld auszugeben.
 
-There are also other ways of using the part of the budget that is not spent by the Method of Equal Shares:
+## Andere Vervollständigungsprozesse
 
-* <SemiBold>Save the money for next year</SemiBold>. The remaining funds can remain unspent and be used to increase the available budget in the following year.
-* <SemiBold>Fund projects with the highest vote counts</SemiBold>. The remaining funds can be used to fund projects with high vote counts that were skipped by the Method of Equal Shares. However, this will lead to an outcome that is less fair.
-* <SemiBold>Spend the money on a flexible back-up solution</SemiBold>. For example, in Chicago, a flexible part of the budget was used to fund street repairs of potholes.
+Es gibt auch andere Möglichkeiten, den Teil des Budgets zu verwenden, der von der Methode der gleichen Anteile nicht ausgegeben wird:
+
+* <SemiBold>Das verbleibende Geld für das nächste Jahr aufsparen.</SemiBold> Die verbleibenden Mittel können unausgezahlt bleiben und zur Aufstockung des verfügbaren Budgets im nächsten Jahr verwendet werden.
+* <SemiBold>Finanzierung der Projekte mit der höchsten Stimmenzahl.</SemiBold>  Die verbleibenden Mittel können zur Finanzierung von Projekten mit der höchsten Stimmenzahl verwendet werden, die von der Methode der gleichen Anteile nicht ausgewählt wurden. Dies wird jedoch zu einem etwas weniger gerechten Ergebnis führen.
+* <SemiBold>Nutzen Sie das verbleibende Geld für eine flexible Backup-Lösung aus.</SemiBold> In Chicago zum Beispiel wurde ein flexibler Teil des Bürgerbudgets zur Finanzierung von Straßenreparaturen für Schlaglöcher verwendet.

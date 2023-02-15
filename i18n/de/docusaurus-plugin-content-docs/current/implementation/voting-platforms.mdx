@@ -1,42 +1,39 @@
 ---
 sidebar_position: 8
-title: Voting platforms
+title: Online-Plattformen zur Stimmabgabe
 ---
 
-import Acronym from '@site/src/components/Acronym';
+# Online-Plattformen zur Stimmabgabe
 
-# Voting platforms
-
-Here, we discuss some popular software packages for running online <Acronym acronym="PB" tooltip="Participatory Budgeting" /> voting platform, and how they are compatible with the Method of Equal Shares.
+Im Folgenden werden einige gängige Softwarepakete für den Betrieb von Online-Plattformen zur Stimmabgabe für Bürgerbudgets vorgestellt und ihre Kompatibilität mit der Methode der gleichen Anteile erläutert.
 
 :::info
 
-In general, *any* platform that allows for one of the [many input formats](input-formats) compatible with the Method of Equal Shares can be used.
-After the voting stage, the votes need to simply be exported from the platform, and the voting outcome can then be calculated using one of several available free [software packages](computation).
+Jede Plattform, die eines der vielen mit der Methode der gleichen Anteile kompatiblen [Stimmzettel-Formate](input-formats) nutzt, kann verwendet werden. Nach der Abstimmungsphase müssen die Stimmen einfach aus der Plattform exportiert werden, und das Abstimmungsergebnis kann dann mit einem der verfügbaren [Open-Source-Softwarepakete](computation) für die Methode der gleichen Anteile berechnet werden.
 
 :::
 
-Feel free to [contact us](../contacts) for advice.
+Sie können uns für weitere Ratschläge auch gerne [kontaktieren](../contacts).
 
 ## Stanford Participatory Budgeting Platform
 
-The [Stanford Participatory Budgeting Platform](https://pbstanford.edu/) is developed by the [Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) at Stanford University.
-The project is open-source and free.
-It has been used by a number of cities in North America and elsewhere.
+Die [Stanford Participatory Budgeting Platform](https://pbstanford.edu/) wird von dem [Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) an der Stanford University entwickelt.
+Das Projekt ist Open-Source und kostenfrei.
+Es wird von diversen Städten in Nordamerika und anderswo benutzt.
 
-Cities using the Stanford platform can easily combine it with the Method of Equal Shares, by exporting the individual votes and then computing the election results with a separate open source software package.
+Städte, die die Stanford-Plattform nutzen, können diese problemlos mit der Methode der gleichen Anteile kombinieren, indem sie die abgegebenen Stimmen exportieren und dann die Wahlergebnisse mit einem separaten Open-Source-Softwarepaket berechnen.
 
-It is easy to export voting data from the admin interface of the StanfordPB platform by navigating to
+Es ist einfach, die Wahldaten aus der Verwaltungsoberfläche der Stanford PB-Plattform zu exportieren, unter
 * Analytics > Export to Excel > Individual votes. 
 
-This will produce a `.csv` file that is easy to use by other software.
+Dadurch wird eine `.csv`-Datei erzeugt, die leicht von anderer Software verwendet werden kann.
 
 <img src={require('@site/static/img/screenshot-standfordpb.png').default} width="600" style={{ boxShadow: '0 0 15px rgba(0,0,0,0.3)' }} />
 
 ## Decidim
 
-[Decidim](https://decidim.org/) is a popular platform software that allows for citizen participation in several different forms, including participatory budgeting.
-It was initially used by Madrid and then Barcelona.
-For PB, it supports knapsack votes (where voters can select as many projects as they like, as long as they fit within the budget limit), and approval voting with a limit on the number of votes.
+[Decidim](https://decidim.org/) ist eine beliebte Plattform, die Bürgerbeteiligung in verschiedenen Formen ermöglicht, darunter auch Bürgerbudgets.
+Sie wurde zunächst von Madrid und dann von Barcelona verwendet, und danach in vielen anderen europäischen Städten.
+Für Bürgerbudgets unterstützt es Abstimmungen bei denen die Wähler für so viele Projekte stimmen können, wie sie möchten, solange sie in das Budget passen. Alternativ kann Decidim eine maximale Anzahl von Stimmen benutzen.
 
-Unfortunately, Decidim does not have a simple way to export voting results, so a system administrator would need to directly query the decidim database in order to retrieve the data necessary to compute the election outcome when using the Method of Equal Shares.
+Leider gibt es in Decidim keine einfache Möglichkeit, die abgegebenen Stimmen zu exportieren, so dass ein Systemadministrator die Decidim-Datenbank direkt abfragen muss, um die Daten zu erhalten, die zur Berechnung des Wahlergebnisses bei der Methode der gleichen Anteile erforderlich sind.
