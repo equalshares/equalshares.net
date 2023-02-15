@@ -6,19 +6,19 @@ import Sankey from '@site/src/components/Sankey';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.universityLogos}>
-    <p>developed and studied by researchers at universities around the world</p>
+    <p>entwickelt von forschern an universitäten in aller welt</p>
     <div className={styles.logoList}>
-        <UniversityLogo logo="logo-warsaw3.svg" uniName="University of Warsaw" link={<a href="https://www.mimuw.edu.pl/~ps219737/">Piotr Skowron</a>} />
-        <UniversityLogo logo="logo-cnrs.svg" uniName="CNRS, France" link={<a href="http://dominik-peters.de/">Dominik Peters</a>} />
-        <UniversityLogo logo="logo-toronto.svg" uniName="University of Toronto" link={<a href="https://www.cs.toronto.edu/~nisarg/index.html">Nisarg Shah</a>} />
-        <UniversityLogo logo="logo-agh.svg" uniName="AGH University of Science and Technology, Kraków" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
-        <UniversityLogo logo="logo-eth.svg" uniName="ETH Zurich" link={<a href="https://democracy.dsi.uzh.ch/member/joshua-yang/">Joshua Yang</a>} />
+        <UniversityLogo logo="logo-warsaw3.svg" uniName="Universität Warschau" link={<a href="https://www.mimuw.edu.pl/~ps219737/">Piotr Skowron</a>} />
+        <UniversityLogo logo="logo-cnrs.svg" uniName="CNRS, Frankreich" link={<a href="http://dominik-peters.de/">Dominik Peters</a>} />
+        <UniversityLogo logo="logo-toronto.svg" uniName="Universität Toronto" link={<a href="https://www.cs.toronto.edu/~nisarg/index.html">Nisarg Shah</a>} />
+        <UniversityLogo logo="logo-agh.svg" uniName="AGH Wissenschaftlich-Technische Universität, Krakau" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
+        <UniversityLogo logo="logo-eth.svg" uniName="ETH Zürich" link={<a href="https://democracy.dsi.uzh.ch/member/joshua-yang/">Joshua Yang</a>} />
         <UniversityLogo logo="logo-tu-berlin.svg" uniName="TU Berlin" link={<a href="https://sites.google.com/view/jannikpeters">Jannik Peters</a>} />
     </div>
 </section>
 
 <section className={[styles.contentSection, styles.cities2023].join(' ')}>
-  <h2><span>Method of Equal Shares in Cities in 2023</span></h2>
+  <h2><span>Die Methode der gleichen Anteile in Städten im Jahr 2023</span></h2>
   <div className={styles.columns}>
     <div>
       <a href="https://www.stadtidee.aarau.ch/"><img src={useBaseUrl('/img/aarau.jpg')} width="100" height="100" /></a>
@@ -26,55 +26,42 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
     </div>
     <div>
       <a href="https://www.wieliczka.eu/pl/201129/29767/%E2%80%9Ezielony-milion%E2%80%9D-ekologiczny-budzet-obywatelski.html"><img src={useBaseUrl('/img/wielieczka.jpg')} width="100" height="100" /></a>
-      <a href="https://www.wieliczka.eu/pl/201129/29767/%E2%80%9Ezielony-milion%E2%80%9D-ekologiczny-budzet-obywatelski.html">🇵🇱 Wielieczka "Green Million"</a></div>
+      <a href="https://www.wieliczka.eu/pl/201129/29767/%E2%80%9Ezielony-milion%E2%80%9D-ekologiczny-budzet-obywatelski.html">🇵🇱 Wielieczka "Grüne Million"</a></div>
   </div>
 </section>
 
 <section className={styles.contentSectionFlex}>
   <div className={styles.ballotExplanation}>
     <p>
-        Many cities are using <strong style={{color: 'var(--ifm-color-primary)'}}>Participatory Budgeting</strong> to give residents a say in how public money is spent.
-        The city government sets aside a part of its budget,
-        allows anyone to propose projects, and then holds
-        an election to decide which projects will be funded.
+        Viele Städte nutzen <strong style={{color: 'var(--ifm-color-primary)'}}>Bürgerbudgets</strong>, um den Einwohnern ein Mitspracherecht bei der Verwendung öffentlicher Gelder zu geben. Die Stadtverwaltung stellt einen Teil ihres Haushalts zur Verfügung. Sie erlaubt jedem, Projekte vorzuschlagen, und hält dann eine Wahl ab, um zu entscheiden, welche Projekte finanziert werden.
     </p>
     <p>
-        Voting is a great way to involve many citizens in the budget decision.
-        However, the outcome of the election is not always fair.
-        Because many cities simply choose the projects with the most votes,
-        the budget is often spent on several similar projects that are popular with
-        the same majority group of voters.
+        Eine Wahl ist eine gute Möglichkeit, viele Bürger in die Haushaltsentscheidung einzubeziehen. Allerdings ist das Ergebnis der Wahl nicht immer gerecht. Da viele Städte einfach die Projekte mit den meisten Stimmen auswählen, werden die Haushaltsmittel oft für mehrere ähnliche Projekte ausgegeben, die bei der gleichen Mehrheitsgruppe von Wählern beliebt sind.
     </p>
     <p>
-        There is a voting system that leads to fairer outcomes, where each voter has an equal influence on the
-        election outcome:
+        Es gibt ein Wahlsystem, das zu gerechteren Ergebnissen führt, bei dem jeder Wähler den gleichen Einfluss auf das Wahlergebnis hat:
         <br />
-        The <strong style={{color: 'var(--ifm-color-primary)'}}>Method of Equal Shares</strong>.
+        Die <strong style={{color: 'var(--ifm-color-primary)'}}>Methode der gleichen Anteile</strong>.
     </p>
   </div>
   <div className={styles.approvalBallotExample}>
-      <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; PB Voting Ballot &mdash;</span>
-      <span>Available budget: <CurrencySymbol/>3 000 000</span>
-      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Vote for up to 8 projects</span>
-      <BallotExampleOption selected>Extension of the Public Library <br /> Cost: <CurrencySymbol/>200 000</BallotExampleOption>
-      <BallotExampleOption>Bicycle Racks on Main Street <br /> Cost: <CurrencySymbol/>70 000</BallotExampleOption>
-      <BallotExampleOption selected>Sports Equipment in the Park <br /> Cost: <CurrencySymbol/>50 000</BallotExampleOption>
-      <BallotExampleOption selected>Additional Public Toilets <br /> Cost: <CurrencySymbol/>600 000</BallotExampleOption>
-      <BallotExampleOption>Free Language Courses <br /> Cost: <CurrencySymbol/>100 000</BallotExampleOption>
-      <BallotExampleOption>Improve Accesibility of Town Hall <br /> Cost: <CurrencySymbol/>800 000</BallotExampleOption>
-      <BallotExampleOption>Renovate Fountain in Market Square <br /> Cost: <CurrencySymbol/>65 000</BallotExampleOption>
+      <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; Wahlzettel &mdash;</span>
+      <span>Gesamtbudget: <CurrencySymbol/>3 000 000</span>
+      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Stimmen Sie für bis zu 8 Projekte</span>
+      <BallotExampleOption selected>Erweiterung der Stadtbücherei <br /> Kosten: <CurrencySymbol/>200 000</BallotExampleOption>
+      <BallotExampleOption>Fahrradständer an der Hauptstraße <br /> Kosten: <CurrencySymbol/>70 000</BallotExampleOption>
+      <BallotExampleOption selected>Sportgeräte im Stadtpark <br /> Kosten: <CurrencySymbol/>50 000</BallotExampleOption>
+      <BallotExampleOption selected>Neue öffentliche Toiletten <br /> Kosten: <CurrencySymbol/>600 000</BallotExampleOption>
+      <BallotExampleOption>Kostenlose Sprachkurse <br /> Kosten: <CurrencySymbol/>100 000</BallotExampleOption>
+      <BallotExampleOption>Bäume pflanzen <br /> Kosten: <CurrencySymbol/>800 000</BallotExampleOption>
+      <BallotExampleOption>Renovierung des Marktplatzes <br /> Kosten: <CurrencySymbol/>65 000</BallotExampleOption>
   </div>
 </section>
 
 <section className={styles.contentSection}>
-  <h2>The Main Idea</h2>
+  <h2>Der Grundgedanke</h2>
   <p>
-      The basic idea of the Method of Equal Shares is that each voter is assigned an equal part of the budget.
-      This part of the budget can only be used to fund projects that the voter has voted for.
-      The method goes through all project proposals, beginning with the projects with the highest number of
-      votes.
-      It selects a project if it can be funded using the budget shares of those who voted for the project.
-      The method divides the cost of a project equally among its supporters.
+      TDer Grundgedanke der Methode der gleichen Anteile ist, dass jedem Wähler ein gleicher Teil des Budgets zugewiesen wird. Dieser Teil des Budgets kann nur zur Finanzierung von Projekten verwendet werden, für die der Wähler gestimmt hat. Die Methode geht alle Projektvorschläge durch, beginnend mit den Projekten mit der höchsten Stimmenzahl. Sie wählt ein Projekt dann aus, wenn es mit den Budgetanteilen derjenigen, die für das Projekt gestimmt haben, finanziert werden kann. Die Kosten eines gewählten Projektes werden gleichmäßig auf die Befürworter aufgeteilt.
   </p>
   <div className={styles.sankeyImage}>
       <div className={styles.sankeyContainer}>
@@ -82,38 +69,36 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
       </div>
   </div>
   <p>
-      From the perspective of a voter, the voting experience is unchanged: they just need to fill out a ballot
-      and select which projects they want to vote for. The Method of Equal Shares is then computed
-      by the city (using one of the open-source implementations of the rule), thus making sure that the budget is spent fairly.
+      Aus der Sicht des Wählers bleibt am Wahltag alles gleich wie auch bei der Nutzung von anderen Wahlmethoden: Er muss lediglich einen Stimmzettel ausfüllen und die Projekte auswählen, für die er stimmen möchte. Die Methode der gleichen Anteile wird dann von der Stadt berechnet (unter Verwendung einer der Open-Source-Implementierungen der Regel), wodurch sichergestellt wird, dass das Budget gerecht ausgegeben wird.
   </p>
 </section>
 
 <section className={styles.contentSection}>
-  <h2>What to Find on This Website</h2>
+  <h2>Inhalte dieser Webseite</h2>
   <div className={styles.columns}>
     <div>
       <Link to="explanation"><img src={useBaseUrl('/img/fund.svg')}/></Link>
-      <Link to="explanation"><strong>Explanation</strong></Link>
-      <Link to="explanation"><span>A detailed explanation, with examples, of how the Method of Equal Shares works.</span></Link>
+      <Link to="explanation"><strong>Erklärung</strong></Link>
+      <Link to="explanation"><span>Eine ausführliche Erklärung mit Beispielen, wie die Methode der gleichen Anteile funktioniert.</span></Link>
     </div>
     <div>
       <Link to="benefits"><img src={useBaseUrl('/img/growth.svg')}/></Link>
-      <Link to="benefits"><strong>Benefits</strong></Link>
-      <Link to="benefits"><span>Arguments that the Method of Equal Shares leads to better outcomes than other rules.</span></Link>
+      <Link to="benefits"><strong>Vorteile</strong></Link>
+      <Link to="benefits"><span>Argumente dafür, dass die Methode der gleichen Anteile zu besseren Ergebnissen führt als andere Regeln.</span></Link>
     </div>
     <div>
       <Link to="implementation"><img src={useBaseUrl('/img/clipboard.svg')}/></Link>
-      <Link to="implementation"><strong>Implementation</strong></Link>
-      <Link to="implementation"><span>Details and advice on how to implement an election using the Method of Equal Shares.</span></Link>
+      <Link to="implementation"><strong>Implementierung</strong></Link>
+      <Link to="implementation"><span>Einzelheiten und Hinweise zur Durchführung einer Wahl nach der Methode der gleichen Anteile.</span></Link>
     </div>
   </div>
 </section>
 
 <section className={styles.contentSection}>
-  <h2>About This Website</h2>
+  <h2>Über diese Webseite</h2>
   <p style={{ fontSize: '1.2em' }}>
-      This website was constructed and is maintained by Dominik Peters (CNRS, Université Paris Dauphine-PSL).
-      Its purpose is to collect resources about the Method of Equal Shares and to provide an explanation of the method to interested members of the public,
-      to city officials, and to researchers.
+      Diese Website wurde von Dominik Peters (CNRS, Université Paris Dauphine-PSL) erstellt und wird von ihm gepflegt.
+      Ihr Zweck ist es, Ressourcen über die Methode der gleichen Anteile zu sammeln und der interessierten Öffentlichkeit eine Erklärung der Methode zu geben.
+      Sie soll ebenso hilfreich sein für städtische Bedienstete und für Forscher.
   </p>
 </section>

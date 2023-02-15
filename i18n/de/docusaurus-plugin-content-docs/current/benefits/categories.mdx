@@ -1,93 +1,63 @@
 ---
 sidebar_position: 2
-title: Reduce bias towards the most popular categories
+title: Verringerung der Verzerrung zugunsten der beliebtesten Kategorien
 ---
 
 import { Datawrapper } from '@site/src/components/MyComponents';
 
-# Reduce overspending on the most popular categories
+# Verringerung der Verzerrung zugunsten der beliebtesten Kategorien
 
 <div class="summary">
-<b>Summary</b>:
-The standard voting method that most cities use can systematically lead to outcomes where too much money is spent on projects of one category, and too little is spent on projects of another category.
-For example, in the Bielany district of Warsaw in 2020, 35% of votes went to education projects, but only 6% of the funding went to education.
-Simulations show that using the Method of Equal Shares reduces this bias significantly. 
+<b>Zusammenfassung</b>:
+Das Standardabstimmungsverfahren, das die meisten Städte anwenden, kann systematisch zu Ergebnissen führen, bei denen zu viel Geld für Projekte einer Kategorie ausgegeben wird und zu wenig für Projekte einer anderen Kategorie. So entfielen beispielsweise im Warschauer Stadtteil Bielany im Jahr 2020 35 % der Stimmen auf Bildungsprojekte, aber nur 6 % der Mittel wurden für Bildung ausgegeben. Simulationen zeigen, dass die Anwendung der Methode der gleichen Anteile diese Verzerrung deutlich verringert.
 </div>
 
-Usually, the projects on the ballot in participatory budgeting can be divided into some broad categories, such as:
-* Urban greenery and parks
-* Public transport and roads
-* Education
-* Culture and leisure
+Die Projekte, die bei Bürgerbudgets auf dem Stimmzettel stehen, lassen sich in der Regel in einige große Kategorien einteilen, wie z. B:
 
-Cities often organize projects by category to make browsing the list of projects easier for voters. 
-Warsaw, for example, categorizes projects using 10 different tags (where projects can get multiple tags).
-This allows us to count, for each category, how many votes projects in that category received, and compare this number to the amount of money that was spent on projects in that category.
+* Grünanlagen und Parks
+* Öffentlicher Verkehr und Straßen
+* Bildung
+* Kultur und Freizeit
 
-The standard voting method used in Warsaw and most other cities proceeds by just selecting the projects with the highest number of votes until the budget runs out.
-In some cases, this can lead to the most popular categories getting most of the money, and there will be too little money left for projects in other categories.
+Die Städte ordnen die Projektvorschläge oft nach Kategorien, um den Wählern einen besseren Überblick über die Projektliste zu verschaffen. Warschau zum Beispiel kategorisiert Projekte anhand von 10 verschiedenen Tags (wobei Projekte mehrere Tags erhalten können). So können wir für jede Kategorie zählen, wie viele Stimmen die Projekte in dieser Kategorie erhalten haben, und diese Zahl mit dem Geldbetrag vergleichen, der für Projekte in dieser Kategorie ausgegeben wurde.
 
-Using simulations, we quantified this effect. For the years 2020-22, we computed the voting outcome that Warsaw would have got if it had used the Method of Equal Shares, and compared this to the actual outcome.
-We then computed for each category, what fraction of the votes went to projects in the category. For the two rules, we then compared these fractions to the fraction of the budget that was spent on projects in the category.
-The results for different districts of Warsaw are shown below.
-Each point in the gray area corresponds to an election where the Method of Equal Shares produced an outcome that was more similar to the vote shares between categories, compared to the actual outcome.
+Bei der in Warschau und den meisten anderen Städten üblichen Abstimmungsmethode werden einfach die Projekte mit der höchsten Stimmenzahl ausgewählt, bis das Budget aufgebraucht ist. In einigen Fällen kann dies dazu führen, dass die beliebtesten Kategorien das meiste Geld erhalten und zu wenig Geld für Projekte in anderen Kategorien übrig bleibt.
 
-We can see that the Method of Equal Shares would have reduced the overspending on the most popular categories in essentially all districts, and in some cases by a lot.
-There are a few exceptions, but in those cases the two methods performed similarly well.
+Mit Hilfe von Simulationen haben wir diesen Effekt quantifiziert. Für die Jahre 2020-22 haben wir das Abstimmungsergebnis berechnet, das Warschau erhalten hätte, wenn die Methode der gleichen Anteile angewandt worden wäre, und dieses mit dem tatsächlichen Ergebnis verglichen. Anschließend berechneten wir für jede Kategorie, welcher Anteil der Stimmen auf die Projekte in der jeweiligen Kategorie entfiel. Für die beiden Regeln haben wir dann diese Anteile mit dem Anteil des Budgets verglichen, der für Projekte in der jeweiligen Kategorie ausgegeben wurde. Die Ergebnisse für verschiedene Bezirke Warschaus sind unten dargestellt. Jeder Punkt in der grauen Fläche entspricht einer Wahl, bei der die Methode der gleichen Anteile zu einem Ergebnis führte, das den Stimmenanteilen zwischen den Kategorien ähnlicher war als das tatsächliche Ergebnis.
+
+Es ist zu erkennen, dass die Methode der gleichen Anteile in fast allen Bezirken näher an den Stimmzahlen war, in einigen Fällen sogar sehr deutlich näher. Es gibt ein paar Ausnahmen, aber in diesen Fällen haben die beiden Methoden ähnlich gut abgeschnitten.
 
 <Datawrapper src="//datawrapper.dwcdn.net/E7ac1/2/" />
 
-Tip: you can hover over the points to see more information about the election.
+Tipp: Sie können mit dem Mauszeiger über die Punkte fahren, um weitere Informationen über die Wahl zu erhalten.
 
 <details>
-<summary>Details of the simulation</summary>
+<summary>Details der Simulation</summary>
 
-The simulation was performed in January 2023 using election data from the [Pabulib library](http://pabulib.org/) based on 
-PB elections in Warsaw in the years 2020, 2021, and 2022.
-In each year, there were 19 elections: one for each of the 18 districts of Warsaw, and one for the city as a whole.
-In the simulation, we only considered the districts, for a total of 3 &middot; 18 = 54 datasets.
-These datasets are annotated with categories: each project is assigned to (possibly several) categories. 
-Some projects are not assigned to any category; for convenience we treat them as belonging to a category of "no tags".
+Die Simulation wurde im Januar 2023 mit Wahldaten aus der [Pabulib-Bibliothek](http://pabulib.org/) durchgeführt, die auf den Bürgerbudget-Wahlen in Warschau in den Jahren 2020, 2021 und 2022 basieren. In jedem Jahr gab es 19 Wahlen: eine für jeden der 18 Bezirke Warschaus und eine für die Stadt als Ganzes. Bei der Simulation haben wir nur die Bezirkswahlen angeschaut, was insgesamt 3 &middot; 18 = 54 Datensätze ergibt. Diese Datensätze sind mit Kategorien versehen: Jedes Projekt ist einer (oder möglicherweise mehreren) Kategorien zugeordnet. Einige Projekte sind keiner Kategorie zugeordnet; der Einfachheit halber behandeln wir sie als zu einer Kategorie "keine Tags" gehörend.
 
-We next computed the **vote shares** for each category in each election.
-In the first step, each voter is represented by 1 point, which is assigned in equal parts to the projects the voter voted for.
-For example, if a voter voted for 4 projects (there is a maximum of 10 votes), then each of the 4 projects gets assigned 0.25 point.
-In the second step, for each project, we divide its points equally between the categories (tags) that it belongs to.
-For example, if a project has 30 points and belongs to 3 categories, then each category gets assigned 10 points.
-Finally, we compute the fraction of the total points that each category received (i.e., we normalize the vote shares to sum to 1).
+Als nächstes werden die Stimmenanteile für jede Kategorie bei jeder Wahl berechnet. Im ersten Schritt wird jeder Wähler durch 1 Punkt repräsentiert, der zu gleichen Teilen den Projekten zugeordnet wird, für die der Wähler gestimmt hat. Wenn ein Wähler beispielsweise für 4 Projekte gestimmt hat (es gibt maximal 10 Stimmen), dann wird jedem der 4 Projekte 0,25 Punkte zugewiesen. Im zweiten Schritt werden die Punkte für jedes Projekt gleichmäßig auf die Kategorien (Tags) aufgeteilt, zu denen es gehört. Wenn ein Projekt beispielsweise 30 Punkte hat und zu 3 Kategorien gehört, dann werden jeder Kategorie 10 Punkte zugewiesen. Schließlich berechnen wir den Anteil der Gesamtpunkte, den jede Kategorie erhalten hat (d. h. wir normalisieren die Stimmenanteile, so dass die Summe 1 beträgt).
 
-We then computed the outcome of the Method of Equal Shares for each election. 
-For both that outcome and the actual outcome, we computed the **budget shares** for each category.
-For each project that was included in one of the outcomes, we split its cost equally between the categories that it belongs to.
-For example, if a project has a cost of 600 and belongs to 3 categories, then each category gets assigned 200.
-Finally, we compute the fraction of the total cost that each category received (i.e., we normalize the budget shares to sum to 1).
+Anschließend haben wir für jede Wahl das Ergebnis der Methode der gleichen Anteile berechnet. Sowohl für dieses Ergebnis als auch für das offizielle Wahlergebnis berechneten wir die Budgetanteile für jede Kategorie. Für jedes Projekt, das in einem der Ergebnisse enthalten war, haben wir seine Kosten gleichmäßig auf die Kategorien aufgeteilt, zu denen es gehört. Wenn ein Projekt beispielsweise 600 Euro kostet und zu 3 Kategorien gehört, werden jeder Kategorie 200 Euro zugewiesen. Schließlich berechnen wir den Anteil an den Gesamtkosten, den jede Kategorie erhalten hat (d. h. wir normalisieren die Budgetanteile so, dass sie sich zu 1 summieren).
 
-Having computed the vote and the budget share, we can compute the **distance** between the two outcomes.
-We do this using the "L1-distance": we sum over all the categories, taking the absolute value of the difference between the vote share and the budget share in that category.
-For example, if there were just 3 categories with vote shares (10%, 30%, 60%) and budget shares (20%, 30%, 50%), then the distance would be 10% + 0% + 10% = 20%.
-(The marks on the axes of the scatter plot have been rescaled so that the interesting points are in a [0, 10] square, so the numbers do not carry meaning.)
-Note that a lower distance means that the budget distribution is closer to the vote share distribution.
+Nachdem wir die Stimmen und den Budgetanteil berechnet haben, können wir den Abstand zwischen den beiden Ergebnissen berechnen. Dazu verwenden wir die "L1-Distanz": Wir summieren über alle Kategorien und nehmen den absoluten Wert der Differenz zwischen dem Stimmenanteil und dem Budgetanteil in dieser Kategorie. Wenn es zum Beispiel nur 3 Kategorien mit Stimmanteilen (10 %, 30 %, 60 %) und Budgetanteilen (20 %, 30 %, 50 %) gäbe, dann wäre der Abstand 10 % + 0 % + 10 % = 20 %. (Die Markierungen auf den Achsen des Streudiagramms wurden so umskaliert, dass die interessanten Punkte in einem Quadrat [0, 10] liegen, so dass die genauen Zahlen keine Bedeutung haben). Beachten Sie, dass ein geringerer Abstand bedeutet, dass die Budgetverteilung näher an der Verteilung der Stimmenanteile liegt.
 
-We also used other distances (such as KL-divergence) but found that the L1-distance worked best; in any case, the results were similar in that the Method of Equal Shares was closer to the vote share than was the actual outcome, in the overwhelming number of cases.
+Wir haben auch andere Abstände (z. B. KL-Divergenz) verwendet, aber festgestellt, dass der L1-Abstand am besten funktioniert; in jedem Fall waren die Ergebnisse insofern ähnlich, als die Methode der gleichen Anteile in der überwiegenden Zahl der Fälle näher am Stimmenanteil lag als am tatsächlichen Ergebnis.
 
 </details>
 
-## Example: Underspending on education projects in Bielany, Warsaw
+## Beispiel: Zu wenig Geld für Bildungsprojekte in Bielany in Warschau
 
-To better understand the positive effect of the Method of Equal Shares, let's look at an example where the actual outcome performs much worse.
+Um die positive Wirkung der Methode der gleichen Anteile besser zu verstehen, betrachten wir ein Beispiel, bei dem das tatsächliche offizielle Wahlergebnis viel schlechter ausfällt.
 
-We consider the [Bielany district](https://en.wikipedia.org/wiki/Bielany) of Warsaw. 
-In each of the years 2020, 2021, 2022, a substantial fraction of the votes went to education projects.
-However, the actual outcome spent very little money on education projects.
-For example in 2020, 35% of the votes went to education projects, but only 6% of the budget was spent on education projects.
+Wir betrachten den Warschauer Bezirk [Bielany](https://de.wikipedia.org/wiki/Bielany). In jedem der Jahre 2020, 2021 und 2022 ging ein erheblicher Teil der Stimmen an Bildungsprojekte. Das tatsächliche Ergebnis gab jedoch nur sehr wenig Geld für Bildungsprojekte aus. Im Jahr 2020 beispielsweise entfielen 35 % der Stimmen auf Bildungsprojekte, aber nur 6 % des Bürgerbudgets wurden für Bildungsprojekte ausgegeben.
 
-While there was underspending on education projects, there was overspending on other categories, especially concerning public space, environment, and transit and roads.
-For example in 2020, 34% of the votes went to these categories, but 55% of the budget was spent on these categories.
+Während für Bildungsprojekte zu wenig Geld ausgegeben wurde, gab es in anderen Kategorien, insbesondere in den Bereichen öffentlicher Raum, Umwelt sowie Verkehr und Straßen, zu viele Ausgaben. Im Jahr 2020 entfielen beispielsweise 34 % der Stimmen auf diese Kategorien, aber 55 % der Haushaltsmittel wurden für diese Kategorien ausgegeben.
 
-The Method of Equal Shares would have reduced the overspending on these categories (spending 43%), and would have increased the spending on education projects (spending 27%).
+Die Methode der gleichen Anteile hätte die Mehrausgaben für diese Kategorien verringert (Ausgaben von 43 % statt 55 %) und die Ausgaben für Bildungsprojekte erhöht (Ausgaben von 27 % statt 6%).
 
 <Datawrapper src="//datawrapper.dwcdn.net/dHS07/3/" />
 
-What is the underlying reason for this difference? It is because the education projects were mostly small-scale and cheap (for example, organizing a course over the summer), while the projects in the categories with overspending were mostly large-scale and expensive. The method used to produce the actual outcome (the one with overspending) does not take into account the project costs and spends most of the budget on a few of those projects. The Method of Equal Shares, on the other hand, does take into account the project costs and spends the budget more evenly across all projects.
+Was ist der Grund für diesen Unterschied? Es liegt daran, dass die Bildungsprojekte meist klein und günstig waren (z. B. die Organisation eines Kurses im Sommer), während die Projekte in den Kategorien mit höheren Ausgaben meist groß und teuer waren. Bei der Methode, die zur Ermittlung des tatsächlichen Ergebnisses verwendet wird (die Methode mit den überhöhten Ausgaben), werden die Projektkosten nicht berücksichtigt und der Großteil des Budgets für einige wenige dieser Projekte ausgegeben. Die Methode der gleichen Anteile hingegen berücksichtigt die Projektkosten und gibt das Budget gleichmäßiger für alle Projekte aus.
 
-Looking at the chart, we see a decreasing vote share on education projects over time. One could speculate that proposers of such projects are getting discouraged over time because their proposals are not successful, given the voting method currently in use.
+Ein Blick auf das Diagramm zeigt, dass der Anteil der Stimmen für Bildungsprojekte im Laufe der Zeit abnimmt. Man könnte vermuten, dass die Antragsteller solcher Projekte im Laufe der Zeit entmutigt werden, weil ihre Vorschläge bei der derzeit angewandten Abstimmungsmethode nicht erfolgreich sind.

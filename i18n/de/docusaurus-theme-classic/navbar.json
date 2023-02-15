@@ -4,23 +4,23 @@
     "description": "The title in the navbar"
   },
   "item.label.Explanation": {
-    "message": "Explanation",
+    "message": "Erklärung",
     "description": "Navbar item with label Explanation"
   },
   "item.label.Benefits": {
-    "message": "Benefits",
+    "message": "Vorteile",
     "description": "Navbar item with label Benefits"
   },
   "item.label.Implementation": {
-    "message": "Implementation",
+    "message": "Implementierung",
     "description": "Navbar item with label Implementation"
   },
   "item.label.Resources": {
-    "message": "Resources",
+    "message": "Materialien",
     "description": "Navbar item with label Resources"
   },
   "item.label.Contacts": {
-    "message": "Contacts",
+    "message": "Kontakte",
     "description": "Navbar item with label Contacts"
   }
 }

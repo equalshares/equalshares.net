@@ -1,26 +1,26 @@
 {
   "link.title.More": {
-    "message": "More",
+    "message": "Weitere Informationen",
     "description": "The title of the footer links column with title=More in the footer"
   },
   "link.item.label.Explanation": {
-    "message": "Explanation",
+    "message": "Erklärung",
     "description": "The label of footer link with label=Explanation linking to explanation"
   },
   "link.item.label.Benefits": {
-    "message": "Benefits",
+    "message": "Vorteile",
     "description": "The label of footer link with label=Benefits linking to benefits"
   },
   "link.item.label.Implementation": {
-    "message": "Implementation",
+    "message": "Implementierung",
     "description": "The label of footer link with label=Implementation linking to implementation"
   },
   "link.item.label.Resources": {
-    "message": "Resources",
+    "message": "Materialien",
     "description": "The label of footer link with label=Resources linking to resources"
   },
   "link.item.label.Contacts": {
-    "message": "Contacts",
+    "message": "Kontakte",
     "description": "The label of footer link with label=Contacts linking to contacts"
   },
   "link.item.label.GitHub": {
@@ -32,7 +32,7 @@
     "description": "The label of footer link with label=Wikipedia linking to https://en.wikipedia.org/wiki/Method_of_Equal_Shares"
   },
   "copyright": {
-    "message": "Website maintained by <a href=\"https://dominik-peters.de\" style=\"color:hsl(202, 100%, 70%)\">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL).",
+    "message": "Webseite gepflegt von <a href=\"https://dominik-peters.de\" style=\"color:hsl(202, 100%, 70%)\">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL).",
     "description": "The footer copyright"
   }
 }

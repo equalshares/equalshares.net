@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Higher and more equal voter satisfaction
+title: Höhere und gleichere Wählerzufriedenheit
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,54 +9,45 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
 
-# Higher and more equal voter satisfaction
+# Höhere und gleichere Wählerzufriedenheit
 
 <div class="summary">
-<b>Summary</b>:
-Full voting data from PB elections in Warsaw is publicly available, and we can use these to simulate the election outcome under the Method of Equal Shares.
-We analyze how many projects an average voter approves in the election outcome, and find that this number is significantly higher under the Method of Equal Shares compared to the actual outcome.
-We also find that under the Method of Equal Shares, a larger fraction of the voters approves at least one of the winning projects.
-On the other hand, an average voter sees slightly less funding going to the projects that the voter voted for.
+<b>Zusammenfassung</b>:
+Vollständige Wahldaten von Bürgerbudget-Wahlen in Warschau sind öffentlich verfügbar, und wir können diese nutzen, um das Wahlergebnis mit der Methode der gleichen Anteile zu simulieren. Wir analysieren, wie viele Projekte ein durchschnittlicher Wähler im Wahlergebnis befürwortet, und stellen fest, dass diese Zahl bei der Methode der gleichen Anteile im Vergleich zum tatsächlichen offiziellen Wahlergebnis deutlich höher ist. Außerdem stellen wir fest, dass bei der Methode der gleichen Anteile ein größerer Anteil der Wähler für mindestens eins der Gewinnerprojekte gestimmt hat. Andererseits wird für einen durchschnittlichen Wähler etwas weniger Geld an die Projekte gehen, für die er gestimmt hat.
 </div>
 
-When simulating the election outcomes in the participatory budgeting elections of several major cities, we found that voter satisfaction would increase when switching to the Method of Equal Shares. More importantly, we find that the satisfaction is more equally distributed among the voters, and the least satisfied voters see significantly more spending on their preferred projects under the Method of Equal Shares.
+Bei der Simulation der Wahlergebnisse bei Bürgerbudget-Wahlen in mehreren Großstädten haben wir festgestellt, dass die Zufriedenheit der Wähler steigen würde, wenn die Städte zur Methode der gleichen Anteile wechseln würden. Noch wichtiger ist, dass die Zufriedenheit unter den Wählern gleichmäßiger verteilt ist und die am wenigsten zufriedenen Wähler bei der Methode der gleichen Anteile deutlich mehr Ausgaben für ihre bevorzugten Projekte sehen.
 
-On this page, we present results from a simulation on election data from PB elections in Warsaw, taken from the [Pabulib library](http://pabulib.org/). In the simulations, we compute what the election outcome would have been if Warsaw had used the Method of Equal Shares. We compare this outcome to the actual election outcome, which is obtained by just selecting the projects with the highest number of votes until the budget runs out.
+Auf dieser Seite präsentieren wir die Ergebnisse einer Simulation mit Wahldaten von Bürgerbudget-Wahlen in Warschau, die aus der [Pabulib-Bibliothek](http://pabulib.org/) stammen. In den Simulationen berechnen wir, wie das Wahlergebnis ausgesehen hätte, wenn Warschau die Methode der gleichen Anteile angewandt hätte. Wir vergleichen dieses Ergebnis mit dem tatsächlichen Wahlergebnis, das sich dadurch ergibt, dass einfach die Projekte mit den meisten Stimmen ausgewählt werden, bis das Budget aufgebraucht ist.
 
-Our conclusions are as follows:
+Unsere Schlussfolgerungen lauten wie folgt:
 
-* **Voters approve more winning projects on average.** In Warsaw, voters are allowed to vote for up to 10 projects. In the actual outcome, voters approved 4.5 of the winning projects on average, while under the Method of Equal Shares, voters approve 6 of the winning projects on average. [[more]](#more-approved-projects)
-* **More voters have voted for at least one of the winning projects.** In the actual outcome, 87% of the voters voted for at least one of the winning projects, while under the Method of Equal Shares, 93% of the voters voted for at least one of the winning projects. [[more]](#more-happy-voters)
-* **For an average voter, slightly less money is spent on approved projects.** In the actual outcome in 2022, the average voter approved projects that received 27% of the budget in total, while under the Method of Equal Shares, the average voter approved projects that received 24% of the budget in total. Thus, on this metric, the Method of Equal Shares does slightly worse than the actual outcome. [[more]](#less-approved-spending)
-* **Voter satisfaction is more equally distributed.** When using the standard voting method, some voters are very satisfied, and others get 0 approved projects in the outcome. In contrast, the Method of Equal Shares gives more voters an average satisfaction level where they are happy with between 10% and 40% of the spending. [[more]](#equal-distribution)
+* **Im Durchschnitt haben Wähler für mehr gewinnende Projekte gestimmt.** In Warschau dürfen die Wähler für bis zu 10 Projekte stimmen. Im tatsächlichen Ergebnis haben die Wähler im Durchschnitt für 4,5 der Gewinnerprojekte gestimmt, während die Wähler bei der Methode der gleichen Anteile im Durchschnitt für 6 der Gewinnerprojekte gestimmt haben. [[mehr]](#more-approved-projects)
+* **Mehr Wähler haben für mindestens eines der Gewinnerprojekte gestimmt.** Im tatsächlichen Ergebnis stimmten 87 % der Wähler für mindestens eines der Gewinnerprojekte, während bei der Methode der gleichen Anteile 93 % der Wähler für mindestens eines der Siegerprojekte stimmten. [[mehr]](#more-happy-voters)
+* **Für einen durchschnittlichen Wähler wird etwas weniger Geld für Projekte ausgegeben, für die der Wähler gestimmt hat.** Im tatsächlichen Ergebnis von 2022 stimmte der durchschnittliche Wähler für Projekte, die insgesamt 27 % des Budgets erhielten, während bei der Methode der gleichen Anteile der durchschnittliche Wähler für Projekte stimmte, die insgesamt 24 % des Budgets erhielten. In dieser Hinsicht schneidet die Methode der gleichen Anteile also etwas schlechter ab als das tatsächliche Ergebnis. [[mehr]](#less-approved-spending)
+* **Die Zufriedenheit der Wähler ist gleichmäßiger verteilt.** Bei der Standard-Abstimmungsmethode sind einige Wähler sehr zufrieden, während andere im Ergebnis 0 genehmigte Projekte erhalten. Bei der Methode der gleichen Anteile bekommen dagegen mehr Wähler mit ein mittleres Zufriedenheitsniveau, bei dem sie zwischen 10 % und 40 % der Ausgaben gutheißen. [[mehr]](#equal-distribution)
 
-## Voters approve more winning projects on average {#more-approved-projects}
+## Im Durchschnitt haben Wähler für mehr gewinnende Projekte gestimmt {#more-approved-projects}
 
-A natural way to measure how satisfied voters are with an election outcome is to count how many projects in the outcome an average voter voted for.
-In Warsaw, each voter votes in 1 district, and can approve up to 10 projects.
-Averaging over all districts and over the years 2020-22, we find that the average voter approves about 4.5 of the winning projects in the actual outcome. 
-Under the Method of Equal Shares, the average voter approves 6 of the winning projects, a substantial increase of 33%.
+Eine naheliegende Möglichkeit, die Zufriedenheit der Wähler mit einem Wahlergebnis zu messen, besteht darin, zu zählen, für wie viele Projekte im Ergebnis ein durchschnittlicher Wähler gestimmt hat. In Warschau stimmt jeder Wähler in einem Bezirk ab und kann bis zu 10 Projekte genehmigen. Im Durchschnitt über alle Bezirke und über die Jahre 2020-22 hinweg ergibt sich, dass der durchschnittliche Wähler für etwa 4,5 der gewinnenden Projekte des tatsächlichen Ergebnisses gestimmt hat. Bei der Methode der gleichen Anteile befürwortet der durchschnittliche Wähler 6 der Gewinnerprojekte, was einem deutlichen Anstieg von 33 % entspricht.
 
-There is not a single district where the average number is lower under the Method of Equal Shares. 
-On the other hand, there are several examples of districts where the average number of approved projects almost tripled.
-An underlying reason for this is that the Method of Equal Shares tends to select more projects overall, whereas the standard method in current use in Warsaw selects only a few but very expensive projects.
+Es gibt keinen einzigen Bezirk in Warschau, in dem diese Durchschnittszahl mit der Methode der gleichen Anteile niedriger ist als im tatsächlichen Ergebnis. Andererseits gibt es mehrere Beispiele von Bezirken, in denen sich die durchschnittliche Zahl der genehmigten Projekte fast verdreifacht hat. Ein Grund dafür ist, dass bei der Methode der gleichen Anteile tendenziell mehr Projekte ausgewählt werden, während bei der in Warschau derzeit angewandten Standard-Wahlmethode nur einige wenige, aber sehr teure Projekte ausgewählt werden.
 
-In the maps below, we show for each district the average number of approved projects for the election in that district.
-The third map shows the percent difference. For example, +85% means that the average number of approved projects under the Method of Equal Shares is 1.85 times the number under the actual outcome.
+In den nachstehenden Karten ist für jeden Bezirk die Anzahl der Gewinnprojekte, für die ein durchschnittlicher Wähler gestimmt hat, für die Wahl in diesem Bezirk dargestellt. Die dritte Karte zeigt die prozentuale Differenz. Zum Beispiel bedeutet +85%, dass die durchschnittliche Zahl der befürworteten Projekte mit der Methode der gleichen Anteile 1,85 mal so hoch ist wie die Zahl nach dem tatsächlichen Ergebnis.
 
 <Tabs className="maps-tabs" groupId="years">
     <TabItem value="2022" default>
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2022.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2022.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/number_approved_difference-2022.svg')} width="99" height="105" />
             </div>
         </div>
@@ -64,15 +55,15 @@ The third map shows the percent difference. For example, +85% means that the ave
     <TabItem value="2021">
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2021.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2021.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/number_approved_difference-2021.svg')} width="99" height="105" />
             </div>
         </div>
@@ -80,43 +71,43 @@ The third map shows the percent difference. For example, +85% means that the ave
     <TabItem value="2020">
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2020.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2020.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/number_approved_difference-2020.svg')} width="99" height="105" />
             </div>
         </div>
     </TabItem>
 </Tabs>
 
-## More voters have voted for at least one of the winning projects {#more-happy-voters}
+## Mehr Wähler haben für mindestens eines der Gewinnerprojekte gestimmt {#more-happy-voters}
 
-One aim of participatory budgeting is to give a broad segment of the population an influence over budgeting decisions. Therefore, it is desirable to use a voting method where a large fraction of the population is represented in the outcome. A minimal requirement would be that for a large fraction of the voters, there is at least one winning project that the voter voted for. This is also desirable to obtain high participation: if a voter votes for many projects but none of them win, the voter might be discouraged and feel that their vote was wasted.
+Ein Ziel von Bürgerbudgets ist es, einem breiten Teil der Bevölkerung Einfluss auf die Haushaltsentscheidungen zu geben. Daher ist es wünschenswert, eine Wahlmethode zu verwenden, bei dem ein großer Teil der Bevölkerung im Ergebnis vertreten ist. Eine Mindestanforderung wäre, dass es für einen großen Teil der Wähler mindestens ein gewinnendes Projekt gibt, für das der Wähler gestimmt hat. Dies ist auch wünschenswert, um eine hohe Wahlbeteiligung zu erreichen: Wenn ein Wähler für viele Projekte stimmt, aber keines davon gewinnt, könnte der Wähler entmutigt sein und das Gefühl haben, seine Stimme sei verschwendet.
 
-In our simulation, we find that under the Method of Equal Shares, a larger fraction of the voters get at least one winning project from the projects they voted for. On average (over the years and districts), 93% of the voters get at least one winning project under the Method of Equal Shares, compared to just 86% under the actual outcome. In some districts, the difference is very large: for example in Bielany in 2022, 94% of voters get at least one winning project under the Method of Equal Shares, compared to just 80% under the actual outcome. In a small number of cases, the fraction of voters with at least one winning project is lower under the Method of Equal Shares, but by at most 1 percentage point.
+In unserer Simulation stellen wir fest, dass bei der Methode der gleichen Anteile ein größerer Anteil der Wähler mindestens ein Gewinnerprojekt im Ergebnis hat, für die sie gestimmt haben. Im Durchschnitt (über die Jahre und Bezirke) erhalten 93 % der Wähler bei der Methode der gleichen Anteile mindestens ein Gewinnerprojekt, verglichen mit nur 86 % bei dem tatsächlichen Ergebnis. In einigen Bezirken ist der Unterschied sehr groß: z. B. in Bielany im Jahr 2022 erhielten 94 % der Wähler mindestens ein Gewinnerprojekt mit der Methode der gleichen Anteile, gegenüber nur 80 % im tatsächlichen Ergebnis. In einigen wenigen Fällen ist der Anteil der Wähler mit mindestens einem Gewinnerprojekt bei der Methode der gleichen Anteile geringer, aber höchstens um 1 Prozentpunkt.
 
-In the maps below, we show for each district the fraction of voters who get at least one winning project from the projects they voted for (as a percentage).
-In the "difference" map, we show the difference as a number of percentage points. A positive number indicates a higher fraction under the Method of Equal Shares, and a negative number indicates a lower fraction.
+In den nachstehenden Karten ist für jeden Bezirk der Anteil der Wähler dargestellt, die von den Projekten, für die sie gestimmt haben, mindestens ein Gewinnerprojekt erhalten (in Prozent).
+In der Karte "Differenz" wird die Differenz als Anzahl der Prozentpunkte angegeben. Eine positive Zahl bedeutet einen höheren Anteil mit der Methode der gleichen Anteile, eine negative Zahl einen niedrigeren Anteil.
 
 <Tabs className="maps-tabs" groupId="years">
     <TabItem value="2022" default>
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2022.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2022.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2022.svg')} width="99" height="105" />
             </div>
         </div>
@@ -124,15 +115,15 @@ In the "difference" map, we show the difference as a number of percentage points
     <TabItem value="2021">
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2021.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2021.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2021.svg')} width="99" height="105" />
             </div>
         </div>
@@ -140,47 +131,47 @@ In the "difference" map, we show the difference as a number of percentage points
     <TabItem value="2020">
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2020.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2020.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2020.svg')} width="99" height="105" />
             </div>
         </div>
     </TabItem>
 </Tabs>
 
-## For an average voter, slightly less money is spent on approved projects {#less-approved-spending}
+## Für einen durchschnittlichen Wähler wird etwas weniger Geld für Projekte ausgegeben, für die der Wähler gestimmt hat {#less-approved-spending}
 
-Above, we saw that under the Method of Equal Shares, voters on average approve a higher number of projects in the outcome.
-An alternative way of measuring voter satisfaction is to look at the total amount of money spent on approved projects.
-These two measurements can be different, because a voter could get just 1 approved project but a very large and expensive one,
-or many small and cheap projects.
+Oben haben wir gesehen, dass die Wähler bei der Methode der gleichen Anteile im Durchschnitt für eine höhere Anzahl von Projekten im Ergebnis gestimmt haben.
+Eine andere Möglichkeit, die Zufriedenheit der Wähler zu messen, besteht darin, den Gesamtbetrag des ausgegebenen Geldes für die Projekte, für die der Wähler gestimmt hat, zu betrachten.
+Diese beiden Maße (Zahl der gewinnenden Projekte, Gesamtausgaben) können unterschiedlich ausfallen, da auf der einen Seite ein Wähler nur für ein einziges gewinnendes Projekt gestimmt haben könnte, dieses Projekt aber sehr groß und teuer ist,
+oder auf der anderen Seite viele kleine aber günstige Projekte.
 
-In this section, we calculate the percent of the overall budget that is spent on approved projects for an average voter.
-We find that under the Method of Equal Shares, slightly less money is spent on approved projects for an average voter, usually 3-4 percentage points less.
-On average over the years and districts, voters see 27% of the budget spent on approved projects under the actual outcome, compared to 24% under the Method of Equal Shares.
+In diesem Abschnitt berechnen wir den Prozentsatz des Gesamtbudgets, der für einen durchschnittlichen Wähler für Projekte ausgegeben wird, für die der Wähler gestimmt hat.
+Wir stellen fest, dass bei der Methode der gleichen Anteile etwas weniger Geld für Projekte für einen durchschnittlichen Wähler ausgegeben wird, in der Regel 3-4 Prozentpunkte weniger.
+Im Durchschnitt der Jahre und Bezirke sehen die Wähler, dass für ihre Projekte 27 % des Budgets im tatsächlichen Ergebnis ausgegeben werden, verglichen mit 24 % bei der Methode der gleichen Anteile.
 
-The reason that the Method of Equal Shares does not perform as well as the actual outcome is that the standard voting method can be seen as an optimization algorithm that selects an outcome that maximizies this measure. Therefore, any other outcome must be worse than the actual outcome. Encouragingly, this difference is not very large, and the Method of Equal Shares arguably still performs well.
+Der Grund dafür, dass die Methode der gleichen Anteile nicht so gut abschneidet wie das tatsächliche Ergebnis, liegt darin, dass die Standard-Wahlmethode als Optimierungsalgorithmus betrachtet werden kann, der ein Ergebnis auswählt, das dieses Maß maximiert. Daher muss jedes andere Ergebnis schlechter sein als das tatsächliche Ergebnis. Erfreulicherweise ist dieser Unterschied nicht sehr groß, und die Methode der gleichen Anteile schneidet wohl immer noch recht gut ab.
 
 <Tabs className="maps-tabs" groupId="years">
     <TabItem value="2022" default>
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/spending_real_outcome-2022.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/spending_equal_shares-2022.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/spending_difference-2022.svg')} width="99" height="105" />
             </div>
         </div>
@@ -188,15 +179,15 @@ The reason that the Method of Equal Shares does not perform as well as the actua
     <TabItem value="2021">
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/spending_real_outcome-2021.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/spending_equal_shares-2021.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/spending_difference-2021.svg')} width="99" height="105" />
             </div>
         </div>
@@ -204,26 +195,26 @@ The reason that the Method of Equal Shares does not perform as well as the actua
     <TabItem value="2020">
         <div className="maps-display">
             <div className="map-with-label">
-                <span>Actual Outcome</span>
+                <span>Tatsächliches Ergebnis</span>
                 <img src={useBaseUrl('/img/maps/spending_real_outcome-2020.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Method of Equal Shares</span>
+                <span>Methode der gleichen Anteile</span>
                 <img src={useBaseUrl('/img/maps/spending_equal_shares-2020.svg')} width="99" height="105" />
             </div>
             <div className="map-with-label">
-                <span>Difference</span>
+                <span>Differenz</span>
                 <img src={useBaseUrl('/img/maps/spending_difference-2020.svg')} width="99" height="105" />
             </div>
         </div>
     </TabItem>
 </Tabs>
 
-## Voter satisfaction is more equally distributed {#equal-distribution}
+## Die Zufriedenheit der Wähler ist gleichmäßiger verteilt {#equal-distribution}
 
-Above, we saw that in the actual election outcome, an average voter will get slightly more spending on approved projects compared to the Method of Equal Shares.
-However, this is not true for all voters: in the actual outcome some voters have much more satisfaction and others much less. By this, we mean that there are more voters with very little spending on their approved projects, and more voters with very high spending on their approved projects. In contrast, under the Method of Equal Shares, the distribution of spending on approved projects is more equal, and in particular there are more voters who get a moderate amount of spending on their approved projects.
+Oben haben wir gesehen, dass ein durchschnittlicher Wähler im tatsächlichen Wahlergebnis etwas mehr Ausgaben für die Projekte erhält, für die er gestimmt hat, verglichen mit der Methode der gleichen Anteile.
+Dies gilt jedoch nicht für *alle* Wähler: Im tatsächlichen Ergebnis sind einige Wähler sehr viel zufriedener und andere sehr viel weniger. Damit meinen wir, dass es mehr Wähler gibt, für deren Projekte sehr wenig ausgeben wird, und mehr Wähler, die sehr hohe Ausgaben für ihre Projekte haben. Im Gegensatz dazu ist bei der Methode der gleichen Anteile die Verteilung der Ausgaben gleichmäßiger, und insbesondere gibt es mehr Wähler, die einen moderaten Betrag für die Projekte, für die sie gestimmt haben, erhalten.
 
-We can see this phenomenon in the following chart. For example, the chart shows that in the actual outcome, about 7 000 voters see 20% of the budget going to approved projects. Under the Method of Equal Shares, this number is about 9 000 voters. For the entire range between 5% and 40% of the budget going to approved projects, the Method of Equal Shares has more voters at that level than does the actual outcome.
+Dieses Phänomen ist in der folgenden Grafik zu sehen. Das Diagramm zeigt zum Beispiel, dass für etwa 7 000 Wähler 20 % des Budgets für Projekte ausgegeben wird, für die sie gestimmt haben. Bei der Methode der gleichen Anteile liegt diese Zahl bei etwa 9 000 Wählern. Für den gesamten Bereich zwischen 5 % und 40 % des Budgets hat die Methode der gleichen Anteile mehr Wähler auf diesem Niveau als das tatsächliche Ergebnis.
 
 <Datawrapper src="//datawrapper.dwcdn.net/0uQYY/3/" />
