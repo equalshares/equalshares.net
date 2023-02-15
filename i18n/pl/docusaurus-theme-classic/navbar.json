@@ -1,26 +1,26 @@
 {
   "title": {
-    "message": "Method of Equal Shares",
-    "description": "The title in the navbar"
+    "message": "Metoda równych udziałów",
+    "description": "Tytuł w pasku nawigacyjnym"
   },
   "item.label.Explanation": {
-    "message": "Explanation",
-    "description": "Navbar item with label Explanation"
+    "message": "Wyjaśnienie działania",
+    "description": "Element paska nawigacyjnego z etykietą Wyjaśnienie działania"
   },
   "item.label.Benefits": {
-    "message": "Benefits",
-    "description": "Navbar item with label Benefits"
+    "message": "Zalety",
+    "description": "Element paska nawigacyjnego z etykietą Zalety"
   },
   "item.label.Implementation": {
-    "message": "Implementation",
-    "description": "Navbar item with label Implementation"
+    "message": "Wdrożenie",
+    "description": "Element paska nawigacyjnego z etykietą Wdroenie"
   },
   "item.label.Resources": {
-    "message": "Resources",
-    "description": "Navbar item with label Resources"
+    "message": "Linki zewnętrzne",
+    "description": "Element paska nawigacyjnego z etykietą Linki zewnętrzne"
   },
   "item.label.Contacts": {
-    "message": "Contacts",
-    "description": "Navbar item with label Contacts"
+    "message": "Kontakt",
+    "description": "Element paska nawigacyjnego z etykietą Kontakt"
   }
 }

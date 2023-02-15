@@ -1,14 +1,14 @@
 {
   "version.label": {
-    "message": "Next",
-    "description": "The label for version current"
+    "message": "Dalej",
+    "description": "Etykieta Dalej"
   },
   "sidebar.tutorialSidebar.category.Benefits": {
-    "message": "Benefits",
-    "description": "The label for category Benefits in sidebar tutorialSidebar"
+    "message": "Zalety",
+    "description": "Etykieta dla kategorii Zalety w pasku bocznym tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Implementation": {
-    "message": "Implementation",
-    "description": "The label for category Implementation in sidebar tutorialSidebar"
+    "message": "Wdrożenie",
+    "description": "Etykieta dla kategorii Wdrożenie w pasku bocznym tutorialSidebar"
   }
 }

@@ -11,15 +11,15 @@ import HomepageContents from '@site/i18n/pl/docusaurus-plugin-content-docs/curre
 export default function Home() {
   return (
     <Layout
-    description="The Method of Equal Shares is a fairer voting rule for participatory budgeting.">
+    description="Metoda równych udziałów to bardziej sprawiedliwa metoda liczenia głosów dla budżetów obywatelskich.">
     <Head>
-      <title>Method of Equal Shares for Participatory Budgeting</title>
-      <meta name="twitter:title" content="Method of Equal Shares for Participatory Budgeting" />
-      <meta name="twitter:description" content="The Method of Equal Shares is a fairer voting rule for participatory budgeting." />
+      <title>Metoda równych udziałów dla budżetu obywatelskiego</title>
+      <meta name="twitter:title" content="Metoda równych udziałów dla budżetu obywatelskiego." />
+      <meta name="twitter:description" content="Metoda równych udziałów to bardziej sprawiedliwa metoda liczenia głosów dla budżetów obywatelskich." />
       <meta name="twitter:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:title" content="Method of Equal Shares for Participatory Budgeting" />
-      <meta property="og:description" content="The Method of Equal Shares is a fairer voting rule for participatory budgeting." />
+      <meta property="og:description" content="Metoda równych udziałów to bardziej sprawiedliwa metoda liczenia głosów dla budżetów obywatelskich." />
     </Head>
       <section className={styles.hero}>
         <div>

@@ -1,9 +1,9 @@
 {
   "homepage.universityLogoTooltipContact": {
-    "message": "Contact:"
+    "message": "Kontakt:"
   },
   "sankey.voterLabel.prefix": {
-    "message": "Voter",
+    "message": "Wyborca",
     "description": "The word 'Voter' that will be used in 'Voter 1', 'Voter 2', etc."
   },
   "sankey.tooltipBudgetShare": {
@@ -42,7 +42,7 @@
     "message": "of those who voted for them"
   },
   "explanation.budgetBars.tooltipBudget": {
-    "message": "Budget:",
+    "message": "Budżet:",
     "description": "When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount."
   },
   "explanation.budgetBars.tooltipSpending": {
@@ -50,7 +50,7 @@
     "description": "When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount."
   },
   "Cost:": {
-    "message": "Cost:"
+    "message": "Koszt:"
   },
   "(supporting voters do not have enough money)": {
     "message": "(supporting voters do not have enough money)"
