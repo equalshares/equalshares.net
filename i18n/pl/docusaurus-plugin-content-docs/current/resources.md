@@ -1,11 +1,11 @@
 ---
 sidebar_position: 5
-title: Resources
+title: Linki zewnętrzne
 ---
 
-# Resources
+# Linki zewnętrzne
 
-## Academic papers
+## Publkacje naukowe
 
 This is a (non-exhaustive) list of academic papers that discuss the Method of Equal Shares.
 
@@ -24,7 +24,7 @@ Roy Fairstein, Gerdus Benadè, and Kobi Gal. Published at the AAAI 2023 conferen
 * __Proportional Budget Allocations: Towards a Systematization.__
 Maaike Los, Zoé Christoff, and Davide Grossi. Published at the [IJCAI 2022](https://ijcai-22.org/) conference. [PDF](https://www.ijcai.org/proceedings/2022/0057.pdf).
 
-## Press
+## Prasa
 
 * Nauka w Polsce (*Science in Poland*): [Naukowcy proponują, jak efektywniej liczyć głosy w budżecie obywatelskim](https://naukawpolsce.pl/aktualnosci/news,95022,naukowcy-proponuja-jak-efektywniej-liczyc-glosy-w-budzecie-obywatelskim.html) (*Scientists propose how to count votes in the participatory budget more effectively*).
 * Polskie Radio RDC: [Sprawiedliwe liczenie głosów](https://www.rdc.pl/podcast/popoludnie-radia-dla-ciebie_FCt8vL79UA9lmdeTkti3?episode=1mkWT9aSOyTf7lExhqYK&active_page=1) (*Fairly counting votes*). Interview with Piotr Skowron (in Polish), 2023-01-26, 20:46 minutes.
