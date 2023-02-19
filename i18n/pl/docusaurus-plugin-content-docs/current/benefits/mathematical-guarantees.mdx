@@ -1,130 +1,152 @@
 ---
 sidebar_position: 5
-title: Mathematical fairness guarantees
+title: Matematyczne gwarancje sprawiedliwości
 ---
 
 import { SemiBold } from '@site/src/components/MyComponents';
 import X from '/icons/x-circle.svg';
 
-# Mathematical fairness guarantees
+# Matematyczne gwarancje sprawiedliwości
 
 <div class="summary">
-<b>Summary</b>:
-The academic literature has shown that the Method of Equal Shares guarantees all groups of voters an appropriate amount of representation in the outcome. It also guarantees that projects will win as long as they receive a certain minimum amount of support.
+<b>W skrócie</b>:
+W literaturze naukowej wykazano, że przy użyciu metody równych udziałów każda grupa wyborców o spójnych preferencjach ma proporcjonalny wpływ na wynik wyborów.
 </div>
 
-The Method of Equal Shares was proposed and developed by mathematicians and computer scientists who proved
-mathematical theorems that say that the method guarantees fairness to voters in certain precise senses.
-On this page, we will describe some of their results, both on an intuitive level and in more technical terms.
+Metoda równych udziałów została zaprojektowana przez naukowców. Okazuje się, że można precyzyjnie wykazać, że metoda ta jest proporcjonalna i że sprawiedliwie traktuje wszystkie grupy wyborców.
+Poniżej opisujemy niektóre z tych teoretycznych wyników. Opisujemy je zarówno na poziomie intuicyjnym, jak i w bardziej precyzyjny matematyczny sposób.
 
-For more information, please also consult the following sources:
+
+Więcej informacji można znaleźć również w następujących źródłach:
 [<img src={require('@site/static/img/abcbook.png').default} style={{ float: 'right', width: '100px' }} />](https://link.springer.com/book/10.1007/978-3-031-09016-5)
 
-* The book "Multi-Winner Voting with Approval Preferences" (2023) by Martin Lackner and Piotr Skowron, published Open Access by Springer ([free PDF available](https://link.springer.com/book/10.1007/978-3-031-09016-5)).
-Note that this book mostly focusses on "multi-winner elections", where we assume that all projects have the same cost.
-* The paper "Proportional Participatory Budgeting with Additive Utilities" by Dominik Peters, Grzegorz Pierczyński, and Piotr Skowron. Available [on arXiv](https://arxiv.org/abs/2008.13276).
+* Książka "Multi-Winner Voting with Approval Preferences", 2023, Martin Lackner i Piotr Skowron, opublikowana w otwartym dostępie przez Springera ([darmowy PDF](https://link.springer.com/book/10.1007/978-3-031-09016-5)).
+Książka ta koncentruje się głównie na „wyborach komitetów”, czyli na szczególnym przypadku budżetu obywatelskiego, gdzie wszystkie projekty mają ten sam koszt.
+* Artykuł "Proportional Participatory Budgeting with Additive Utilities", 2021, opublikowany na konferencji Annual Conference on Neural Information Processing Systems 2021 (NeurIPS 2021), Dominik Peters, Grzegorz Pierczyński, Piotr Skowron. 
+  Pełna wersja artykułu dostępna w serwisie [arXiv](https://arxiv.org/abs/2008.13276).
 
-## A project is guaranteed to be funded provided it gets a number of "bullet" votes that is proportional to its cost {#bullet-votes}
+## Projekt na pewno zostanie sfinansowany, jeśli liczba pojedynczych głosów oddanych na ten projekt będzie proporcjonalna do jego kosztu {#bullet-votes}
 
-The first mathematical guarantee concerns individual projects: they are sure to be funded provided they get at least a certain minimum number of unique votes.
+Pierwszy wynik, który omówimy dotyczy gwarancji, że projekt zostanie sfinsnsowany, jeśli uzyska co najmniej pewną minimalną liczbę unikalnych głosów.
 
-For a precise example, consider a project proposal with a cost that would consume 5% of the overall available budget. 
-Then, if at least 5% of voters vote for that project _and for no other projects_, then this proposal will win under the Method of Equal Shares.
+Przykładowo, rozważmy projekt o koszcie wynoszącym 5% dostępnych środków. 
+Jeśli co najmniej 5% wyborców zagłosuje na ten projekt _i na żadne inne projekty_, wówczas projekt ten na pewno zostanie wybrany przez metodę równych udziałów.
 
-Here is a formal way of describing this property:
+Oto formalny opis tej własności:
 
-> **Theorem**. Let $P$ be a project and let $\text{cost}(P)$ be the cost of the proposal. Suppose $B$ is the overall budget, and $n$ is the total number of voters. If at least $n \cdot \text{cost}(P)/B$ voters vote for $P$ and no other projects, then $P$ will be among the projects selected by the Method of Equal Shares.
+> **Twierdzenie**. Rozważmy projekt $P$ o koszcie $\text{koszt}(P)$. Przez $B$ oznaczmy całkowitą kwotę dostępną w ramach budżetu obywatelskiego. Niech $n$ oznacza liczbę głosujących. 
+Jeśli co najmniej $n \cdot \text{koszt}(P)/B$ wyborców zagłosowało na $P$ i jeżeli żaden z tych wyborców nie zagłosował na żaden inny projekt, to $P$ zostanie wybrany przez metodę równych.
 
 <details className="proof">
-<summary>Proof</summary>
+<summary>Dowód</summary>
 
-Each of the voters who voted only for $P$ gets assigned a budget share of at least $B/n$ at the start of the computation of the method. (It could be more than $B/n$ because we [complete](../implementation/completion) the method.)
+Każdy z wyborców, który zagłosował jedynie na $P$, dostaje na początku kwotę równą co najmniej $B/n$. (Może to być więcej niż $B/n$, ponieważ [uzupełniamy](../realizacja/completion) wynik jeśli nie wykorzystuje on w pełni dostępnego budżetu).
 
-Therefore, the total amount of budget assigned to voters who vote only for $P$ is at least
+Zatem łączna kwota przypisana wyborcom głosującym tylko na $P$ wynosi co najmniej
 $$
-\underbrace{n \cdot \frac{\text{cost}(P)}{B}}_{\text{number of voters}} \cdot \underbrace{\frac{B}{n}}_{\text{budget share}} = \text{cost}(P).
+\underbrace{n \cdot \frac{\text{koszt}(P)}{B}}_{\text{liczba wyborców}} \cdot \underbrace{\frac{B}{n}}_{\text{początkowy budżet każdego z nich}} = \text{koszt}(P).
 $$
 
-By definition of the Method of Equal Shares, it finishes only when no more projects can be afforded by their supporters. But that means that $P$ must be among the selected projects, because the voters who only vote for $P$ retain all their money until $P$ is selected, 
-and thus $P$ is always affordable.
+Metoda równych udziałów kończy działanie dopiero wtedy, gdy zwolennicy żadnego niewybranego jeszcze projektu nie mają już wystarczających środków, aby pokryć koszt takiego projektu. To oznacza, że $P$ musi zostać wybrany, ponieważ wyborcy, 
+którzy głosują tylko na $P$, zachowują wszystkie swoje początkowe środki i mogą je wydać jedynie na $P$, czyli Ci wyborcy będą zawsze w stanie pokryć koszt $P$.
 </details>
 
-Using the standard voting method for participatory budgeting (which just selects the most popular projects until the budget runs out), no similar guarantee holds. Even a very cost-effective project (for example, costing 1% of the budget) may need a large number of voters (for example, more than 30%) to win under the standard method.
+Przy zastosowaniu standardowej metody głosowania w budżecie obywatelskim (która po prostu wybiera najpopularniejsze projekty do wyczerpania budżetu), nie mamy takich gwarancji.
+Nawet bardzo opłacalny projekt (na przykład taki, który kosztuje jedynie 1% budżetu i otrzymał aż 30% unikalnych głosów) może zostać pominięty.
 
-## Groups with similar votes will be represented in the outcome
+## Grupa wyborców, którzy głosują podobnie, będzie miała proporcjonalny udział w rozdysponowanym budżecie
 
-Under the Method of Equal Shares, any group of voters who voted for similar projects can expect to be represented in the outcome to an extent that is proportional to the group size. For example, a group of 20% of the voters can expect to influence 20% of the budget spending.
+Każda grupa wyborców, która głosuje na podobne projekty będzie miała udział w budżecie, który jest proporcjonalny do wielkości tej grupy. 
+Przykładowo, grupa 20% głosujących będzie decydować o 20% środków.
 
-For example, such groups of voters could be the parents of children in a particular school, or the residents of a particular neighborhood, or people commuting by bike. The following properties will ensure that each of these groups will be represented in the outcome (provided they have enough members to justify the cost of the projects that they jointly support).
+Takie grupy mogą stanowić na przykład rodzice dzieci uczęszczających do konkretnej szkoły, mieszkańcy konkretnej dzielnicy,
+lub osoby dojeżdżające do pracy na rowerze. Jeżeli tacy wyborcy będą głosować podobnie (np. na projekty dotyczące szkoły, na projekty z konkretnej dzielnicy,
+lub na projekty rowerowe), to będą oni w stanie zagwarantować wybór projektów o koszcie odpowidajacym liczbie takich wyborców.
 
-### Groups of voters with identical votes
+### Grupy wyborców, którzy głosują identycznie
 
-Let us consider a PB election based on approval voting.
-Suppose that $t$ out of the $n$ voters submitted an identical ballot, that is, they all voted for the exact same set of projects.
-For concreteness, say that these $t$ voters vote for projects $P_1$, $P_2$, and $P_3$. 
-Intuitively, since this group forms a $t/n$ fraction of the voters, they should be represented in the outcome by a $t/n$ fraction of the budget.
-Let us assume for the moment that 
+Rozważmy wybory, w których każdy wyborca wskazuje dowolny zbiór projektów, które popiera.
+Załóżmy, że $t$ z $n$ wyborców zagłosowało na ten sam zestaw projektów.
+Powiedzmy, że tych $t$ wyborców zagłosowało na projekty $P_1$, $P_2$ i $P_3$. 
+Intuicyjnie, ponieważ ta grupa stanowi $t/n$ wyborców, powinna być w stanie zdecydować o $t/n$ budżetu.
+Załóżmy, że:
 $$
-\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) \leqslant \frac{t}{n} \cdot B,
+\text{koszt}(P_1) + \text{koszt}(P_2) + \text{koszt}(P_3) \leqslant \frac{t}{n} \cdot B,
 $$
-where $B$ is the overall budget. In other words, the group of voters is large enough to "deserve" to have all the projects they voted for funded.
-In this case, one can prove that the Method of Equal Shares will select all four projects.
+gdzie $B$ oznacza wielkość dostępnego budżetu. Innymi słowy, grupa ta „zasługuje”, aby projekty na które zagłosowała zostały sfinansowane.
+W tym przypadku można udowodnić, że metoda równych udziałów wybierze wszystkie trzy projekty. 
 
-Formally, this property can be written as follows:
+Tę własność możemy formalnie zapisać w następujący sposób:
 
-> **Theorem**. Let $\{P_1, P_2, \ldots, P_k\}$ be a set of projects, and suppose that $t$ of the $n$ voters voted for all of these projects (and only these projects). Suppose that the total cost of these projects is at most $t/n \cdot B$. Then the Method of Equal Shares will select all $k$ projects.
+> **Twierdzenie**. Rozważmy zbiór projektów $\{P_1, P_2, \ldots, P_k\}$ i załóżmy, że $t$ spośród $n$ wyborców zagłosowało dokładnie na te projekty (i na żadne inne). 
+Przypuśćmy, że całkowity koszt tych projektów wynosi co najwyżej $t/n \cdot B$. Wtedy każdy z tych $k$ projektów zostanie wybrany przez metodę równych udziałów.
 
 <details>
 <summary>
-    Info about the case when the projects cost more than the limit
+    Przypadek, gdy całkowity koszt projektów popieranych przez grupę wyborców jest wyższy
 </summary>
 
-One can also prove a similar guarantee if the group of voters approves a collection of projects that costs more than $t/n \cdot B$ in total. Suppose $t$ voters vote exactly for the projects $P_1$, $P_2$, $P_3$, and $P_4$. Suppose that
+Możemy wykazać podobną własność również wtedy, gdy grupa głosujących popiera zbiór projektów o łącznej kwocie przekraczającej $t/n \cdot B$. Załóżmy, że $t$ wyborców głosuje dokładnie na projekty $P_1$, $P_2$, $P_3$ i $P_4$. Załóżmy ponadto, że
 $$
-\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) + \text{cost}(P_4) > \frac{t}{n} \cdot B.
+\text{koszt}(P_1) + \text{koszt}(P_2) + \text{koszt}(P_3) + \text{koszt}(P_4) > \frac{t}{n} \cdot B.
 $$
-Then, the Method of Equal Shares will select some of these projects that together cost "approximately" $t/n \cdot B$.
+W takim przypadku metoda równych udziałów wybierze tylko kilka z tych projektów tak, aby koszt tych wybranych był „w przybliżeniu” równy $t/n \cdot B$.
 
-> **Theorem**. Let $T = \{P_1, P_2, \ldots, P_k\}$ be a set of projects, and suppose that $t$ of the $n$ voters voted for all of these projects (and only these projects).  Then the Method of Equal Shares will select a subset $T' \subseteq T$ of projects such that for every project $P^* \in T$ that was not selected by the Method, 
-we have $\sum_{P \in T'} \text{cost}(P) + \text{cost}(P^*) > t/n \cdot B$.
+> **Twierdzenie**. Rozważmy zbiór projektów $T =\{P_1, P_2, \ldots, P_k\}$ i załóżmy, że $t$ spośród $n$ wyborców zagłosowało dokładnie na te projekty (i na żadne inne). 
+Metoda równych udziałów wybierze podzbiór projektów $T' \subseteq T$ taki, że dla każdego niewybranego projektu $P^* \in T$ zachodzić będzie $\sum_{P \in T'} \text{koszt}(P) + \text{koszt}(P^*) > t/n \cdot B$.
 
 </details>
 
-### Groups of voters with overlapping votes
+### Grupy wyborców, którzy głosują podobnie
 
-In the mathematical guarantees described above, we assumed that the group of voters voted for exactly the same set of projects. In practice, however, even groups of voters with strong agreement will not always vote for *exactly* the same set of projects. Therefore, it is interesting to see if the Method of Equal Shares will select projects that are supported by a group of voters with high but not perfect agreement. The answer is yes: if a group of voters has a sufficiently large overlap in their votes, then the Method of Equal Share will represent the group.
+Powyżej rozważyliśmy przypadek, w którym grupa wyborców głosuje na dokładnie ten sam zestaw projektów. W praktyce jednak rzadko się zdarza aby wyborcy byli aż tak zgodni.
+Dlatego istotne jest, aby zapewnić, że metoda liczenia głosów wybierze również takie projekty, które są popierane przez wyborców głosujących podobnie, choć niekoniecznie identycznie.
+Metoda równych udziałów posiada tę pożądaną cechę.
 
 <details>
-<summary>Details about the mathematical guarantee</summary>
+<summary>Matematyczny opis własności</summary>
 
-Let us consider a PB election based on approval voting. 
-In general, if $T = \{P_1, P_2, \ldots, P_k\}$ is a set of projects, we write $\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)$ for the total cost of the projects in $T$.
-Suppose that a group of $t$ voters all approve the projects in the set $T$, but some of the voters also approve some other projects not in $T$.
-Assume that $\text{cost}(T)\leqslant t/n \cdot B$ (so that the group of voters can "afford" all the projects in $T$ using only the budget shares of the members of the group).
-Then, the Method of Equal Shares guarantees that at least one of the $t$ voters will be sufficiently represented in the outcome $W$: this means that there exists some member $i$ of the group (who voted for the set of projects $A_i$ (including all the projects in $T$, so $T \subseteq A_i$)) with
+Rozważmy wybory, w których każdy wyborca wskazuje dowolny zbiór projektów, które popiera. Niech $A_i$ oznacza zbiór projektów popieranych przez $i$-tego wyborcę.
+Dla zbioru projektów $T = \{P_1, P_2, \ldots, P_k\}$ przez $\text{koszt}(T)$ oznaczmy całkowity koszt projektów z $T$, czyli $\text{koszt}(T) = \text{koszt}(P_1) + \text{koszt}(P_2) + \ldots + \text{koszt}(P_k)$.
+Rozważmy grupę $t$ wyborców. Załóżmy, że każdy taki wyborca (nazwijmy go $i$) zagłosował na wszystkie projekty ze zbioru $T$ (czyli $T \subseteq A_i$). Część wyborców mogła do tego zagłosować również na inne projekty spoza zbioru $T$.
+Przyjmijmy, że $\text{koszt}(T)\leqslant t/n \cdot B$ (zatem ta grupa wyborców posiada dostatecznie dużo środków, aby „pozwolić sobie” na zakup projektów z $T$).
+W takim wypadku możemy zagwarantować, że wśród tych $t$ głosujących istnieje taki wyborca $i$ dla którego ilość śródków
+przeznaczonych na projekty, które popiera jest proporcjonalnie duża:
 $$
-\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_i) \qquad \text{for some $P_i \in T$}.
+\text{koszt}(A_i \cap W) \geqslant \text{koszt}(T) - \text{koszt}(P_j) \qquad \text{dla pewnego $P_j \in T$}.
 $$
-In this expression, $A_i \cap W$ stands for the set of projects that are approved by both the voter $i$ that are included in the outcome $W$.
+W powyższym wzorze $W$ oznacza zbiór projektów wybranych przez metodę równych udziałów. Co za tym idzie, $A_i \cap W$ oznacza zbiór wybranych projektów na które zagłosował $i$-ty wyborca.
 
-This property is called "extended justified representation up to one project" in the academic literature. More details can be found in the paper by [Peters et al. (2021)](https://arxiv.org/abs/2008.13276).
+Własność ta w literaturze naukowej nazywana jest „rozszerzoną uzasadnioną reprezentacją”. Więcej szczegółów na ten temat można znaleźć w pracy autorstwa [Petersa, Pierczyńskiego i Skowrona (2021)](https://arxiv.org/abs/2008.13276).
 </details>
 
-## Other basic voting criteria
+## Inne podstawowe własności
 
-There are other basic voting criteria that are not "fairness guarantees" in the senses above, but are still worth mentioning. The following criteria are satisfied by the Method of Equal Shares:
+Metody liczenia głosów możemy również oceniać względem innych kryteriów, które nie zawsze odnoszą się bezpośrednio do proporcjonalności.  Następujące właśności są spełnione przez metodę równych udziałów:
 <!-- * <SemiBold>Unanimity</SemiBold>: If a project is supported by all voters, then it wins (assuming an approval election). -->
 
-* <SemiBold>Polynomial time computability</SemiBold>: The outcome of the Method of Equal Shares can be computed in polynomial time by a simple algorithm. Thus the winning projects can be determined quickly, usually in less than a minute even for elections in large cities.
-* <SemiBold>Independence of clones</SemiBold>: By "cloning" a project, we mean proposing one or more identical copies of a project already on the ballot. We assume that each voter either supports all or none of the clones. Under the Method of Equal Shares, the following holds: if a losing project is cloned, none of the clones win; and if a winning project is cloned, then at least one of the clones wins.
-* <SemiBold>Monotonicity</SemiBold>: If a project wins, and a voter changes their ballot by adding an approval to the winning project, then that project continues to win.
-* <SemiBold>Discount monotonicity</SemiBold>: If a project wins, and its cost is reduced, then it stays winning. If a project loses, and its price is increased, then it stays losing.
-* <SemiBold>Independence to empty ballots</SemiBold>: If we add a voter to the election who approves none of the projects, then the outcome does not change (assuming we complete the method in the usual way).
-* <SemiBold>Extends the D'Hondt method</SemiBold>: The Method of Equal Shares (using standard completion) is a generalization of the <a href="https://en.wikipedia.org/wiki/D%27Hondt_method">D'Hondt method</a> which is used in many countries to elect members of parliament using a proportional party-list system. The D'Hondt method is a special case of the Method of Equal Shares where the "projects" are the candidates for parliament, the cost of each "project" is equal to 1, the budget equals the available number of seats, and each voter approves all the members of exactly one party.
+* <SemiBold>Obliczalność w czasie wielomianowym</SemiBold>: Metodę równych udziałów możemy obliczać w czasie wielomianowym używając stosunkowo prostego algorytmu.
+  Dzięki temu możemy szybko obliczać zwycięskie projekty, nawet dla dużych miast. Czas trwania takich obliczeń wynosi zwykle poniżej minuty.
+* <SemiBold>Odporność na klonowanie</SemiBold>: Przez „klonowanie” rozumiemy zgłoszenie jednej lub kilku kopii uprzednio zgłoszonego projektu.
+Zakładamy, że każdy wyborca albo głosuje na wszystkie klony, albo na żaden z nich. Metoda równych udziałów ma następującą własność: jeśli przegrywający projekt jest sklonowany, żaden z klonów nie zostaje wybrany;
+jeśli zwycięski projekt jest sklonowany, wtedy ten projekt lub przynajmniej jeden z klonów zostaje wybrany.
+* <SemiBold>Monotoniczność</SemiBold>: Jeśli jakiś wyborca odda dodatkowy głos na jakiś zwycięski projekt, to po takiej zmianie, projekt ten nadal będzie wybrany.
+* <SemiBold>Monotoniczność ze względu na cenę</SemiBold>: Jeśli koszt zwycięskiego projektu zostanie zmniejszony, to po takiej zmianie, projekt ten nadal pozostanie zwycięski. Jeśli koszt przegranego projektu zostanie zwiększony, to projekt ten pozostanie niewybrany.
+* <SemiBold>Odporność na puste głosy</SemiBold>: Jeśli do wyborów dodamy wyborcę, który nie zagłosował na żaden z projektów, to wynik wyborów się nie zmienia 
+(zakładając, standardowy wariant dopełniania metody <a href="../implementation/completion">[więcej na ten temat]</a>).
+* <SemiBold>Jest rozszerzeniem metody D'Hondta</SemiBold>: Metoda równych udziałów (z wykorzystaniem standardowego dopełniania <a href="../implementation/completion">[więcej na ten temat]</a>) jest uogólnieniem <a href="https://pl.wikipedia.org/wiki/Metoda_D’Hondta">metody D'Hondta</a>.
+Metoda D'Hondta jest proporcjonalną metodą podziału miejsc w parlamencie, która jest stosowana w wielu krajach. Z każdej instancji wyborów parlamentarnych możemy skonstruować instancję budżetu obywatelskiego w następujący sposób:
+utożsamiamy kandydatów startujących w wyborach parlamentarnych z projektami, zakładamy że koszt każdego takiego projektu/kandydata wynosi 1, że budżet jest równy liczbie miejsc w parlamencie i 
+że każdy wyborca głosuje na wszystkich członków tej partii, którą popiera. Okzauje się, że jeśli zastosujemy metodę równych udziałów do tak skonstruowanej instancji budżetu obywatelskiego, to wynik jej działania
+będzie równoważny wynikowi działania metody D'Hondta dla oryginalnej instancji wyborów parlamentarnych.
 
-Several other criteria are failed, however, including:
+Metoda równych udziałów nie spełnia następujących własności:
 <ul style={{ listStyleType: '"\\2717  "' }}>
-<li>Pareto-optimality</li>
-<li>Budget limit monotonicity (a winning project should stay winning if the available budget is increased)</li>
-<li>Strategyproofness (a voter should not be able to improve the outcome by changing their ballot)</li>
+<li>Optymalność w sensie Pareto</li>
+<li>Monotoniczność względem wielkości budżetu (zwycięski projekt może nie zostać wybrany, jeśli zwiększymy ilość dostępnych środków w budżecie)</li>
+<li>Odporność na strategiczne głosowanie (wyborca nie powinien mieć możliwości uzyskania lepszego wyniku wyborów poprzez głosownie niezgodne ze swoimi prawdziwymi preferencjami). 
+Należy jednak nadmienić, że żaden system liczenia głosów, w tym metoda większościowa, nie jest odporny na strategiczne głosowanie (jest to jeden z fundamentalnych wyników w teorii wyboru społecznego).
+Stosowanie metody równych udziałów, ma jednak pozytywny wpływ na strategiczne głosowanie: zapewnia, że grupa wyborców, która umówi się co do głosowania, będzie miała ograniczony (bo proporcjonalny)
+wpływ na wynik wyborów. W przypadku metody większościowej nawet mała grupa skoordynowanych wyborców może zdecydować o całym budżecie.
+ </li>
 </ul>
