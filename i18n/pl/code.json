@@ -11,7 +11,7 @@
     "description": "used in tooltips of voters in the Sankey diagram to say 'Budget share: [amount]'"
   },
   "sankey.projectLabel.prefix": {
-    "message": "Project",
+    "message": "Projekt",
     "description": "The word 'Project' that will be used in 'Project 1', 'Project 2', etc."
   },
   "sankey.tooltipContributesAmount": {
@@ -26,20 +26,20 @@
     "message": "The city budget is {cityBudget}. It is divided equally between the 8 voters, so each voter gets {voterBudget}."
   },
   "sankey.cityLabel": {
-    "message": "City",
+    "message": "Budżet",
     "description": "Label for the City on the left of the Sankey figure"
   },
   "sankey.projectLabel.leftTextLine1": {
-    "message": "Step 1: The budget is divided equally"
+    "message": "Krok 1: Budżet jest dzielony po równo"
   },
   "sankey.projectLabel.leftTextLine2": {
-    "message": "among the voters"
+    "message": "pomiędzy wyborców"
   },
   "sankey.projectLabel.rightTextLine1": {
-    "message": "Step 2: Projects are funded with the shares"
+    "message": "Krok 2: Projekty są finansowane ze środków"
   },
   "sankey.projectLabel.rightTextLine2": {
-    "message": "of those who voted for them"
+    "message": " wyborców, którzy na nie głosowali"
   },
   "explanation.budgetBars.tooltipBudget": {
     "message": "Budżet:",

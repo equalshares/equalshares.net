@@ -6,19 +6,20 @@ import Sankey from '@site/src/components/Sankey';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.universityLogos}>
-    <p>developed and studied by researchers at universities around the world</p>
+    <p>opracowana i badana przez naukowców z uniwersytetów z całego świata</p>
     <div className={styles.logoList}>
-        <UniversityLogo logo="logo-warsaw3.svg" uniName="University of Warsaw" link={<a href="https://www.mimuw.edu.pl/~ps219737/">Piotr Skowron</a>} />
+        <UniversityLogo logo="logo-warsaw3.svg" uniName="Uniwersytet Warszawski" link={<a href="https://www.mimuw.edu.pl/~ps219737/">Piotr Skowron</a>} />
         <UniversityLogo logo="logo-cnrs.svg" uniName="CNRS, France" link={<a href="http://dominik-peters.de/">Dominik Peters</a>} />
         <UniversityLogo logo="logo-toronto.svg" uniName="University of Toronto" link={<a href="https://www.cs.toronto.edu/~nisarg/index.html">Nisarg Shah</a>} />
-        <UniversityLogo logo="logo-agh.svg" uniName="AGH University of Science and Technology, Kraków" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
+        <UniversityLogo logo="logo-agh.svg" uniName="AGH, Kraków" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
         <UniversityLogo logo="logo-eth.svg" uniName="ETH Zurich" link={<a href="https://democracy.dsi.uzh.ch/member/joshua-yang/">Joshua Yang</a>} />
         <UniversityLogo logo="logo-tu-berlin.svg" uniName="TU Berlin" link={<a href="https://sites.google.com/view/jannikpeters">Jannik Peters</a>} />
+        <UniversityLogo logo="logo-uj.svg" uniName="Uniwersytet Jagielloński" link={<a href="https://media.uj.edu.pl/jaroslaw-flis">Jarosław Flis</a>} />
     </div>
 </section>
 
 <section className={[styles.contentSection, styles.cities2023].join(' ')}>
-  <h2><span>Method of Equal Shares in Cities in 2023</span></h2>
+  <h2><span>Miasta używające metody równych udziałów w 2023 roku</span></h2>
   <div className={styles.columns}>
     <div>
       <a href="https://www.stadtidee.aarau.ch/"><img src={useBaseUrl('/img/aarau.jpg')} width="100" height="100" /></a>
@@ -26,55 +27,52 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
     </div>
     <div>
       <a href="https://www.wieliczka.eu/pl/201129/29767/%E2%80%9Ezielony-milion%E2%80%9D-ekologiczny-budzet-obywatelski.html"><img src={useBaseUrl('/img/wielieczka.jpg')} width="100" height="100" /></a>
-      <a href="https://www.wieliczka.eu/pl/201129/29767/%E2%80%9Ezielony-milion%E2%80%9D-ekologiczny-budzet-obywatelski.html">🇵🇱 Wielieczka "Green Million"</a></div>
+      <a href="https://www.wieliczka.eu/pl/201129/29767/%E2%80%9Ezielony-milion%E2%80%9D-ekologiczny-budzet-obywatelski.html">🇵🇱 Wieliczka "Zielony milion"</a></div>
   </div>
 </section>
 
 <section className={styles.contentSectionFlex}>
   <div className={styles.ballotExplanation}>
     <p>
-        Many cities are using <strong style={{color: 'var(--ifm-color-primary)'}}>Participatory Budgeting</strong> to give residents a say in how public money is spent.
-        The city government sets aside a part of its budget,
-        allows anyone to propose projects, and then holds
-        an election to decide which projects will be funded.
+    <strong style={{color: 'var(--ifm-color-primary)'}}>Budżet obywatelski</strong> pozwala mieszkańcom gmin aktywnie uczestniczyć w decyzjach budżetowych.
+    Gmina przeznacza na ten cel część środków ze swojego budżetu. Każdy mieszkaniec może zgłosić propozycję projektu, a następnie odbywa się głosowanie. Zagłosować może każdy mieszkaniec gminy.
+    W wyniku takiego głosowania wyłaniane są projekty, które zostaną zrealizowane przez gminę.
     </p>
     <p>
-        Voting is a great way to involve many citizens in the budget decision.
-        However, the outcome of the election is not always fair.
-        Because many cities simply choose the projects with the most votes,
-        the budget is often spent on several similar projects that are popular with
-        the same majority group of voters.
+    Głosowanie jest świetnym sposobem na zaangażowanie wielu obywateli w decyzje budżetowe. 
+    Jednak wynik takiego głosowania nie zawsze bywa <strong style={{color: 'var(--ifm-color-primary)'}}>sprawiedliwy</strong>. Dzieje się tak ponieważ wiele miast po prostu wybiera projekty z największą liczbą głosów.
+    Efekt jest taki, że często wybieranych jest kilka podobnych projektów. 
+    Są to projekty, które są popularne wśród tej samej grupy wyborców. Głosy pozostałych wyborców są w efekcie pomijane.
     </p>
     <p>
-        There is a voting system that leads to fairer outcomes, where each voter has an equal influence on the
-        election outcome:
-        <br />
-        The <strong style={{color: 'var(--ifm-color-primary)'}}>Method of Equal Shares</strong>.
+    Istnieje system głosowania, który jest bardziej sprawiedliwy i który prowadzi do bardziej reprezentatywnych wyników. Jest to 
+    <br/> 
+    <strong style={{color: 'var(--ifm-color-primary)'}}>metoda równych udziałów</strong>.
     </p>
   </div>
   <div className={styles.approvalBallotExample}>
-      <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; PB Voting Ballot &mdash;</span>
-      <span>Available budget: <CurrencySymbol/>3 000 000</span>
-      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Vote for up to 8 projects</span>
-      <BallotExampleOption selected>Extension of the Public Library <br /> Cost: <CurrencySymbol/>200 000</BallotExampleOption>
-      <BallotExampleOption>Bicycle Racks on Main Street <br /> Cost: <CurrencySymbol/>70 000</BallotExampleOption>
-      <BallotExampleOption selected>Sports Equipment in the Park <br /> Cost: <CurrencySymbol/>50 000</BallotExampleOption>
-      <BallotExampleOption selected>Additional Public Toilets <br /> Cost: <CurrencySymbol/>600 000</BallotExampleOption>
-      <BallotExampleOption>Free Language Courses <br /> Cost: <CurrencySymbol/>100 000</BallotExampleOption>
-      <BallotExampleOption>Improve Accesibility of Town Hall <br /> Cost: <CurrencySymbol/>800 000</BallotExampleOption>
-      <BallotExampleOption>Renovate Fountain in Market Square <br /> Cost: <CurrencySymbol/>65 000</BallotExampleOption>
+      <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; Karta do głosowania &mdash;</span>
+      <span>Dostępny budżet <CurrencySymbol/>3 000 000</span>
+      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Zagłosuj na co najwyżej 8 projektów</span>
+      <BallotExampleOption selected>Rozbudowa publicznej biblioteki <br /> Koszt: <CurrencySymbol/>200 000</BallotExampleOption>
+      <BallotExampleOption>Stojaki rowerowe wzdłuż głównych ulic <br /> Koszt: <CurrencySymbol/>70 000</BallotExampleOption>
+      <BallotExampleOption selected>Sprzęt do ćwiczeń w parku <br /> Koszt: <CurrencySymbol/>50 000</BallotExampleOption>
+      <BallotExampleOption selected>Dodatkowe publiczne toalety <br /> Koszt: <CurrencySymbol/>600 000</BallotExampleOption>
+      <BallotExampleOption>Darmowy kurs języka obcego <br /> Koszt: <CurrencySymbol/>100 000</BallotExampleOption>
+      <BallotExampleOption>Udogodnienia w Urzędzie Miasta dla osób z niepełnosprawnościami  <br /> Koszt: <CurrencySymbol/>800 000</BallotExampleOption>
+      <BallotExampleOption>Remont fontanny na rynku <br /> Koszt: <CurrencySymbol/>65 000</BallotExampleOption>
   </div>
 </section>
 
 <section className={styles.contentSection}>
-  <h2>The Main Idea</h2>
+  <h2>Główna idea</h2>
   <p>
-      The basic idea of the Method of Equal Shares is that each voter is assigned an equal part of the budget.
-      This part of the budget can only be used to fund projects that the voter has voted for.
-      The method goes through all project proposals, beginning with the projects with the highest number of
-      votes.
-      It selects a project if it can be funded using the budget shares of those who voted for the project.
-      The method divides the cost of a project equally among its supporters.
+    Główna idea stojąca za metodą równych udziałów jest następująca. W ramach obliczania zwycięskich projektów (dzieje się to wszystko automatycznie i wirtualnie, bez angażowania wyborców)
+    dostępny budżet jest rozdzielany po równo pomiędzy głosujących. Każdy wyborca dysponuje więc na początku taką samą umowną kwotą.
+    Następnie po kolei rozważamy projekty zaczynając od tych, które uzyskały najwięcej głosów. Projekt zostaje wybrany, jeżeli wyborcy, któzy zagłosowali na ten projekt dysponują taką kwotą, która pozwala pokryć jego koszt.
+    Jeżeli projekt zostaje wybrany, to jego koszt dzielony jest po równo pomiędzy jego zwolenników.  Można więc sobie wyobrazić, że zwolennicy projektu „zrzucają się” na niego i zostają z mniejszą ilością środków.
+    W ramach kolejnych zakupów niektórzy wyborcy stopniowo tracą swoje umowne środki, aż w końcu nie mają ich wystarczająco aby brać udział w kolejnych zrzutkach. 
+    W ten sposób głosy pozostałych wyborców, tych którzy nie mieli jeszcze wpływu na decyzje budżetowe, zaczynają być stopniowo brane pod uwagę.
   </p>
   <div className={styles.sankeyImage}>
       <div className={styles.sankeyContainer}>
@@ -82,38 +80,37 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
       </div>
   </div>
   <p>
-      From the perspective of a voter, the voting experience is unchanged: they just need to fill out a ballot
-      and select which projects they want to vote for. The Method of Equal Shares is then computed
-      by the city (using one of the open-source implementations of the rule), thus making sure that the budget is spent fairly.
+    Z punktu widzenia wyborcy nic się nie zmienia: wyborca jedynie musi zagłosować na te projekty, które popiera. 
+    Wynik działania metody równych udziałów możemy obliczyć na komputerze, przy użyciu jednego z programów o otwartym kodzie źródłowym.
+    
   </p>
 </section>
 
 <section className={styles.contentSection}>
-  <h2>What to Find on This Website</h2>
+  <h2>Co można znaleźć na tej stronie</h2>
   <div className={styles.columns}>
     <div>
       <Link to="explanation"><img src={useBaseUrl('/img/fund.svg')}/></Link>
-      <Link to="explanation"><strong>Explanation</strong></Link>
-      <Link to="explanation"><span>A detailed explanation, with examples, of how the Method of Equal Shares works.</span></Link>
+      <Link to="explanation"><strong>Wyjaśnienie</strong></Link>
+      <Link to="explanation"><span>Szczegółowe wyjaśnienie, z przykładami, jak działa metoda równych udziałów.</span></Link>
     </div>
     <div>
       <Link to="benefits"><img src={useBaseUrl('/img/growth.svg')}/></Link>
-      <Link to="benefits"><strong>Benefits</strong></Link>
-      <Link to="benefits"><span>Arguments that the Method of Equal Shares leads to better outcomes than other rules.</span></Link>
+      <Link to="benefits"><strong>Zalety</strong></Link>
+      <Link to="benefits"><span>Analiza korzyści płynących z używania metoda równych udziałów.</span></Link>
     </div>
     <div>
       <Link to="implementation"><img src={useBaseUrl('/img/clipboard.svg')}/></Link>
-      <Link to="implementation"><strong>Implementation</strong></Link>
-      <Link to="implementation"><span>Details and advice on how to implement an election using the Method of Equal Shares.</span></Link>
+      <Link to="implementation"><strong>Wdrożenie</strong></Link>
+      <Link to="implementation"><span>Szczegóły i porady dotyczące wdrażania metody równych udziałów.</span></Link>
     </div>
   </div>
 </section>
 
 <section className={styles.contentSection}>
-  <h2>About This Website</h2>
+  <h2>O tej stronie</h2>
   <p style={{ fontSize: '1.2em' }}>
-      This website was constructed and is maintained by Dominik Peters (CNRS, Université Paris Dauphine-PSL).
-      Its purpose is to collect resources about the Method of Equal Shares and to provide an explanation of the method to interested members of the public,
-      to city officials, and to researchers.
+  Polska wersja strony jest utrzymywana przez Piotra Skowrona (Uniwersytet Warszawski) i Dominika Petersa (CNRS, Université Paris Dauphine-PSL).
+  Jej celem jest udostępnienie wiedzy na temat metody równych udziałów zainteresowanym obywatelom, urzędnikom i naukowcom.
   </p>
 </section>
