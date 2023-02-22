@@ -36,6 +36,13 @@
   color: #fff;
 }
 
+.sideInfo .keybenefits::after {
+  content: ' —';
+}
+.sideInfo .keybenefits::before {
+  content: '— ';
+}
+
 .sideInfo p {
   margin: 0;
   padding-top: 0.5em;
