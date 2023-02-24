@@ -1,168 +1,177 @@
 ---
 sidebar_position: 2
-title: Input formats
+title: Rodzaje głosów
 ---
 
 import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
 
-# Input formats: How should voters express their preferences?
+# Rodzaje głosów: jak powinna wyglądać karta do głosowania?
 
-An important part of deciding on a voting system for participatory budgeting is the choice of **input format**.
-The input format refers to the way the voting ballot is designed, and how voters are allowed to express their preferences.
-There are several different input formats in common use by cities:
-* **Approval voting** (for example, voters can choose up to 10 projects). We recommend this input format. [[more]](#approval-voting)
-* **Distributing points** (for example, voters can distribute 10 points between projects, being allowed to give several points to the same project). We recommend this input format. [[more]](#distributing-points)
-* **Knapsack voting** (voters can choose as many projects as they like, as long as the total cost of the chosen projects does not exceed the budget limit). We do not recommend this input format. [[more]](#knapsack-voting)
-* **Ranked voting** (for example, voters can rank 3 projects in order of preference). We do not recommend this input format. [[more]](#ranked-voting)
+Istotnym elementem systemu głosowania dla budżetu obywatelskiego jest **rodzaj głosów** za pomocą których wyborcy wyrażają preferencje.
+Rodzaj głosów mówi o tym jak zaprojektowana jest karta do głosowania.
+Istnieje kilka rodzajów głosów, które są powszechnie używane przez miasta:
+* **Głosowanie pzez aprobaty** (przykładowo, wyborca może zagłosować na co najwyżej 10 projektów). Ten rodzaj głosowania jest przez nas rekomendowany. [[więcej]](#approval-voting)
+* **Głosowanie w skali** (przykładowo, wyborca ma 10 punktów które może dowolnie porozdzielać pomiędzy projekty; w szczególności może przyznać kilka punktów jednemu projektowi). Ten rodzaj głosowania jest również przez nas rekomendowany. [[more]](#distributing-points)
+* **Głosowanie z limitem budżetu** (wyborcy mogą zagłosować na dowolną liczbę projektów, o ile łączny koszt tych projektów nie przekracza dostępnego budżetu). Ten rodzaj głosowania nie jest przez nas rekomendowany. [[więcej]](#knapsack-voting)
+* **Lista rankingowa projektów** (na przykład, głosujący mogą uszeregować 3 projekty w kolejności od najbardziej do najmniej preferowanego). Ten rodzaj głosowania nie jest przez nas rekomendowany. [[więcej]](#ranked-voting)
 
-The Method of Equal Shares is compatible with all of these input formats, so cities can choose the input format that best suits their needs.
-In the following, we discuss the advantages and disadvantages of each input format.
+Metoda równych udziałów jest kompatybilna ze wszystkimi tymi rodzajami głosów, zatem miasta mogą wybrać ten rodzaj, który najlepiej odpowiada ich potrzebom.
+W dalszej części omawiamy zalety i wady każdego z tych rodzajów głosowania.
 
-We **recommend using approval voting**, because it is the most common input format for participatory budgeting, and it is easy to understand.
-Distributing points is a good alternative that allows voters to express more detailed preferences.
+**Rekomendujemy głosowanie przez aprobaty**, ponieważ jest to najbardziej powszechny rodzaj głosowania dla budżetów obywatelskich, bardzo łatwo go zrozumieć i łatwo oddawać głosy.
+Głosowanie w skali jest dobrą alternatywą, która pozwala wyborcom na wyrażanie swoich preferencji w sposób bardziej precyzyjny.
 
 :::tip
 
-Wikipedia has a [list of cities using participatory budgeting](https://en.wikipedia.org/wiki/Draft:List_of_participatory_budgeting_votes) which mentions the input format used in each case.
+Na Wikipedii dostępna jest [lista miast przeprowadzających wybory w ramach budżetu obywatelskiego](https://en.wikipedia.org/wiki/Draft:List_of_participatory_budgeting_votes). Lista ta zawiera również rodzaje głosów, które są używane w poszczególnych miastach.
 
 :::
 
-## Approval voting (recommended) {#approval-voting}
+## Głosowanie przez aprobaty (rekomendowane) {#approval-voting}
 
-In approval voting, voters can choose a certain number of projects that they "approve" (vote for).
-This is the most common input format for Participatory Budgeting.
+W głosowaniu przez aprobaty wyborca po prostu wskazuje określoną liczbę projektów, które popiera (aprobuje).
+Jest to najczęściej spotykany rodzaj głosowania w budżecie obywatelskim.
 
-* Advantage: this input format is easy to understand and easy to use.
-* Advantage: the Method of Equal Shares is particularly easy to explain to voters when using approval voting.
+* Zaleta: ten rodzaj głosowania jest łatwy do zrozumienia; oddawanie głosów jest proste i wygodne.
+* Zaleta: metodę równych udziałów najłatwiej jest wyjaśnić właśnie dla głosowania przez aprobaty.
 
-### Maximum number of approvals
+### Maksymalna liczba projektów, na które może zagłosować wyborca
 
-Most cities impose a maximum number of approvals.
+Większość miast narzuca limit na maksymalną liczbę projektów, na które wyborca może zagłosować.
 
-* Up to **15** approvals: Warsaw (districts, since 2020)
-* Up to **10** approvals: Warsaw (city-wide projects, since 2020), Lyon (2022)
-* Up to **5** approvals: Warsaw (2015), Łódź (2017-21), Cambridge MA (2016&ndash;21), New York City (2015&ndash;19), Montreal (2021), Paris (2015&ndash;17)
-* Up to **4** approvals: Paris (2018&ndash;19)
-* Up to **3** approvals: Toulouse (2022), Milan (2018), Rome (2019), Gdynia (2020&ndash;21)
+* Maksymalnie **15** projektów: Warszawa (projektyogólnomiejskie, od 2020)
+* Maksymalnie **10** projektów: Warszawa (projekty dzielnicowe, od 2020), Lyon (2022)
+* Maksymalnie **5** projektów: Warszawa (2015), Łódź (2017-21), Cambridge MA (2016&ndash;21), Nowy Jork (2015&ndash;19), Montreal (2021), Paryż (2015&ndash;17)
+* Maksymalnie **4** projekty: Paryż (2018&ndash;19)
+* Maksymalnie **3** projekty: Tuluza (2022), Mediolan (2018), Rzym (2019), Gdynia (2020&ndash;21)
 
-We recommend a generous maximum to allow voters to express their entire preference.
+Zalecamy wyższy limit, aby wyborcy, którzy popierają wiele projektów mogli w pełni wyrazić swoje preferencje.
 
 :::note
 
-Another possibility to consider is to not impose *any* maximum number of votes. This has several advantages:
-* Voters who like many projects can support all of them.
-* When there is a maximum, some voters will feel pressured to use every available vote; without a maximum this is avoided.
-* Note that due to the design of the Method of Equal Shares, voters are not advantaged by voting for few or for many projects, since every voter gets to control an equal share of the budget.
+Inną możliwością jest to, aby nie narzucać *żadnego* ograniczenia na maksymalną liczbę projektów, na które wyborca może zagłosować. Ma to kilka zalet:
+* Wyborcy, którzy popierają wiele projektów, mogą zagłosować na wszystkie z nich.
+* Gdy wprowadzamy odgórny limit, niektórzy wyborcy mogą czuć się zmuszeni do wykorzystania każdego dostępnego głosu; bez limitu można tego uniknąć.
+* Zauważmy, że ze względu na konstrukcję metody równych udziałów, wyborcy nie są uprzywilejowani gdy głosują na więcej bądź mniej projektów. Każdy wyborca otrzymuje tę samą ilość umownych środków bez względu na to na ile projektów głosuje.
 
 
 :::
 
-### Minimum number of approvals
+### Minimalna liczba projektów, na które wyborca może zagłosować
 
-Some cities also impose a minimum number of approvals, including Lausanne (in 2022) and Toulouse (in 2019) who each required voters to vote for at least 3 projects.
+Niektóre miasta wprowadzają również oddolne ograniczenie na to na ile co najmniej projektów wyborca musi zagłosować aby jego głos był ważny. 
+Przykładowo, w Lozannie (w 2022) i w Tuluzie (w 2019) każdy wyborca był zobowiązany aby zagłosować na co najmniej trzy projekty.
 
-An advantage of imposing a minimum is that voters will be encouraged to engage with the entire list of projects. Some voters may have come to vote for only one project they've heard about, but with a minimum they need to look at the other projects as well. In addition, if a voter votes for several projects, the Method of Equal Shares has a better opportunity to satisfy the voter if their favorite project is not chosen.
+Zaletą takiego oddolnego ograniczenia jest to, że wyborcy będą poniekąd zmuszeni aby przejrzeć całą listę projektów.
+Niektórzy wyborcy mogli chcieć zagłosować tylko na jeden projekt, o którym słyszeli. Tacy wyborcy aby zagłosować będą musieli przyjrzeć się również innym projektom.
+Ponadto, gdy wyborca głosuje na kilka projektów, metoda równych udziałów ma większą szansę aby uwzględnić jego preferencje, zwłaszcza jeżeli jego ulubiony projekt nie zostanie wybrany.
 
-A disadvantage of imposing a minimum is that there may be voters who legitimately want to vote for just 1 project, and it could be frustrating for them to be forced to vote for projects that they do not wish to support. This is less likely to be a problem when there is a large variety of proposals.
+Wadą takiego rozwiązania jest to, że dla niektórych wyborców (np. takich, którzy popierają tylko jeden ze zgłoszonych projektów) może być frustrujące, że są zmuszani do głosowania na projekty, których nie chcą popierać.
 
-## Distributing points (recommended) {#distributing-points}
+## Głosowanie w skali (rekomendowane) {#distributing-points}
 
-For distributing points, each voter is given a certain number of *points* (for example, 10 points), and can assign them to projects as they wish.
-For example, they can give all 10 points to a single project, or they can give 1 point each to 10 different projects, or any other combination.
-They can also, for example, give 1 point each to 6 projects, and 2 points each to 2 other projects.
+Głosowanie w skali polega na tym, że wyborcy mogą przyznawać projektom punkty. Wyborca może przyznać więcej punktów tym projektom, które silniej popiera.
+Istnieją dwie główne odmiany głosowania w skali. Różnią się tym, czy wprowadzamy ograniczenie na całkowitą liczbę punktów, które wyborca może przyznać popieranym projektom.
 
-This system is sometimes also known as [cumulative voting](https://en.wikipedia.org/wiki/Cumulative_voting). It is used by several cities:
+### Ustalona liczba punktów do podziału
 
-* Częstochowa: distribute **10 points**
-* Toulouse (2019): distribute **7 points**, with each project getting at most 3 points
-* Strasbourg (2019, 2021): distribute **5 points**
-* Gdańsk (2016&ndash;22): distribute **5 points**
+W tym przypadku zakładamy, że wyborca ma określoną liczbę *punktów* (na przykład 10 punktów) które może rozdzielić na projekty.
+Wyborca może np. przyznać wszystkie 10 punktów jednemu projektowi, albo przyznać po 1 punkcie 10 różnym projektom; może też wybrać dowolną inną kombinację, np.
+przyznać po 1 punkcie 6 projektom, a po 2 punkty 2 innym projektom.
 
-An advantage of this system is that voters have a lot of flexibility to express their preferences.
-Voters who feel strongly about some projects can give them a lot of points.
-At the same time, voters who like many different projects can give them each a small number of points.
+Ten wariant głosowania najczęściej bywa nazywany [głosowaniem kumulatywnym](https://en.wikipedia.org/wiki/Cumulative_voting) i jest on używany przez kilka miast:
 
-:::tip Advice
+* Częstochowa: każdy wyborca rozdziela **10 punktów**
+* Tuluza (2019): wyborca rozdziela **7 punktów**, ale jednemu projektowi może przyznać co najwyżej 3 punkty.
+* Strasbourg (2019, 2021): wyborca rozdziela **5 punktów**
+* Gdańsk (2016&ndash;22): wyborca rozdziela **5 punktów**
 
-Voters should be discouraged from placing all their points on a single project, 
-because if this project does not win then the vote has no influence.
+Zaletą tego rodzaju głosowania jest to, że wyborcy mają dużą swobodę w wyrażaniu swoich preferencji.
+Wyborcy, którzy silnie popierają pewne konkretne projekty mogą przyznać im większą liczbę punktów.
+Wyborcy, którym podoba się wiele zgłoszonych projektów, mogą przyznać każdemu z nich po jednym punkcie.
+
+:::tip wskazówka
+
+Rekomendujemy, aby zachęcać wyborców do tego, aby przyznawali punkty kilku projektom (np. wprowadzając odpowiednie limity). Jeśli poprą tylko jeden projekt, a ten projekt nie wygra, to ich głos nie będzie miał żadnego wpływu na wynik wyborów.
 
 :::
 
-## Range voting
+### Dowolna liczba punktów do podziału
 
-[Range voting](https://en.wikipedia.org/wiki/Range_voting) is similar to distributing points, except that there is no upper limit on the number of points that a voter can distribute overall. 
-Instead, there is a limit on the number of points that a voter can distribute to a single project.
-For example, this limit could be 5 points; then voters can decide for each project whether to give it 0, 1, 2, 3, 4, or 5 points.
-This is similar to the familiar 5-star rating system on Amazon or Google Maps.
+Alternatywnie, możemy nie wprowadzać limitu na to ile sumarycznie punktów wyborca może przyznać projektom. W tym wypadku wyborca może przyznać każdemu projektowi dowolną liczbę punktów z ustalonego zakresu. 
+Wtedy mówimy o [głosowaniu punktowym](https://en.wikipedia.org/wiki/Range_voting). 
+Przykładowo, wyborca może przyznać każdemu projektowi od 0 do 5 punktów.
+Jest to podobne do 5-gwiazdkowego systemu oceny używanego w takich serwisach jak Amazon lub Google Maps.
 
-The Method of Equal Shares works well with range voting, in the same way that it works for distributing points. Both range voting and distributing points are good input formats.
+Metoda równych udziałów jest kompatybilna zarówno z głosowaniem punktowym jak i z głosowaniem kumulatywnym. 
 
-Paris (2021&ndash;23) uses a version of range voting for its participatory budget, where voters may rate each project on a 4-point scale.
-However, the overall voting system is not based on range voting, because Paris uses the ["majority judgment" voting method](../benefits/comparisons#majority-judgment).
+Głosowanie punktowe, w czterostopniowej skali, jest np. używane w Paryżu (2021&ndash;23).
 
-## Knapsack voting
+## Głosowanie z limitem budżetu
 
-Knapsack voting is similar to approval voting. Instead of imposing a maximum number of approvals, voters are allowed to approve as many projects as they like, as long as the selected projects do not exceed the budget limit.
-This is used by a number of cities, notably Madrid and Barcelona. Knapsack voting is the default input format of the `decidim` [voting platform](voting-platforms).
-An advantage of knapsack voting is that voters will be better aware of the budget limit.
+Głosowanie z limitem budżetu jest podobne do głosowania przez aprobaty. 
+Zamiast limitu na maksymalną liczbę projektów na którą wyborca może zagłosować, wprowadzamy limit na całkowity koszt projektów na które wyborca może zagłosować.
+Jest to rozwiązanie stosowane przez wiele miast, w szczególności Madryt i Barcelonę. Głosowanie z limitem budżetu jest domyślnym rodzajem głosowania używanym w systemie [`decidim` ](voting-platforms).
+Zaletą tego systemu jest to, że wyborcy zwracają większą uwagę na koszty projektów.
 
-:::caution Not recommended
-We **do not recommend** knapsack voting for participatory budgeting. 
-Knapsack voting runs into trouble when:
-* there are many cheap projects, because voters need to select a large number of projects to fill the budget, which is a large workload.
-* there are some very expensive projects, because voters might not be able to vote for all projects that they like. This may lead to worse election outcomes.
+:::caution nie rekomendujemy
+**Nie rekomendujemy** głosowania z limitem budżetu, z następujących powodów:
+<ul>
+<li>Gdy zgłoszonych jest wiele tanich projektów, wyborcy mogą czuć się zobligowani aby zagłosować na wiele z nich (tak aby wykorzystać limit budżetu), co wymaga sporego wysiłku.</li>
+<li>Jeżeli niektóre zgłoszone projekty są bardzo drogie, wyborcy mogą nie być w stanie głosować na wszystkie projekty, które popierają.</li>
+</ul>
 :::
 
-However, the Method of Equal Shares <SemiBold>is compatible with knapsack voting</SemiBold>, and works the same as with approval voting.
+Warto jednak zaznaczyć, że metoda równych udziałów jest również <SemiBold>kompatybilna z głosowaniem z limitem budżetu</SemiBold>. W takim przypadku działa tak samo jak dla głosowania przez aprobaty.
 
-## Ranked voting
+## Lista rankingowa projektów
 
-Some cities allow voters to first choose a small number of projects (usually 3&ndash;5), and then let them rank these projects in order of preference.
-For example, Kraków (2019&ndash;21) lets voters choose 3 projects and rank them, where 3 points are assigned to a voter's top choice, 2 points to the second choice, and 1 point to the third choice.
+Niektóre miasta pozwalają wyborcom najpierw wybrać pewną liczbę projektów (zwykle 3&ndash;5), a następnie uszeregować te projekty od najbardziej do najmniej popieranego.
+Przykładowo, w Krakowie (2019&ndash;21) każdy głosujący wybiera 3 projekty i szereguje je: projekt na pierwszej pozycji otrzymuje 3 punkty, a kolejne dwa otrzymują odpowiednio 2 punkty i 1 punkt.
 
-:::caution Not recommended
-We **do not recommend** ranked voting for participatory budgeting. 
-We believe that it is better to let voters distribute points themselves, instead of forcing them to assign points according to a ranking.
-Additionally, the user interface (drag-and-drop) for ranked voting can be difficult to use.
+:::caution nie rekomendujemy
+**Nie rekomendujemy** tego rodzaju głosowania. Uważamy, że lepiej jest pozwolić głosującym samodzielnie rozdzielać punkty, zamiast zmuszać ich do przydzielania punktów zgodnie z rankingiem.
+Dodatkowo, interfejs użytkownika (drag-and-drop) dla głosowania rankingowego jest dla wielu wyborców mniej intuicyjny.
 :::
 
-However, the Method of Equal Shares <SemiBold>is compatible with ranked voting</SemiBold>, because a ranking can be converted to a point distribution. 
-As discussed, Kraków does this by converting a ranking into 3-2-1 points. Brest (2022) uses the same system. Gdynia (2016&ndash;19) used 5-4-3-2-1. New South Wales (2019) used 10-5-3-2-1.
+Niemniej, metoda równych udziałów <SemiBold>jest kompatybilna z głosowaniem rankingowym</SemiBold>. Wynika to z tego, że każdy ranking możemy skonwertować do głosowania w skali.
+Przykładowo, w Krakowie taka konwersja przydziela projektom punkty z zakresu 3-2-1 . Brest (2022) używa takiego samego systemu głosowania jak Kraków.
+Gdynia (2016&ndash;19) używała konwersji do zakresu 5-4-3-2-1 (czyli każdy wyborca przedstawiał tam ranking 5 projektów). 
+Nowa Południowa Walia (2019) używała konwersji do zakresu punktów 10-5-3-2-1.
 
-There is no objective way of deciding how to convert rankings into points.
+Nie ma obiektywnego kryterium mówiącego który system przeliczania rankingów na punkty jest lepszy.
 
-## Voting for a single project
+## Głosowanie tylko na jeden projekt
 
-Some cities ask voters to select just 1 project to vote for. 
+Niektóre miasta stosują system, gdzie wyborca może zagłosować tylko na jeden projekt.
 
-:::caution Not recommended
-We **strongly advise against** restricting votes to just 1 project, because then voters cannot express their preferences in a meaningful way.
-Voters who vote for a losing project have no influence on the election outcome.
-This input format is also biased against smaller projects, since voters are more likely to vote for a large project than for a small project.
+:::caution nie rekomendujemy
+**Stanowczo odradzamy** taki system głosowania, ponieważ w tym systemie wyborcy nie mogą wyrazić swoich preferencji w sposób, który przekazywałby wystarczająco dużo informacji.
+Głosy wielu wyborców nie są brane pod uwagę. Ponadto głosy niejednokrotnie rozpraszają się, co sprawia, że wybierane są projekty cieszące się niskim poparciem.
+Ten format głosowania jest również dyskryminujący w stosunku do mniejszych projektów, ponieważ wyborcy częściej głosują na te większe.
 :::
 
-## Comparison of input formats
+## Porównanie rodzajów głosowania
 
-### Ease of use
+### Łatwość użycia
 
-[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) conducted an empirical study with 1 800 participants (recruited via Amazon Mechanical Turk)
-in order to compare different input formats in a participatory budgeting election. 
-They conclude that "k-approval leads to the best user experience". 
-The following chart shows how long study participants took to complete the voting process for each input format.
+[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) przeprowadzili eksperyment z udziałem 1800 uczestników (rekrutowanych za pośrednictwem Amazon Mechanical Turk).
+Celem eksperymentu było porównanie różnych rodzajów głosowania dla budżetu obywatelskiego. Autorzy stwierdzili, że głosowanie przez aprobaty 
+(w wariancie, w którym prosimy każdego wyborcę o zagłosowanie na konkretną ustaloną liczbę projektów) było najłatwiejsze w użyciu z punktu widzenia uczestników eksperymentu.
+Poniższy wykres pokazuje, ile czasu zajęło uczestnikom badania zagłosowanie dla każdego z rodzajów głosowania.
 
-In this study, approval voting was limited to approving 5 projects, point distribution involved distributing 100 points, and ranking involved ranking all projects (10 or 20).
+W badaniu tym głosowanie przez aprobaty polegało na zagłosowaniu na dokładnie 5 projektów, głosowanie w skali polegało na rozdzieleniu 100 punktów, a głosowanie rankingowe na uszeregowaniu wszystkich projektów (10 lub 20).
 
 <Datawrapper src="//datawrapper.dwcdn.net/ioX3E/" />
 
-[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) also asked voters
-how easy they found the voting task. They report that
-"[distributing points] was rated as quite easy to use despite being one of the more time-intensive formats. 
-[Approval-voting] was rated as significantly easier to use than all other formats except [distributing points]."
-Participants who used approval voting also gave the highest agreement score when answering the question "How well did the input format capture your preferences?".
+[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) zapytali również uczestników badania o to
+jak łatwe było dla nich zagłosowanie. Autorzy wyciągnęli następujące wnioski:
+„[Głosowanie w skali] zostało ocenione jako dość łatwe w użyciu, mimo że zajmowało relatywnie więcej czasu. 
+[Głosowanie przez aprobaty] zostało ocenione jako znacząco łatwiejsze w użyciu niż wszystkie inne rodzaje z wyjątkiem [głosowania w skali]."
+Uczestnicy, którzy głosowali przez aprobaty przyznali również najwyższy wynik zgodności przy odpowiedzi na pytanie „Jak dobrze ten rodzaj głosowania pozwolił wyrazić Twoje preferencje?" 
 
-### Robustness
+### Odporność
 
-Experimental studies and simulation results suggest that the choice of input format has only a small impact on the election outcome.
-Therefore, the choice of input format does not matter very much. 
-This might be a reason to choose the input format that is easiest to use, which is probably approval voting.
+Badania eksperymentalne i wyniki symulacji sugerują, że w przypadku liczenia głosów za pomocą metody równych udziałów wybór konkretnego rodzaju głosowania spośród tych, które rekomendujemy, ma stosunkowo niewielki wpływ na wynik wyborów.
+Dlatego wybór odpowiedniego rodzaju głosowania nie jest kluczowy. 
+Może to być sugerować, że warto wybrać rodzaj głosowania, który jest najłatwiejszy w użyciu, czyli głosowanie przez aprobaty.

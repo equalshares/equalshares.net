@@ -1,121 +1,120 @@
 ---
 sidebar_position: 4
-title: Tie breaking
+title: Remisy
 ---
 
 import { Datawrapper, SemiBold, Currency } from '@site/src/components/MyComponents';
 
-# How to break ties?
+# Jak rozwiązywać remisy?
 
 <div class="summary">
-<b>Summary</b>:
-In rare cases, two or more projects may be tied (for example because they have exactly the same cost and received exactly the same number of votes).
-This occurs with probability less than 1%.
-We describe how to minimize the likelihood of ties when implementating the Method of Equal Shares.
-However, if a tie still occurs, it may need to be broken by election officials by using randomness.
+<b>W skrócie</b>:
+W rzadkich przypadkach, podczas obliczania wyniku wyborów za pomocą metody równych udziałów mogą występować remisy.
+Zdarza się to z prawdopodobieństwem mniejszym niż 1%.
+Opisujemy, jak zminimalizować prawdopodobieństwo wystąpienia remisów przy wdrażaniu metody równych udziałów, tak aby jak najrzadziej korzystać z losowania.
 </div>
 
-## Recommended tie-breaking procedure
+## Rekomendowana procedura rozwiązywania remisów
 
 :::tip
 
-An easy way of definitely avoiding ties is to ensure that no two projects have the same cost (even if costs only differ by <Currency>1</Currency>). Then a tie will never occur if the tie-breaking procedure below is followed.
+Łatwym sposobem na całkowite uniknięcie losowania jest zapewnienie, że wszytkie projekty mają różne koszty (nawet jeśli koszty te różnią się tylko o <Currency>1</Currency>). 
+Wówczas, jeśli zastosujemy poniższą procedurę, to losowanie nigdy nie będzie konieczne.
 
 :::
 
-In the execution of the Method of Equal Shares, a tie can occur when two or more projects have the same effective vote count.
-In isolation, ties are unlikely to occur in large elections (such as those on the city scale).
-But the Method of Equal Shares is usually run several times in a row to determine the best amount of money that the voters get assigned at the start of the method. 
-(See [Completions](completion) for details.)
-This makes it more likely that a tie is encountered, and the tie will need to be broken.
+Przy stosowaniu każdej metody liczenia głosów może wystąpić remis. W przypadku metody równych udziałów remis występuje gdy kilka projektów ma tę samą efektywną liczbę głosów.
+Remisy zdarzają się rzadko, zwłaszcza gdy mamy do czynienia z większymi wyborami (np. wyborami w skali miasta).
+Metoda równych udziałów jest jednak zwykle uruchamiana kilka razy z rzędu, aby ustalić jaką kwotę najlepiej rozdysponować pomiędzy wyborców. 
+(Dzieje się tak w przypadku [standardowego wariantu uzupełniania wyników obliczonych przez metodę równych udziałów](implementation/completion)).
+Częste uruchamianie metody zwiększa prawdopodobieństwo napotkania remisu.
 
-We recommend that when there is a tie between two or more projects, because they have the same effective voting count at some step of the method,
-the tie should be broken by the following procedure:
-* The project with the lowest cost is selected.
-* If two or more of the tied projects have the same lowest cost, then the (lowest-cost) project with the highest initial vote count is selected (that is, the raw vote count of the project before the vote count got reduced in the course of running the Method of Equal Shares).
-* If two or more projects have the lowest cost and the same initial vote count, then the tie is broken by lot, i.e. uniformly at random.
+Zalecamy, aby w przypadku wystąpienia remisu pomiędzy projektami (wynikającego z tego, że mają one taką samą efektywną liczbę głosów) stosować następującą procedurę:
+* Wybierany jest projekt o najniższym koszcie
+* Jeżeli remisujące projekty mają taki sam koszt, wówczas wybieramy ten, który oryginalnie otrzymał więcej głosów.
+* Jeżeli remisujące projekty mają ten sam koszt i otrzymały tyle samo głosów, to stosujemy losowanie.
 
-As a procedural matter, there are two ways to handle the potential use of randomness:
-1. Before computing the election outcome, election officials check whether there are any collections of projects that have the same cost and the same initial vote count. For each such collection of potentially tied projects, they determine a tie-breaking order, for example by drawing names from a hat.
-2. Alternatively, compute the election outcome using an implementation of the Method of Equal Shares that ends with an error message if a tie is encountered. Only in this (unlikely) event, proceed like in Option 1.
+Losowanie może być użyte na dwa sposoby:
+1. Przed obliczeniem wyniku wyborów sprawdzamy, czy istnieją zbiory projektów, które mają taki sam koszt i taką samą liczbę głosów. 
+Dla każdego takiego zbioru potencjalnie remisujących projektów ustalamy za pomocą losowania jak rozstrzygać remis.
+2. Alternatywnie, obliczamy wynik wyborów używając implementacji metody równych udziałów, która w przypadku napotkania remisu kończy się komunikatem o błędzie. Tylko w tym (mało prawdopodobnym) przypadku postępujemy tak jak w punkcie 1.
 
-:::info Technical info
+:::info sugestia
 
-In the unlikely event that randomness must be used, we recommend that
-election officials proceed like in Option 2 described above:
-randomly draw a tie-breaking order, and then run the Method of Equal Shares (including the completion) using that tie-breaking order.
-While using the completion, it is not a good idea to break ties differently for different values of the initial budget.
+W rzadkich przypadkach, kiedy musimy użyć losowania, zalecamy aby postępować zgodnie z punktem 2 powyższej procedury.
 
 :::
 
-## Examples
+## Przykłady
 
-### Example 1
-As an example, suppose that the Method of Equal Shares ends up in the following situation, where three projects remain available for selection:
+### Przykład 1
+Załóżmy, że w ostatniej rundzie metody równych udziałów do wyboru pozostają trzy projekty:
 
-| Project | Cost | Initial vote count | Effective vote count |
+| Projekt | Koszt | liczba głosów | efektywna liczba głosów |
 | --- | --- | --- | --- |
-| Project 1 | <Currency>600</Currency> | 500 | **200** |
-| Project 2 | <Currency>700</Currency> | 300 | **200** |
-| Project 3 | <Currency>100</Currency> | 150 | 100 |
+| Projekt 1 | <Currency>600</Currency> | 500 | **200** |
+| Projekt 2 | <Currency>700</Currency> | 300 | **200** |
+| Projekt 3 | <Currency>100</Currency> | 150 | 100 |
 
-Projects 1 and 2 have the highest effective vote count, so one of them should be selected. 
-Since they have the same effective vote count, we need to break the tie.
-Thus, the method selects **Project 1**, because its cost of <Currency>600</Currency> is lower than the cost of Project 2, which is <Currency>700</Currency>.
+Projekty 1 i 2 mają najwyższą efektywną liczbę głosów, więc jeden z nich powinien zostać wybrany. 
+Metoda wybiera więc **Projekt 1**, ponieważ jego koszt (<Currency>600</Currency>) jest niższy niż koszt Projektu 2 (<Currency>700</Currency>).
 
-### Example 2
+### Przykład 2
 
-Here is a similar example.
+Spójrzmy na jeszcze jeden podobny przykład.
 
-| Project | Cost | Initial vote count | Effective vote count |
+| Projekt | Koszt | liczba głosów | efektywna liczba głosów|
 | --- | --- | --- | --- |
-| Project 1 | <Currency>400</Currency> | 500 | **200** |
-| Project 2 | <Currency>400</Currency> | 300 | **200** |
-| Project 3 | <Currency>400</Currency> | 150 | **200** |
+| Projekt 1 | <Currency>400</Currency> | 500 | **200** |
+| Projekt 2 | <Currency>300</Currency> | 300 | **200** |
+| Projekt 3 | <Currency>300</Currency> | 150 | **200** |
 
-This time, all three projects have the same effective vote count, so again we need to break the tie.
-All three projects have the same cost, so we need to break the tie by looking at the initial vote count.
-Thus, the method selects **Project 1**, because its initial vote count of 500 is higher than the initial vote count of both Project 2 and of Project 3.
+Tym razem wszystkie trzy projekty mają taką samą efektywną liczbę głosów.
+Projekt 1 kosztuje więcej niż pozostałe dwa projekty, więc on nie zostanie wybrany.
+Projekty 2 i 3 kosztują dokładnie tyle samo. Musimy zatem spojrzeć na oryginalną liczbę głosów.
+Wybieramy zatem  **Projekt 2**, ponieważ jego oryginalna liczba głosów (300) jest wyższa.
 
-### Example 3
+### Przykład 3
 
-Here is a final example.
+To ostatni przykład ilustrujący rozstrzyganie remisów.
 
-| Project | Cost | Initial vote count | Effective vote count |
+| Projekt | Koszt | liczba głosów | efektywna liczba głosów |
 | --- | --- | --- | --- |
-| Project 1 | <Currency>400</Currency> | 500 | **200** |
-| Project 2 | <Currency>400</Currency> | 500 | **200** |
+| Projekt 1 | <Currency>400</Currency> | 500 | **200** |
+| Projekt 2 | <Currency>400</Currency> | 500 | **200** |
 
-Projects 1 and 2 have the same effective vote count, so we need to break the tie.
-But they both have the same cost and the same initial vote count.
-Thus, the tie needs to be broken by lot, for example by having the election official flip a coin.
+Projekty 1 i 2 mają taką samą  efektywną i oryginalną liczbę głosów oraz taki sam koszt.
+W tym przypadku musimy wylosować jeden z tych dwóch projektów.
 
-## Likelihood of ties
+## Prawdopodobieństwo występowania remisów
 
-Using simulations based on election data in the [Pabulib library](http://pabulib.org/), it is possible to estimate the likelihood of ties occurring.
-These simulations suggest that it is exceptionally rare (<1%) to need to use randomness to break a tie.
-This is because in almost all cases, any tie can already be broken based on project costs and initial vote counts.
+Analiza danych wyborczych dostępnych w [bibliotece Pabulib](http://pabulib.org/) pozwala oszacować prawdopodobieństwo wystąpienia remisów.
+Okazuje, że wyjątkowo rzadko (<0,1%) zachodzi potrzeba losowania.
+Dzieje się tak dlatego, że prawie we wszystkich przypadkach każdy remis może zostać rozstrzygnięty w oparciu o koszty projektów i oryginalne liczby głosów.
 
-In our simulation, we find that in **only 0.6% of cases**, there exist two projects with the exact same cost and the exact same vote count.
-Further, even in the 0.6% of cases with such similar projects, it is often not necessary to break this tie when computing the Method of Equal Shares
-(for example because the tied projects do not have a large-enough vote count to have a chance of winning).
-Our simulation suggests that in **only 0.15% of cases**, there occurs a tie when computing the Method of Equal Shares that needs to be broken by lot.
+Nasza analiza pokazuje, że **tylko w 0,6% przypadków** występują projekty o dokładnie takim samym koszcie i dokładnie takiej samej liczbie głosów.
+Ponadto, nawet w tych 0,6% przypadków losowanie nie jest konieczne
+(na przykład dlatego, że remisujące projekty nie mają wystarczającej efektywnej liczby głosów).
+Okazuje się, że **tylko w 0,15% przypadków** musimy użyć losowania.
 
-Most of the ties found in our simulation occur in elections in the city of Wrocław, which involve a fairly small number of voters.
-If we exclude the Wrocław elections from our simulation, then the likelihood of ties is even lower:
-two projects with the same cost and the same initial vote count occur in only 0.26% of cases, 
-and a tie during the computation of the Method of Equal Shares occurs in **only 0.09% of cases**.
+Najwięcej remisów występuje w budżetach obywatelskich we Wrocławiu.
+Są to wybory, w których uczestniczy dość mała liczba wyborców, a co więcej wyborcy mogą głosować na tylko jeden projekt z każdej z dwóch kategorii.
+Jeśli wyłączymy Wrocław, to prawdopodobieństwo wystąpienia remisów jest jeszcze mniejsze:
+projekty o dokładnie takim samym koszcie i dokładnie takiej samej liczbie głosów występują tylko w 0,26% przypadków, 
+a losowanie jest konieczne **tylko w 0,09% przypadków**.
 
 <details>
-<summary>Details of the simulation</summary>
+<summary>Szczegóły analizy danych</summary>
 
-The simulation was performed in January 2023 using election data from Pabulib based on PB elections that used approval voting. There are 480 such datasets, coming from the Polish cities of Gdansk, Warsaw, Wrocław, and Zabrze. When excluding the Wrocław elections, the simulation involves 383 datasets. 
+Analizę przeprowadziliśmy w styczniu 2023 roku z wykorzystaniem danych wyborczych z biblioteki Pabulib dla miast, które stosują głosowanie przez aprobaty. Przeanalizowaliśmy łącznie 480 wyborów przeprowadzonych w następujących miastach: Gdańsk, Warszawa, Wrocław i Zabrze. 
+Jeśli nie liczyć Wrocławia, mamy 383 instancje wyborcze. 
 
-In order to get a more precise estimate of the likelihood of a tie occurring, for each dataset, we ran a simulation 100 times.
-In each iteration, we randomly sampled between 30% and 80% of the voters from the dataset (thereby obtaining a random smaller election), and then checked whether the smaller election contained a pair of projects with the same cost and the same initial vote count.
-For those instances where such a pair of projects was found, we then checked whether the Method of Equal Shares (using the standard [completion](completion) method) would encounter a tie when computing the election outcome.
+Aby uzyskać bardziej precyzyjne oszacowanie prawdopodobieństwa wystąpienia remisu, dla każdej instancji wyborczej przeprowadziliśmy symulację 100 razy.
+W każdej iteracji wybieraliśmy od 30% do 80% wyborców (czyli w losowy sposób zmniejszamy wybory), a następnie sprawdzaliśmy, czy istnieje para projektów o takim samym koszcie i takiej samej liczbie głosów.
+Jeśli takie projekty istniały, sprawdzaliśmy, czy metoda równych udziałów (wykorzystująca standardową metodę [uzupełniania](implementation/completion)) napotka remis.
 
-If we only look at the actual, original elections (without randomly sampling a subset of voters), then a pair of projects with the same cost and the same initial vote count occurs in 1.25% of elections, with Equal Shares encountering a tie in 0.21% of elections. Excluding the Wrocław elections, the numbers are 0.5% and 0.0% respectively.
+Jeśli spojrzymy tylko na oryginalne wybory (bez losowego zmniejszania),
+to para projektów o takim samym koszcie i takiej samej liczbie głosów występuje w 1,25% przypadków. Losowanie jest konieczne w 0,21% przypadków. Wyłączając wybory we Wrocławiu, liczby te wynoszą odpowiednio 0,5% i 0,0%.
 
-The simulation code is [available on GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
+Kod źródłowy programów użytych do tej analizy [jest ogólnodostępny na GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
 </details>
