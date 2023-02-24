@@ -1,64 +1,79 @@
 ---
 sidebar_position: 5
-title: Completion
+title: Uzupełnianie metody, czyli pełne wykorzystanie budżetu
 ---
 
 import { SemiBold, Currency, Datawrapper } from '@site/src/components/MyComponents';
 
-# Completion of the Method of Equal Shares
+# Uzupełnianie wyników obliczonych przez metodę równych udziałów
 
 <div class="summary">
-<b>Summary</b>:
-There are a few different variants of the Method of Equal Shares. In its simplest variant, the method may not spend all the available budget (but only about 70% of it). This is usually not desirable, so the method needs to be "completed". We describe the standard way to do this, and discuss some alternatives. Most users should use the standard method, which is also implemented in software packages.
+<b>W skrócie</b>:
+Istnieje kilka wariantów metody równych udziałów. W najprostszym wariancie metoda może nie wydać całego dostępnego budżetu (a jedynie około 70%).
+Zwykle nie jest to pożądane, więc metodę należy „uzupełnić". Opisujemy standardowy sposób, w jaki można to zrobić, i omawiamy kilka alternatywnych rozwiązań. 
+Większość użytkowników powinna korzystać ze standardowej metody usupełniania, która jest również zaimplementowana w pakietach oprogramowania.
 </div>
 
-In the [explanation](../explanation) of the Method of Equal Shares, Step 1 says:
+W [poprzedniej części opisywaliśmy działanie metody równych udziałów](../explanation). Pierwszy krok metody wyglądał następująco:
 
-> The overall budget is divided equally among the voters.
+> Budżet jest dzielony po równo pomiędzy głosujących.
 
-For example, if the overall budget is <Currency>100 000</Currency>, and there are 1000 voters, then each voter would be allocated a share of <Currency>100</Currency>.
-However, when we compute the Method of Equal Shares with this initial division of the budget, we will typically find that the election outcome does not use up the entire budget.
-This is because for some of the voters, the method cannot productively use the budget share assigned to them.
-For example, if a voter only votes for 1 project, and this project does not receive enough votes to win, then the method cannot spend the <Currency>100</Currency> assigned to this voter.
+Przykładowo, jeśli całkowity budżet wynosi <Currency>100 000</Currency>, i mamy 1000 wyborców, to każdemu z nich zostanie przydzielona kwota <Currency>100</Currency>.
+Jeśli obliczymy metodę równych udziałów z takim początkowym podziałem środków, zwykle okaże się, że wybrane projekty nie wykorzystują w pełni dostępnego budżetu.
+Dzieje się tak dlatego, że dla niektórych wyborców metoda nie ma możliwości aby efektywnie wykorzystać przypisane im kwoty.
+Na przykład, jeżeli wyborca głosuje tylko na jeden projekt, a ten projekt nie otrzyma wystarczającej liczby głosów aby wygrać, wtedy metoda nie może wydać kwoty przypisanej temu wyborcy.
 
-In simulations using voting data from Warsaw, the Method of Equal Shares spends approximately 60-70% of the available budget.
-Of course, election officials would usually prefer to spend close to 100% of the budget.
-Therefore, the Method of Equal Shares needs to be **completed**, which means that its outcome needs to be modified so that almost the entire budget is used.
+W symulacjach wykorzystujących dane z głosowania w Warszawie, metoda równych udziałów wydaje około 60-70% dostępnego budżetu.
+Oczywiście najczęściej wolelibyśmy wydać około 100% budżetu.
+Dlatego też metoda równych udziałów wymaga **uzupełnienia**, czyli zmodyfikowania jej w ten sposób, aby wykorzystywała prawie cały budżet.
 
 <details>
-<summary><SemiBold>Chart</SemiBold>: If all voters vote for many projects, completion is not as crucial.</summary>
+<summary><SemiBold>Wykres</SemiBold>: Uzupełnianie może nie być konieczne, jaśli ka żdy z wyborców głosuje na wiele projektów.</summary>
 
-The root cause of the Method of Equal Shares often only spending 60-70% of the available budget is that some voters only vote for a small number of projects.
-We can see this effect by running a simulation based on data from Warsaw (2020-22). 
+Podstawową przyczyną dla której metoda równych udziałów wydaje tylko 60-70% dostępnych środków jest to, że część wyborców głosuje na niewiele projektów.
+Możemy to zaobserwować, przeprowadzając symulacje w oparciu o dane z Warszawy (2020-22). 
 
-In Warsaw, voters are allowed to vote for up to 15 projects in their district.
-We can simulate what would have happened if Warsaw had a minimum number of votes in place by counting only those votes in the dataset that have voted for sufficiently many projects.
-This way, we can simulate a minimum vote count of 2, 3, 4, ..., 15.
-For each minimum, we can check what percent of the budget is used by the Method of Equal Shares when only run on the subset of votes that have voted for at least the minimum number of projects.
+W Warszawie wyborcy mogą głosować na maksymalnie 15 projektów dzielnicowych i na maksymalnie 10 projektów ogólnomiejskich.
+Możemy zasymulować, co by się stało, gdyby w Warszawie obowiązywał limit na to na ile co najmniej projektów każdy wyborca musi zagłosować. Aby przeprowadzić taką symulację, uwzględnimy tylko tych wyborców, którzy zagłosowali na co najmniej określoną liczbę projektów.
+W ten sposób możemy zasymulować sytuację w której limit na minimalną liczbę projektów, które wyborca musi poprzeć, wynosi odpowiednio 2, 3, 4, ..., 15.
+Dla każdej wartości limitu możemy sprawdzić, jaki procent budżetu wykorzystuje metoda równych udziałów.
 
-The results suggest that once voters vote for at least 8 projects, more than 90% of the budget is used.
+Wyniki symulacji sugerują, że gdy wyborcy będą głosować na co najmniej 8 projektów, to ponad 90% dostępnych środków zostanie wykorzystanych.
 <Datawrapper src="//datawrapper.dwcdn.net/bPA91/2/" />
 </details>
 
-## Recommended completion method
+## Rekomendowana metoda uzupełniania
 
-The basic idea is to give voters a larger initial budget share. 
-In the example, instead of giving each voter <Currency>100</Currency>, we could give them <Currency>130</Currency>.
-More precisely, we go through each possible value <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, and so on.
-For each value, we compute the outcome of the Method of Equal Shares.
-We stop in one of two cases:
-* The outcome is _exhaustive_, which means that the budget limit would be exceeded if we added any additional project to the outcome.
-* If we were to run the Method of Equal Shares with the next higher value, then the resulting outcome would exceed the budget limit.
+Główny pomysł polega na tym, aby wyborcom początkowo przyznać wyższą kwotę. Wracając do naszego przykładu: zamiast przyznawać każdemu wyborcy <Currency>100</Currency>
+moglibyśmy mu dać <Currency>140</Currency>. W ten sposób przyznalibyśmy wszystkim wyborcom łącznie 1000 &middot; <Currency>140</Currency> =  <Currency>140 000</Currency>.
+Wtedy wykorzystując 70% przyznanych środków, wybraibyśmy projekty, które łącznie kosztują 0,7 &middot; <Currency>140 000</Currency> = <Currency>98 000</Currency>.
+Oznacza to, że w 98% wykorzystalibyśmy oryginalny budżet. 
 
-Simulation results suggest that the Method of Equal Shares, completed in this way, retains its desirable fairness properties.
+Dokładniej rzecz ujmując, rozważamy każdą możliwą wartość kwoty którą początkowo przyznajemy wyborcom: <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, i tak dalej.
+Dla każdej z tych wartości wartości obliczamy wynik za pomocą metody równych udziałów. Zatrzymujemy się, kiedy zachodzi jeden z dwóch przypadków:
+* Wybrane projekty _wyczerpują budżet_, co oznacza, że przekroczylibyśmy budżet gdybyśmy dodatkowo wybrali jakikolwiek projekt.
+* Gdybyśmy uruchomili metodę równych udziałów z kolejną wyższą wartością, to całkowity koszt wybranych projektów przekroczyłby budżet.
 
-Note that in general, it is not a good sign if we have to increase the voters' initial budget share too much in the completion process. In this case, there will be much more virtual money distributed to voters than is actually spent, and thus some voters will have been left with a lot of unspent virtual money. This means that some voters got to spend much more money than other voters on their preferred projects. This leads to an inequality of the amount of influence that voters have on the outcome.
-A way to avoid having to increase the initial budget share too much is to ask voters to vote for several projects. For example, some cities [require voters to vote for at least 3 projects](input-formats#minimum-number-of-approvals). This helps because a major cause of unspent virtual money is because some voters only vote for a single project, which does not receive enough votes to win. In this case, it is impossible for the Method of Equal Shares to spend the virtual money assigned to the voter.
+Ten sposób uzupełniania zachowuje główną logikę metody równych udziałów. Wyniki analizy danych potwierdzają, że ten wariant zachowuje pożądane własności (w szczególności jest proporcjonalny) i pozwala efektywnie wykorzystywać budżet.
 
-## Other completion methods
+Na poziomie intuicyjnym, lepiej gdybyśmy nie musieli zbyt drastycznie zwiększać kwoty początkowo przypisanej wyborcom.
+Oznaczałoby to bowiem, że wyborcom przydzieliliśmy znacząco więcej środków, niż to co byli w stanie wydać. Zatem niektórzy wyborcy pozostaliby z dużą ilością niewydanych umownych środków, czyli
+niektórzy wydaliby znacznie więcej umownych środków niż pozostali. Prowadziłoby to do pewnych nierówności w zadowoleniu wyborców. <SemiBold>Sposobem na uniknięcie konieczności zbyt dużego zwiększenia początkowej kwoty jest poproszenie wyborców o głosowanie na kilka projektów</SemiBold>.
+Przykładowo, niektóre miasta [wymagają aby wyborcy zagłosowali na co najmniej 3 projekty](input-formats#minimum-number-of-approvals).
+Takie rozwiązanie znacząco by pomogło, ponieważ główną przyczyną dla której wyborcy nie wydają umownych środków jest to, że głosują tylko na jeden projekt,
+który nie otrzymuje wystarczającej liczby głosów aby wygrać. W takim przypadku, metoda równych udziałów nie pozwala na wydanie środków przypisanych do danego wyborcy.
 
-There are also other ways of using the part of the budget that is not spent by the Method of Equal Shares:
+:::info Notatka 
+Powyższa metoda uzupełniania może w dalszym ciągu nie wykorzystywać w pełni budżetu. Analiza danych sugeruje jednak, że to rozwiązanie wykorzystuje średnio ponad 95% dostępnych środków.
+Aby w pełni wykorzystać budżet, można na końcu dodatkowo sfinansować projekty, które otrzymały najwięcej głosów, a które zostały pominięte przez metodę równych udziałów. 
+Jest to rozwiązanie, które rekomendujemy.
+:::
 
-* <SemiBold>Save the money for next year</SemiBold>. The remaining funds can remain unspent and be used to increase the available budget in the following year.
-* <SemiBold>Fund projects with the highest vote counts</SemiBold>. The remaining funds can be used to fund projects with high vote counts that were skipped by the Method of Equal Shares. However, this will lead to an outcome that is less fair.
-* <SemiBold>Spend the money on a flexible back-up solution</SemiBold>. For example, in Chicago, a flexible part of the budget was used to fund street repairs of potholes.
+## Inne metody uzupełniania
+
+Istnieją również inne sposoby wykorzystania tej części budżetu, która nie została wydana za pomocą metodą równych udziałów:
+
+* <SemiBold>Zachowujemy te środki na przyszły rok</SemiBold>. Pozostałe środki mogą zostać wykorzystane w ramach budżetu obywatelskiego w kolejnym roku.
+* <SemiBold> Dodatkowo wybieramy projekty z najwyższą liczbą głosów</SemiBold>. Pozostałe fundusze mogą być wykorzystane aby sfinansować projekty, które otrzymały dużo głosów, a które zostały pominięte przez metodę równych udziałów. 
+Doprowadzi to jednak do wyniku, który będzie mniej sprawiedliwy i mniej proporcjonalny niż w przypadku standardowego uzupełniania. 
+* <SemiBold>Wydajemy pieniądze na elastyczne rozwiązanie rezerwowe</SemiBold>. Przykładowo, w Chicago elastyczną część budżetu przeznaczono na finansowanie napraw wybojów ulicznych.
