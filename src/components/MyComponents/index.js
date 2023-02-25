@@ -19,19 +19,48 @@ export function Datawrapper({src}) {
 }
 
 export function CurrencySymbol() {
-  const { siteConfig } = useDocusaurusContext();
+  const { siteConfig, i18n } = useDocusaurusContext();
   const currencySymbol = siteConfig.customFields.currencySymbol;
-  return (
-    <span>{currencySymbol}</span>
-  );
+  const language = i18n.currentLocale;
+  if (language === 'pl') {
+    return (
+      <span>zł</span>
+    )
+  } else {
+    return (
+      <span>{currencySymbol}</span>
+    );
+  }
 }
 
 export function Currency({ children }) {
-  const { siteConfig } = useDocusaurusContext();
+  const { siteConfig, i18n } = useDocusaurusContext();
   const currencySymbol = siteConfig.customFields.currencySymbol;
-  return (
-    <span>{currencySymbol}{children}</span>
-  );
+  const language = i18n.currentLocale;
+  if (language === 'pl') {
+    return (
+      <span>{children} zł</span>
+    );
+  } else {
+    return (
+      <span>{currencySymbol}{children}</span>
+    );
+  }
+}
+
+export function CurrencyString({ amount=0 }) {
+  const { siteConfig, i18n } = useDocusaurusContext();
+  const currencySymbol = siteConfig.customFields.currencySymbol;
+  const language = i18n.currentLocale;
+  if (language === 'pl') {
+    return (
+      `${amount} zł`
+    );
+  } else {
+    return (
+      `${currencySymbol}${amount}`
+    );
+  }
 }
 
 export function SemiBold({ children }) {
@@ -39,26 +68,42 @@ export function SemiBold({ children }) {
 }
 
 export function BudgetBars({ 
-    budgets, 
+    budgets = [], 
     payments = [], 
-    unaffordable = false, 
+    unaffordable = false,                // if true, greys out the picture
     height = '200px', 
     showBudgets = true, 
     showPayments = true, 
-    showEffectiveVoteCounts = false,
-    effectiveVoteCounts = [],
-    overrideMax = null }) {
+    showEffectiveVoteCounts = false,     // show effective vote counts below the budget bars
+    showTotalEffectiveVoteCount = false, // show the sum of the effective vote counts to the right of the budget bars
+    // effectiveVoteCounts = [],            // the effective vote counts to display
+    overrideMax = null                   // default: the y-axis ranges from 0 to the maximum budget. This value can customize the upper limit (for example to use the initial maximum budget)
+  }) {
+  // decide on upper limit for the y-axis
   let maxBudget = Math.max(...budgets);
   if (overrideMax) {
     maxBudget = overrideMax;
   }
+  // compute effective vote counts
+  let effectiveVoteCounts = [];
+  let totalEffectiveVoteCount = 0;
+  if (showEffectiveVoteCounts) {
+    let maxPayment = Math.max(...payments);
+    for (let payment of payments) {
+      let contribution = payment / maxPayment;
+      effectiveVoteCounts.push(Math.round(100 * contribution) / 100);
+      totalEffectiveVoteCount += contribution;
+    }
+    totalEffectiveVoteCount = Math.round(100 * totalEffectiveVoteCount) / 100;
+  }
+  // build budget bars
   let bars = budgets.map((budget, index) => {
     var barStyle = budget > 0 ? { height: 100 * budget/maxBudget + '%' } : {}; // make a larger hoverable area for height-0 bars
     return (<div className="budget-bar-container" key={index.toString()}>
       {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{budget}</div>}
       <Tippy content={<span>
-          <Translate id="explanation.budgetBars.tooltipBudget" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount.">Budget:</Translate> <CurrencySymbol/>{budget} 
-          {showPayments && <span><br/><Translate id="explanation.budgetBars.tooltipSpending" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount.">Spending:</Translate> <CurrencySymbol/>{payments[index]}</span>} 
+          <Translate id="explanation.budgetBars.tooltipBudget" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount.">Budget:</Translate> <Currency>{budget}</Currency>
+          {showPayments && <span><br/><Translate id="explanation.budgetBars.tooltipSpending" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount.">Spending:</Translate> <Currency>{payments[index]}</Currency></span>} 
         </span>} theme="light">
         <div className={budget > 0 ? 'budget-bar' : 'budget-bar budget-bar-zero'} style={barStyle}>
           {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: 100 * payments[index]/budget + '%' }}>{payments[index]}</div>}
@@ -77,13 +122,13 @@ export function BudgetBars({
   return (
     <div className={'budget-bars' + (unaffordable ? ' budget-bars-unaffordable' : '') + (showEffectiveVoteCounts ? ' budget-bars-with-vote-counts' : '') } style={{ height: height }}>
       <div className="budget-bars-axis">
-        <span><CurrencySymbol/>{maxBudget}</span>
+        <span><Currency>{maxBudget}</Currency></span>
         <div className="budget-bars-axis-line"></div>
-        <span><CurrencySymbol/>{0}</span>
+        <span><Currency>{0}</Currency></span>
       </div>
       {bars}
       <div className="budget-bar-container">
-      { showEffectiveVoteCounts && <div className="vote-count" style={{backgroundColor: "hsl(80, 80%, 88%)"}}><b>20</b></div> }
+      { showTotalEffectiveVoteCount && !isNaN(totalEffectiveVoteCount) && <div className="vote-count" style={{backgroundColor: "hsl(80, 80%, 88%)"}}><b>{totalEffectiveVoteCount}</b></div> }
       </div>
     </div>
   );
@@ -161,8 +206,8 @@ export function WaterFilling () {
   }
   return (
     <div>
-      <BudgetBars budgets={budgets} payments={payments} unaffordable={!spread.affordable} />
-      {spread.affordable ? <span><Translate>Cost:</Translate> <CurrencySymbol/>{cost}</span> : <span><s><Translate>Cost:</Translate> <CurrencySymbol/>{cost}</s> <Translate>(supporting voters do not have enough money)</Translate></span>} <br/>
+      <BudgetBars budgets={budgets} payments={payments} unaffordable={!spread.affordable} showEffectiveVoteCounts={false} showTotalEffectiveVoteCount={false} />
+      {spread.affordable ? <span><Translate>Cost:</Translate> <Currency>{cost}</Currency></span> : <span><s><Translate>Cost:</Translate> <Currency>{cost}</Currency></s> <Translate>(supporting voters do not have enough money)</Translate></span>} <br/>
       <input onInput={handleClick} type="range" min="0" max="100" value={cost} step="5" style={{width:"20em"}} />
     </div>
   );

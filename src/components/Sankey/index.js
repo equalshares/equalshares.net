@@ -9,7 +9,7 @@ import 'tippy.js/themes/light.css';
 
 import styles from './index.module.css';
 
-import { Currency } from '@site/src/components/MyComponents';
+import { Currency, CurrencyString } from '@site/src/components/MyComponents';
 
 import Translate, {translate} from '@docusaurus/Translate';
 
@@ -18,7 +18,7 @@ function TooltippedVoter({name, contributions, children}) {
     const currencySymbol = siteConfig.customFields.currencySymbol;
     return (
         <Tippy delay={[50,50]} content={<div>
-            <b><Translate id="sankey.voterLabel.prefix">Voter</Translate> {name}</b> &middot; <Translate id="sankey.tooltipBudgetShare" description="used in tooltips of voters in the Sankey diagram to say 'Budget share: [amount]'">Budget share</Translate>: {currencySymbol}150
+            <b><Translate id="sankey.voterLabel.prefix">Voter</Translate> {name}</b> &middot; <Translate id="sankey.tooltipBudgetShare" description="used in tooltips of voters in the Sankey diagram to say 'Budget share: [amount]'">Budget share</Translate>: <Currency>150</Currency>
             <ul className={styles.tooltipBallotList}>
                 <li className={'1' in contributions ? styles.selected : ''}><Translate id="sankey.projectLabel.prefix">Project</Translate> 1 {'1' in contributions ? <Translate id="sankey.tooltipContributesAmount" description="used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project" values={{ amount: (<Currency>{contributions[1]}</Currency>) }}>{'(contributes {amount})'}</Translate> : '' }</li>
                 <li className={'2' in contributions ? styles.selected : ''}><Translate id="sankey.projectLabel.prefix">Project</Translate> 2 {'2' in contributions ? <Translate id="sankey.tooltipContributesAmount" description="used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project" values={{ amount: (<Currency>{contributions[2]}</Currency>) }}>{'(contributes {amount})'}</Translate> : '' }</li>
@@ -440,7 +440,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
               <text
                   x="598.381"
@@ -459,7 +459,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
               <text
                   x="598.381"
@@ -478,7 +478,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
               <text
                   x="598.381"
@@ -497,7 +497,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
               <text
                   x="598.381"
@@ -516,7 +516,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
               <text
                   x="598.381"
@@ -535,7 +535,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
               <text
                   x="598.381"
@@ -554,7 +554,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
               <text
                   x="598.381"
@@ -573,7 +573,7 @@ function Sankey() {
                   dy="20"
                   textAnchor="end"
               >
-                  {currencySymbol}150
+                  <CurrencyString amount="150"/>
               </text>
             </g>
 
@@ -595,7 +595,7 @@ function Sankey() {
               dy="20"
               textAnchor="end"
             >
-              {currencySymbol}1200
+              <CurrencyString amount="1200"/>
             </text>
 
 
@@ -616,7 +616,7 @@ function Sankey() {
               dy="20"
               textAnchor="start"
             >
-              {currencySymbol}600
+              <CurrencyString amount="600"/>
             </text>
             <text
               x="1235.121"
@@ -635,7 +635,7 @@ function Sankey() {
               dy="20"
               textAnchor="start"
             >
-              {currencySymbol}250
+              <CurrencyString amount="250"/>
             </text>
             <text
               x="1235.121"
@@ -654,7 +654,7 @@ function Sankey() {
               dy="20"
               textAnchor="start"
             >
-              {currencySymbol}200
+              <CurrencyString amount="200"/>
             </text>
             <text
               x="1235.121"
@@ -673,7 +673,7 @@ function Sankey() {
               dy="20"
               textAnchor="start"
             >
-              {currencySymbol}150
+              <CurrencyString amount="150"/>
             </text>
           </g>
           <g fill="#000" fontFamily="Roboto,sans-serif" fontSize="24" fontWeight="400">
