@@ -1,0 +1,83 @@
+Dominik: this won't be machine read, so just write translations below the english version
+no need to translate lines starting in #
+
+# metrics page
+
+The standard PB voting method leads to an unequal distribution of satisfaction
+
+Warsaw, 2022, all district elections combined
+
+Actual Outcome
+
+Method of Equal Shares
+
+Horizontal axis: Percent of budget spent on approved projects. Vertical axis: Number of voters.
+
+More voters without any approved winning projects
+
+Fewer voters with a moderate amount of spending on approved projects
+
+More voters with a lot of spending on approved projects
+
+
+# categories page
+
+## scatterplot
+
+Difference between vote share and Equal Shares
+
+Difference between vote share and actual outcome
+
+Equal Shares worse than actual outcome
+
+Actual outcome worse than Equal Shares
+
+Equal Shares and the actual outcome perform similarly well.
+
+The actual outcome spends <strong>too much</strong> on <strong>environment</strong> compared to Equal Shares, based on the category's vote share.
+
+The actual outcome spends <strong>too little</strong> on <strong>education</strong> compared to Equal Shares, based on the category's vote share.
+
+public space
+sport
+culture
+urban greenery
+
+## bielany plot
+
+The current PB voting rule distorts the votes in Bielany
+
+public space
+environment
+transit and roads 
+other
+education
+
+Vote Share
+
+
+# input formats
+
+Głosowanie przez aprobaty 
+Głosowanie z limitem budżetu
+Lista rankingowa projektów
+Głosowanie w skali
+
+min (abbreviation for unit minute/minutes)
+
+
+# completion page
+
+Method of Equal Shares spends a larger part of the budget if voters vote for many projects
+
+Warsaw data, 2020-22. For each minimum vote count, this shows what percent of the budget is spent by the Method of Equal Shares (without completion).
+
+no minimum
+
+
+# advice project proposers
+
+Minimum number of votes for a project to be eligible to win
+
+Under the Method of Equal Shares, costlier projects need a higher number of votes to have a chance at winning. In this example, we consider a city with a budget of €100 000, and ask for projects of different cost, what percentage of votes they need to gather at minimum to be theoretically able to win.
+
