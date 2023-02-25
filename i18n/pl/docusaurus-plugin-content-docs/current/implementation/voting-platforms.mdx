@@ -1,42 +1,43 @@
 ---
 sidebar_position: 8
-title: Voting platforms
+title: Platformy do głosowania
 ---
 
 import Acronym from '@site/src/components/Acronym';
 
-# Voting platforms
+# Platformy do głosowania
 
-Here, we discuss some popular software packages for running online <Acronym acronym="PB" tooltip="Participatory Budgeting" /> voting platform, and how they are compatible with the Method of Equal Shares.
+Poniżej omawiamy kilka popularnych pakietów oprogramowania do przeprowadzania internetowego głosowania.
+Pakiety te są kompatybilne z metodą równych udziałów.
 
 :::info
 
-In general, *any* platform that allows for one of the [many input formats](input-formats) compatible with the Method of Equal Shares can be used.
-After the voting stage, the votes need to simply be exported from the platform, and the voting outcome can then be calculated using one of several available free [software packages](computation).
+Ogólnie rzecz ujmując, możemy użyć *każdej* platformy, która wspiera [głosowanie przez aprobaty, głosowanie w skali, lub inny format głosów zgodny z metodą równych udziałów](input-formats).
+Po zakończeniu głosowania, głosy należy po prostu wyeksportować do pliku, a wynik wyborów może być następnie obliczony przy użyciu jednego z darmowych [pakietów oprogramowania](computation).
 
 :::
 
-Feel free to [contact us](../contacts) for advice.
+W razie pytań zachęcamy do [kontaktu](../contacts).
 
 ## Stanford Participatory Budgeting Platform
 
-The [Stanford Participatory Budgeting Platform](https://pbstanford.edu/) is developed by the [Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) at Stanford University.
-The project is open-source and free.
-It has been used by a number of cities in North America and elsewhere.
+[Stanford Participatory Budgeting Platform](https://pbstanford.edu/) jest oprogramowaniem rozwijanym przez [Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) z Uniwersytetu Stanforda.
+Projekt ma charakter open-source i jest darmowy. Jest używany przez wiele miast, zwłaszcza w Ameryce Północnej.
 
-Cities using the Stanford platform can easily combine it with the Method of Equal Shares, by exporting the individual votes and then computing the election results with a separate open source software package.
+Miasta korzystające z platformy Stanford mogą w łatwy używać metody równych udziałów. Wystarczy, że wyeksportują głosy do pliku, a następnie obliczą wyniki wyborów za pomocą jednego z darmowych [pakietów oprogramowania](computation).
 
-It is easy to export voting data from the admin interface of the StanfordPB platform by navigating to
+Dane dotyczące głosowania można łatwo wyeksportować z interfejsu administracyjnego platformy StanfordPB, przechodząc do
 * Analytics > Export to Excel > Individual votes. 
 
-This will produce a `.csv` file that is easy to use by other software.
+Wyprodukuje to plik `.csv`.
 
 <img src={require('@site/static/img/screenshot-standfordpb.png').default} width="600" style={{ boxShadow: '0 0 15px rgba(0,0,0,0.3)' }} />
 
 ## Decidim
 
-[Decidim](https://decidim.org/) is a popular platform software that allows for citizen participation in several different forms, including participatory budgeting.
-It was initially used by Madrid and then Barcelona.
-For PB, it supports knapsack votes (where voters can select as many projects as they like, as long as they fit within the budget limit), and approval voting with a limit on the number of votes.
+[Decidim](https://decidim.org/) jest pupularnym pakietem oprogramowania, który wspiera różną formę partycypacji obywatelskiej, w tym umożliwia przeprowadzanie głosowania w ramach budżetów obywatelskich.
+Platforma ta była początkowo używana przez Madryt, a następnie Barcelonę.
+Platforma ta wspiera [głosowanie z limitem budżetu oraz głosowanie przez aprobaty z ograniczeniami na minimalną i maksymalną liczbę projektów, na które wyborca może zagłosować](input-formats).
 
-Unfortunately, Decidim does not have a simple way to export voting results, so a system administrator would need to directly query the decidim database in order to retrieve the data necessary to compute the election outcome when using the Method of Equal Shares.
+Niestety Decidim nie posiada prostego sposobu na eksport wyników głosowania.
+Administrator systemu musi wysłać bezpośrednie zapytanie do bazy danych Decidim, aby pobrać dane niezbędne do obliczenia wyniku wyborów przy użyciu metody równych udziałów.
