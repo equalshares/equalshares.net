@@ -4,20 +4,28 @@ no need to translate lines starting in #
 # metrics page
 
 The standard PB voting method leads to an unequal distribution of satisfaction
+Używanie standardowej metody powoduje, że rozkład zadowolenia wyborców jest nierównomierny
 
 Warsaw, 2022, all district elections combined
+Warszawa, 2022, projekty dzielnicowe
 
 Actual Outcome
+Faktyczny wynik wyborów
 
 Method of Equal Shares
+Metoda równych udziałów
 
 Horizontal axis: Percent of budget spent on approved projects. Vertical axis: Number of voters.
+Oś pozioma: Zadowolenie wyborców jak procent całkowitego budżetu. Oś pionowa: Liczba wyborców.
 
 More voters without any approved winning projects
+Więcej wyborców którzy nie popierają ani jednego zwycięskiego projektu
 
 Fewer voters with a moderate amount of spending on approved projects
+Mniej wyborców o umiarkowanie wysokim zadowoleniu
 
 More voters with a lot of spending on approved projects
+Więcej wyborców z zadowoleniem znacząco wyższym od średniej
 
 
 # categories page
@@ -25,36 +33,59 @@ More voters with a lot of spending on approved projects
 ## scatterplot
 
 Difference between vote share and Equal Shares
+Różnica pomiędzy procentem głosów oddanych na poszczególne kategorie, a procentem środków przeznaczonych na te kategorie przez metodę równych udziałów
 
 Difference between vote share and actual outcome
+Różnica pomiędzy procentem głosów oddanych na poszczególne kategorie, a procentem środków przeznaczonych na te kategorie przez standardową metodę
 
 Equal Shares worse than actual outcome
+Metoda równych udziałów gorsza niż standardowa metoda
 
 Actual outcome worse than Equal Shares
+Standardowa metoda gorsza niż metoda równych udziałów
 
 Equal Shares and the actual outcome perform similarly well.
+Zarówno metoda równych udziałów jak i standardowa metoda zachowują się dobrze
 
 The actual outcome spends <strong>too much</strong> on <strong>environment</strong> compared to Equal Shares, based on the category's vote share.
+Uwzględniając jak rozkładają się głosy wyborców, standardowa metoda w porównaniu do metody równych udziałów przeznacza <strong>zbyt wiele</strong> środków na <strong>ochronę środowiska</strong>.
 
 The actual outcome spends <strong>too little</strong> on <strong>education</strong> compared to Equal Shares, based on the category's vote share.
+Uwzględniając jak rozkładają się głosy wyborców, standardowa metoda w porównaniu do metody równych udziałów przeznacza <strong>zbyt mało</strong> środków na <strong>edukację</strong>.
 
 public space
+przestrzeń publiczna
+sport
 sport
 culture
+kultura
 urban greenery
+zieleń miejska
 
 ## bielany plot
 
 The current PB voting rule distorts the votes in Bielany
+Obecna metoda liczenia głosów nie odzwierciedla preferencji wyborców w dzielnicy Bielany
 
 public space
+przestrzeń publiczna
 environment
+środowisko
 transit and roads 
+transport i drogi
 other
+pozostałe
 education
+edukacja
 
 Vote Share
+Procent głosów
 
+Method of Equal Shares
+Metoda równych udziałów
+
+Actual Outcome
+Faktyczny wynik
 
 # input formats
 
@@ -62,22 +93,29 @@ Głosowanie przez aprobaty
 Głosowanie z limitem budżetu
 Lista rankingowa projektów
 Głosowanie w skali
+Correct!
 
 min (abbreviation for unit minute/minutes)
+Correct!
 
 
 # completion page
 
 Method of Equal Shares spends a larger part of the budget if voters vote for many projects
+Metoda równych udziałów pełniej wykorzystuje dostępne środki, jeśli wyborcy głosują na wiele projektów
 
 Warsaw data, 2020-22. For each minimum vote count, this shows what percent of the budget is spent by the Method of Equal Shares (without completion).
+Warszawa, dane z lat 2020-22.  Dla każdej minimalnej liczby projektów, na które wyborca musi zagłosować, pokazujemy jaki procent budżetu jest wydawany przez metodę równych udziałów (bez uzupełnienia)
 
 no minimum
+brak minimum
 
 
 # advice project proposers
 
 Minimum number of votes for a project to be eligible to win
+Minimalna liczba głosów, którą projekt powinien uzyskać, aby mógł być wybrany
 
 Under the Method of Equal Shares, costlier projects need a higher number of votes to have a chance at winning. In this example, we consider a city with a budget of €100 000, and ask for projects of different cost, what percentage of votes they need to gather at minimum to be theoretically able to win.
+Gdy używamy metody równych udziałów, droższe projekty aby wygrać muszą zdobyć więcej głosów niż tanie projekty. W tym przykładzie rozważamy miasto z budżetem €100 000. Dla określonego kosztu projektu pytamy, jaki procent głosów taki projekt musiałby zdobyć, aby miał szansę na wygraną.
 
