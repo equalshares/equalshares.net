@@ -18,7 +18,7 @@ export default function Home() {
       <meta name="twitter:description" content="Metoda równych udziałów to bardziej sprawiedliwa metoda liczenia głosów dla budżetów obywatelskich." />
       <meta name="twitter:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:image" content="https://equalshares.net/social/og-main.png" />
-      <meta property="og:title" content="Method of Equal Shares for Participatory Budgeting" />
+      <meta property="og:title" content="Metoda równych udziałów dla budżetu obywatelskiego" />
       <meta property="og:description" content="Metoda równych udziałów to bardziej sprawiedliwa metoda liczenia głosów dla budżetów obywatelskich." />
     </Head>
       <section className={styles.hero}>

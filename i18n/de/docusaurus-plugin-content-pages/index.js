@@ -15,11 +15,11 @@ export default function Home() {
     <Head>
       <title>Methode der gleichen Anteile für Bürgerbudgets</title>
       <meta name="twitter:title" content="Methode der gleichen Anteile für Bürgerbudgets" />
-      <meta name="twitter:description" content="Die Methode der gleichen Anteileist eine fairere Wahlmethode für partizipative Bürgerbudgets." />
+      <meta name="twitter:description" content="Die Methode der gleichen Anteile ist eine fairere Wahlmethode für partizipative Bürgerbudgets." />
       <meta name="twitter:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:title" content="Methode der gleichen Anteile für Bürgerbudgets" />
-      <meta property="og:description" content="Die Methode der gleichen Anteileist eine fairere Wahlmethode für partizipative Bürgerbudgets." />
+      <meta property="og:description" content="Die Methode der gleichen Anteile ist eine fairere Wahlmethode für partizipative Bürgerbudgets." />
     </Head>
       <section className={styles.hero}>
         <div>
