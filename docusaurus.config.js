@@ -155,6 +155,27 @@ const config = {
         crossorigin: 'anonymous',
       },
     ],
+    plugins : [
+      async function faviconInjector(context, options) {
+        return {
+          name: 'favicon-injector', // needed because Safari on iOS doesn't support SVG favicons
+          injectHtmlTags() {
+            return {
+              headTags: [
+                {
+                  tagName: 'link',
+                  attributes: {
+                    rel: 'icon',
+                    href: '/img/favicon.ico',
+                    sizes: 'any',
+                  },
+                },
+              ],
+            };
+          },
+        };
+      }
+    ],
 };
 
 module.exports = config;
