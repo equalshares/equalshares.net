@@ -26,11 +26,15 @@ export function CurrencySymbol() {
     return (
       <span>zł</span>
     )
-  } else {
-    return (
-      <span>{currencySymbol}</span>
-    );
   }
+  if (language === 'de') {
+    return (
+      <span>Fr. </span>
+    )
+  }
+  return (
+    <span>{currencySymbol}</span>
+  );
 }
 
 export function Currency({ children }) {
@@ -41,11 +45,15 @@ export function Currency({ children }) {
     return (
       <span>{children} zł</span>
     );
-  } else {
+  } 
+  if (language === 'de') {
     return (
-      <span>{currencySymbol}{children}</span>
+      <span>Fr. {children}</span>
     );
   }
+  return (
+    <span>{currencySymbol}{children}</span>
+  );
 }
 
 export function CurrencyString({ amount=0 }) {
@@ -56,11 +64,15 @@ export function CurrencyString({ amount=0 }) {
     return (
       `${amount} zł`
     );
-  } else {
+  }
+  if (language === 'de') {
     return (
-      `${currencySymbol}${amount}`
+      `Fr. ${amount}`
     );
   }
+  return (
+    `${currencySymbol}${amount}`
+  );
 }
 
 export function SemiBold({ children }) {
