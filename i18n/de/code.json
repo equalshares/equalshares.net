@@ -325,5 +325,8 @@
   },
   "(supporting voters do not have enough money)": {
     "message": "(zustimmende Wähler haben nicht genug Geld)"
+  },
+  "footer.LastUpdated": {
+    "message": "Letztes Update:"
   }
 }

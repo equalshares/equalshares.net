@@ -139,7 +139,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Website maintained by <a href="https://dominik-peters.de" style="color:hsl(202, 100%, 70%)">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL).`,
+        copyright: `Website maintained by <a href="https://dominik-peters.de" style="color:hsl(202, 100%, 70%)">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL) and <a href="https://www.mimuw.edu.pl/~pskowron/" style="color:hsl(202, 100%, 70%)">Piotr Skowron</a> (University of Warsaw).`,
       },
       prism: {
         theme: lightCodeTheme,

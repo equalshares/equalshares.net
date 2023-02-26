@@ -325,5 +325,8 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tagi",
     "description": "The title of the tag list page"
+  },
+  "footer.LastUpdated": {
+    "message": "Ostatnia aktualizacja:"
   }
 }
