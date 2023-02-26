@@ -163,6 +163,7 @@ iframe[src*="datawrapper"] {
 .budget-bar {
   background-color: hsl(220, 91%, 85%);
   border: 1px solid #888;
+  box-sizing: content-box;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -203,7 +204,7 @@ iframe[src*="datawrapper"] {
 }
 
 .budget-bars-with-vote-counts .budget-bars-axis {
-  margin-bottom: 1.3em;
+  margin-bottom: 20px;
 }
 
 .budget-bars-axis span {
@@ -222,7 +223,7 @@ iframe[src*="datawrapper"] {
 }
 
 .vote-count, .empty-vote-count {
-  margin-top: 0.3em;
+  margin-top: 4px;
   height: 20px;
   min-height: 20px;
   border-radius: 4px;

@@ -71,7 +71,7 @@ export function BudgetBars({
     budgets = [], 
     payments = [], 
     unaffordable = false,                // if true, greys out the picture
-    height = '200px', 
+    height = 200, 
     showBudgets = true, 
     showPayments = true, 
     showEffectiveVoteCounts = false,     // show effective vote counts below the budget bars
@@ -79,6 +79,7 @@ export function BudgetBars({
     // effectiveVoteCounts = [],            // the effective vote counts to display
     overrideMax = null                   // default: the y-axis ranges from 0 to the maximum budget. This value can customize the upper limit (for example to use the initial maximum budget)
   }) {
+  let absoluteHeight = 200 - 2; // account for the 1px border
   // decide on upper limit for the y-axis
   let maxBudget = Math.max(...budgets);
   if (overrideMax) {
@@ -98,7 +99,7 @@ export function BudgetBars({
   }
   // build budget bars
   let bars = budgets.map((budget, index) => {
-    var barStyle = budget > 0 ? { height: 100 * budget/maxBudget + '%' } : {}; // make a larger hoverable area for height-0 bars
+    var barStyle = budget > 0 ? { height: absoluteHeight * budget/maxBudget + 'px' } : {};
     return (<div className="budget-bar-container" key={index.toString()}>
       {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{budget}</div>}
       <Tippy content={<span>
@@ -106,7 +107,7 @@ export function BudgetBars({
           {showPayments && <span><br/><Translate id="explanation.budgetBars.tooltipSpending" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount.">Spending:</Translate> <Currency>{payments[index]}</Currency></span>} 
         </span>} theme="light">
         <div className={budget > 0 ? 'budget-bar' : 'budget-bar budget-bar-zero'} style={barStyle}>
-          {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: 100 * payments[index]/budget + '%' }}>{payments[index]}</div>}
+          {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: absoluteHeight * payments[index]/maxBudget + 'px' }}>{payments[index]}</div>}
         </div>
       </Tippy>
       {
@@ -120,7 +121,9 @@ export function BudgetBars({
     }
   );
   return (
-    <div className={'budget-bars' + (unaffordable ? ' budget-bars-unaffordable' : '') + (showEffectiveVoteCounts ? ' budget-bars-with-vote-counts' : '') } style={{ height: height }}>
+    <div 
+      className={'budget-bars' + (unaffordable ? ' budget-bars-unaffordable' : '') + (showEffectiveVoteCounts ? ' budget-bars-with-vote-counts' : '') } 
+      style={{ height: (height + (showEffectiveVoteCounts ? 24 : 0)) + 'px' }}>
       <div className="budget-bars-axis">
         <span><Currency>{maxBudget}</Currency></span>
         <div className="budget-bars-axis-line"></div>
@@ -206,7 +209,7 @@ export function WaterFilling () {
   }
   return (
     <div>
-      <BudgetBars budgets={budgets} payments={payments} unaffordable={!spread.affordable} showEffectiveVoteCounts={false} showTotalEffectiveVoteCount={false} />
+      <BudgetBars budgets={budgets} payments={payments} unaffordable={!spread.affordable} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
       {spread.affordable ? <span><Translate>Cost:</Translate> <Currency>{cost}</Currency></span> : <span><s><Translate>Cost:</Translate> <Currency>{cost}</Currency></s> <Translate>(supporting voters do not have enough money)</Translate></span>} <br/>
       <input onInput={handleClick} type="range" min="0" max="100" value={cost} step="5" style={{width:"20em"}} />
     </div>
