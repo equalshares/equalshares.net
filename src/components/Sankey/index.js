@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
@@ -9,13 +9,12 @@ import 'tippy.js/themes/light.css';
 
 import styles from './index.module.css';
 
-import { Currency, CurrencyString } from '@site/src/components/CurrencyChoice';
+import { Currency, CurrencyString, CurrencyContext } from '@site/src/components/CurrencyChoice';
 
 import Translate, {translate} from '@docusaurus/Translate';
 
 function TooltippedVoter({name, contributions, children}) {
     const { siteConfig } = useDocusaurusContext();
-    const currencySymbol = siteConfig.customFields.currencySymbol;
     return (
         <Tippy delay={[50,50]} content={<div>
             <b><Translate id="sankey.voterLabel.prefix">Voter</Translate> {name}</b> &middot; <Translate id="sankey.tooltipBudgetShare" description="used in tooltips of voters in the Sankey diagram to say 'Budget share: [amount]'">Budget share</Translate>: <Currency>150</Currency>
@@ -33,7 +32,8 @@ function TooltippedVoter({name, contributions, children}) {
 
 function Sankey() {
   const { siteConfig } = useDocusaurusContext();
-  const currencySymbol = siteConfig.customFields.currencySymbol;
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const currencySymbol = currency;
 
   const [viewport, setViewport] = useState('large');
 
@@ -747,147 +747,156 @@ function Sankey() {
           </TooltippedVoter>
           <g>
             <path d="M55.5 1278.9v15h275v-15h-275z" className="st3"></path>
-            <Tippy content={<span>
-                  Project 1 costs {currencySymbol}<b>600</b>.
-                  This cost is covered equally by the <b>6 voters</b> who voted for Project 1.
-                  Each of these voters contribute {currencySymbol}100
-                  from their budget share.
-              </span>} placement="top" theme="light">
+            <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '1',
+                projectCost: (<b><Currency>600</Currency></b>),
+                numVoters: (<b>6</b>),
+                contributionAmount: (<Currency>100</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="top" theme="light">
             <path d="M55.5 1247.9v146h275v-146h-275z" className="st4"></path>
             </Tippy>
           </g>
           <g>
             <path d="M346.8 1278.9v15h114.6v-15H346.8z" className="st3"></path>
-            <Tippy content={<span>
-                  Project 2 costs {currencySymbol}<b>250</b>.
-                  This cost is covered equally by the <b>5 voters</b> who voted for Project 2.
-                  Each of these voters contribute {currencySymbol}50
-                  from their budget share.
-              </span>} placement="top" theme="light">
+            <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '2',
+                projectCost: (<b><Currency>250</Currency></b>),
+                numVoters: (<b>5</b>),
+                contributionAmount: (<Currency>50</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="top" theme="light">
               <path d="M346.8 1247.9v146h114.6v-146H346.8z" className="st4"></path>
             </Tippy>
           </g>
           <g>
             <path d="M477.6 1278.9v15h91.7v-15h-91.7z" className="st3"></path>
-            <Tippy content={<span>
-                  Project 3 costs {currencySymbol}<b>200</b>.
-                  This cost is covered equally by the <b>4 voters</b> who voted for Project 3.
-                  Each of these voters contribute {currencySymbol}50
-                  from their budget share.
-              </span>} placement="top" theme="light">
+            <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '3',
+                projectCost: (<b><Currency>200</Currency></b>),
+                numVoters: (<b>4</b>),
+                contributionAmount: (<Currency>50</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="top" theme="light">
               <path d="M477.6 1247.9v146h91.7v-146h-91.7z" className="st4"></path>
             </Tippy>
           </g>
           <g>
             <path d="M585.4 1278.9v15h68.8v-15h-68.8z" className="st3"></path>
-            <Tippy content={<span>
-                  Project 4 costs {currencySymbol}<b>150</b>.
-                  This cost is covered equally by the <b>3 voters</b> who voted for Project 4.
-                  Each of these voters contribute {currencySymbol}50
-                  from their budget share.
-              </span>} placement="top" theme="light">
+            <Tippy content={<Translate id="sankey.projectTooltip" description="The tooltip appearing when hovering over a project on the right" values={{
+                projectNumber: '4',
+                projectCost: (<b><Currency>150</Currency></b>),
+                numVoters: (<b>3</b>),
+                contributionAmount: (<Currency>50</Currency>),
+              }}>
+                  {'Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.'}
+              </Translate>} placement="top" theme="light">
               <path d="M585.4 1247.9v146h68.8v-146h-68.8z" className="st4"></path>
             </Tippy>
           </g>
           <g>
             <path d="M70.4 67.9v15h550.1v-15H70.4z" className="st3"></path>
-            <Tippy content={<span>
-                  The city budget is {currencySymbol}<b>1200</b>.<br/>
-                  It is divided equally between the 8 voters,<br/>
-                  so each voter gets {currencySymbol}<b>150</b>.
-              </span>} placement="top" theme="light">
+            <Tippy content={<Translate id="sankey.cityTooltip" values={{
+                cityBudget: (<b><Currency>1200</Currency></b>),
+                voterBudget: (<b><Currency>150</Currency></b>),
+              }}>
+                  {'The city budget is {cityBudget}. It is divided equally between the 8 voters, so each voter gets {voterBudget}.'}
+              </Translate>} placement="top" theme="light">
                 <path d="M70.4 7.9v110h550.1V7.9H70.4z" className="st4"></path>
             </Tippy>
           </g>
           <text className="st5 st6" transform="translate(17.75 631.788)">
-            Voter 1
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 1
           </text>
           <text className="st7 st6" transform="translate(27.413 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
           <text className="st5 st6" transform="translate(100.701 631.788)">
-            Voter 2
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 2
           </text>
           <text className="st7 st6" transform="translate(110.364 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
           <text className="st5 st6" transform="translate(187.654 631.788)">
-            Voter 3
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 3
           </text>
           <text className="st7 st6" transform="translate(197.317 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
           <text className="st5 st6" transform="translate(270.605 631.788)">
-            Voter 4
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 4
           </text>
           <text className="st7 st6" transform="translate(280.269 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
           <text className="st5 st6" transform="translate(354.555 631.788)">
-            Voter 5
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 5
           </text>
           <text className="st7 st6" transform="translate(364.218 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
           <text className="st5 st6" transform="translate(440.508 631.788)">
-            Voter 6
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 6
           </text>
           <text className="st7 st6" transform="translate(450.17 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
           <text className="st5 st6" transform="translate(524.459 631.788)">
-            Voter 7
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 7
           </text>
           <text className="st7 st6" transform="translate(534.122 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
           <text className="st5 st6" transform="translate(609.412 631.788)">
-            Voter 8
+            <Translate id="sankey.voterLabel.prefix">Voter</Translate> 8
           </text>
           <text className="st7 st6" transform="translate(619.075 659.788)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
-          <text className="st5 st6" transform="translate(329.18 28.915)">
-            City
+          <text className="st5 st6" transform="translate(342 28.915)" textAnchor="middle">
+            <Translate id="sankey.cityLabel" description="Label for the City on the left of the Sankey figure">City</Translate>
           </text>
-          <text className="st7 st6" transform="translate(318.185 53.915)">
-            £1200
+          <text className="st7 st6" transform="translate(342 53.915)" textAnchor="middle">
+            <CurrencyString amount="1200"/>
           </text>
           <text className="st5 st6" transform="translate(57.177 1319.877)">
-            Project 1
+            <Translate id="sankey.projectLabel.prefix">Project</Translate> 1
           </text>
           <text className="st7 st6" transform="translate(57.177 1347.877)">
-            £600
+            <CurrencyString amount="600"/>
           </text>
           <text className="st5 st6" transform="translate(348.187 1319.877)">
-            Project 2
+            <Translate id="sankey.projectLabel.prefix">Project</Translate> 2
           </text>
           <text className="st7 st6" transform="translate(348.187 1347.877)">
-            £250
+            <CurrencyString amount="250"/>
           </text>
           <text className="st5 st6" transform="translate(480.52 1319.877)">
-            Project 3
+            <Translate id="sankey.projectLabel.prefix">Project</Translate> 3
           </text>
           <text className="st7 st6" transform="translate(480.52 1347.877)">
-            £200
+            <CurrencyString amount="200"/>
           </text>
           <text className="st5 st6" transform="translate(586.931 1319.877)">
-            Project 4
+            <Translate id="sankey.projectLabel.prefix">Project</Translate> 4
           </text>
           <text className="st7 st6" transform="translate(586.931 1347.877)">
-            £150
+            <CurrencyString amount="150"/>
           </text>
-          <text className="st5 st8" transform="translate(99.612 320.67)">
-            Step 1: The budget is divided equally
+          <text className="st5 st8" transform="translate(340 320.67)" textAnchor="middle">
+            <Translate id="sankey.projectLabel.leftTextLine1">Step 1: The budget is divided equally</Translate>
           </text>
-          <text className="st5 st8" transform="translate(228.013 353.67)">
-            among the voters
+          <text className="st5 st8" transform="translate(340 365)" textAnchor="middle">
+            <Translate id="sankey.projectLabel.leftTextLine2">among the voters</Translate>
           </text>
-          <text className="st5 st8" transform="translate(57.117 993.452)">
-            Step 2: Projects are funded with the shares
+          <text className="st5 st8" transform="translate(340 993.452)" textAnchor="middle">
+            <Translate id="sankey.projectLabel.rightTextLine1">Step 2: Projects are funded with the shares</Translate>
           </text>
-          <text className="st5 st8" transform="translate(156.207 1026.453)">
-            of those who voted for them
+          <text className="st5 st8" transform="translate(340 1038)" textAnchor="middle">
+            <Translate id="sankey.projectLabel.rightTextLine2">of those who voted for them</Translate> 
           </text>
         </svg>
       );
