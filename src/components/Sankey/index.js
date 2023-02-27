@@ -58,9 +58,9 @@ function Sankey() {
       <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="770" viewBox="0 0 1400 770">
         <defs>
         <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#0081cc"/>
-        <stop offset="50%" stop-color="#0089d9"/>
-        <stop offset="100%" stop-color="#0096ed"/>
+        <stop offset="0%" stopColor="#0081cc"/>
+        <stop offset="50%" stopColor="#0089d9"/>
+        <stop offset="100%" stopColor="#0096ed"/>
         </linearGradient>
         </defs>
         <g transform="translate(72.542 38)">
