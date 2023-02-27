@@ -63,10 +63,6 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-.navbar__title {
-  font-size: 1.2em;
-}
-
 .table-of-contents__link:hover, .table-of-contents__link:hover code, .table-of-contents__link--active, .table-of-contents__link--active code {
   font-weight: 500;
 }
@@ -105,6 +101,29 @@ details.proof p:last-child::after {
 
 .footer__bottom {
   font-size: 92%;
+}
+
+/***************
+ * Navbar
+ ***************/
+
+.navbar__title {
+  font-size: 1.2em;
+}
+
+.currency-picker {
+  padding-right: 0;
+}
+
+.currency-btn {
+  padding: 0.4em;
+  margin: 0 0.1em;
+  border-radius: 5px;
+}
+
+.currency-btn:hover,
+.currency-btn-active {
+  background-color: var(--ifm-dropdown-hover-background-color);
 }
 
 /***************
