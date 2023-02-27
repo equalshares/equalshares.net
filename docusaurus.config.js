@@ -93,6 +93,10 @@ const config = {
             label: 'Contacts',
           },
           {
+            type: 'custom-currencyPicker',
+            position: 'right',
+          },
+          {
             type: 'localeDropdown',
             position: 'right',
           },

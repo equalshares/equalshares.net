@@ -1,77 +1,20 @@
 import React from "react";
 import { useState } from "react";
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { useColorMode } from '@docusaurus/theme-common';
+import Translate, {translate} from '@docusaurus/Translate';
+
+import { Currency } from '@site/src/components/CurrencyChoice';
 
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 
 import DWChart from 'react-datawrapper-chart';
-import { useColorMode } from '@docusaurus/theme-common';
 
-import Translate, {translate} from '@docusaurus/Translate';
 
 export function Datawrapper({src}) {
-  const { isDarkTheme } = useColorMode();
   return (
-    <DWChart src={src + (isDarkTheme ? '?dark=true' : '')} />
-  );
-}
-
-export function CurrencySymbol() {
-  const { siteConfig, i18n } = useDocusaurusContext();
-  const currencySymbol = siteConfig.customFields.currencySymbol;
-  const language = i18n.currentLocale;
-  if (language === 'pl') {
-    return (
-      <span>zł</span>
-    )
-  }
-  if (language === 'de') {
-    return (
-      <span>Fr. </span>
-    )
-  }
-  return (
-    <span>{currencySymbol}</span>
-  );
-}
-
-export function Currency({ children }) {
-  const { siteConfig, i18n } = useDocusaurusContext();
-  const currencySymbol = siteConfig.customFields.currencySymbol;
-  const language = i18n.currentLocale;
-  if (language === 'pl') {
-    return (
-      <span>{children} zł</span>
-    );
-  } 
-  if (language === 'de') {
-    return (
-      <span>Fr. {children}</span>
-    );
-  }
-  return (
-    <span>{currencySymbol}{children}</span>
-  );
-}
-
-export function CurrencyString({ amount=0 }) {
-  const { siteConfig, i18n } = useDocusaurusContext();
-  const currencySymbol = siteConfig.customFields.currencySymbol;
-  const language = i18n.currentLocale;
-  if (language === 'pl') {
-    return (
-      `${amount} zł`
-    );
-  }
-  if (language === 'de') {
-    return (
-      `Fr. ${amount}`
-    );
-  }
-  return (
-    `${currencySymbol}${amount}`
+    <DWChart src={src + (useColorMode().colorMode === "dark" ? '?dark=true' : '')} />
   );
 }
 

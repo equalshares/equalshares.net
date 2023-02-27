@@ -9,7 +9,7 @@ import 'tippy.js/themes/light.css';
 
 import styles from './index.module.css';
 
-import { Currency, CurrencyString } from '@site/src/components/MyComponents';
+import { Currency, CurrencyString } from '@site/src/components/CurrencyChoice';
 
 import Translate, {translate} from '@docusaurus/Translate';
 
