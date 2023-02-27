@@ -7,6 +7,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const math = require('remark-math');
 const katex = require('rehype-katex');
 
+const date = new Date();
+const isoDay = date.toISOString().split('T')[0];
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Method of Equal Shares',
@@ -19,6 +22,7 @@ const config = {
 
   customFields: {
     currencySymbol: '€',
+    buildDate: isoDay,
   },
 
   // GitHub pages deployment config.
