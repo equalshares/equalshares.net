@@ -30,12 +30,12 @@ Książka ta koncentruje się głównie na „wyborach komitetów”, czyli na s
 Pierwszy wynik, który omówimy dotyczy gwarancji, że projekt zostanie sfinsnsowany, jeśli uzyska co najmniej pewną minimalną liczbę unikalnych głosów.
 
 Przykładowo, rozważmy projekt o koszcie wynoszącym 5% dostępnych środków. 
-Jeśli co najmniej 5% wyborców zagłosuje na ten projekt _i na żadne inne projekty_, wówczas projekt ten na pewno zostanie wybrany przez metodę równych udziałów.
+Jeśli co najmniej 5% wyborców zagłosuje na ten projekt _i na żaden inny projekt_, wówczas projekt ten na pewno zostanie wybrany przez metodę równych udziałów.
 
 Oto formalny opis tej własności:
 
 > **Twierdzenie**. Rozważmy projekt $P$ o koszcie $\text{koszt}(P)$. Przez $B$ oznaczmy całkowitą kwotę dostępną w ramach budżetu obywatelskiego. Niech $n$ oznacza liczbę głosujących. 
-Jeśli co najmniej $n \cdot \text{koszt}(P)/B$ wyborców zagłosowało na $P$ i jeżeli żaden z tych wyborców nie zagłosował na żaden inny projekt, to $P$ zostanie wybrany przez metodę równych.
+Jeśli co najmniej $n \cdot \text{koszt}(P)/B$ wyborców zagłosowało na $P$ i jeżeli żaden z tych wyborców nie zagłosował na żaden inny projekt, to $P$ zostanie wybrany przez metodę równych udziałów.
 
 <details className="proof">
 <summary>Dowód</summary>
@@ -47,11 +47,11 @@ $$
 \underbrace{n \cdot \frac{\text{koszt}(P)}{B}}_{\text{liczba wyborców}} \cdot \underbrace{\frac{B}{n}}_{\text{początkowy budżet każdego z nich}} = \text{koszt}(P).
 $$
 
-Metoda równych udziałów kończy działanie dopiero wtedy, gdy zwolennicy żadnego niewybranego jeszcze projektu nie mają już wystarczających środków, aby pokryć koszt takiego projektu. To oznacza, że $P$ musi zostać wybrany, ponieważ wyborcy, 
+Metoda równych udziałów kończy działanie dopiero wtedy, gdy zwolennicy każdego niewybranego jeszcze projektu nie mają już wystarczających środków, aby pokryć koszt tego projektu. To oznacza, że $P$ musi zostać wybrany, ponieważ wyborcy, 
 którzy głosują tylko na $P$, zachowują wszystkie swoje początkowe środki i mogą je wydać jedynie na $P$, czyli Ci wyborcy będą zawsze w stanie pokryć koszt $P$.
 </details>
 
-Przy zastosowaniu standardowej metody głosowania w budżecie obywatelskim (która po prostu wybiera najpopularniejsze projekty do wyczerpania budżetu), nie mamy takich gwarancji.
+Przy zastosowaniu standardowej metody głosowania w budżecie obywatelskim (która wybiera najpopularniejsze projekty do wyczerpania budżetu), nie mamy takich gwarancji.
 Nawet bardzo opłacalny projekt (na przykład taki, który kosztuje jedynie 1% budżetu i otrzymał aż 30% unikalnych głosów) może zostać pominięty.
 
 ## Grupa wyborców, którzy głosują podobnie, będzie miała proporcjonalny udział w rozdysponowanym budżecie
@@ -137,7 +137,7 @@ jeśli zwycięski projekt jest sklonowany, wtedy ten projekt lub przynajmniej je
 * <SemiBold>Jest rozszerzeniem metody D'Hondta</SemiBold>: Metoda równych udziałów (z wykorzystaniem standardowego dopełniania <a href="../implementation/completion">[więcej na ten temat]</a>) jest uogólnieniem <a href="https://pl.wikipedia.org/wiki/Metoda_D’Hondta">metody D'Hondta</a>.
 Metoda D'Hondta jest proporcjonalną metodą podziału miejsc w parlamencie, która jest stosowana w wielu krajach. Z każdej instancji wyborów parlamentarnych możemy skonstruować instancję budżetu obywatelskiego w następujący sposób:
 utożsamiamy kandydatów startujących w wyborach parlamentarnych z projektami, zakładamy że koszt każdego takiego projektu/kandydata wynosi 1, że budżet jest równy liczbie miejsc w parlamencie i 
-że każdy wyborca głosuje na wszystkich członków tej partii, którą popiera. Okzauje się, że jeśli zastosujemy metodę równych udziałów do tak skonstruowanej instancji budżetu obywatelskiego, to wynik jej działania
+że każdy wyborca głosuje na wszystkich członków tej partii, którą popiera. Okazuje się, że jeśli zastosujemy metodę równych udziałów do tak skonstruowanej instancji budżetu obywatelskiego, to wynik jej działania
 będzie równoważny wynikowi działania metody D'Hondta dla oryginalnej instancji wyborów parlamentarnych.
 
 Metoda równych udziałów nie spełnia następujących własności:
