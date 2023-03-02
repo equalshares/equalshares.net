@@ -11,7 +11,7 @@ import { Currency } from '@site/src/components/CurrencyChoice';
 Strona ta wyjaśnia działanie metody równych udziałów.
 Metoda może być stosowana dla różnych typów głosów. Wyborcy mogą w szczgólności głosować w następujący sposób:
 
-1. **Przez aprobaty**, gdzie każdy wyborca po prostu zaznacza te projekty, które popiera (niektóre miasta wprowadzają dodatkowe limity na to, na ile projektów wyborca może zagłosować, natomiast nie jest to kluczowe dla działania metody równych udziałów).
+1. **Przez aprobaty**, gdzie każdy wyborca zaznacza te projekty, które popiera (niektóre miasta wprowadzają dodatkowe limity na to, na ile projektów wyborca może zagłosować, natomiast nie jest to kluczowe dla działania metody równych udziałów).
 2. **W skali**, gdzie wyborcy mogą przypisywać projektom punkty poparcia; jeżeli wyborca przypisuje więcej punktów danemu projektowi, oznacza to, że taki projekt jest z jego punktu widzenia istotniejszy.
 
 Głosowanie przez aprobaty jest szczególnym przypadkiem głosowania w skali: intuicyjnie, jeżeli wyborca zagłosował na dany projekt, to tak jakby przypisał mu jeden punkt, a w przeciwnym przypadku zero punktów.
@@ -43,7 +43,7 @@ Wtedy każdy wyborca otrzymuje umowną kwotę <Currency>10</Currency>.
 
 :::tip Przykład
 Rozważmy projekt o koszcie <Currency>10&thinsp;000</Currency>, który otrzymał 500 głosów. Ponieważ każdemu wyborcy przydzieliliśmy <Currency>10</Currency>, to 500 wyborców  dysponuje kwotą <Currency>5&thinsp;000</Currency>.
-Ponieważ projekt kosztuje więcej niż łączna kwota, którą dysponują wyborcy popierający ten projekt, nie może on zostać sfinansowany, zatem projekt ten zostaje odrzucony.
+Ponieważ projekt kosztuje więcej niż łączna kwota, którą dysponują popierający go wyborcy, to nie może zostać sfinansowany i zostaje odrzucony.
 :::
 </li>
 
@@ -79,7 +79,7 @@ Więcej informacji na ten temat znajdziesz w zakładce o [wariantach uzupełnian
 
 ## Podział kosztu projektu {#equal-split}
 
-Jednym z kluczowych elementów opisu metody równych udziałów jest podział kosztu wybranego projektu na wyborców, którzy zagłosowali na taki projekt. 
+Jednym z kluczowych elementów opisu metody równych udziałów jest podział kosztu wybranego projektu na wyborców, którzy zagłosowali na ten projekt. 
 Na poziomie intuicyjnym, koszt powinien być podzielony *tak równo jak to tylko możliwe*. Poniżej precyzujemy co to dokładnie znaczy i pokazujemy przykłady ilustrujące procedurę dzielenia kosztu. 
 
 Załóżmy, że mamy 10 wyborców, a budżet wynosi <Currency>300</Currency>. Zatem w pierwszym kroku każdemu wyborcy przypisujemy <Currency>30</Currency>.
@@ -88,14 +88,14 @@ Możemy to przedstawić na poniższym diagramie: każdemu wyborcy odpowiada słu
 <BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} showPayments={false} />
 
 Rozważmy projekt o koszcie <Currency>50</Currency>, na którego zagłosowało pięciu pierwszych wyborców (licząc od lewej).
-Koszt takiego projektu możemy podzielić po równo na wyborców popierających ten projekt. Wtedy każdy zwolennik tego projektu zapłaci <Currency>10</Currency>.
+Koszt tego projektu możemy podzielić po równo na popierających go wyborców. Wtedy każdy zwolennik tego projektu zapłaci <Currency>10</Currency>.
 Możemy to zilustrować w następujący sposób:
 
 <BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} payments={[10,10,10,10,10,0,0,0,0,0]} />
 
-Odrobinę bardziej skomplikowany przypadek, to gdy niektórzy głosujący wydali już część umownych środków, które im przysługują. Wtedy idealnie równy podział kosztu projektu na jego zwolenników może nie być możliwy.
+Odrobinę bardziej skomplikowany przypadek, to gdy niektórzy głosujący wydali już część umownych środków, które im przysługują. Wtedy idealnie równy podział kosztu projektu pomiędzy jego zwolenników może nie być możliwy.
 
-Rozważmy jeszcze raz projekt o koszcie <Currency>50</Currency>, na którego zagłosowało pięciu pierwszych wyborców (licząc od lewej).
+Rozważmy jeszcze raz projekt o koszcie <Currency>50</Currency>, na który zagłosowało pięciu pierwszych wyborców (licząc od lewej).
 Załóżmy jednak, że wyborca po lewej stronie wydał już w poprzednich rundach całą przysługującą mu kwotę.
 W takim wypadku koszt projektu musimy podzielić na pozostałych 4 wyborców. Zatem każdy z nich musi zapłacić <Currency>12,50</Currency> (4 &middot; <Currency>12.50</Currency> = <Currency>50</Currency>).
 
@@ -109,8 +109,8 @@ Następnie dzielimy pozostały koszt <Currency>40</Currency> po równo na pozost
 <BudgetBars budgets={[5,5,30,30,30,30,30,30,30,30]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} />
 
 Ogólnie rzecz ujmując, procedura podziału kosztu projektu jest następująca. Najpierw staramy się podzielić koszt po równo, czyli dzielimy koszt projektu przez liczbę jego zwolenników. 
-Jeśli niektórzy wyborcy nie mają wystarczająco dużo środków, aby pokryć przypadającą na nich część kosztu, to wyborcy ci po prostu płacą kwotę, którą dysponują.
-Częśc kosztu projektu może zatem nie zostać opłacona.
+Jeśli niektórzy wyborcy nie mają wystarczająco dużo środków, aby pokryć przypadającą na nich część kosztu, to wyborcy ci płacą kwotę, którą dysponują.
+Część kosztu projektu może zatem nie zostać opłacona.
 Dzielimy ten pozostały koszt po równo na pozostałych wyborców (czyli tych, którzy mają jeszcze dostępne środki). 
 Jeśli taki równy podział znowu nie jest możliwy, to wyborcy którzy nie mają wystarczająco dużo środków płacą kwotę, którą dysponują, i tak dalej.
 (Alternatywny matematyczny sposób opisu procedury podziału kosztu jest następujący:
@@ -119,7 +119,7 @@ dzielimy koszt pomiędzy zwolenników projektu w taki sposób, aby maksymalna p�
 Poniższy interaktywny przykład ilustruje działanie procedury dzielenia kosztu. 
 Możesz zmieniać koszt projektu przeciągając suwak (początkowo koszt projektu to <Currency>30</Currency>).
 Koszt ten chcemy podzielć na 5 wyborców, którzy zagłosowali na ten projekt. 
-Ilość środków, którymi ci dysponują wyborcy to odpowiednio <Currency>10</Currency>, <Currency>10</Currency>, <Currency>10</Currency>, <Currency>20</Currency>, <Currency>30</Currency>. 
+Ilość środków, którymi dysponują wyborcy to odpowiednio <Currency>10</Currency>, <Currency>10</Currency>, <Currency>10</Currency>, <Currency>20</Currency>, <Currency>30</Currency>. 
 
 <WaterFilling />
 
@@ -154,7 +154,7 @@ Przykładowo, rozważmy projekt, który otrzymał 50 głosów.
 Załóżmy, że 10 z głosujących na ten projekt wydało już całe przysługujące im kwoty. Wtedy efektywna liczba głosów oddanych na ten projekt wynosi 40.
 
 Kolejna zasada mówi, że głosy pochodzące od wyborców, którym pozostały jeszcze pieniądze, ale jest ich za mało, aby zapłacić równą część kosztu projektu, 
-będą <SemiBold>liczeni jako ułamek</SemiBold>. Przykładowo jeśli dany wyborca miałby zapłacić za projekt dwukrotnie mniej niż wyborca który zapłacił najwięcej, to jego głos liczy się jako połowa.
+będą <SemiBold>liczone jako ułamki</SemiBold>. Przykładowo jeśli dany wyborca miałby zapłacić za projekt dwukrotnie mniej niż wyborca który zapłacił najwięcej, to jego głos liczy się jako połowa.
 Poniżej wyjaśniamy na przykładach jak dokładnie obliczać te ułamki. 
 
 ## Przykład 1 {#example}
@@ -269,8 +269,8 @@ Projekt, ktory otrzymał drugą co do wielkości liczbę głosów, to <span clas
 Tych 6 wyborców posiada łącznie 6 &middot; <Currency>43</Currency> = <Currency>258</Currency>. Jest to niewystarczająca kwota aby opłacić <span className="project-1">🚲 ścieżkę rowerową</span> (która kosztuje <Currency>700</Currency>).
 Oznacza to, że <span className="project-1">🚲 ścieżka rowerowa</span> otrzymała 0 efektywnych głosów.
 
-Spójrzmy teraz kolejny projekt, <span className="project-3">🌳 nowy park</span>, który otrzymał 5 głosów.
-Jeżeli podzielilibyśmy koszt tego projektu (<Currency>250</Currency>) po równo na wyborców głosujących na ten projekt, to każdy z tych 5 wyborców musiałby zapłacić <Currency>50</Currency>.
+Spójrzmy teraz na kolejny projekt, <span className="project-3">🌳 nowy park</span>, który otrzymał 5 głosów.
+Jeżeli podzielilibyśmy koszt tego projektu (<Currency>250</Currency>) po równo na jego wyborców, to każdy z nich musiałby zapłacić <Currency>50</Currency>.
 Niektórzy z tych wyborców dysponują jednak tylko kwotą <Currency>43</Currency>.
 Zatem (tak jak to opisaliśmy [powyżej](#equal-split)) dzielimy koszt projektu „tak równo jak to możliwe”. 
 Wyborcy którzy zagłosowali na ten projekt i którzy dysponuja kwotą <Currency>43</Currency> płacą tyle ile mają, czyli <Currency>43</Currency>.
@@ -280,7 +280,7 @@ Wyborcy ci płacą po <Currency>60,5</Currency>:
 <BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} payments={[0,43,0,43,43,0,60.5,0,0,60.5,0]} />
 
 Policzmy teraz efektywną liczbę głosów oddaną na <span className="project-3">🌳 nowy park</span>. Głosy wyborców, którzy zapłaciliby po <Currency>60,5</Currency> są liczone w pełni.
-Głosy wyborców, którzy zapłaciliby po <Currency>43</Currency> są liczone jako odpowiednie ułamki: <Currency>43</Currency>/60,5 &approx; 0,7. Zatem projekt ten otrzymał 2 &middot; 3 &plus; 3 &middot; 0,7 = 4,1 efektywnych głosów. 
+Głosy wyborców, którzy zapłaciliby po <Currency>43</Currency> są liczone jako odpowiednie ułamki: <Currency>43</Currency>/60,5 &approx; 0,7. Zatem projekt ten otrzymał 2 &plus; 3 &middot; 0,7 = 4,1 efektywnych głosów. 
 
 
 | Projekt            | Koszt    | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | efektywna liczba głosów |
