@@ -33,7 +33,7 @@ dzieli środki w sposób bardziej odpowiadający temu jak głosowali wyborcy, cz
 oddanych na projekty z tych kategorii.
 
 Widzimy, że metoda równych udziałów podzieliłaby środki pomiędzy kategorie w sposób, który dużo lepiej odzwierciedla preferencje wyborców. 
-Efekt ten widizmy praktycznie we wszystkich dzielnicach. W niektórych dzielnicach różnica pomiędzy metodami liczenia głosów jest bardzo istotna.
+Efekt ten widzimy praktycznie we wszystkich dzielnicach. W niektórych dzielnicach różnica pomiędzy metodami liczenia głosów jest bardzo istotna.
 Możemy zaobserwować dosłownie kilka wyjątków, ale w każdym z tych przypadków obie metody zachowywały się porównywalnie.
 
 <Datawrapper src="//datawrapper.dwcdn.net/UVLxQ/3/" />
@@ -46,17 +46,17 @@ Wskazówka: aby zobaczyć więcej informacji o danych wyborach najedź kursorem 
 Symulacja została przeprowadzona w styczniu 2023 roku z wykorzystaniem danych wyborczych z [biblioteki Pabulib](http://pabulib.org/). 
 Wykorzystaliśmy dane z warszawskich edycji budżetu obywatelskiego z lat 2020, 2021 i 2022.
 Każda z 18 dzielnic Warszawy miała przeznaczoną osobną pulę na projekty dotyczące tej dzielnicy.
-W sumie daje to 3 &middot; 18 = 54 instancji wyborczych. W każdej z tych instancji zgłaszane projekty były opatrzone odpowiednimi adnotacjami, które sugerowały do jakiej kategorii dany projekt należy: 
+W sumie daje to 3 &middot; 18 = 54 instancje wyborów. W każdej z tych instancji zgłaszane projekty były opatrzone odpowiednimi adnotacjami, które sugerowały do jakiej kategorii dany projekt należy: 
 każdy projekt mógł być zatem przypisany do jednej bądź kilku kategorii.
 Niektóre projekty nie były przypisane do żadnej kategorii; umownie traktujemy je jako należące do kategorii o nazwie „pozostałe”.
 
-Dla każdej instancji wyborczej obliczyliśmy **procenty głosów**, które otrzymały poszczególne kategorie projektów.
+Dla każdej instancji wyborów obliczyliśmy **procenty głosów**, które otrzymały poszczególne kategorie projektów.
 W pierwszym kroku głos każdego wyborcy podzieliliśmy po równo pomiędzy projekty na które ten wyborca zagłosował. Przykładowo, jeśli wyborca zagłosował na 4 projekty (maksymalnie można zagłosować na 10 projektów), 
 to każdemu z tych 4 projektów przyznaliśmy 0,25 punktu. W kolejnym kroku, dla każdego projektu, podzieliliśmy jego punkty po równo pomiędzy kategorie (tagi), do których ten projekt należał.
 Przykładowo, jeśli projekt otrzymał 30 punktów i należał do 3 kategorii, to każdej z tych trzech kategorii przyznaliśmy 10 punktów.
 W kolejnym kroku obliczyliśmy jaki procent całkowitej liczby punktów, otrzymała każda z kategorii.
 
-Następnie dla każdej instancji wyborczej obliczyliśmy, które projekty zostałyby wybrane przy użyciu metody równych udziałów, a które za pomocą standardowej metody liczenia głosów.
+Następnie dla każdej instancji wyborów obliczyliśmy, które projekty zostałyby wybrane przy użyciu metody równych udziałów, a które za pomocą standardowej metody liczenia głosów.
 Dla każdej z tych dwóch metod liczenia głosów obliczyliśmy **procenty środków** które byłyby przeznaczone na poszczególne kategorie.
 Jeżeli projekt został wybrany przy użyciu odpowiedniej metody, to jego koszt dzielimy po równo pomiędzy kategorie, do których należy.
 Przykładowo, jeśli projekt kosztował 600 zł i należał do 3 kategorii, to każda kategoria otrzymała 200 zł.
@@ -79,10 +79,10 @@ Aby lepiej zrozumieć pozytywne skutki zastosowania metody równych udziałów, 
 
 Rozważmy [dzielnicę Bielany](https://en.wikipedia.org/wiki/Bielany) w Warszawie. 
 W każdej z trzech ostatnich edycji (2020, 2021, 2022) znaczna część głosów była oddawana na projekty związane z edukacją, jednak ilość środków przeznaczana na takie projekty była nieproporcjonalnie mniejsza.
-Przykładowo, w 2020 roku 35% głosów zostało oddanych na projekty edukacyjne, podczas gdy na takie projekty trafiło jedynie 6% budżetu.
+Przykładowo, w 2020 roku 35% głosów zostało oddanych na projekty edukacyjne, podczas gdy na takie projekty trafiło jedynie 6% środków z budżetu.
 
 Tym samym inne projekty, zwłaszcza dotyczące przestrzeni publicznej, środowiska oraz transportu i dróg, zagarnęły zbyt dużą część budżetu.
-Przykładowo, w 2020 roku 34% głosów zostało oddanych na projekty z tych kategorii, natomiast na projekty te zostało przezenaczone aż 55% budżetu.
+Przykładowo, w 2020 roku 34% głosów zostało oddanych na projekty z tych kategorii, natomiast na projekty te zostało przezenaczone aż 55% środków.
 
 Użycie metody równych udziałów pozwoliłoby zmniejszyć nadmierne wydatki na te kategorie (do 43%) oraz zwiększyć wydatki na projekty edukacyjne (do 27%).
 
