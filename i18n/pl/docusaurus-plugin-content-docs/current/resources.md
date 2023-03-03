@@ -7,7 +7,7 @@ title: Linki zewnętrzne
 
 ## Publkacje naukowe
 
-Poniże zamieszczamy (skrótową) listę prac naukowych, które omawiają metodę równych udziałów.
+Poniżej zamieszczamy (skrótową) listę prac naukowych, które omawiają metodę równych udziałów.
 
 * __Proportional Participatory Budgeting with Additive Utilities.__
 Dominik Peters, Grzegorz Pierczyński, Piotr Skowron. Opublikowana na konferencji [NeurIPS 2021](https://proceedings.neurips.cc/paper/2021/hash/69f8ea31de0c00502b2ae571fbab1f95-Abstract.html). [PDF](https://arxiv.org/pdf/2008.13276.pdf) (Ostatnia aktualizacja, październik 2022).
@@ -37,4 +37,4 @@ Maaike Los, Zoé Christoff, Davide Grossi. Opublikowana na konferencji [IJCAI 20
 
 ## Inne strony internetowe
 
-* Wikipedia [Methoda równych udziałów](https://pl.wikipedia.org/wiki/Metoda_r%C3%B3wnych_udzia%C5%82%C3%B3w).
+* Wikipedia [Metoda równych udziałów](https://pl.wikipedia.org/wiki/Metoda_r%C3%B3wnych_udzia%C5%82%C3%B3w).
