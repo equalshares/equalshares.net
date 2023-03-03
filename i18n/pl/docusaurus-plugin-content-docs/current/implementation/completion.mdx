@@ -25,11 +25,11 @@ Dzieje się tak dlatego, że dla niektórych wyborców metoda nie ma możliwośc
 Na przykład, jeżeli wyborca głosuje tylko na jeden projekt, a ten projekt nie otrzyma wystarczającej liczby głosów aby wygrać, wtedy metoda nie może wydać kwoty przypisanej temu wyborcy.
 
 W symulacjach wykorzystujących dane z głosowania w Warszawie, metoda równych udziałów wydaje około 60-70% dostępnego budżetu.
-Oczywiście najczęściej wolelibyśmy wydać około 100% budżetu.
+Oczywiście najczęściej wolelibyśmy wydać całe 100% budżetu.
 Dlatego też metoda równych udziałów wymaga **uzupełnienia**, czyli zmodyfikowania jej w ten sposób, aby wykorzystywała prawie cały budżet.
 
 <details>
-<summary><SemiBold>Wykres</SemiBold>: Uzupełnianie może nie być konieczne, jaśli ka żdy z wyborców głosuje na wiele projektów.</summary>
+<summary><SemiBold>Wykres</SemiBold>: Uzupełnianie może nie być konieczne, jaśli każdy z wyborców głosuje na wiele projektów.</summary>
 
 Podstawową przyczyną dla której metoda równych udziałów wydaje tylko 60-70% dostępnych środków jest to, że część wyborców głosuje na niewiele projektów.
 Możemy to zaobserwować, przeprowadzając symulacje w oparciu o dane z Warszawy (2020-22). 
@@ -47,7 +47,7 @@ Wyniki symulacji sugerują, że gdy wyborcy będą głosować na co najmniej 8 p
 
 Główny pomysł polega na tym, aby wyborcom początkowo przyznać wyższą kwotę. Wracając do naszego przykładu: zamiast przyznawać każdemu wyborcy <Currency>100</Currency>
 moglibyśmy mu dać <Currency>140</Currency>. W ten sposób przyznalibyśmy wszystkim wyborcom łącznie 1000 &middot; <Currency>140</Currency> =  <Currency>140 000</Currency>.
-Wtedy wykorzystując 70% przyznanych środków, wybraibyśmy projekty, które łącznie kosztują 0,7 &middot; <Currency>140 000</Currency> = <Currency>98 000</Currency>.
+Wtedy wykorzystując 70% przyznanych środków, wybralibyśmy projekty, które łącznie kosztują 0,7 &middot; <Currency>140 000</Currency> = <Currency>98 000</Currency>.
 Oznacza to, że w 98% wykorzystalibyśmy oryginalny budżet. 
 
 Dokładniej rzecz ujmując, rozważamy każdą możliwą wartość kwoty którą początkowo przyznajemy wyborcom: <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, i tak dalej.
