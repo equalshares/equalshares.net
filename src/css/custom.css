@@ -112,7 +112,18 @@ details.proof p:last-child::after {
 }
 
 .currency-picker {
+  padding-left: 0;
   padding-right: 0;
+}
+
+.navbar-sidebar__brand .currency-picker {
+  display: block;
+}
+
+@media screen and (max-width: 570px) {
+  .navbar-sidebar__brand b {
+    display: none;
+  }
 }
 
 .currency-btn {
