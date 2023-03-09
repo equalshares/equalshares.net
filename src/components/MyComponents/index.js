@@ -146,7 +146,7 @@ function spreadCost(approvers, budgets, cost) {
   return { affordable: false };
 }
 
-export function WaterFilling () {
+export function WaterFilling ({showEffectiveVoteCounts = false}) {
   const [cost, setCost] = useState(30);
 
   const budgets = [10, 10, 10, 20, 30];
@@ -164,7 +164,7 @@ export function WaterFilling () {
   }
   return (
     <div>
-      <BudgetBars budgets={budgets} payments={payments} unaffordable={!spread.affordable} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
+      <BudgetBars budgets={budgets} payments={payments} unaffordable={!spread.affordable} showEffectiveVoteCounts={showEffectiveVoteCounts} showTotalEffectiveVoteCount={showEffectiveVoteCounts} />
       {spread.affordable ? <span><Translate>Cost:</Translate> <Currency>{cost}</Currency></span> : <span><s><Translate>Cost:</Translate> <Currency>{cost}</Currency></s> <Translate>(supporting voters do not have enough money)</Translate></span>} <br/>
       <input onInput={handleClick} type="range" min="0" max="100" value={cost} step="5" style={{width:"20em"}} />
     </div>
