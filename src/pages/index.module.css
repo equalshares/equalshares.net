@@ -390,7 +390,8 @@
   .approvalBallotExample {
     order: 1;
     margin: 0;
-    transform: rotate(3deg) translate(0, -30px);
+    margin-bottom: 1em;
+    transform: rotate(3deg);
   }
   .ballotExplanation {
     order: 2;
