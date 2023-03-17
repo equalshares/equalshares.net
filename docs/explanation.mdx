@@ -253,15 +253,15 @@ If we divide its cost of <Currency>250</Currency> equally among its supporters, 
 But some of the supporters of the <span className="project-3">🌳 new park</span> only have a budget share of <Currency>43</Currency> left, so they cannot afford to pay <Currency>50</Currency>.
 Thus (as described [above](#equal-split)), we divide the cost so that the three supporters with a remaining budget share of <Currency>43</Currency> each pay <Currency>43</Currency>, and the two supporters with a budget share of <Currency>100</Currency> divide the remaining <Currency>250</Currency> &minus; 3 &middot; <Currency>43</Currency> = <Currency>121</Currency> equally, so that each pays <Currency>60.5</Currency>:
 
-<BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} payments={[0,43,0,43,43,0,60.5,0,0,60.5,0]} />
+<BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} payments={[0,43,0,43,43,0,60.5,0,0,60.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
 Because we were not able to split the cost of the <span className="project-3">🌳 new park</span> completely equally, we have to compute the effective vote count of the <span className="project-3">🌳 new park</span> as follows:
-The two voters able to pay <Currency>60.5</Currency> each count as a full vote, while the three voters able to pay <Currency>43</Currency> each count as only a fraction of the vote, namely 0.7 each (because <Currency>43</Currency>/60.5 &approx; 0.7). Thus we have:
+The two voters able to pay <Currency>60.5</Currency> each count as a full vote, while the three voters able to pay <Currency>43</Currency> each count as only a fraction of the vote, namely 0.71 each (because <Currency>43</Currency>/60.5 &approx; 0.71). Thus we get an effective vote count of 2 &plus; 3 &middot; 0.71 = 4.13, which we can write in the table:
 
 | Project            | Costs    | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effective vote count |
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
 | <span className="project-1">🚲 bike path      </span> | <Currency>700</Currency> | — | — | — | — | — | — |   |   |   |   |   | **0** |
-| <span className="project-3">🌳 new park       </span> | <Currency>250</Currency> |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | **4.1** |
+| <span className="project-3">🌳 new park       </span> | <Currency>250</Currency> |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | **4.13** |
 | <span className="project-4">🛝 new playground </span> | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
 | <span className="project-5">📚 library for kids</span> | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
 
@@ -272,9 +272,9 @@ We subtract the payments. Now the remaining budgets are as follows:
 
 <BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} showPayments={false} />
 
-In the next round, the <span className="project-4">🛝 new playground</span> is selected, obtaining an effective vote count of 3.2 (which is the highest):
+In the next round, the <span className="project-4">🛝 new playground</span> is selected, obtaining an effective vote count of 3.31 (which is the highest):
 
-<BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} payments={[0,0,0,0,0,0,39.5,60.5,60.5,39.5,0]} />
+<BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} payments={[0,0,0,0,0,0,39.5,60.5,60.5,39.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
 After subtracting the payments, the remaining budgets are as follows:
 
