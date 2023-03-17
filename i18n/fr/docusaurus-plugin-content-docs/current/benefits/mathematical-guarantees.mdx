@@ -51,6 +51,8 @@ and thus $P$ is always affordable.
 
 Using the standard voting method for participatory budgeting (which just selects the most popular projects until the budget runs out), no similar guarantee holds. Even a very cost-effective project (for example, costing 1% of the budget) may need a large number of voters (for example, more than 30%) to win under the standard method.
 
+For the guarantee to hold, it is necessary to assume that the supporting voters support only the project in question and no other projects, because otherwise the Method of Equal Shares may decide to satisfy those voters by selecting some of the other projects that they support.
+
 ## Groups with similar votes will be represented in the outcome
 
 Under the Method of Equal Shares, any group of voters who voted for similar projects can expect to be represented in the outcome to an extent that is proportional to the group size. For example, a group of 20% of the voters can expect to influence 20% of the budget spending.
@@ -68,7 +70,7 @@ $$
 \text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) \leqslant \frac{t}{n} \cdot B,
 $$
 where $B$ is the overall budget. In other words, the group of voters is large enough to "deserve" to have all the projects they voted for funded.
-In this case, one can prove that the Method of Equal Shares will select all four projects.
+In this case, one can prove that the Method of Equal Shares will select all three projects.
 
 Formally, this property can be written as follows:
 
@@ -103,7 +105,7 @@ Suppose that a group of $t$ voters all approve the projects in the set $T$, but 
 Assume that $\text{cost}(T)\leqslant t/n \cdot B$ (so that the group of voters can "afford" all the projects in $T$ using only the budget shares of the members of the group).
 Then, the Method of Equal Shares guarantees that at least one of the $t$ voters will be sufficiently represented in the outcome $W$: this means that there exists some member $i$ of the group (who voted for the set of projects $A_i$ (including all the projects in $T$, so $T \subseteq A_i$)) with
 $$
-\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_i) \qquad \text{for some $P_i \in T$}.
+\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_j) \qquad \text{for some $P_j \in T$}.
 $$
 In this expression, $A_i \cap W$ stands for the set of projects that are approved by both the voter $i$ that are included in the outcome $W$.
 
