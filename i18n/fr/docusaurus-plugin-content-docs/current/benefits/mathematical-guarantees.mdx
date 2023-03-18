@@ -77,15 +77,15 @@ On peut également prouver une garantie similaire si le groupe d'électeurs appr
 $$
 \text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) + \text{coût}(P_4) > \frac{t}{n} \cdot B.
 $$
-Alors, la Méthode des Parts Égales sélectionnera certains de ces projets qui, ensemble, coûtent "approximativement" $t/n \cdot B$.
+Alors, la méthode des parts égales sélectionnera certains de ces projets qui, ensemble, coûtent "approximativement" $t/n \cdot B$.
 
-> **Théorème**. Soit $T = \{P_1, P_2, \ldots, P_k\}$ un ensemble de projets, et supposons que $t$ des $n$ électeurs ont voté pour tous ces projets (et seulement pour ces projets). Alors, la Méthode des Parts Égales sélectionnera un sous-ensemble $T' \subseteq T$ de projets tels que pour chaque projet $P^* \in T$ qui n'a pas été sélectionné par la Méthode, on a $\sum_{P \in T'} \text{coût}(P) + \text{coût}(P^*) > t/n \cdot B$.
+> **Théorème**. Soit $T = \{P_1, P_2, \ldots, P_k\}$ un ensemble de projets, et supposons que $t$ des $n$ électeurs ont voté pour tous ces projets (et seulement pour ces projets). Alors, la méthode des parts égales sélectionnera un sous-ensemble $T' \subseteq T$ de projets tels que pour chaque projet $P^* \in T$ qui n'a pas été sélectionné par la Méthode, on a $\sum_{P \in T'} \text{coût}(P) + \text{coût}(P^*) > t/n \cdot B$.
 
 </details>
 
 ### Groupes de votants avec des votes qui se chevauchent
 
-Dans les garanties mathématiques décrites ci-dessus, nous avons supposé que le groupe de votants a voté pour exactement le même ensemble de projets. En pratique, cependant, même les groupes de votants avec un fort accord ne voteront pas toujours pour le *même* ensemble de projets. Il est donc intéressant de voir si la Méthode des Parts Égales sélectionnera des projets qui sont soutenus par un groupe de votants avec un accord élevé mais pas parfait. La réponse est oui: si un groupe de votants a un chevauchement suffisamment important dans leurs votes, alors la Méthode des Parts Égales représentera le groupe.
+Dans les garanties mathématiques décrites ci-dessus, nous avons supposé que le groupe de votants a voté pour exactement le même ensemble de projets. En pratique, cependant, même les groupes de votants avec un fort accord ne voteront pas toujours pour le *même* ensemble de projets. Il est donc intéressant de voir si la méthode des parts égales sélectionnera des projets qui sont soutenus par un groupe de votants avec un accord élevé mais pas parfait. La réponse est oui: si un groupe de votants a un chevauchement suffisamment important dans leurs votes, alors la méthode des parts égales représentera le groupe.
 
 <details>
 <summary>Détails sur la garantie mathématique</summary>
@@ -94,7 +94,7 @@ Considérons une élection PB basée sur le vote d'approbation.
 En général, si $T = \{P_1, P_2, \ldots, P_k\}$ est un ensemble de projets, nous écrivons $\text{coût}(T) = \text{coût}(P_1) + \text{coût}(P_2) + \ldots + \text{coût}(P_k)$ pour le coût total des projets dans $T$.
 Supposons qu'un groupe de $t$ votants approuve tous les projets de l'ensemble $T$, mais que certains votants approuvent également d'autres projets qui ne sont pas dans $T$.
 Supposons que $\text{coût}(T)\leqslant t/n \cdot B$ (de sorte que le groupe de votants peut "se permettre" tous les projets de $T$ en n'utilisant que les parts de budget des membres du groupe).
-Alors, la Méthode des Parts Égales garantit qu'au moins l'un des $t$ votants sera suffisamment représenté dans le résultat $W$: cela signifie qu'il existe un membre $i$ du groupe (qui a voté pour l'ensemble de projets $A_i$ (y compris tous les projets de $T$, donc $T \subseteq A_i$)) avec
+Alors, la méthode des parts égales garantit qu'au moins l'un des $t$ votants sera suffisamment représenté dans le résultat $W$: cela signifie qu'il existe un membre $i$ du groupe (qui a voté pour l'ensemble de projets $A_i$ (y compris tous les projets de $T$, donc $T \subseteq A_i$)) avec
 $$
 \text{coût}(A_i \cap W) \geqslant \text{coût}(T) - \text{coût}(P_j) \qquad \text{pour certains $P_j \in T$}.
 $$

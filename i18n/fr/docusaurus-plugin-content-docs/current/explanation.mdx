@@ -140,7 +140,7 @@ Notez que ces deux projets "sportifs" sont tous deux votés par à peu près les
 En revanche, les projets "enfants" (<span className="project-4">🛝 nouvelle aire de jeux</span>, <span className="project-5">📚 bibliothèque pour enfants</span>) sont votés par un ensemble différent d'électeurs, qui restent non représentés.
 
 :::info Spoiler
-Comme nous le verrons, la méthode des Parts Égales sélectionnera le <span className="project-1">🚲 chemin de vélo</span>, puis la <span className="project-4">🛝 nouvelle aire de jeux</span>, et ensuite la <span className="project-5">📚 bibliothèque pour enfants</span>.
+Comme nous le verrons, la méthode des parts égales sélectionnera le <span className="project-1">🚲 chemin de vélo</span>, puis la <span className="project-4">🛝 nouvelle aire de jeux</span>, et ensuite la <span className="project-5">📚 bibliothèque pour enfants</span>.
 :::
 
 Nous commençons le calcul du résultat en divisant le budget également entre les électeurs.
@@ -221,7 +221,7 @@ Nous passons donc au projet avec le nombre de votes suivant le plus élevé, qui
 <BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} payments={[0,43,0,43,43,0,60.5,0,0,60.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
 Comme nous n'avons pas pu diviser le coût du <span className="project-3">🌳 nouveau parc</span> de manière parfaitement équitable, nous devons calculer le nombre de votes effectifs pour le <span className="project-3">🌳 nouveau parc</span> comme suit :
-Les deux électeurs capables de payer <Currency>60.5</Currency> chacun comptent comme un vote complet, tandis que les trois électeurs capables de payer <Currency>43</Currency> chacun comptent seulement comme une fraction de vote, à savoir 0,71 chacun (car <Currency>43</Currency>/60,5 &approx; 0,71). Ainsi, nous obtenons un nombre de votes effectifs de 2 &plus; 3 &middot; 0,71 = 4,13, que nous pouvons inscrire dans le tableau :
+Les deux électeurs capables de payer <Currency>60,5</Currency> chacun comptent comme un vote complet, tandis que les trois électeurs capables de payer <Currency>43</Currency> chacun comptent seulement comme une fraction de vote, à savoir 0,71 chacun (car <Currency>43</Currency>/60,5 &approx; 0,71). Ainsi, nous obtenons un nombre de votes effectifs de 2 &plus; 3 &middot; 0,71 = 4,13, que nous pouvons inscrire dans le tableau :
 
 | Projet             | Coûts    | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | nombre de votes effectifs |
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
