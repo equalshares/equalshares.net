@@ -1,122 +1,110 @@
 ---
 sidebar_position: 4
-title: Tie breaking
+title: Rupture d'égalité
 ---
 
 import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
 import { Currency } from '@site/src/components/CurrencyChoice';
 
-# How to break ties?
+# Comment résoudre les égalités ?
 
 <div class="summary">
-<b>Summary</b>:
-In rare cases, two or more projects may be tied (for example because they have exactly the same cost and received exactly the same number of votes).
-This occurs with probability less than 1%.
-We describe how to minimize the likelihood of ties when implementating the Method of Equal Shares.
-However, if a tie still occurs, it may need to be broken by election officials by using randomness.
+<b>Résumé</b> :
+Dans de rares cas, deux ou plusieurs projets peuvent être à égalité (par exemple, s'ils ont exactement le même coût et ont reçu exactement le même nombre de votes). Cela se produit avec une probabilité inférieure à 1%. Nous décrivons comment minimiser la probabilité d'égalité lors de l'implémentation de la méthode des parts égales. Cependant, si une égalité se produit quand même, elle devra peut-être être résolue par les responsables des élections en utilisant le hasard.
 </div>
 
-## Recommended tie-breaking procedure
+## Procédure recommandée pour résoudre les égalités
 
 :::tip
 
-An easy way of definitely avoiding ties is to ensure that no two projects have the same cost (even if costs only differ by <Currency>1</Currency>). Then a tie will never occur if the tie-breaking procedure below is followed.
+Un moyen facile d'éviter définitivement l'égalité est de s'assurer que deux projets n'ont pas le même coût (même si les coûts ne diffèrent que d'une <Currency>1</Currency>). Ainsi, une égalité ne se produira jamais si la procédure de résolution des égalités ci-dessous est suivie.
 
 :::
 
-In the execution of the Method of Equal Shares, a tie can occur when two or more projects have the same effective vote count.
-In isolation, ties are unlikely to occur in large elections (such as those on the city scale).
-But the Method of Equal Shares is usually run several times in a row to determine the best amount of money that the voters get assigned at the start of the method. 
-(See [Completions](completion) for details.)
-This makes it more likely that a tie is encountered, and the tie will need to be broken.
+Lors de l'exécution de la méthode des parts égales, une égalité peut se produire lorsque deux ou plusieurs projets ont le même nombre de votes effectifs. En isolation, les égalités sont peu probables dans les grandes élections (comme celles à l'échelle de la ville). Mais la méthode des parts égales est généralement exécutée plusieurs fois de suite pour déterminer le meilleur montant d'argent que les électeurs se voient attribuer au début de la méthode. (Voir [Complétions](completion) pour plus de détails.) Cela rend plus probable la rencontre d'une égalité, et l'égalité devra être résolue.
 
-We recommend that when there is a tie between two or more projects, because they have the same effective voting count at some step of the method,
-the tie should be broken by the following procedure:
-* The project with the lowest cost is selected.
-* If two or more of the tied projects have the same lowest cost, then the (lowest-cost) project with the highest initial vote count is selected (that is, the raw vote count of the project before the vote count got reduced in the course of running the Method of Equal Shares).
-* If two or more projects have the lowest cost and the same initial vote count, then the tie is broken by lot, i.e. uniformly at random.
+Nous recommandons que lorsqu'il y a une égalité entre deux ou plusieurs projets, car ils ont le même nombre de votes effectifs à une étape de la méthode, l'égalité soit résolue par la procédure suivante :
+* Le projet le moins cher est sélectionné.
+* Si deux ou plusieurs des projets à égalité ont le même coût le plus bas, alors le projet (à coût le plus bas) avec le plus grand nombre de votes initiaux est sélectionné (c'est-à-dire le nombre de votes bruts du projet avant que le nombre de votes ne soit réduit au cours de l'exécution de la méthode des parts égales).
+* Si deux ou plusieurs projets ont le coût le plus bas et le même nombre de votes initiaux, l'égalité est résolue par tirage au sort, c'est-à-dire de manière uniforme au hasard.
 
-As a procedural matter, there are two ways to handle the potential use of randomness:
-1. Before computing the election outcome, election officials check whether there are any collections of projects that have the same cost and the same initial vote count. For each such collection of potentially tied projects, they determine a tie-breaking order, for example by drawing names from a hat.
-2. Alternatively, compute the election outcome using an implementation of the Method of Equal Shares that ends with an error message if a tie is encountered. Only in this (unlikely) event, proceed like in Option 1.
+En tant que question de procédure, il y a deux façons de gérer l'utilisation potentielle du hasard :
+1. Avant de calculer le résultat de l'élection, les responsables des élections vérifient s'il existe des collections de projets ayant le même coût et le même nombre de votes initiaux. Pour chaque collection de projets potentiellement à égalité, ils déterminent un ordre de résolution des égalités, par exemple en tirant des noms d'un chapeau.
+2. En revanche, calculez le résultat de l'élection en utilisant une implémentation de la méthode des parts égales qui se termine par un message d'erreur si une égalité est rencontrée. Ce n'est que dans ce cas (improbable) que vous pouvez procéder comme dans l'option 1.
 
-:::info Technical info
+:::info Informations techniques
 
-In the unlikely event that randomness must be used, we recommend that
-election officials proceed like in Option 2 described above:
-randomly draw a tie-breaking order, and then run the Method of Equal Shares (including the completion) using that tie-breaking order.
-While using the completion, it is not a good idea to break ties differently for different values of the initial budget.
+Dans le cas improbable où l'aléatoire doit être utilisé, nous recommandons que les responsables des élections procèdent comme dans l'option 2 décrite ci-dessus : tirer au sort un ordre de résolution des égalités, puis exécuter la Méthode des Parts Égales (en incluant l'achèvement) en utilisant cet ordre de résolution des égalités. Lors de l'utilisation de l'achèvement, il n'est pas conseillé de résoudre les égalités différemment pour différentes valeurs du budget initial.
 
 :::
 
-## Examples
+## Exemples
 
-### Example 1
-As an example, suppose that the Method of Equal Shares ends up in the following situation, where three projects remain available for selection:
+### Exemple 1
+Pour illustrer cela, supposons que la méthode des parts égales aboutisse à la situation suivante, où trois projets restent disponibles pour la sélection :
 
-| Project | Cost | Initial vote count | Effective vote count |
+| Projet | Coût | Nombre de votes initial | Nombre de votes effectif |
 | --- | --- | --- | --- |
-| Project 1 | <Currency>600</Currency> | 500 | **200** |
-| Project 2 | <Currency>700</Currency> | 300 | **200** |
-| Project 3 | <Currency>100</Currency> | 150 | 100 |
+| Projet 1 | <Currency>600</Currency> | 500 | **200** |
+| Projet 2 | <Currency>700</Currency> | 300 | **200** |
+| Projet 3 | <Currency>100</Currency> | 150 | 100 |
 
-Projects 1 and 2 have the highest effective vote count, so one of them should be selected. 
-Since they have the same effective vote count, we need to break the tie.
-Thus, the method selects **Project 1**, because its cost of <Currency>600</Currency> is lower than the cost of Project 2, which is <Currency>700</Currency>.
+Les projets 1 et 2 ont le nombre de votes effectif le plus élevé, donc l'un d'entre eux doit être sélectionné.
+Comme ils ont le même nombre de votes effectif, nous devons les départager.
+Ainsi, la méthode sélectionne le **projet 1**, car son coût de <Currency>600</Currency> est inférieur au coût du projet 2, qui est de <Currency>700</Currency>.
 
-### Example 2
+### Exemple 2
 
-Here is a similar example.
+Voici un exemple similaire.
 
-| Project | Cost | Initial vote count | Effective vote count |
+| Projet | Coût | Nombre de votes initial | Nombre de votes effectif |
 | --- | --- | --- | --- |
-| Project 1 | <Currency>400</Currency> | 500 | **200** |
-| Project 2 | <Currency>400</Currency> | 300 | **200** |
-| Project 3 | <Currency>400</Currency> | 150 | **200** |
+| Projet 1 | <Currency>400</Currency> | 500 | **200** |
+| Projet 2 | <Currency>400</Currency> | 300 | **200** |
+| Projet 3 | <Currency>400</Currency> | 150 | **200** |
 
-This time, all three projects have the same effective vote count, so again we need to break the tie.
-All three projects have the same cost, so we need to break the tie by looking at the initial vote count.
-Thus, the method selects **Project 1**, because its initial vote count of 500 is higher than the initial vote count of both Project 2 and of Project 3.
+Cette fois, les trois projets ont le même nombre de votes effectif, nous devons donc les départager.
+Les trois projets ont le même coût, nous devons donc les départager en regardant le nombre de votes initial.
+Ainsi, la méthode sélectionne le **projet 1**, car son nombre de votes initial de 500 est supérieur au nombre de votes initial des projets 2 et 3.
 
-### Example 3
+### Exemple 3
 
-Here is a final example.
+Voici un dernier exemple.
 
-| Project | Cost | Initial vote count | Effective vote count |
+| Projet | Coût | Nombre de votes initial | Nombre de votes effectif |
 | --- | --- | --- | --- |
-| Project 1 | <Currency>400</Currency> | 500 | **200** |
-| Project 2 | <Currency>400</Currency> | 500 | **200** |
+| Projet 1 | <Currency>400</Currency> | 500 | **200** |
+| Projet 2 | <Currency>400</Currency> | 500 | **200** |
 
-Projects 1 and 2 have the same effective vote count, so we need to break the tie.
-But they both have the same cost and the same initial vote count.
-Thus, the tie needs to be broken by lot, for example by having the election official flip a coin.
+Les projets 1 et 2 ont le même nombre de votes effectif, nous devons donc les départager.
+Mais ils ont tous les deux le même coût et le même nombre de votes initial.
+Ainsi, la décision doit être prise par tirage au sort, par exemple en faisant lancer une pièce par l'officiel des élections.
 
-## Likelihood of ties
+## Probabilité d'égalité
 
-Using simulations based on election data in the [Pabulib library](http://pabulib.org/), it is possible to estimate the likelihood of ties occurring.
-These simulations suggest that it is exceptionally rare (<1%) to need to use randomness to break a tie.
-This is because in almost all cases, any tie can already be broken based on project costs and initial vote counts.
+En utilisant des simulations basées sur des données électorales de la bibliothèque [Pabulib] (http://pabulib.org/), il est possible d'estimer la probabilité d'une égalité.
+Ces simulations suggèrent qu'il est exceptionnellement rare (<1 %) d'avoir besoin d'utiliser le hasard pour rompre une égalité.
+En effet, dans presque tous les cas, toute égalité peut déjà être rompue en fonction des coûts du projet et des votes initiaux.
 
-In our simulation, we find that in **only 0.6% of cases**, there exist two projects with the exact same cost and the exact same vote count.
-Further, even in the 0.6% of cases with such similar projects, it is often not necessary to break this tie when computing the Method of Equal Shares
-(for example because the tied projects do not have a large-enough vote count to have a chance of winning).
-Our simulation suggests that in **only 0.15% of cases**, there occurs a tie when computing the Method of Equal Shares that needs to be broken by lot.
+Dans notre simulation, nous constatons que dans **seulement 0,6 % des cas**, il existe deux projets avec le même coût et le même nombre de votes.
+De plus, même dans les 0,6 % de cas avec des projets aussi similaires, il n'est souvent pas nécessaire de rompre cette égalité lors du calcul de la méthode des parts égales 
+(par exemple, parce que les projets liés n'ont pas un nombre de votes suffisamment élevé pour avoir une chance de gagner).
+Notre simulation suggère que dans **seulement 0,15 % des cas**, une égalité se produit lors du calcul de la méthode des parts égales qui doit être rompue par le sort.
 
-Most of the ties found in our simulation occur in elections in the city of Wrocław, which involve a fairly small number of voters.
-If we exclude the Wrocław elections from our simulation, then the likelihood of ties is even lower:
-two projects with the same cost and the same initial vote count occur in only 0.26% of cases, 
-and a tie during the computation of the Method of Equal Shares occurs in **only 0.09% of cases**.
+La plupart des égalités trouvées dans notre simulation se produisent lors des élections dans la ville de Wrocław, qui impliquent un nombre assez restreint d'électeurs.
+Si nous excluons les élections de Wrocław de notre simulation, alors la probabilité d'égalités est encore plus faible :
+deux projets avec le même coût et le même nombre de votes initiaux ne se produisent que dans **0,26 % des cas**, et une égalité lors du calcul de la méthode des parts égales ne se produit que dans **0,09 % des cas**.
 
 <details>
-<summary>Details of the simulation</summary>
+<summary>Détails de la simulation</summary>
 
-The simulation was performed in January 2023 using election data from Pabulib based on PB elections that used approval voting. There are 480 such datasets, coming from the Polish cities of Gdansk, Warsaw, Wrocław, and Zabrze. When excluding the Wrocław elections, the simulation involves 383 datasets. 
+La simulation a été effectuée en janvier 2023 en utilisant des données électorales de Pabulib basées sur des élections PB utilisant un vote d'approbation. Il y a 480 ensembles de données de ce type, provenant des villes polonaises de Gdansk, Varsovie, Wrocław et Zabrze. Lorsque l'on exclut les élections de Wrocław, la simulation implique 383 ensembles de données.
 
-In order to get a more precise estimate of the likelihood of a tie occurring, for each dataset, we ran a simulation 100 times.
-In each iteration, we randomly sampled between 30% and 80% of the voters from the dataset (thereby obtaining a random smaller election), and then checked whether the smaller election contained a pair of projects with the same cost and the same initial vote count.
-For those instances where such a pair of projects was found, we then checked whether the Method of Equal Shares (using the standard [completion](completion) method) would encounter a tie when computing the election outcome.
+Afin d'obtenir une estimation plus précise de la probabilité d'une égalité, pour chaque ensemble de données, nous avons exécuté une simulation 100 fois.
+À chaque itération, nous avons échantillonné de manière aléatoire entre 30 % et 80 % des électeurs de l'ensemble de données (obtenant ainsi une élection plus petite aléatoire), puis vérifié si la plus petite élection contenait une paire de projets avec le même coût et le même nombre de votes initiaux.
+Pour les cas où une telle paire de projets a été trouvée, nous avons ensuite vérifié si la méthode des parts égales (en utilisant la méthode de [complétion](completion) standard) rencontrerait une égalité lors du calcul du résultat de l'élection.
 
-If we only look at the actual, original elections (without randomly sampling a subset of voters), then a pair of projects with the same cost and the same initial vote count occurs in 1.25% of elections, with Equal Shares encountering a tie in 0.21% of elections. Excluding the Wrocław elections, the numbers are 0.5% and 0.0% respectively.
+Si nous ne regardons que les élections réelles et originales (sans échantillonner aléatoirement un sous-ensemble d'électeurs), une paire de projets avec le même coût et le même nombre de votes initiaux se produit dans 1,25 % des élections, avec une égalité rencontrée par Parts Égales dans 0,21 % des élections. En excluant les élections de Wrocław, ces nombres sont de 0,5 % et 0,0 % respectivement.
 
-The simulation code is [available on GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
+Le code de simulation est [disponible sur GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
 </details>

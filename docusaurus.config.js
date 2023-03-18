@@ -21,7 +21,7 @@ const config = {
   favicon: 'img/favicon.svg',
 
   customFields: {
-    currencySymbol: {en: '€', de: 'Fr. ', pl: 'zł'},
+    currencySymbol: {en: '€', de: 'Fr. ', pl: 'zł', fr: '€'},
     buildDate: isoDay,
   },
 

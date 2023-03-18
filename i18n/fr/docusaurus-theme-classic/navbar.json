@@ -1,22 +1,22 @@
 {
   "title": {
-    "message": "Method of Equal Shares",
+    "message": "Méthode des parts egales",
     "description": "The title in the navbar"
   },
   "item.label.Explanation": {
-    "message": "Explanation",
+    "message": "Explication",
     "description": "Navbar item with label Explanation"
   },
   "item.label.Benefits": {
-    "message": "Benefits",
+    "message": "Avantages",
     "description": "Navbar item with label Benefits"
   },
   "item.label.Implementation": {
-    "message": "Implementation",
+    "message": "Mise en œuvre",
     "description": "Navbar item with label Implementation"
   },
   "item.label.Resources": {
-    "message": "Resources",
+    "message": "Ressources",
     "description": "Navbar item with label Resources"
   },
   "item.label.Contacts": {

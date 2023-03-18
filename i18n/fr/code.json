@@ -1,59 +1,59 @@
 {
   "homepage.universityLogoTooltipContact": {
-    "message": "Contact:"
+    "message": "Contact :"
   },
   "explanation.budgetBars.tooltipBudget": {
-    "message": "Budget:",
+    "message": "Budget :",
     "description": "When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount."
   },
   "explanation.budgetBars.tooltipSpending": {
-    "message": "Spending:",
+    "message": "Dépenses :",
     "description": "When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount."
   },
   "Cost:": {
-    "message": "Cost:"
+    "message": "Coût :"
   },
   "(supporting voters do not have enough money)": {
-    "message": "(supporting voters do not have enough money)"
+    "message": "(les électeurs qui soutiennent n'ont pas assez d'argent)"
   },
   "sankey.voterLabel.prefix": {
-    "message": "Voter",
+    "message": "Électeur",
     "description": "The word 'Voter' that will be used in 'Voter 1', 'Voter 2', etc."
   },
   "sankey.tooltipBudgetShare": {
-    "message": "Budget share",
+    "message": "Part du budget",
     "description": "used in tooltips of voters in the Sankey diagram to say 'Budget share: [amount]'"
   },
   "sankey.projectLabel.prefix": {
-    "message": "Project",
+    "message": "Projet",
     "description": "The word 'Project' that will be used in 'Project 1', 'Project 2', etc."
   },
   "sankey.tooltipContributesAmount": {
-    "message": "(contributes {amount})",
+    "message": "(contribue {amount})",
     "description": "used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project"
   },
   "sankey.projectTooltip": {
-    "message": "Project {projectNumber} costs {projectCost}. This cost is covered equally by the {numVoters} voters who voted for Project {projectNumber}. Each of these voters contribute {contributionAmount} from their budget share.",
+    "message": "Le projet {projectNumber} coûte {projectCost}. Ce coût est pris en charge à parts égales par les {numVoters} électeurs ayant voté pour le projet {projectNumber}. Chacun de ces électeurs contribue {contributionAmount} à partir de leur part du budget.",
     "description": "The tooltip appearing when hovering over a project on the right"
   },
   "sankey.cityTooltip": {
-    "message": "The city budget is {cityBudget}. It is divided equally between the 8 voters, so each voter gets {voterBudget}."
+    "message": "Le budget de la ville est de {cityBudget}. Il est divisé à parts égales entre les 8 électeurs, chaque électeur recevant {voterBudget}."
   },
   "sankey.cityLabel": {
-    "message": "City",
+    "message": "Ville",
     "description": "Label for the City on the left of the Sankey figure"
   },
   "sankey.projectLabel.leftTextLine1": {
-    "message": "Step 1: The budget is divided equally"
+    "message": "Étape 1 : Le budget est réparti également"
   },
   "sankey.projectLabel.leftTextLine2": {
-    "message": "among the voters"
+    "message": "entre les électeurs"
   },
   "sankey.projectLabel.rightTextLine1": {
-    "message": "Step 2: Projects are funded with the shares"
+    "message": "Étape 2 : Les projets sont financés avec les parts"
   },
   "sankey.projectLabel.rightTextLine2": {
-    "message": "of those who voted for them"
+    "message": "de ceux qui ont voté pour eux"
   },
   "theme.ErrorPageContent.title": {
     "message": "Cette page a planté.",
@@ -327,6 +327,6 @@
     "description": "The title of the tag list page"
   },
   "footer.LastUpdated": {
-    "message": "Last updated:"
+    "message": "Dernière mise à jour :"
   }
 }

@@ -34,6 +34,8 @@ export default function Root({children}) {
                                 'de-DE': '€',
                                 'de-AT': '€',
                                 'fr-FR': '€',
+                                'fr-CA': '$',
+                                'fr-CH': 'fr. ',
                             }
                             for (const navigatorLanguage of navigatorLanguages) {
                                 if (defaultCurrency[navigatorLanguage]) {

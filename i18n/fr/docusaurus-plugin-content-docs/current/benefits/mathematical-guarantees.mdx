@@ -1,132 +1,122 @@
 ---
 sidebar_position: 5
-title: Mathematical fairness guarantees
+title: Garanties mathématiques d'équité
 ---
 
 import { SemiBold } from '@site/src/components/MyComponents';
 import X from '/icons/x-circle.svg';
 
-# Mathematical fairness guarantees
+# Garanties mathématiques d'équité
 
 <div class="summary">
-<b>Summary</b>:
-The academic literature has shown that the Method of Equal Shares guarantees all groups of voters an appropriate amount of representation in the outcome. It also guarantees that projects will win as long as they receive a certain minimum amount of support.
+<b>Résumé</b>:
+La littérature académique a montré que la méthode des parts égales garantit à tous les groupes d'électeurs une représentation appropriée dans le résultat. Elle garantit également que les projets gagneront tant qu'ils recevront un certain nombre de soutiens.
 </div>
 
-The Method of Equal Shares was proposed and developed by mathematicians and computer scientists who proved
-mathematical theorems that say that the method guarantees fairness to voters in certain precise senses.
-On this page, we will describe some of their results, both on an intuitive level and in more technical terms.
+La méthode des parts égales a été proposée et développée par des mathématiciens et des informaticiens qui ont prouvé des théorèmes mathématiques garantissant l'équité des électeurs dans certains sens précis. Sur cette page, nous décrirons certains de leurs résultats, à la fois de manière intuitive et plus technique.
 
-For more information, please also consult the following sources:
+Pour plus d'informations, veuillez également consulter les sources suivantes :
 [<img src={require('@site/static/img/abcbook.png').default} style={{ float: 'right', width: '100px' }} />](https://link.springer.com/book/10.1007/978-3-031-09016-5)
 
-* The book "Multi-Winner Voting with Approval Preferences" (2023) by Martin Lackner and Piotr Skowron, published Open Access by Springer ([free PDF available](https://link.springer.com/book/10.1007/978-3-031-09016-5)).
-Note that this book mostly focusses on "multi-winner elections", where we assume that all projects have the same cost.
-* The paper "Proportional Participatory Budgeting with Additive Utilities" by Dominik Peters, Grzegorz Pierczyński, and Piotr Skowron. Available [on arXiv](https://arxiv.org/abs/2008.13276).
+* Le livre "Multi-Winner Voting with Approval Preferences" (2023) de Martin Lackner et Piotr Skowron, publié en Open Access par Springer ([PDF gratuit disponible](https://link.springer.com/book/10.1007/978-3-031-09016-5)). Notez que ce livre se concentre principalement sur les "élections à plusieurs gagnants", où nous supposons que tous les projets ont le même coût.
+* L'article "Proportional Participatory Budgeting with Additive Utilities" de Dominik Peters, Grzegorz Pierczyński et Piotr Skowron. Disponible [sur arXiv](https://arxiv.org/abs/2008.13276).
 
-## A project is guaranteed to be funded provided it gets a number of "bullet" votes that is proportional to its cost {#bullet-votes}
+## Un projet est assuré d'être financé s'il obtient un nombre de votes "bullet" proportionnel à son coût {#bullet-votes}
 
-The first mathematical guarantee concerns individual projects: they are sure to be funded provided they get at least a certain minimum number of unique votes.
+La première garantie mathématique concerne des projets individuels : ils sont sûrs d'être financés à condition d'obtenir au moins un certain nombre minimum de votes uniques.
 
-For a precise example, consider a project proposal with a cost that would consume 5% of the overall available budget. 
-Then, if at least 5% of voters vote for that project _and for no other projects_, then this proposal will win under the Method of Equal Shares.
+Pour un exemple précis, considérons une proposition de projet dont le coût représenterait 5 % du budget global disponible. Alors, si au moins 5 % des électeurs votent pour ce projet _sans voter pour aucun autre projet_, cette proposition sera gagnante selon la méthode des parts égales.
 
-Here is a formal way of describing this property:
+Voici une façon formelle de décrire cette propriété :
 
-> **Theorem**. Let $P$ be a project and let $\text{cost}(P)$ be the cost of the proposal. Suppose $B$ is the overall budget, and $n$ is the total number of voters. If at least $n \cdot \text{cost}(P)/B$ voters vote for $P$ and no other projects, then $P$ will be among the projects selected by the Method of Equal Shares.
+> **Théorème**. Soit $P$ un projet et $\text{coût}(P)$ son coût. Supposons que $B$ est le budget total et $n$ le nombre total de votants. Si au moins $n \cdot \text{coût}(P)/B$ votants votent pour $P$ et aucun autre projet, alors $P$ sera parmi les projets sélectionnés par la méthode des parts égales.
 
 <details className="proof">
-<summary>Proof</summary>
+<summary>Preuve</summary>
 
-Each of the voters who voted only for $P$ gets assigned a budget share of at least $B/n$ at the start of the computation of the method. (It could be more than $B/n$ because we [complete](../implementation/completion) the method.)
+Chacun des votants qui ont voté uniquement pour $P$ se voit attribuer une part de budget d'au moins $B/n$ au début du calcul de la méthode. (Il pourrait être supérieur à $B/n$ car nous [complétons](../implementation/completion) la méthode.)
 
-Therefore, the total amount of budget assigned to voters who vote only for $P$ is at least
+Par conséquent, le montant total du budget attribué aux votants qui votent uniquement pour $P$ est d'au moins
 $$
-\underbrace{n \cdot \frac{\text{cost}(P)}{B}}_{\text{number of voters}} \cdot \underbrace{\frac{B}{n}}_{\text{budget share}} = \text{cost}(P).
+\underbrace{n \cdot \frac{\text{coût}(P)}{B}}_{\text{nombre de votants}} \cdot \underbrace{\frac{B}{n}}_{\text{part de budget}} = \text{coût}(P).
 $$
 
-By definition of the Method of Equal Shares, it finishes only when no more projects can be afforded by their supporters. But that means that $P$ must be among the selected projects, because the voters who only vote for $P$ retain all their money until $P$ is selected, 
-and thus $P$ is always affordable.
+Par définition de la méthode des parts égales, elle ne se termine que lorsque plus aucun projet ne peut être financé par ses partisans. Mais cela signifie que $P$ doit être parmi les projets sélectionnés, car les votants qui votent uniquement pour $P$ conservent tout leur argent jusqu'à ce que $P$ soit sélectionné, et donc $P$ est toujours abordable.
 </details>
 
-Using the standard voting method for participatory budgeting (which just selects the most popular projects until the budget runs out), no similar guarantee holds. Even a very cost-effective project (for example, costing 1% of the budget) may need a large number of voters (for example, more than 30%) to win under the standard method.
+En utilisant la méthode de vote standard pour le budget participatif (qui sélectionne simplement les projets les plus populaires jusqu'à épuisement du budget), aucune garantie similaire n'est offerte. Même un projet très rentable (par exemple, coûtant 1% du budget) peut avoir besoin d'un grand nombre de votants (par exemple, plus de 30%) pour gagner selon la méthode standard.
 
-For the guarantee to hold, it is necessary to assume that the supporting voters support only the project in question and no other projects, because otherwise the Method of Equal Shares may decide to satisfy those voters by selecting some of the other projects that they support.
+Pour que la garantie soit respectée, il est nécessaire de supposer que les votants qui soutiennent un projet ne soutiennent pas d'autres projets, car sinon la méthode des parts égales pourrait décider de satisfaire ces votants en sélectionnant certains des autres projets qu'ils soutiennent.
 
-## Groups with similar votes will be represented in the outcome
+## Les groupes de votants ayant des votes similaires seront représentés dans le résultat
 
-Under the Method of Equal Shares, any group of voters who voted for similar projects can expect to be represented in the outcome to an extent that is proportional to the group size. For example, a group of 20% of the voters can expect to influence 20% of the budget spending.
+Sous la méthode des parts égales, tout groupe de votants ayant voté pour des projets similaires peut s'attendre à être représenté dans le résultat dans une mesure proportionnelle à la taille du groupe. Par exemple, un groupe de 20% des votants peut s'attendre à influencer 20% des dépenses du budget.
 
-For example, such groups of voters could be the parents of children in a particular school, or the residents of a particular neighborhood, or people commuting by bike. The following properties will ensure that each of these groups will be represented in the outcome (provided they have enough members to justify the cost of the projects that they jointly support).
+De tels groupes de votants pourraient être les parents d'enfants dans une école particulière, les résidents d'un quartier particulier ou les personnes se déplaçant à vélo. Les propriétés suivantes garantiront que chacun de ces groupes sera représenté dans le résultat (à condition qu'ils aient suffisamment de membres pour justifier le coût des projets qu'ils soutiennent ensemble).
 
-### Groups of voters with identical votes
+### Groupes de votants ayant des votes identiques
 
-Let us consider a PB election based on approval voting.
-Suppose that $t$ out of the $n$ voters submitted an identical ballot, that is, they all voted for the exact same set of projects.
-For concreteness, say that these $t$ voters vote for projects $P_1$, $P_2$, and $P_3$. 
-Intuitively, since this group forms a $t/n$ fraction of the voters, they should be represented in the outcome by a $t/n$ fraction of the budget.
-Let us assume for the moment that 
+Prenons une élection de PB basée sur le vote d'approbation. Supposons que $t$ des $n$ votants aient soumis un bulletin identique, c'est-à-dire qu'ils ont tous voté pour le même ensemble de projets. Pour être concret, disons que ces $t$ votants votent pour les projets $P_1$, $P_2$ et $P_3$. Intuitivement, puisque ce groupe représente une fraction $t/n$ des votants, ils devraient être représentés dans le résultat par une fraction $t/n$ du budget.
+
+Supposons pour le moment que 
 $$
-\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) \leqslant \frac{t}{n} \cdot B,
+\text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) \leqslant \frac{t}{n} \cdot B,
 $$
-where $B$ is the overall budget. In other words, the group of voters is large enough to "deserve" to have all the projects they voted for funded.
-In this case, one can prove that the Method of Equal Shares will select all three projects.
+où $B$ est le budget global. En d'autres termes, le groupe de votants est assez grand pour "mériter" que tous les projets pour lesquels ils ont voté soient financés. Dans ce cas, on peut prouver que la méthode des parts égales sélectionnera les trois projets.
 
-Formally, this property can be written as follows:
+Formellement, cette propriété peut être écrite comme suit :
 
-> **Theorem**. Let $\{P_1, P_2, \ldots, P_k\}$ be a set of projects, and suppose that $t$ of the $n$ voters voted for all of these projects (and only these projects). Suppose that the total cost of these projects is at most $t/n \cdot B$. Then the Method of Equal Shares will select all $k$ projects.
+> **Théorème**. Soit $\{P_1, P_2, \ldots, P_k\}$ un ensemble de projets, et supposons que $t$ des $n$ votants ont voté pour tous ces projets (et seulement ces projets). Supposons que le coût total de ces projets est au plus $t/n \cdot B$. Alors la méthode des parts égales sélectionnera les $k$ projets.
 
 <details>
 <summary>
-    Info about the case when the projects cost more than the limit
+    Informations sur le cas où le coût des projets dépasse la limite
 </summary>
 
-One can also prove a similar guarantee if the group of voters approves a collection of projects that costs more than $t/n \cdot B$ in total. Suppose $t$ voters vote exactly for the projects $P_1$, $P_2$, $P_3$, and $P_4$. Suppose that
+On peut également prouver une garantie similaire si le groupe d'électeurs approuve une collection de projets dont le coût total est supérieur à $t/n \cdot B$. Supposons que $t$ électeurs votent exactement pour les projets $P_1$, $P_2$, $P_3$, et $P_4$. Supposons que 
 $$
-\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) + \text{cost}(P_4) > \frac{t}{n} \cdot B.
+\text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) + \text{coût}(P_4) > \frac{t}{n} \cdot B.
 $$
-Then, the Method of Equal Shares will select some of these projects that together cost "approximately" $t/n \cdot B$.
+Alors, la Méthode des Parts Égales sélectionnera certains de ces projets qui, ensemble, coûtent "approximativement" $t/n \cdot B$.
 
-> **Theorem**. Let $T = \{P_1, P_2, \ldots, P_k\}$ be a set of projects, and suppose that $t$ of the $n$ voters voted for all of these projects (and only these projects).  Then the Method of Equal Shares will select a subset $T' \subseteq T$ of projects such that for every project $P^* \in T$ that was not selected by the Method, 
-we have $\sum_{P \in T'} \text{cost}(P) + \text{cost}(P^*) > t/n \cdot B$.
+> **Théorème**. Soit $T = \{P_1, P_2, \ldots, P_k\}$ un ensemble de projets, et supposons que $t$ des $n$ électeurs ont voté pour tous ces projets (et seulement pour ces projets). Alors, la Méthode des Parts Égales sélectionnera un sous-ensemble $T' \subseteq T$ de projets tels que pour chaque projet $P^* \in T$ qui n'a pas été sélectionné par la Méthode, on a $\sum_{P \in T'} \text{coût}(P) + \text{coût}(P^*) > t/n \cdot B$.
 
 </details>
 
-### Groups of voters with overlapping votes
+### Groupes de votants avec des votes qui se chevauchent
 
-In the mathematical guarantees described above, we assumed that the group of voters voted for exactly the same set of projects. In practice, however, even groups of voters with strong agreement will not always vote for *exactly* the same set of projects. Therefore, it is interesting to see if the Method of Equal Shares will select projects that are supported by a group of voters with high but not perfect agreement. The answer is yes: if a group of voters has a sufficiently large overlap in their votes, then the Method of Equal Share will represent the group.
+Dans les garanties mathématiques décrites ci-dessus, nous avons supposé que le groupe de votants a voté pour exactement le même ensemble de projets. En pratique, cependant, même les groupes de votants avec un fort accord ne voteront pas toujours pour le *même* ensemble de projets. Il est donc intéressant de voir si la Méthode des Parts Égales sélectionnera des projets qui sont soutenus par un groupe de votants avec un accord élevé mais pas parfait. La réponse est oui: si un groupe de votants a un chevauchement suffisamment important dans leurs votes, alors la Méthode des Parts Égales représentera le groupe.
 
 <details>
-<summary>Details about the mathematical guarantee</summary>
+<summary>Détails sur la garantie mathématique</summary>
 
-Let us consider a PB election based on approval voting. 
-In general, if $T = \{P_1, P_2, \ldots, P_k\}$ is a set of projects, we write $\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)$ for the total cost of the projects in $T$.
-Suppose that a group of $t$ voters all approve the projects in the set $T$, but some of the voters also approve some other projects not in $T$.
-Assume that $\text{cost}(T)\leqslant t/n \cdot B$ (so that the group of voters can "afford" all the projects in $T$ using only the budget shares of the members of the group).
-Then, the Method of Equal Shares guarantees that at least one of the $t$ voters will be sufficiently represented in the outcome $W$: this means that there exists some member $i$ of the group (who voted for the set of projects $A_i$ (including all the projects in $T$, so $T \subseteq A_i$)) with
+Considérons une élection PB basée sur le vote d'approbation.
+En général, si $T = \{P_1, P_2, \ldots, P_k\}$ est un ensemble de projets, nous écrivons $\text{coût}(T) = \text{coût}(P_1) + \text{coût}(P_2) + \ldots + \text{coût}(P_k)$ pour le coût total des projets dans $T$.
+Supposons qu'un groupe de $t$ votants approuve tous les projets de l'ensemble $T$, mais que certains votants approuvent également d'autres projets qui ne sont pas dans $T$.
+Supposons que $\text{coût}(T)\leqslant t/n \cdot B$ (de sorte que le groupe de votants peut "se permettre" tous les projets de $T$ en n'utilisant que les parts de budget des membres du groupe).
+Alors, la Méthode des Parts Égales garantit qu'au moins l'un des $t$ votants sera suffisamment représenté dans le résultat $W$: cela signifie qu'il existe un membre $i$ du groupe (qui a voté pour l'ensemble de projets $A_i$ (y compris tous les projets de $T$, donc $T \subseteq A_i$)) avec
 $$
-\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_j) \qquad \text{for some $P_j \in T$}.
+\text{coût}(A_i \cap W) \geqslant \text{coût}(T) - \text{coût}(P_j) \qquad \text{pour certains $P_j \in T$}.
 $$
-In this expression, $A_i \cap W$ stands for the set of projects that are approved by both the voter $i$ that are included in the outcome $W$.
+Dans cette expression, $A_i \cap W$ désigne l'ensemble des projets approuvés à la fois par le votant $i$ et inclus dans le résultat $W$.
 
-This property is called "extended justified representation up to one project" in the academic literature. More details can be found in the paper by [Peters et al. (2021)](https://arxiv.org/abs/2008.13276).
+Cette propriété est appelée "représentation justifiée étendue jusqu'à un projet" dans la littérature académique. Plus de détails peuvent être trouvés dans l'article de [Peters et al. (2021)](https://arxiv.org/abs/2008.13276) (en anglais).
 </details>
 
-## Other basic voting criteria
+## Autres critères de vote de base
 
-There are other basic voting criteria that are not "fairness guarantees" in the senses above, but are still worth mentioning. The following criteria are satisfied by the Method of Equal Shares:
-<!-- * <SemiBold>Unanimity</SemiBold>: If a project is supported by all voters, then it wins (assuming an approval election). -->
+Il existe d'autres critères de vote de base qui ne sont pas des « garanties d'équité » dans les sens ci-dessus, mais qui valent tout de même la peine d'être mentionnés. Les critères suivants sont satisfaits par la méthode des parts égales :
 
-* <SemiBold>Polynomial time computability</SemiBold>: The outcome of the Method of Equal Shares can be computed in polynomial time by a simple algorithm. Thus the winning projects can be determined quickly, usually in less than a minute even for elections in large cities.
-* <SemiBold>Independence of clones</SemiBold>: By "cloning" a project, we mean proposing one or more identical copies of a project already on the ballot. We assume that each voter either supports all or none of the clones. Under the Method of Equal Shares, the following holds: if a losing project is cloned, none of the clones win; and if a winning project is cloned, then at least one of the clones wins.
-* <SemiBold>Monotonicity</SemiBold>: If a project wins, and a voter changes their ballot by adding an approval to the winning project, then that project continues to win.
-* <SemiBold>Discount monotonicity</SemiBold>: If a project wins, and its cost is reduced, then it stays winning. If a project loses, and its price is increased, then it stays losing.
-* <SemiBold>Independence to empty ballots</SemiBold>: If we add a voter to the election who approves none of the projects, then the outcome does not change (assuming we complete the method in the usual way).
-* <SemiBold>Extends the D'Hondt method</SemiBold>: The Method of Equal Shares (using standard completion) is a generalization of the <a href="https://en.wikipedia.org/wiki/D%27Hondt_method">D'Hondt method</a> which is used in many countries to elect members of parliament using a proportional party-list system. The D'Hondt method is a special case of the Method of Equal Shares where the "projects" are the candidates for parliament, the cost of each "project" is equal to 1, the budget equals the available number of seats, and each voter approves all the members of exactly one party.
+* <SemiBold>Calculabilité en temps polynomial</SemiBold> : Le résultat de la méthode des parts égales peut être calculé en temps polynomial par un algorithme simple. Ainsi, les projets gagnants peuvent être déterminés rapidement, généralement en moins d'une minute même pour les élections dans les grandes villes.
+* <SemiBold>Indépendance des clones</SemiBold> : Par "clonage" d'un projet, nous entendons proposer une ou plusieurs copies identiques d'un projet déjà sur le bulletin de vote. Nous supposons que chaque électeur soutient tous les clones ou aucun d'entre eux. Dans la méthode des parts égales, on a : si un projet perdant est cloné, aucun des clones ne gagne ; et si un projet gagnant est cloné, alors au moins l'un des clones gagne.
+* <SemiBold>Monotonie</SemiBold> : Si un projet gagne et qu'un électeur modifie son vote en ajoutant une approbation au projet gagnant, alors ce projet continue de gagner.
+* <SemiBold>Monotonie de réduction de coût</SemiBold> : Si un projet gagne et que son coût est réduit, alors il reste gagnant. Si un projet perd et que son prix est augmenté, alors il reste perdant.
+* <SemiBold>Indépendance des bulletins vides</SemiBold> : Si nous ajoutons un électeur à l'élection qui n'approuve aucun des projets, le résultat ne change pas (en supposant que nous complétons la méthode de la manière habituelle).
+* <SemiBold>Étend la méthode de D'Hondt</SemiBold> : La méthode des parts égales (en utilisant l'achèvement standard) est une généralisation de la <a href="https://en.wikipedia.org/wiki/D%27Hondt_method">méthode de D'Hondt</a> qui est utilisée dans de nombreux pays pour élire des membres du parlement en utilisant un système de liste proportionnelle. La méthode de D'Hondt est un cas particulier de la méthode des parts égales où les "projets" sont les candidats au parlement, le coût de chaque "projet" est égal à 1, le budget équivaut au nombre de sièges disponibles, et chaque électeur approuve tous les membres d'un seul parti.
 
-Several other criteria are failed, however, including:
+Plusieurs autres critères ne sont toutefois pas satisfaits, notamment :
 <ul style={{ listStyleType: '"\\2717  "' }}>
-<li>Pareto-optimality</li>
-<li>Budget limit monotonicity (a winning project should stay winning if the available budget is increased)</li>
-<li>Strategyproofness (a voter should not be able to improve the outcome by changing their ballot)</li>
+<li>Pareto-optimalité</li>
+<li>Monotonie de la limite de budget (un projet gagnant devrait rester gagnant si le budget disponible est augmenté)</li>
+<li>Proofness de stratégie (un électeur ne devrait pas être en mesure d'améliorer le résultat en changeant son vote)</li>
 </ul>

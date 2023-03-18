@@ -57,7 +57,8 @@ export function CurrencyPickerNavbarItem() {
   const currencyChoices = {
     'en': ['€','$','£'],
     'de': ['Fr. ','€'],
-  }
+    'fr': ['€', '$', 'fr. '],
+  };
   for (const [lang, choices] of Object.entries(currencyChoices)) {
     if (language === lang) {
       const classname = "navbar__link clean-btn currency-btn";
