@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useColorMode } from '@docusaurus/theme-common';
 import Translate, {translate} from '@docusaurus/Translate';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 import { Currency } from '@site/src/components/CurrencyChoice';
 
@@ -34,6 +35,9 @@ export function BudgetBars({
     // effectiveVoteCounts = [],            // the effective vote counts to display
     overrideMax = null                   // default: the y-axis ranges from 0 to the maximum budget. This value can customize the upper limit (for example to use the initial maximum budget)
   }) {
+  const { i18n } = useDocusaurusContext();
+  const locale = i18n.currentLocale;
+
   let absoluteHeight = 200 - 2; // account for the 1px border
   // decide on upper limit for the y-axis
   let maxBudget = Math.max(...budgets);
@@ -56,19 +60,19 @@ export function BudgetBars({
   let bars = budgets.map((budget, index) => {
     var barStyle = budget > 0 ? { height: absoluteHeight * budget/maxBudget + 'px' } : {};
     return (<div className="budget-bar-container" key={index.toString()}>
-      {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{budget}</div>}
+      {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{budget.toLocaleString(locale)}</div>}
       <Tippy content={<span>
-          <Translate id="explanation.budgetBars.tooltipBudget" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount.">Budget:</Translate> <Currency>{budget}</Currency>
-          {showPayments && <span><br/><Translate id="explanation.budgetBars.tooltipSpending" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount.">Spending:</Translate> <Currency>{payments[index]}</Currency></span>} 
+          <Translate id="explanation.budgetBars.tooltipBudget" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount.">Budget:</Translate> <Currency>{budget.toLocaleString(locale)}</Currency>
+          {showPayments && <span><br/><Translate id="explanation.budgetBars.tooltipSpending" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount.">Spending:</Translate> <Currency>{payments[index].toLocaleString(locale)}</Currency></span>} 
         </span>} theme="light">
         <div className={budget > 0 ? 'budget-bar' : 'budget-bar budget-bar-zero'} style={barStyle}>
-          {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: absoluteHeight * payments[index]/maxBudget + 'px' }}>{payments[index]}</div>}
+          {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: absoluteHeight * payments[index]/maxBudget + 'px' }}>{payments[index].toLocaleString(locale)}</div>}
         </div>
       </Tippy>
       {
         showEffectiveVoteCounts 
           ? (!isNaN(effectiveVoteCounts[index])
-            ? <div className="vote-count">{effectiveVoteCounts[index]}</div>
+            ? <div className="vote-count">{effectiveVoteCounts[index].toLocaleString(locale)}</div>
             : <div className="empty-vote-count"></div>)
           : null
       }
@@ -86,7 +90,7 @@ export function BudgetBars({
       </div>
       {bars}
       <div className="budget-bar-container">
-      { showTotalEffectiveVoteCount && !isNaN(totalEffectiveVoteCount) && <div className="vote-count" style={{backgroundColor: "hsl(80, 80%, 88%)"}}><b>{totalEffectiveVoteCount}</b></div> }
+      { showTotalEffectiveVoteCount && !isNaN(totalEffectiveVoteCount) && <div className="vote-count" style={{backgroundColor: "hsl(80, 80%, 88%)"}}><b>{totalEffectiveVoteCount.toLocaleString(locale)}</b></div> }
       </div>
     </div>
   );
