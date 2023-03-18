@@ -93,10 +93,13 @@ details.proof p:last-child::after {
 
 .summary {
   padding: 0.8rem;
-  background-color: rgb(240, 240, 250);
+  background-color: hsl(240, 50%, 96%);
   border-radius: var(--ifm-pre-border-radius);
   box-shadow: var(--ifm-alert-shadow);
   margin-bottom: 1rem;
+}
+[data-theme='dark'] .summary {
+  background-color: hsl(240, 14%, 20%);
 }
 
 .footer__bottom {
@@ -193,6 +196,9 @@ iframe[src*="datawrapper"] {
   flex-direction: column;
   justify-content: flex-end;
 }
+[data-theme='dark'] .budget-bar-container {
+  color: rgb(199, 198, 198);
+}
 
 .budget-bar {
   background-color: hsl(220, 91%, 85%);
@@ -264,6 +270,18 @@ iframe[src*="datawrapper"] {
   line-height: 20px;
   font-size: 13.3px;
   background-color: hsl(34, 80%, 88%);
+}
+[data-theme='dark'] .vote-count, [data-theme='dark'] .empty-vote-count {
+  background-color: hsl(34, 80%, 38%);
+  color: white;
+}
+
+.total-vote-count {
+  background-color: hsl(80, 80%, 88%);
+  font-weight: 600;
+}
+[data-theme='dark'] .total-vote-count {
+  background-color: hsl(80, 80%, 38%);
 }
 
 .empty-vote-count {

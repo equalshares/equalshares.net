@@ -90,7 +90,7 @@ export function BudgetBars({
       </div>
       {bars}
       <div className="budget-bar-container">
-      { showTotalEffectiveVoteCount && !isNaN(totalEffectiveVoteCount) && <div className="vote-count" style={{backgroundColor: "hsl(80, 80%, 88%)"}}><b>{totalEffectiveVoteCount.toLocaleString(locale)}</b></div> }
+      { showTotalEffectiveVoteCount && !isNaN(totalEffectiveVoteCount) && <div className="vote-count total-vote-count">{totalEffectiveVoteCount.toLocaleString(locale)}</div> }
       </div>
     </div>
   );

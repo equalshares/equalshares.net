@@ -200,6 +200,10 @@
   margin-bottom: 1rem;
   background-color: rgb(232,245,251);
 }
+[data-theme='dark'] .cities2023 {
+  background-color: hsl(202, 100%, 10%);;
+  color: #fff;
+}
 
 .cities2023 h2 {
   font-size: 1.4em;
