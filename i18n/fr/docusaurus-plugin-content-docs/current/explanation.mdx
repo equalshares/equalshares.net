@@ -135,12 +135,12 @@ Par exemple, le premier électeur à gauche a sélectionné la piste cyclable et
 | <span className="project-4">🛝 nouvelle aire de jeux </span> | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
 | <span className="project-5">📚 bibliothèque pour enfants</span> | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
 
-La plupart des villes utilisent une méthode simple pour sélectionner les gagnants des budgets participatifs, où ils examinent les projets dans l'ordre du nombre de votes. Dans ce cas, ils sélectionneraient le <span className="project-1">🚲 chemin de vélo</span> (avec 7 votes), puis le <span className="project-2">🏋️ gym en plein air</span> (avec 6 votes), et s'arrêteraient ensuite car le budget est épuisé.
+La plupart des villes utilisent une méthode simple pour sélectionner les gagnants des budgets participatifs, où ils examinent les projets dans l'ordre du nombre de votes. Dans ce cas, ils sélectionneraient le <span className="project-1">🚲 piste cyclable</span> (avec 7 votes), puis le <span className="project-2">🏋️ gymnase en plein air</span> (avec 6 votes), et s'arrêteraient ensuite car le budget est épuisé.
 Notez que ces deux projets "sportifs" sont tous deux votés par à peu près les mêmes électeurs.
 En revanche, les projets "enfants" (<span className="project-4">🛝 nouvelle aire de jeux</span>, <span className="project-5">📚 bibliothèque pour enfants</span>) sont votés par un ensemble différent d'électeurs, qui restent non représentés.
 
 :::info Spoiler
-Comme nous le verrons, la méthode des parts égales sélectionnera le <span className="project-1">🚲 chemin de vélo</span>, puis la <span className="project-4">🛝 nouvelle aire de jeux</span>, et ensuite la <span className="project-5">📚 bibliothèque pour enfants</span>.
+Comme nous le verrons, la méthode des parts égales sélectionnera le <span className="project-1">🚲 piste cyclable</span>, puis la <span className="project-4">🛝 nouvelle aire de jeux</span>, et ensuite la <span className="project-5">📚 bibliothèque pour enfants</span>.
 :::
 
 Nous commençons le calcul du résultat en divisant le budget également entre les électeurs.
@@ -152,9 +152,9 @@ Nous devons déterminer le nombre de votes effectifs pour le projet ayant obtenu
 
 <BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[100,100,100,100,100,100,0,0,0,0,100]} />
 
-Dans ce cas, le nombre de votes effectifs du <span className="project-1">🚲 chemin de vélo</span> est de 7. Tous les autres projets ont un nombre de votes effectifs inférieur (car le nombre de votes effectifs ne peut être inférieur au nombre de votes), et le projet suivant le plus populaire (le <span className="project-2">🏋️ gymnase en plein air</span>) n'a qu'un nombre de votes de seulement 6.
+Dans ce cas, le nombre de votes effectifs du <span className="project-1">🚲 piste cyclable</span> est de 7. Tous les autres projets ont un nombre de votes effectifs inférieur (car le nombre de votes effectifs ne peut être inférieur au nombre de votes), et le projet suivant le plus populaire (le <span className="project-2">🏋️ gymnase en plein air</span>) n'a qu'un nombre de votes de seulement 6.
 
-Ainsi, la méthode des parts égales sélectionne le <span className="project-1">🚲 chemin de vélo</span> comme premier projet à financer, et divise son coût également entre ses partisans. Ainsi, les 7 électeurs qui ont voté pour le <span className="project-1">🚲 chemin de vélo</span> paient chacun <Currency>100</Currency>, et n'ont donc plus de budget.
+Ainsi, la méthode des parts égales sélectionne le <span className="project-1">🚲 piste cyclable</span> comme premier projet à financer, et divise son coût également entre ses partisans. Ainsi, les 7 électeurs qui ont voté pour le <span className="project-1">🚲 piste cyclable</span> paient chacun <Currency>100</Currency>, et n'ont donc plus de budget.
 
 <BudgetBars budgets={[0,0,0,0,0,0,100,100,100,100,0]} showPayments={false} />
 
@@ -214,7 +214,7 @@ Le <span className="project-2">🏋️ gymnase en plein air</span> est sélectio
 
 <BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} showPayments={false} />
 
-Le projet avec le deuxième plus grand nombre de votes est le <span className="project-1">🚲 sentier cyclable</span> avec 6 votes. Les 6 votants le soutenant ont 6 &middot; <Currency>43</Currency> = <Currency>258</Currency> restants, ce qui n'est pas suffisant pour payer le <span className="project-1">🚲 sentier cyclable</span> qui coûte <Currency>700</Currency>. Ainsi, le sentier cyclable n'est pas abordable, et nous indiquons cela en lui donnant un nombre de votes effectif de 0.
+Le projet avec le deuxième plus grand nombre de votes est la <span className="project-1">🚲 piste cyclable</span> avec 6 votes. Les 6 votants le soutenant ont 6 &middot; <Currency>43</Currency> = <Currency>258</Currency> restants, ce qui n'est pas suffisant pour payer la <span className="project-1">🚲 piste cyclable</span> qui coûte <Currency>700</Currency>. Ainsi, la piste cyclable n'est pas abordable, et nous indiquons cela en lui donnant un nombre de votes effectif de 0.
 
 Nous passons donc au projet avec le nombre de votes suivant le plus élevé, qui est le <span className="project-3">🌳 nouveau parc</span> avec 5 votes. Si nous divisons son coût de <Currency>250</Currency> également entre ses supporters, chaque un des 5 votants le soutenant devrait payer <Currency>50</Currency>. Mais certains des supporters du <span className="project-3">🌳 nouveau parc</span> n'ont plus qu'une part de budget de <Currency>43</Currency>, donc ils ne peuvent pas se permettre de payer <Currency>50</Currency>. Ainsi (comme décrit ci-dessus), nous divisons le coût pour que les trois supporters ayant une part de budget restante de <Currency>43</Currency> paient chacun <Currency>43</Currency>, et les deux supporters avec une part de budget de <Currency>100</Currency> divisent les <Currency>250</Currency> restants &minus; 3 &middot; <Currency>43</Currency> = <Currency>121</Currency> également, de sorte que chacun paie <Currency>60,5</Currency>:
 
@@ -227,17 +227,17 @@ Les deux électeurs capables de payer <Currency>60,5</Currency> chacun comptent 
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
 | <span className="project-1">🚲 piste cyclable</span> | <Currency>700</Currency> | — | — | — | — | — | — |   |   |   |   |   | **0** |
 | <span className="project-3">🌳 nouveau parc</span> | <Currency>250</Currency> |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | **4,13** |
-| <span className="project-4">🛝 nouvelle aire de jeu</span> | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-4">🛝 nouvelle aire de jeux</span> | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
 | <span className="project-5">📚 bibliothèque pour enfants</span> | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
 
-(Le nombre de votes effectifs pour les projets <span className="project-4">🛝 nouvelle aire de jeu</span> et <span className="project-5">📚 bibliothèque pour enfants</span> est le même qu'auparavant, car leurs coûts peuvent être également répartis entre leurs partisans.)
+(Le nombre de votes effectifs pour les projets <span className="project-4">🛝 nouvelle aire de jeux</span> et <span className="project-5">📚 bibliothèque pour enfants</span> est le même qu'auparavant, car leurs coûts peuvent être également répartis entre leurs partisans.)
 
 Malgré la diminution de son nombre de votes effectifs, le <span className="project-3">🌳 nouveau parc</span> reste le projet avec le plus grand nombre de votes effectifs, nous le sélectionnons donc.
 Nous soustrayons les paiements. Les budgets restants sont maintenant les suivants :
 
 <BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} showPayments={false} />
 
-Au tour suivant, le <span className="project-4">🛝 nouveau terrain de jeu</span> est sélectionné, obtenant un compte de vote effectif de 3,31 (qui est le plus élevé):
+Au tour suivant, la <span className="project-4">🛝 nouvelle aire de jeux</span> est sélectionné, obtenant un compte de vote effectif de 3,31 (qui est le plus élevé):
 
 <BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} payments={[0,0,0,0,0,0,39.5,60.5,60.5,39.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
