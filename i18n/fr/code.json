@@ -17,16 +17,14 @@
     "message": "(les électeurs qui soutiennent n'ont pas assez d'argent)"
   },
   "sankey.voterLabel.prefix": {
-    "message": "Électeur",
-    "description": "The word 'Voter' that will be used in 'Voter 1', 'Voter 2', etc."
+    "message": "Électeur"
   },
   "sankey.tooltipBudgetShare": {
     "message": "Part du budget",
     "description": "used in tooltips of voters in the Sankey diagram to say 'Budget share: [amount]'"
   },
   "sankey.projectLabel.prefix": {
-    "message": "Projet",
-    "description": "The word 'Project' that will be used in 'Project 1', 'Project 2', etc."
+    "message": "Projet"
   },
   "sankey.tooltipContributesAmount": {
     "message": "(contribue {amount})",
@@ -328,5 +326,9 @@
   },
   "footer.LastUpdated": {
     "message": "Dernière mise à jour :"
+  },
+  "currencyChoice.tooltip": {
+    "message": "Cliquez pour utiliser {ThisCurrencySymbol} comme symbole de devise par défaut dans les exemples.",
+    "description": "When hovering over the currency symbols in the navbar, this tooltip is shown."
   }
 }

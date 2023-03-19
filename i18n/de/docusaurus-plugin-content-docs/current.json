@@ -10,5 +10,13 @@
   "sidebar.tutorialSidebar.category.Implementation": {
     "message": "Implementation",
     "description": "The label for category Implementation in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Vorteile": {
+    "message": "Vorteile",
+    "description": "The label for category Vorteile in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Implementierung": {
+    "message": "Implementierung",
+    "description": "The label for category Implementierung in sidebar tutorialSidebar"
   }
 }

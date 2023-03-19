@@ -1,26 +1,26 @@
 {
   "title": {
     "message": "Metoda równych udziałów",
-    "description": "Tytuł w pasku nawigacyjnym"
+    "description": "The title in the navbar"
   },
   "item.label.Explanation": {
     "message": "Wyjaśnienie działania",
-    "description": "Element paska nawigacyjnego z etykietą Wyjaśnienie działania"
+    "description": "Navbar item with label Explanation"
   },
   "item.label.Benefits": {
     "message": "Zalety",
-    "description": "Element paska nawigacyjnego z etykietą Zalety"
+    "description": "Navbar item with label Benefits"
   },
   "item.label.Implementation": {
     "message": "Wdrożenie",
-    "description": "Element paska nawigacyjnego z etykietą Wdroenie"
+    "description": "Navbar item with label Implementation"
   },
   "item.label.Resources": {
     "message": "Linki zewnętrzne",
-    "description": "Element paska nawigacyjnego z etykietą Linki zewnętrzne"
+    "description": "Navbar item with label Resources"
   },
   "item.label.Contacts": {
     "message": "Kontakt",
-    "description": "Element paska nawigacyjnego z etykietą Kontakt"
+    "description": "Navbar item with label Contacts"
   }
 }

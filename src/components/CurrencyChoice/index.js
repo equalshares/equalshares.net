@@ -2,6 +2,12 @@ import React from "react";
 import { createContext, useContext } from "react";
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+
+import Translate, {translate} from '@docusaurus/Translate';
+
 export const CurrencyContext = createContext(null);
 
 export function CurrencySymbol() {
@@ -64,11 +70,24 @@ export function CurrencyPickerNavbarItem() {
       const classname = "navbar__link clean-btn currency-btn";
       return (<div className="navbar__item currency-picker">
         {choices.map((choice, index) => (
-          <a className={
-            choice === currency ? 
-              `${classname} currency-btn-active` :
-              classname
-          } onClick={() => setCurrency(choice)} key={index}>{choice.trim()}</a>
+          <Tippy content={
+            <span>
+              <Translate 
+                id="currencyChoice.tooltip" 
+                description="When hovering over the currency symbols in the navbar, this tooltip is shown." 
+                values={{ ThisCurrencySymbol: (<b>{choice.trim()}</b>) }}>
+                  {'Click to use {ThisCurrencySymbol} as the default currency symbol in examples.'}
+              </Translate>
+            </span>
+          } theme="light">
+            <a className={
+              choice === currency ? 
+                `${classname} currency-btn-active` :
+                classname
+            } onClick={() => setCurrency(choice)} key={index}>
+              {choice.trim()}
+            </a>
+          </Tippy>
         ))}
       </div>);
     }

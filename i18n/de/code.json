@@ -271,12 +271,10 @@
     "description": "The title of the tag list page"
   },
   "sankey.voterLabel.prefix": {
-    "message": "Wähler",
-    "description": "The word 'Voter' that will be used in 'Voter 1', 'Voter 2', etc."
+    "message": "Wähler"
   },
   "sankey.projectLabel.prefix": {
-    "message": "Projekt",
-    "description": "The word 'Project' that will be used in 'Project 1', 'Project 2', etc."
+    "message": "Projekt"
   },
   "sankey.cityLabel": {
     "message": "Stadt",
@@ -328,5 +326,9 @@
   },
   "footer.LastUpdated": {
     "message": "Letztes Update:"
+  },
+  "currencyChoice.tooltip": {
+    "message": "Klicken Sie hier, um {ThisCurrencySymbol} als Standard-Währungssymbol in Beispielen zu benutzen.",
+    "description": "When hovering over the currency symbols in the navbar, this tooltip is shown."
   }
 }
