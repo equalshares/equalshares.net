@@ -14,7 +14,7 @@
     "message": "Coût :"
   },
   "(supporting voters do not have enough money)": {
-    "message": "(les électeurs qui soutiennent n'ont pas assez d'argent)"
+    "message": "(les supporters n'ont pas assez d'argent)"
   },
   "sankey.voterLabel.prefix": {
     "message": "Électeur"
@@ -31,7 +31,7 @@
     "description": "used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project"
   },
   "sankey.projectTooltip": {
-    "message": "Le projet {projectNumber} coûte {projectCost}. Ce coût est pris en charge à parts égales par les {numVoters} électeurs ayant voté pour le projet {projectNumber}. Chacun de ces électeurs contribue {contributionAmount} à partir de leur part du budget.",
+    "message": "Le projet {projectNumber} coûte {projectCost}. Ce coût est pris en charge à parts égales par les {numVoters} électeurs ayant voté pour le projet {projectNumber}. Chacun de ces électeurs contribue {contributionAmount} de leur part du budget.",
     "description": "The tooltip appearing when hovering over a project on the right"
   },
   "sankey.cityTooltip": {
@@ -51,7 +51,7 @@
     "message": "Étape 2 : Les projets sont financés avec les parts"
   },
   "sankey.projectLabel.rightTextLine2": {
-    "message": "de ceux qui ont voté pour eux"
+    "message": "de ceux qui les ont sélectionnés"
   },
   "theme.ErrorPageContent.title": {
     "message": "Cette page a planté.",
@@ -70,11 +70,11 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Veuillez contacter le propriétaire du site qui vous a lié à l'URL d'origine et leur faire savoir que leur lien est cassé.",
+    "message": "Veuillez contacter le propriétaire du site qui vous a amené ici et faites leur savoir que leur lien ne fonctionne pas.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "Retour au début de la page",
+    "message": "Retour en haut de la page",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -253,7 +253,7 @@
     "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
-    "message": "Plier/Déplier la catégorie '{label}' de la barre latérale",
+    "message": "Étendre/réduire la catégorie '{label}' de la barre latérale",
     "description": "The ARIA label to toggle the collapsible sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
@@ -305,11 +305,11 @@
     "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
   },
   "theme.docs.sidebar.expandButtonTitle": {
-    "message": "Déplier le menu latéral",
+    "message": "Étendre le menu latéral",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.sidebar.expandButtonAriaLabel": {
-    "message": "Déplier le menu latéral",
+    "message": "Étendre le menu latéral",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {

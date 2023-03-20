@@ -6,19 +6,19 @@ import Sankey from '@site/src/components/Sankey';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.universityLogos}>
-    <p>développée et étudiée par des chercheurs d'universités du monde entier</p>
+    <p>développée et étudiée par des chercheurs venant du monde entier</p>
     <div className={styles.logoList}>
         <UniversityLogo logo="logo-warsaw-en.svg" uniName="Université de Varsovie" link={<a href="https://www.mimuw.edu.pl/~ps219737/">Piotr Skowron</a>} />
-        <UniversityLogo logo="logo-cnrs.svg" uniName="CNRS, France" link={<a href="http://dominik-peters.de/">Dominik Peters</a>} />
-        <UniversityLogo logo="logo-toronto.svg" uniName="University of Toronto" link={<a href="https://www.cs.toronto.edu/~nisarg/index.html">Nisarg Shah</a>} />
-        <UniversityLogo logo="logo-agh.svg" uniName="AGH Université des Sciences et Technologies, Cracovie" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
+        <UniversityLogo logo="logo-cnrs.svg" uniName="CNRS" link={<a href="http://dominik-peters.de/">Dominik Peters</a>} />
+        <UniversityLogo logo="logo-toronto.svg" uniName="Université de Toronto" link={<a href="https://www.cs.toronto.edu/~nisarg/index.html">Nisarg Shah</a>} />
+        <UniversityLogo logo="logo-agh.svg" uniName="AGH Université des Sciences et Technologies de Cracovie" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
         <UniversityLogo logo="logo-eth.svg" uniName="ETH Zurich" link={<a href="https://democracy.dsi.uzh.ch/member/joshua-yang/">Joshua Yang</a>} />
         <UniversityLogo logo="logo-tu-berlin.svg" uniName="TU Berlin" link={<a href="https://sites.google.com/view/jannikpeters">Jannik Peters</a>} />
     </div>
 </section>
 
 <section className={[styles.contentSection, styles.cities2023].join(' ')}>
-  <h2><span>Méthode des parts égales dans les villes en 2023</span></h2>
+  <h2><span>Ces villes utilisent la méthode des parts égales en 2023</span></h2>
   <div className={styles.columns}>
     <div>
       <a href="https://www.stadtidee.aarau.ch/"><img src={useBaseUrl('/img/aarau.jpg')} width="100" height="100" /></a>
@@ -33,19 +33,16 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 <section className={styles.contentSectionFlex}>
   <div className={styles.ballotExplanation}>
     <p>
-        De nombreuses villes utilisent <strong style={{color: 'var(--ifm-color-primary)'}}>le Budget Participatif</strong> pour donner aux résidents un droit de regard sur la manière dont l'argent public est dépensé.
-        Le gouvernement de la ville réserve une partie de son budget, permet à quiconque de proposer des projets, puis organise une élection pour décider quels projets seront financés.
+        De nombreuses villes utilisent le <strong style={{color: 'var(--ifm-color-primary)'}}>Budget Participatif</strong> pour permettre aux résidents de contribuer au processus d'affectation des fonds publics.
+        Généralement, la municipalité réserve une partie de son budget annuel pour financer des projects qui sont sélectionnés lors d'une élection parmis un ensemble de propositions soumises par les résidents.
     </p>
     <p>
         Le vote est un excellent moyen d'impliquer de nombreux citoyens dans la décision budgétaire.
         Cependant, le résultat de l'élection n'est pas toujours juste.
-        Parce que de nombreuses villes choisissent simplement les projets avec le plus de votes,
-        le budget est souvent dépensé pour plusieurs projets similaires qui sont populaires auprès
-        du même groupe majoritaire d'électeurs.
+        Parce que de nombreuses villes sélectionnent simplement les projets avec le plus de votes, le budget est souvent alloué majoritairement à des projets similaires, qui sont populaires auprès du même groupe majoritaire d'électeurs.
     </p>
     <p>
-        Il existe un système de vote qui mène à des résultats plus justes, où chaque électeur a une influence égale sur le
-        résultat de l'élection:
+        Il existe un système de vote qui mène à des résultats plus justes, où chaque électeur a une influence égale sur le résultat de l'élection:
         <br />
         La <strong style={{color: 'var(--ifm-color-primary)'}}>méthode des parts égales</strong>.
     </p>
@@ -55,7 +52,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
     <span>Budget disponible : <Currency>3 000 000</Currency></span>
     <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Votez pour un maximum de 8 projets</span>
     <BallotExampleOption selected>Extension de la bibliothèque publique <br /> Coût : <Currency>200 000</Currency></BallotExampleOption>
-    <BallotExampleOption>Porte-vélos dans le centre ville <br /> Coût : <Currency>70 000</Currency></BallotExampleOption>
+    <BallotExampleOption>Support pour vélos dans le centre ville <br /> Coût : <Currency>70 000</Currency></BallotExampleOption>
     <BallotExampleOption selected>Équipement sportif dans le parc <br /> Coût : <Currency>50 000</Currency></BallotExampleOption>
     <BallotExampleOption selected>Toilettes publiques supplémentaires <br /> Coût : <Currency>600 000</Currency></BallotExampleOption>
     <BallotExampleOption>Cours de langue gratuits <br /> Coût : <Currency>100 000</Currency></BallotExampleOption>
@@ -69,10 +66,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   <p>
       L'idée de base de la méthode des parts égales est que chaque électeur se voit attribuer une part égale du budget.
       Cette part du budget ne peut être utilisée que pour financer les projets pour lesquels l'électeur a voté.
-      La méthode passe en revue toutes les propositions de projet, en commençant par les projets ayant obtenu le plus grand nombre de voix.
-      de votes.
-      Elle sélectionne un projet s'il peut être financé en utilisant les parts de budget de ceux qui ont voté pour le projet.
-      La méthode divise le coût d'un projet de manière égale entre ses partisans.
+      La méthode passe en revue touts les projets, en commençant par ceux  ayant obtenu le plus grand nombre de votes.
+      Elle sélectionne un projet s'il peut être financé en utilisant les parts de budget de ceux qui ont voté pour lui.
+      La méthode divise ensuite le coût d'un projet de manière égale entre ses partisans.
   </p>
   <div className={styles.sankeyImage}>
       <div className={styles.sankeyContainer}>
@@ -81,18 +77,17 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   </div>
   <p>
       Du point de vue de l'électeur, l'expérience de vote reste inchangée : il lui suffit de remplir un bulletin de vote et de sélectionner les projets pour lesquels il souhaite voter.
-      et de sélectionner les projets pour lesquels il souhaite voter. La méthode des parts égales est ensuite calculée par la ville (à l'aide de l'une des implémentations libres de la règle).
-      par la ville (en utilisant l'une des implémentations libres de la règle), garantissant ainsi que le budget est dépensé de manière équitable.
+      Le résultat de la méthode des parts égales est ensuite calculée par la ville (à l'aide de l'une des implémentations libres de la règle), garantissant ainsi que le budget est dépensé de manière équitable.
   </p>
 </section>
 
 <section className={styles.contentSection}>
-  <h2>Ce que vous trouverez sur ce site Web</h2>
+  <h2>Ce que vous trouverez sur ce site web</h2>
   <div className={styles.columns}>
     <div>
       <Link to="explanation"><img src={useBaseUrl('/img/fund.svg')}/></Link>
       <Link to="explanation"><strong>Explication</strong></Link>
-      <Link to="explanation"><span>Une explication détaillée, avec des exemples, de la façon dont fonctionne la méthode des parts égales.</span></Link>
+      <Link to="explanation"><span>Une explication détaillée, avec des exemples, du fonctionnement de la méthode des parts égales.</span></Link>
     </div>
     <div>
       <Link to="benefits"><img src={useBaseUrl('/img/growth.svg')}/></Link>
@@ -110,7 +105,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   <h2>À propos de ce site Web</h2>
   <p style={{ fontSize: '1.2em' }}>
       Ce site web a été <Link to="contacts">construit et est maintenu par Dominik Peters (CNRS, Université Paris Dauphine-PSL) et Piotr Skowron (Université de Varsovie)</Link>.
-      Son but est de collecter des ressources sur la méthode des parts égales et de fournir une explication de la méthode aux membres intéressés du public,
-      aux responsables municipaux et aux chercheurs.
+      Son but est de collecter des ressources sur la méthode des parts égales et de fournir une explication de la méthode aux personnes intéressées, aux responsables politiques et aux chercheurs.
   </p>
 </section>
