@@ -1,0 +1,121 @@
+Dominik: this won't be machine read, so just write translations below the english version
+no need to translate lines starting in #
+
+# metrics page
+
+The standard PB voting method leads to an unequal distribution of satisfaction
+La méthode de vote habituelle PB mène à une répartition inégale de la satisfaction 
+
+Warsaw, 2022, all district elections combined
+Varsovie, 2022, toutes les élections de district combinées 
+
+Actual Outcome
+Résultat réel 
+
+Method of Equal Shares
+Méthode des parts égales 
+
+Horizontal axis: Percent of budget spent on approved projects. Vertical axis: Number of voters.
+Axe horizontal : Pourcentage du budget dépensé pour les projets approuvés. Axe vertical : Nombre d'électeurs. 
+
+More voters without any approved winning projects
+Plus d'électeurs sans projets gagnants approuvés 
+
+Fewer voters with a moderate amount of spending on approved projects
+Moins d'électeurs avec une quantité modérée de dépenses pour des projets approuvés 
+
+More voters with a lot of spending on approved projects
+Plus d'électeurs avec beaucoup de dépenses pour des projets approuvés 
+
+
+# categories page
+
+## scatterplot
+
+Difference between vote share and Equal Shares
+Différence entre la part des voix et les Parts Égales 
+
+Difference between vote share and actual outcome
+Différence entre la part des voix et le résultat réel 
+
+Equal Shares worse than actual outcome
+Méthode des parts égales est pire que le résultat réel
+
+Actual outcome worse than Equal Shares
+Le résultat réel est pire que la méthode des parts égales
+
+Equal Shares and the actual outcome perform similarly well.
+La méthode des parts égales et le résultat réel se comportent de manière similaire.
+
+The actual outcome spends <strong>too much</strong> on <strong>environment</strong> compared to Equal Shares, based on the category's vote share.
+Le résultat réel dépense <strong>trop</strong> pour <strong>environnement</strong> par rapport à la méthode des parts égales, en fonction de la part des voix de la catégorie.
+
+The actual outcome spends <strong>too little</strong> on <strong>education</strong> compared to Equal Shares, based on the category's vote share.
+Le résultat réel dépense <strong>trop peu</strong> pour <strong>éducation</strong> par rapport à la méthode des parts égales, en fonction de la part des voix de la catégorie.
+
+public space
+espace public 
+
+sport
+sport
+
+culture
+culture
+
+urban greenery
+verdure urbaine 
+
+
+## bielany plot
+
+The current PB voting rule distorts the votes in Bielany
+La règle de vote PB actuelle déforme les votes à Bielany 
+
+environment
+environnement
+
+transit and roads 
+transit et routes 
+
+other
+autre
+
+education
+éducation
+
+Vote Share
+Part des voix 
+
+# input formats
+
+Approval vote
+Knapsack vote
+Ranked vote
+Distributing points
+
+Vote d'approbation 
+Vote au sac à dos 
+Vote classé 
+Répartition des points 
+
+# completion page
+
+Method of Equal Shares spends a larger part of the budget if voters vote for many projects
+La méthode des parts égales dépense une plus grande partie du budget si les électeurs votent pour de nombreux projets 
+
+Warsaw data, 2020-22. For each minimum vote count, this shows what percent of the budget is spent by the Method of Equal Shares (without completion).
+Données de Varsovie, 2020-22. Pour chaque nombre minimum de votes, cela montre quel pourcentage du budget est dépensé par la Méthode des Parts Égales (sans finalisation). 
+
+no minimum
+pas de minimum 
+
+
+# advice project proposers
+
+Minimum number of votes for a project to be eligible to win
+Nombre minimum de voix pour qu'un projet soit éligible à la victoire 
+
+
+Under the Method of Equal Shares, costlier projects need a higher number of votes to have a chance at winning. In this example, we consider a city with a budget of €100 000, and ask for projects of different cost, what percentage of votes they need to gather at minimum to be theoretically able to win.
+Selon la Méthode des Parts Égales, les projets plus coûteux nécessitent un nombre plus élevé de voix pour avoir une chance de gagner. Dans cet exemple, nous considérons une ville avec un budget de 100 000 €, et demandons pour des projets de coûts différents, quel pourcentage de voix ils doivent rassembler au minimum pour être théoriquement capables de gagner. 
+
