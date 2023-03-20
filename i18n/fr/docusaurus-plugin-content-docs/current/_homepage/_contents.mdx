@@ -1,7 +1,7 @@
 import Link from '@docusaurus/Link';
 import styles from '@site/src/pages/index.module.css';
 import { UniversityLogo, BallotExampleOption } from '@site/src/components/HomepageComponents';
-import { CurrencySymbol } from '@site/src/components/CurrencyChoice';
+import { Currency } from '@site/src/components/CurrencyChoice';
 import Sankey from '@site/src/components/Sankey';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -52,15 +52,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   </div>
   <div className={styles.approvalBallotExample}>
     <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; Bulletin de vote du BP &mdash;</span>
-    <span>Budget disponible : <CurrencySymbol/>3 000 000</span>
+    <span>Budget disponible : <Currency>3 000 000</Currency></span>
     <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Votez pour un maximum de 8 projets</span>
-    <BallotExampleOption selected>Extension de la bibliothèque publique <br /> Coût : <CurrencySymbol/>200 000</BallotExampleOption>
-    <BallotExampleOption>Porte-vélos dans le centre ville <br /> Coût : <CurrencySymbol/>70 000</BallotExampleOption>
-    <BallotExampleOption selected>Équipement sportif dans le parc <br /> Coût : <CurrencySymbol/>50 000</BallotExampleOption>
-    <BallotExampleOption selected>Toilettes publiques supplémentaires <br /> Coût : <CurrencySymbol/>600 000</BallotExampleOption>
-    <BallotExampleOption>Cours de langue gratuits <br /> Coût : <CurrencySymbol/>100 000</BallotExampleOption>
-    <BallotExampleOption>Plantation d'arbres <br /> Coût : <CurrencySymbol/>800 000</BallotExampleOption>
-    <BallotExampleOption>Un jardin partagé <br /> Coût : <CurrencySymbol/>65 000</BallotExampleOption>
+    <BallotExampleOption selected>Extension de la bibliothèque publique <br /> Coût : <Currency>200 000</Currency></BallotExampleOption>
+    <BallotExampleOption>Porte-vélos dans le centre ville <br /> Coût : <Currency>70 000</Currency></BallotExampleOption>
+    <BallotExampleOption selected>Équipement sportif dans le parc <br /> Coût : <Currency>50 000</Currency></BallotExampleOption>
+    <BallotExampleOption selected>Toilettes publiques supplémentaires <br /> Coût : <Currency>600 000</Currency></BallotExampleOption>
+    <BallotExampleOption>Cours de langue gratuits <br /> Coût : <Currency>100 000</Currency></BallotExampleOption>
+    <BallotExampleOption>Plantation d'arbres <br /> Coût : <Currency>800 000</Currency></BallotExampleOption>
+    <BallotExampleOption>Un jardin partagé <br /> Coût : <Currency>65 000</Currency></BallotExampleOption>
   </div>
 </section>
 

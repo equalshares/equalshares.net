@@ -34,6 +34,16 @@ export function Currency({ children }) {
       <span>{children} zł</span>
     );
   }
+  if (language === 'fr' && (currency === '€' || currency === '$')) {
+    return (
+      <span>{children} {`${currency}`}</span>
+    );
+  }
+  if (language === 'de' && currency === '€') {
+    return (
+      <span>{`${currency}`} {children}</span>
+    );
+  }
   return (
     <span>{`${currency}`}{children}</span>
   );
@@ -47,6 +57,16 @@ export function CurrencyString({ amount=0 }) {
   if (language === 'pl') {
     return (
       `${amount} zł`
+    );
+  }
+  if (language === 'fr' && (currency === '€' || currency === '$')) {
+    return (
+      `${amount} ${currency}`
+    );
+  }
+  if (language === 'de' && currency === '€') {
+    return (
+      `${currency} ${amount}`
     );
   }
   return (
@@ -79,12 +99,12 @@ export function CurrencyPickerNavbarItem() {
                   {'Click to use {ThisCurrencySymbol} as the default currency symbol in examples.'}
               </Translate>
             </span>
-          } theme="light">
+          } theme="light" key={index}>
             <a className={
               choice === currency ? 
                 `${classname} currency-btn-active` :
                 classname
-            } onClick={() => setCurrency(choice)} key={index}>
+            } onClick={() => setCurrency(choice)}>
               {choice.trim()}
             </a>
           </Tippy>
