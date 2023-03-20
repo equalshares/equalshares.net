@@ -11,15 +11,15 @@ import HomepageContents from '@site/i18n/fr/docusaurus-plugin-content-docs/curre
 export default function Home() {
   return (
     <Layout
-    description="La méthode des parts égales est une règle de vote plus juste pour le budget participatif.">
+    description="La méthode des parts égales est une règle de vote plus équitable pour le budget participatif.">
     <Head>
       <title>Méthode des parts pour les budgets participatifs</title>
-      <meta name="twitter:title" content="Méthode des parts pour les budgets participatifs" />
-      <meta name="twitter:description" content="La méthode des parts égales est une règle de vote plus juste pour le budget participatif." />
+      <meta name="twitter:title" content="Méthode des parts pour le budget participatif" />
+      <meta name="twitter:description" content="La méthode des parts égales est une règle de vote plus équitable pour le budget participatif." />
       <meta name="twitter:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:image" content="https://equalshares.net/social/og-main.png" />
-      <meta property="og:title" content="Méthode des parts pour les budgets participatifs" />
-      <meta property="og:description" content="La méthode des parts égales est une règle de vote plus juste pour le budget participatif." />
+      <meta property="og:title" content="Méthode des parts pour le budget participatif" />
+      <meta property="og:description" content="La méthode des parts égales est une règle de vote plus équitable pour le budget participatif." />
     </Head>
       <section className={styles.hero}>
         <div>

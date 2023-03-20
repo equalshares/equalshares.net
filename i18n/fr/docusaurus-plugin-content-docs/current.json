@@ -1,14 +1,14 @@
 {
   "version.label": {
-    "message": "Next",
+    "message": "Suivant",
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.Benefits": {
-    "message": "Benefits",
+    "message": "Avantages",
     "description": "The label for category Benefits in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Implementation": {
-    "message": "Implementation",
+    "message": "Mise en œuvre",
     "description": "The label for category Implementation in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Avantages": {

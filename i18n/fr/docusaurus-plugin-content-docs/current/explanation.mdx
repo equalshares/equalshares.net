@@ -9,13 +9,13 @@ import { Currency } from '@site/src/components/CurrencyChoice';
 # Explication de la méthode des parts égales
 
 Sur cette page, nous expliquons comment fonctionne la méthode des parts égales.
-Il y a deux types d'entrées pour la méthode :
+Elle peut être utilisée avec deux types de bulletins de vote :
 
-1. **Vote d'approbation**, où chaque électeur vote pour certains projets, mais vote pour chacun d'entre eux avec la même « force ».
-2. **Utilités**, où chaque électeur attribue un nombre d'utilité à chaque projet (0 ou plus).
+1. **Le vote par approbation**, où chaque électeur vote pour certains projets, mais vote pour chacun d'entre eux avec la même « intensité ». Par exemple, dans son bulletin, l'électeur sélectionne jusqu'à 5 projets. Pour plus de détails, vous pouvez consulter la page Wikipédia du [Vote par Approbation](https://fr.wikipedia.org/wiki/Vote_par_approbation).
+2. **Le vote par valeurs**, où chaque électeur attribue un score à chaque projet (le score peut être 0). Par exemple, l'électeur peut répartir 10 points à différents projets. Pour plus de détails, vous pouvez consulter la page Wikipédia du [Vote par Valeurs](https://fr.wikipedia.org/wiki/Vote_par_valeurs).
 
-Le vote d'approbation est un cas particulier d'utilités, où tous les projets se voient attribuer une valeur d'utilité de 0 ou 1.
-Sur cette page, nous expliquons la méthode pour le vote d'approbation, avec plus d'informations sur les utilités à venir bientôt.
+Le vote par approbation est un cas particulier du vote par valeurs dans lequel tous les projets se voient attribuer score de 0 ou 1.
+La méthode pour le vote par approbation est présentée sur cette page, plus d'informations sur le vote par valeurs à venir sous peu.
 
 :::tip
 
@@ -23,9 +23,9 @@ Vous pouvez [sauter directement à un exemple détaillé ci-dessous](#example), 
 
 :::
 
-## Mécanisme principal
+## Mécanisme général
 
-Nous commençons par donner les principes de base de la méthode, puis nous expliquons les détails techniques.
+Nous commençons par présenter les principes de base de la méthode, les détails techniques seront expliqués ensuite.
 
 1. Le budget global est <SemiBold>divisé de manière égale</SemiBold> entre les électeurs.
 :::tip Exemple
@@ -33,64 +33,93 @@ Supposons que le budget global soit de <Currency>1&thinsp;000&thinsp;000</Curren
 Chaque électeur se voit alors attribuer une part de <Currency>10</Currency>.
 :::
 
-2. Nous <SemiBold>retirons</SemiBold> de la considération tous les projets qui coûtent plus que la part combinée de tous les électeurs qui ont voté pour le projet.
-(Pour les utilités, la part combinée de tous les électeurs qui ont attribué une valeur d'utilité supérieure à 0 au projet.)
+2. Tous les projets qui coûtent plus que la part combinée de tous les électeurs qui les ont sélectionnés sont <SemiBold>retirés</SemiBold> du processus.
+(Pour les utilités, la part combinée de tous les électeurs qui ont attribué un score supérieur à 0 au projet.)
 :::tip Exemple
-Supposons qu'un projet coûte <Currency>10&thinsp;000</Currency>, et qu'il a reçu 500 voix.
+Supposons qu'un projet coûte <Currency>10&thinsp;000</Currency>, et que 500 électeurs l'on sélectionné.
 Comme chaque électeur s'est vu attribuer une part de <Currency>10</Currency>, 
-ces 500 voix ont ensemble une part de <Currency>5&thinsp;000</Currency>.
-Comme le projet coûte plus que la part combinée de tous les électeurs qui ont voté pour lui, 
-il ne peut pas être financé. Nous retirons le projet de la considération.
+ces 500 électeurs ont ensemble une part de <Currency>5&thinsp;000</Currency>.
+Comme le projet coûte plus que la part combinée de tous les électeurs qui l'ont sélectionné,
+il ne peut pas être financé. Nous retirons donc le projet du processus.
 :::
-3. S'il ne reste aucun projet, le calcul de la méthode est terminé.
-4. S'il reste des projets, nous calculons le "[<SemiBold>nombre de voix effectives</SemiBold>](#effective-vote-count)" de chaque projet.
+3. S'il ne reste aucun projet, le processus est terminé.
+4. S'il reste des projets, nous calculons le "[<SemiBold>nombre de votes effectifs</SemiBold>](#effective-vote-count)" de chaque projet.
 :::note Explication
-Pour le vote d'approbation, le *nombre de voix* est le nombre d'électeurs qui ont voté pour le projet.
-Pour les utilités, le nombre de voix est la somme des utilités attribuées au projet.
-Le nombre de voix *effectives* est inférieur au nombre de voix, 
-car nous ne comptons pas les électeurs qui n'ont pas assez d'argent pour payer une part égale pour le projet.
+Pour le vote par approbation, le *nombre de votes* est le nombre d'électeurs qui ont sélectionné le projet.
+Pour le vote par valeurs, le nombre de votes est la somme des scores attribués au projet.
+Le nombre de votes *effectifs* est inférieur au nombre de votes,
+car nous ne comptons pas les électeurs qui n'ont plus assez d'argent pour payer une part égale pour le projet.
 :::
-5. Nous sélectionnons le projet avec la <SemiBold>plus haute</SemiBold> nombre de voix effectives.
-Nous divisons le coût de ce projet [aussi équitablement que possible](#equal-split)
+5. Le project avec le <SemiBold>plus haut</SemiBold> nombre de votes effectifs est sélectionné.
+Le coût de ce projet est divisé [aussi équitablement que possible](#equal-split) entre les électeurs.
+6. Le processus est <SemiBold>répété à partir de l'étape 2</SemiBold> pour déterminer quel project sera sélectioné ensuite.
 
+:::info
+Telle que décrite ci-dessus, la méthode des parts égales peut se terminer à l'étape 3 sans avoir utilisé tout le budget.méthode
+Pour éviter ce problème, il est possible d'utiliser un bugdet total plus grand que le budget effectivement disponible.
+De cette manière un meilleur résultat peut être obtenu.
+Plus sur comment [compléter le résultat](implementation/completion) est disponible.
+:::
 
 ## Comment diviser les coûts du projet de manière équitable {#equal-split}
 
-Lors de la détermination des projets gagnants de la méthode des parts égales, un ingrédient clé est de diviser le coût d'un projet *aussi équitablement que possible*. Dans cette section, nous expliquerons ce que cela signifie.
+Lors de la sélection des projets gagnants de la méthode des parts égales, un élément clé est de diviser le coût d'un projet *aussi équitablement que possible*.
+Toutes les explications nécessaires à ce propos sont présentées dans cette section.
 
-Pour être concret, supposons que le budget total est de <Currency>300</Currency> et qu'il y a 10 électeurs. Ainsi, à l'étape 1, chaque électeur se voit attribuer une part du budget de <Currency>30</Currency>. Nous pouvons représenter cela dans l'image suivante, où chaque électeur est représenté par une barre de hauteur <Currency>30</Currency>.
+Nous illustrons le processus à travers un exemple. Supposons que le budget total soit de <Currency>300</Currency> et qu'il y ait 10 électeurs.
+À l'étape 1, chaque électeur se voit attribuer une part du budget de <Currency>30</Currency>.
+L'image suivante présente cette situation initiale, chaque électeur est représenté par une barre de hauteur <Currency>30</Currency>.
 
 <BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} showPayments={false} />
 
-Supposons qu'il y ait un projet qui coûte <Currency>50</Currency>, et qu'il ait reçu 5 votes des 5 électeurs de gauche. Alors, nous pouvons répartir le coût également, chaque partisan payant <Currency>10</Currency>. Nous pouvons représenter cela dans l'image comme suit :
+À présent, s'il y a un projet qui coûte <Currency>50</Currency>, et qui a été sélectionné par les 5 électeurs situés à gauche de l'image, alors, nous pouvons répartir le coût équitablement, chaque partisan payant <Currency>10</Currency>.
+Cela nous amène à la situation suivante:
 
 <BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} payments={[10,10,10,10,10,0,0,0,0,0]} />
 
-Il y a un cas légèrement plus compliqué, lorsque certains électeurs ont déjà dépensé une partie de leur part de budget, et il n'est donc pas possible de répartir le coût d'un projet de manière parfaitement égale entre ses partisans.
+La répartition du coût d'un project n'est pas toujours aussi simple.
+Par exemple, si certains électeurs ont déjà dépensé une partie de leur part de budget, il n'est pas toujours possible de répartir le coût d'un projet de manière parfaitement égale entre ses partisans.
 
-Par exemple, considérons à nouveau le projet qui coûte <Currency>50</Currency>, et qui a reçu 5 votes des 5 électeurs de gauche. Mais supposons que l'électeur le plus à gauche ait déjà dépensé sa part de budget entière de <Currency>30</Currency> lors des tours précédents. Alors, nous ne pouvons répartir le coût du projet qu'entre les 4 électeurs restants, qui doivent chacun payer <Currency>12,50</Currency> (parce que 4 x <Currency>12,50</Currency> = <Currency>50</Currency>).
+Considérons à nouveau le projet qui coûte <Currency>50</Currency>, et qui a été sélectionné par les 5 électeurs situés à gauche de l'image.
+Cependant, imaginons que nous sommes dans la situation où l'électeur le plus à gauche de l'image ait déjà complétement dépensé sa part de budget de <Currency>30</Currency> lors des itérations précédentes.
+Dans ce cas, le coût du projet ne peut être réparti qu'entre les 4 électeurs restants, qui doivent chacun payer <Currency>12,50</Currency> (parce que 4 x <Currency>12,50</Currency> = <Currency>50</Currency>).
+La situation est donc la suivante:
 
 <BudgetBars budgets={[0,30,30,30,30,30,30,30,30,30]} payments={[0,12.5,12.5,12.5,12.5,0,0,0,0,0]} />
 
-Ou pour un autre exemple, supposons que les deux électeurs de gauche n'aient que <Currency>5</Currency> chacun à dépenser (car ils ont chacun déjà dépensé un total de <Currency>25</Currency> lors des tours précédents). Alors, pour répartir le coût de manière la plus équitable, nous facturons à ces électeurs leur budget restant total, qui s'élève à <Currency>5</Currency> + <Currency>5</Currency> = <Currency>10</Currency>. 
-
-Ensuite, nous répartissons le coût restant de <Currency>40</Currency> également entre les 3 électeurs restants, qui doivent chacun payer <Currency>13,33</Currency> (car 3 &middot; <Currency>13,33</Currency> = <Currency>40</Currency>).
+Détaillons un second exemple.
+Supposons à présent que les deux électeurs à gauche de l'image n'aient que <Currency>5</Currency> chacun à dépenser (car ils ont chacun déjà dépensé un total de <Currency>25</Currency> lors des itérations précédentes).
+Pour répartir le coût de manière la plus équitable possible, ces électeurs vont payer tout leur budget restant. Ceci finance <Currency>5</Currency> + <Currency>5</Currency> = <Currency>10</Currency> du coût du projet.
+Ensuite, le coût restant de <Currency>40</Currency> est réparti équitablement entre les 3 électeurs restants.
+Chacun va donc payer <Currency>13,33</Currency> (car 3 &middot; <Currency>13,33</Currency> = <Currency>40</Currency>).
+Nous obtenons donc la situation suivante:
 
 <BudgetBars budgets={[5,5,30,30,30,30,30,30,30,30]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} />
 
-En général, la procédure pour répartir le coût le plus équitablement possible entre les partisans est la suivante. Nous essayons d'abord de répartir le coût de manière égale (nous divisons donc le coût du projet par le nombre de partisans du projet). Si certains électeurs ne disposent pas d'un budget suffisant pour couvrir ce qu'ils devraient payer, nous prenons à ces électeurs autant d'argent que possible (c'est-à-dire la totalité de leur budget restant). Ensuite, à l'étape suivante, nous essayons de répartir le coût restant de manière égale entre les électeurs restants. Si cela n'est toujours pas possible, nous prenons autant d'argent que possible aux électeurs qui n'en ont pas assez, et ainsi de suite. (Une autre façon mathématique de décrire ce processus est de répartir le coût des projets entre leurs partisans de manière à ce que le paiement maximum de chaque électeur soit aussi faible que possible).
+De manière générale, la procédure de répartition équitale des coûts fonctionne de la façon suivante.
+Tout d'abord, nous essayons d'abord de répartir le coût de manière égale (en divisant le coût du projet par le nombre de partisans du projet).
+Si certains électeurs ne disposent pas d'un budget suffisant pour couvrir ce qu'ils devraient payer, ils paient autant que possible (c'est-à-dire la totalité de leur budget restant).
+La part non financée du projet est ensuite répartie de manière égale entre les électeurs restants.
+Si cela n'est toujours pas possible, les électeurs qui n'ont ont pas assez d'agent paient autant que possible, et le processus se répète.
 
-Vous pouvez essayer comment cela fonctionne sur l'exemple suivant, où le coût d'un projet (initialement <Currency>30</Currency>) est divisé entre 5 votants qui le soutiennent. Ces votants ont un budget restant de <Currency>10</Currency>, <Currency>10</Currency>, <Currency>10</Currency>, <Currency>20</Currency>, <Currency>30</Currency>, respectivement. Vous pouvez modifier le coût du projet en faisant glisser le curseur et voir comment le coût résultant serait réparti aussi équitablement que possible entre les 5 votants.
+
+En termes plus mathématiques, ce processus répartit le coût des projets entre leurs partisans de manière à ce que le paiement maximum de chaque électeur soit aussi faible que possible).
+
+Pour mieux comprendre le processus, l'exemple suivant illustre la répartition du coût d'un projet de manière interactive.
+Le coût d'un projet (initialement de <Currency>30</Currency>) est divisé entre 5 électeurs qui l'ont sélectionné.
+Ces électeurs ont un budget restant de <Currency>10</Currency>, <Currency>10</Currency>, <Currency>10</Currency>, <Currency>20</Currency>, <Currency>30</Currency>, respectivement.
+Vous pouvez modifier le coût du projet en faisant glisser le curseur et voir comment le coût résultant serait réparti aussi équitablement que possible entre les 5 électeurs.
 
 <WaterFilling />
 
-Dans cet exemple, si le coût du projet est de <Currency>50</Currency> ou moins, alors nous pouvons répartir le coût parfaitement également. Entre <Currency>50</Currency> et <Currency>80</Currency>, les trois votants ayant un budget restant de <Currency>10</Currency> ne peuvent pas payer une fraction égale du coût, donc les deux autres votants doivent payer plus.
-Notez que si vous faites glisser le curseur de sorte que le projet coûte plus de <Currency>80</Currency>, alors les votants n'ont pas assez de budget restant pour payer le projet, et donc le projet ne peut pas être financé.
+Dans cet exemple, si le coût du projet est de <Currency>50</Currency> ou moins, alors son coût est réparti de manière parfaitement égale.
+Lorsqu'il est entre <Currency>50</Currency> et <Currency>80</Currency>, les trois électeurs avec un budget restant de <Currency>10</Currency> ne peuvent pas payer une fraction égale du coût, donc les deux autres électeurs doivent payer plus.
+Si jamais le coût excède <Currency>80</Currency>, alors les électeurs n'ont simplement pas assez de budget restant pour payer le projet, qui ne peut donc pas être financé.
 
 import EqualSharesLogo from '/img/equal-shares-logo.svg';
 
 :::info au fait
-<EqualSharesLogo width="20" height="20" style={{ marginBottom: '-3px', marginRight: '3px' }} /> Notre logo est inspiré de ces images, et est censé évoquer l'image d'une skyline de ville.
+<EqualSharesLogo width="20" height="20" style={{ marginBottom: '-3px', marginRight: '3px' }} /> Notre logo est inspiré de ces visualisations, et évoque la silhouette d'une ville.
 :::
 
 ## Calcul du nombre de votes effectifs {#effective-vote-count}
