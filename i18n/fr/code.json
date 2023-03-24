@@ -14,7 +14,7 @@
     "message": "Coût :"
   },
   "(supporting voters do not have enough money)": {
-    "message": "(les supporters n'ont pas assez d'argent)"
+    "message": "(les partisans n'ont pas assez d'argent)"
   },
   "sankey.voterLabel.prefix": {
     "message": "Électeur"
