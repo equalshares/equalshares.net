@@ -4,28 +4,28 @@ no need to translate lines starting in #
 # metrics page
 
 The standard PB voting method leads to an unequal distribution of satisfaction
-La méthode de vote habituelle PB mène à une répartition inégale de la satisfaction 
+La méthode de vote typiquement utilisée pour le BP mène à une répartition inégale de la satisfaction
 
 Warsaw, 2022, all district elections combined
-Varsovie, 2022, toutes les élections de district combinées 
+Varsovie, 2022, combinaison de tous les districts
 
 Actual Outcome
-Résultat réel 
+Sélection de la municipalité
 
 Method of Equal Shares
 Méthode des parts égales 
 
 Horizontal axis: Percent of budget spent on approved projects. Vertical axis: Number of voters.
-Axe horizontal : Pourcentage du budget dépensé pour les projets approuvés. Axe vertical : Nombre d'électeurs. 
+Axe horizontal : Pourcentage du budget dépensé pour les projets sélectionnés. Axe vertical : Nombre d'électeurs.
 
 More voters without any approved winning projects
-Plus d'électeurs sans projets gagnants approuvés 
+Plus d'électeurs sans aucun project sélectionné dans le résultat final
 
 Fewer voters with a moderate amount of spending on approved projects
-Moins d'électeurs avec une quantité modérée de dépenses pour des projets approuvés 
+Moins d'électeurs avec un montant modéré dépensé pour des projets qu'ils ont sélectionné
 
 More voters with a lot of spending on approved projects
-Plus d'électeurs avec beaucoup de dépenses pour des projets approuvés 
+Plus d'électeurs avec un montant éléevé dépensé pour des projets qu'ils ont sélectionné
 
 
 # categories page

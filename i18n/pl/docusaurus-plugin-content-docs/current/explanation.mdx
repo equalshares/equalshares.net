@@ -195,7 +195,7 @@ Każdy wyborca otrzymuje zatem <Currency>100</Currency>.
 
 Teraz dla każdego projektu musimy określić tzw. efektywną liczbę głosów. Zacznijmy od <span className="project-1">🚲 ścieżki rowerowej</span>. Koszt tego projektu możemy podzielić po równo na wyborców, którzy na niego zagłosowali.
 
-<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[100,100,100,100,100,100,0,0,0,0,100]} />
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[100,100,100,100,100,100,0,0,0,0,100]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
 Oznacza to, że każdy głos liczymy jako jeden, zatem efektywna liczba głosów dla <span className="project-1">🚲 ścieżki rowerowej</span> wynosi 7.
 Każdy z pozostałych projektów ma niższą efektywną liczbę głosów (wynika to choćby z tego, że efektywna liczba głosów nigdy nie jest wyższa niż oryginalna liczba głosów).
