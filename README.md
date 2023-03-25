@@ -2,6 +2,14 @@
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a static website generator.
 
+It is being developed and translated by:
+
+* [Dominik Peters](http://dominik-peters.de/) who is the main developer and did the translation to German.
+* [Piotr Skowron](https://www.mimuw.edu.pl/~ps219737/) who contributed to the content and did the translation to Polish.
+* [Simon Rey](https://simonrey.fr/) who is translating to French.
+
+## Development
+
 To develop, you will need to install [Node.js](https://nodejs.org/en/), for example using `brew install node` on macOS or using `sudo apt install nodejs npm` on Ubuntu.
 
 For local development, go to the website directory and run:
@@ -35,5 +43,6 @@ The main text is contained in files in the folder `docusaurus-plugin-content-doc
 
 * When editing the Markdown files, be careful with the HTML-like tags (which are React components). A common error is to not close a tag. React requires, for example, `<img/>`.
 * Do not change filenames.
-* For monetary examples, use the format `<Currency>10</Currency>`. I'm planning to implement a way to localize the use of the correct currency symbol, and perhaps allow users to change to their preferred currency.
+* Do not translate anchors like `{#example}`.
+* For monetary examples, use the format `<Currency>10</Currency>`.
 * Some boxes begin with a line `:::tip Example`. The word `tip` is a keyword specifying the type of box (its symbol and color). The second word is a customized headline, which should be translated.
