@@ -11,15 +11,15 @@ import HomepageContents from '@site/docs/_homepage/_contents.mdx';
 export default function Home() {
   return (
     <Layout
-    description="The Method of Equal Shares is a fairer voting rule for participatory budgeting.">
+    description="The Method of Equal Shares is a fairer voting rule for participatory budgeting. This website explains how it works and why to use it.">
     <Head>
       <title>Method of Equal Shares for Participatory Budgeting</title>
       <meta name="twitter:title" content="Method of Equal Shares for Participatory Budgeting" />
-      <meta name="twitter:description" content="The Method of Equal Shares is a fairer voting rule for participatory budgeting. This website explains how it works and why cities should use it." />
+      <meta name="twitter:description" content="The Method of Equal Shares is a fairer voting rule for participatory budgeting. This website explains how it works and why to use it." />
       <meta name="twitter:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:title" content="Method of Equal Shares for Participatory Budgeting" />
-      <meta property="og:description" content="The Method of Equal Shares is a fairer voting rule for participatory budgeting. This website explains how it works and why cities should use it." />
+      <meta property="og:description" content="The Method of Equal Shares is a fairer voting rule for participatory budgeting. This website explains how it works and why to use it." />
     </Head>
       <section className={styles.hero}>
         <div>
