@@ -19,10 +19,10 @@ Horizontal axis: Percent of budget spent on approved projects. Vertical axis: Nu
 Axe horizontal : Pourcentage du budget dépensé pour les projets sélectionnés. Axe vertical : Nombre d'électeurs.
 
 More voters without any approved winning projects
-Plus d'électeurs sans aucun project sélectionné dans le résultat final
+Plus d'électeurs sans aucun project sélectionné
 
 Fewer voters with a moderate amount of spending on approved projects
-Moins d'électeurs avec un montant modéré dépensé pour des projets qu'ils ont sélectionné
+Moins d'électeurs avec un montant intermédiaire dépensé pour des projets qu'ils ont sélectionné
 
 More voters with a lot of spending on approved projects
 Plus d'électeurs avec un montant éléevé dépensé pour des projets qu'ils ont sélectionné
