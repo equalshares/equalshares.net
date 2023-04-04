@@ -33,7 +33,7 @@ Plus d'électeurs avec un montant éléevé dépensé pour des projets qu'ils on
 ## scatterplot
 
 Difference between vote share and Equal Shares
-Différence entre la part des voix et les Parts Égales 
+Différence entre la part des voix et la méthode des parts égales
 
 Difference between vote share and actual outcome
 Différence entre la part des voix et le résultat réel 
