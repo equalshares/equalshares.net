@@ -5,39 +5,49 @@ title: Réduire les biais en faveur des catégories les plus populaires
 
 import { Datawrapper } from '@site/src/components/MyComponents';
 
-# Réduire les dépenses excessives dans les catégories les plus populaires
+# Réduction des dépenses excessives pour les catégories les plus populaires
 
 <div class="summary">
-<b>Résumé</b>:
-La méthode de vote standard utilisée par la plupart des villes peut conduire systématiquement à des résultats où trop d'argent est dépensé pour des projets d'une catégorie, et pas assez pour des projets d'une autre catégorie.
-Par exemple, dans le district de Bielany de Varsovie en 2020, 35% des votes ont été attribués à des projets éducatifs, mais seulement 6% du financement a été alloué à l'éducation.
-Des simulations montrent que l'utilisation de la méthode des parts égales réduit significativement ce biais. 
+<   b>Résumé</b>:
+    La méthode de vote standard utilisée par la plupart des villes peut conduire systématiquement à des résultats dans lesquels
+    trop d'argent est alloué aux projets appartenant à certaines catégories, et pas assez aux projets appartenant
+    à d'autres catégories.
+    Par exemple, dans le district de Bielany de Varsovie en 2020, 35% des votes ont traits à des projets éducatifs,
+    mais seulement 6% du budget est dédié à l'éducation dans le résultat final.
+    Notre analyse montre que l'utilisation de la méthode des parts égales réduit significativement ce biais.
 </div>
 
-En général, les projets proposés lors du budget participatif peuvent être répartis en grandes catégories, telles que :
-* Espaces verts urbains et parcs
-* Transports publics et routes
-* Éducation
-* Culture et loisirs
+Il est courant que les projets proposés lors du budget participatif soient répartis en grandes catégories, telles que :
+* Espaces verts et parcs,
+* Transports publics et routes,
+* Éducation,
+* Culture et loisirs.
 
-Les villes organisent souvent les projets par catégorie pour faciliter la navigation dans la liste des projets pour les votants. 
-Varsovie, par exemple, catégorise les projets en utilisant 10 tags différents (où les projets peuvent recevoir plusieurs tags).
-Cela nous permet de compter, pour chaque catégorie, le nombre de votes que les projets dans cette catégorie ont reçus, et de comparer ce nombre au montant d'argent qui a été dépensé pour les projets dans cette catégorie.
+Les villes organisent souvent les projets par catégorie pour faciliter la présentation des projets pour les électeurs.
+À Varsovie par exemple, les projets sont regroupés en catégories selon 10 tags différents (les projets peuvent avoir plusieurs tags).
+En terme d'analyse, cela nous permet de compter, pour chaque catégorie, le nombre de votes reçus par les projets de chaque
+catégorie et de comparer ce nombre au montant alloué aux projets dans chaque catégorie.
 
-La méthode de vote standard utilisée à Varsovie et dans la plupart des autres villes consiste simplement à sélectionner les projets ayant le plus grand nombre de votes jusqu'à ce que le budget soit épuisé.
-Dans certains cas, cela peut conduire à ce que les catégories les plus populaires reçoivent la plupart de l'argent, et il reste alors trop peu d'argent pour les projets des autres catégories.
+La méthode de vote standard utilisée à Varsovie, et dans la plupart des autres villes, sélectionné simplement les projets
+les plus sélectionnés, jusqu'à ce que le budget soit épuisé.
+Dans certains cas, cela peut conduire à ce qu'une large part du budget soit alloué aux catégories les plus populaires,
+ne laissant donc que peu d'argent pour les projets des autres catégories.
 
-En utilisant des simulations, nous avons quantifié cet effet. Pour les années 2020-2022, nous avons calculé le résultat de vote que Varsovie aurait obtenu si elle avait utilisé la méthode des parts égales, et comparé cela au résultat réel.
-Nous avons ensuite calculé, pour chaque catégorie, quelle fraction des votes a été attribuée à des projets de la catégorie. Pour les deux règles, nous avons ensuite comparé ces fractions à la fraction du budget qui a été dépensée pour les projets de la catégorie.
+En utilisant des simulations, nous avons quantifié cet effet.
+Pour les années 2020 à 2022, nous avons calculé le résultat de la méthode des parts égales sur les données de Varsovie, et comparé cela au résultat réel.
+Nous avons ensuite calculé, pour chaque catégorie, quelle fraction des votes concerne des projets de la catégorie.
+Pour les deux méthodes de vote, nous avons ensuite comparé pour chaque catégorie cette fraction à la fraction du budget dépensée pour les projets de la catégorie.
 Les résultats pour différents districts de Varsovie sont présentés ci-dessous.
-Chaque point dans la zone grise correspond à une élection où la méthode des parts égales a produit un résultat qui était plus similaire à la répartition des votes entre les catégories, par rapport au résultat réel.
+Chaque point dans la zone grise correspond à une élection où la méthode des parts égales a produit un résultat qui était
+plus similaire à la répartition des votes entre les catégories que le résultat réel.
 
-Nous pouvons constater que la méthode des parts égales aurait réduit les dépenses excessives dans les catégories les plus populaires dans pratiquement tous les districts, et dans certains cas de manière significative.
-Il y a quelques exceptions, mais dans ces cas, les deux méthodes ont donné des résultats similaires.
+Nous pouvons constater que la méthode des parts égales aurait réduit les dépenses excessives pour les catégories les plus
+populaires dans pratiquement tous les districts, et dans certains cas de manière significative.
+Il y a quelques exceptions, qui concernent des districts où les deux méthodes ont donné des résultats similaires.
 
 <Datawrapper src="//datawrapper.dwcdn.net/ZmHU4/" />
 
-Astuce : vous pouvez survoler les points pour voir plus d'informations sur l'élection.
+Astuce : vous pouvez survoler les points pour obtenir plus d'informations.
 
 <details>
 <summary>Détails de la simulation</summary>
@@ -70,16 +80,30 @@ Notez qu'une distance plus faible signifie que la distribution du budget est plu
 Nous avons également utilisé d'autres distances (comme la divergence de Kullback-Leibler) mais avons constaté que la distance L1 fonctionnait le mieux ; en tout cas, les résultats étaient similaires en ce que la méthode des parts égales était plus proche de la part de vote que le résultat réel, dans la grande majorité des cas.
 </details>
 
-## Exemple : Sous-utilisation des fonds pour des projets éducatifs à Bielany, Varsovie
+## Exemple : Sous-utilisation du budget pour les projets éducatifs à Bielany, Varsovie
 
-Pour mieux comprendre l'effet positif de la méthode des parts égales, examinons un exemple où le résultat réel est bien inférieur. Nous prenons en considération le district de [Bielany](https://fr.wikipedia.org/wiki/Bielany_(Varsovie)) à Varsovie. Chaque année, de 2020 à 2022, une part importante des votes a été consacrée à des projets éducatifs. Cependant, le budget alloué aux projets éducatifs a été très faible. Par exemple, en 2020, 35 % des votes ont été consacrés aux projets éducatifs, mais seulement 6 % du budget a été dépensé pour ces projets.
+Pour mieux comprendre l'effet positif de la méthode des parts égales, examinons un exemple où le résultat réel est bien inférieur.
+Cet exemple est le district de [Bielany](https://fr.wikipedia.org/wiki/Bielany_(Varsovie)) à Varsovie.
+Chaque année, de 2020 à 2022, une part importante des votes a sélectionné des projets éducatifs.
+Cependant, le budget alloué aux projets éducatifs a été très faible.
+Par exemple, en 2020, 35 % des votes concernaient des projets éducatifs, mais seulement 6 % du budget a été alloué à ces projets.
 
-Alors qu'il y a eu une sous-dépense pour les projets éducatifs, il y a eu une surdépense dans d'autres catégories, notamment dans l'espace public, l'environnement, les transports et les routes. Par exemple, en 2020, 34 % des votes ont été consacrés à ces catégories, mais 55 % du budget a été dépensé pour ces catégories.
+Inversement, il y a eu une sur-allocation du budget pour d'autres catégories, notamment pour les catégories: espace public, environnement, transports et routes.
+Par exemple, en 2020, 34 % des votes ont été consacrés à ces catégories, contre 55 % du budget.
 
-La méthode des parts égales aurait réduit la surdépense dans ces catégories (en dépensant 43 %), et aurait augmenté les dépenses pour les projets éducatifs (en dépensant 27 %).
+La méthode des parts égales aurait réduit la sur-dépense dans ces catégories (en dépensant 43 %), et aurait
+augmenté les dépenses pour les projets éducatifs (en dépensant 27 %).
 
 <Datawrapper src="//datawrapper.dwcdn.net/XzIHd/" />
 
-Quelle est la raison sous-jacente de cette différence ? C'est parce que les projets éducatifs étaient principalement de petite envergure et peu coûteux (par exemple, l'organisation d'un cours pendant l'été), tandis que les projets dans les catégories avec surdépense étaient principalement de grande envergure et coûteux. La méthode utilisée pour produire le résultat réel (celui avec la surdépense) ne prend pas en compte les coûts des projets et dépense la majeure partie du budget sur quelques-uns de ces projets. La méthode des parts égales, en revanche, prend en compte les coûts des projets et dépense le budget de manière plus équitable entre tous les projets.
+Cette différence s'explique par le fait que les projets éducatifs étaient principalement de petite envergure et peu coûteux
+(par exemple, l'organisation d'un cours pendant l'été), tandis que les projets dans les catégories sur-représentées
+étaient principalement de grande envergure et coûteux.
+La méthode utilisée pour produire le résultat réel (avec sur-dépense) ne prend pas en compte les coûts des projets et
+utilise la majeure partie du budget pour quelques-uns de ces projets.
+La méthode des parts égales, en revanche, prend en compte les coûts des projets et utilise le budget de manière plus
+équitable entre tous les projets.
 
-En examinant le graphique, nous constatons une diminution de la part des votes consacrée aux projets éducatifs au fil du temps. On pourrait spéculer que les proposants de tels projets sont découragés au fil du temps car leurs propositions ne sont pas couronnées de succès, étant donné la méthode de vote actuellement utilisée.
+Le graphique indique aussi une diminution de la part des votes consacrée aux projets éducatifs au fil du temps.
+On peut spéculer que les partisans de tels projets se sont découragés au fil du temps car leurs propositions ont rarement
+été sélectionnées avec la méthode de vote actuellement utilisée.
