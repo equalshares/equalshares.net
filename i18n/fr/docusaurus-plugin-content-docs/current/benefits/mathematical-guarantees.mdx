@@ -15,94 +15,132 @@ import X from '/icons/x-circle.svg';
     Elle garantit également que tous projets recevant suffisant de soutien sera gagnant.
 </div>
 
-La méthode des parts égales a été proposée et développée par des mathématiciens et des informaticiens qui ont prouvé des théorèmes mathématiques garantissant l'équité des électeurs dans certains sens précis. Sur cette page, nous décrirons certains de leurs résultats, à la fois de manière intuitive et plus technique.
+La méthode des parts égales a été proposée et développée par des mathématiciens et des informaticiens qui ont prouvé
+des théorèmes mathématiques garantissant l'équité des électeurs (selon un certain sens précis).
+Sur cette page, nous présentons certains de ces résultats, à la fois de manière intuitive et plus technique.
 
 Pour plus d'informations, veuillez également consulter les sources suivantes :
 [<img src={require('@site/static/img/abcbook.png').default} style={{ float: 'right', width: '100px' }} />](https://link.springer.com/book/10.1007/978-3-031-09016-5)
 
-* Le livre "Multi-Winner Voting with Approval Preferences" (2023) de Martin Lackner et Piotr Skowron, publié en Open Access par Springer ([PDF gratuit disponible](https://link.springer.com/book/10.1007/978-3-031-09016-5)). Notez que ce livre se concentre principalement sur les "élections à plusieurs gagnants", où nous supposons que tous les projets ont le même coût.
+* Le livre "Multi-Winner Voting with Approval Preferences" (2023) de Martin Lackner et Piotr Skowron, publié en Open Access par Springer ([PDF gratuit disponible](https://link.springer.com/book/10.1007/978-3-031-09016-5)). Ce livre se concentre sur les "élections avec plusieurs gagnants", c'est-à-dire lorsque tous les projets ont le même coût.
 * L'article "Proportional Participatory Budgeting with Additive Utilities" de Dominik Peters, Grzegorz Pierczyński et Piotr Skowron. Disponible [sur arXiv](https://arxiv.org/abs/2008.13276).
 
-## Un projet est assuré d'être financé s'il obtient un nombre de votes "bullet" proportionnel à son coût {#bullet-votes}
+## Un projet est nécessairement gagnant s'il obtient un nombre de votes uniques proportionnel à son coût {#bullet-votes}
 
-La première garantie mathématique concerne des projets individuels : ils sont sûrs d'être financés à condition d'obtenir au moins un certain nombre minimum de votes uniques.
+La première garantie mathématique concerne les projets pris individuellement.
+Tout projet obtenant suffisamment de votes uniques sera toujours gagnant avec la méthode des parts égales.
 
-Pour un exemple précis, considérons une proposition de projet dont le coût représenterait 5 % du budget global disponible. Alors, si au moins 5 % des électeurs votent pour ce projet _sans voter pour aucun autre projet_, cette proposition sera gagnante selon la méthode des parts égales.
+Par example, considérons un projet dont le coût représente 5 % du budget disponible.
+Si au moins 5 % des électeurs sélectionne ce projet, _et seulement ce projet_, alors ce projet sera toujours gagnant
+avec la méthode des parts égales.
 
-Voici une façon formelle de décrire cette propriété :
+De manière formelle, cette propriété est formulée comme suit.
 
-> **Théorème**. Soit $P$ un projet et $\text{coût}(P)$ son coût. Supposons que $B$ est le budget total et $n$ le nombre total de votants. Si au moins $n \cdot \text{coût}(P)/B$ votants votent pour $P$ et aucun autre projet, alors $P$ sera parmi les projets sélectionnés par la méthode des parts égales.
+> **Théorème**. Soit $P$ un projet et $\text{coût}(P)$ son coût. Supposons que $B$ est le budget total et $n$ le nombre total d'électeurs. Si au moins $n \cdot \text{coût}(P)/B$ électeurs sélectionnent $P$ et aucun autre projet, alors $P$ sera parmi les projets gagnants avec la méthode des parts égales.
 
 <details className="proof">
-<summary>Preuve</summary>
+    <summary>Preuve</summary>
 
-Chacun des votants qui ont voté uniquement pour $P$ se voit attribuer une part de budget d'au moins $B/n$ au début du calcul de la méthode. (Il pourrait être supérieur à $B/n$ car nous [complétons](../implementation/completion) la méthode.)
+    Chacun des électeurs qui n'ont sélectionné que $P$ se voit attribuer une part de budget d'au moins $B/n$ au début du calcul de la méthode des parts égales.
+    (Il pourrait être supérieur à $B/n$ car nous [complétons](../implementation/completion) la méthode.)
 
-Par conséquent, le montant total du budget attribué aux votants qui votent uniquement pour $P$ est d'au moins
-$$
-\underbrace{n \cdot \frac{\text{coût}(P)}{B}}_{\text{nombre de votants}} \cdot \underbrace{\frac{B}{n}}_{\text{part de budget}} = \text{coût}(P).
-$$
+    Par conséquent, le montant total du budget attribué aux électeurs qui votent uniquement pour $P$ est d'au moins
+    $$
+    \underbrace{n \cdot \frac{\text{coût}(P)}{B}}_{\text{nombre d'électeurs}} \cdot \underbrace{\frac{B}{n}}_{\text{part du budget}} = \text{coût}(P).
+    $$
 
-Par définition de la méthode des parts égales, elle ne se termine que lorsque plus aucun projet ne peut être financé par ses partisans. Mais cela signifie que $P$ doit être parmi les projets sélectionnés, car les votants qui votent uniquement pour $P$ conservent tout leur argent jusqu'à ce que $P$ soit sélectionné, et donc $P$ est toujours abordable.
+    Par définition, la méthode des parts égales ne se termine que lorsque plus aucun projet ne peut être financé par ses partisans.
+    Cela signifie que $P$ doit être parmi les projets gagnants, car les votants qui votent uniquement pour $P$ conservent
+    tout leur argent jusqu'à ce que $P$ soit sélectionné, et donc $P$ peut toujours être financé.
 </details>
 
-En utilisant la méthode de vote standard pour le budget participatif (qui sélectionne simplement les projets les plus populaires jusqu'à épuisement du budget), aucune garantie similaire n'est offerte. Même un projet très rentable (par exemple, coûtant 1% du budget) peut avoir besoin d'un grand nombre de votants (par exemple, plus de 30%) pour gagner selon la méthode standard.
+La méthode de vote standard pour le budget participatif (qui sélectionne simplement les projets les plus
+populaires jusqu'à épuisement du budget) n'offre pas de garantie similaire.
+Même un projet très peu cher (par exemple, coûtant 1 % du budget) peut avoir besoin d'un grand nombre de partisans
+(par exemple, plus de 30%) pour être gagnant.
 
-Pour que la garantie soit respectée, il est nécessaire de supposer que les votants qui soutiennent un projet ne soutiennent pas d'autres projets, car sinon la méthode des parts égales pourrait décider de satisfaire ces votants en sélectionnant certains des autres projets qu'ils soutiennent.
+Cette garantie n'est assurée que sous l'hypothèse que les partisans du projet ne sélectionnent pas d'autres projets.
+En effet, sans cette hypothèse la méthode des parts égales pourrait satisfaire ces électeurs en sélectionnant d'autres
+projets qu'ils ont sélectionnés.
 
-## Les groupes de votants ayant des votes similaires seront représentés dans le résultat
+## Les groupes d'électeurs ayant des votes similaires seront représentés dans le résultat
 
-Sous la méthode des parts égales, tout groupe de votants ayant voté pour des projets similaires peut s'attendre à être représenté dans le résultat dans une mesure proportionnelle à la taille du groupe. Par exemple, un groupe de 20% des votants peut s'attendre à influencer 20% des dépenses du budget.
+Avec la méthode des parts égales, tout groupe d'électeur ayant sélectionné des projets similaires sera représenté dans
+le résultat final dans une mesure proportionnelle à la taille du groupe.
+Par exemple, un groupe de 20 % des votants peut s'attendre à influencer 20 % des dépenses du budget.
+De tels groupes d'électeurs peuvent être les parents d'enfants dans une école particulière, les résidents d'un quartier
+particulier ou les personnes se déplaçant à vélo par exemple.
+Les propriétés présentées ci-dessous garantissent que chacun de ces groupes soit représenté dans le résultat final
+(à condition de constituer une part suffisamment large de la population pour justifier le coût des projets qu'ils soutiennent ensemble).
 
-De tels groupes de votants pourraient être les parents d'enfants dans une école particulière, les résidents d'un quartier particulier ou les personnes se déplaçant à vélo. Les propriétés suivantes garantiront que chacun de ces groupes sera représenté dans le résultat (à condition qu'ils aient suffisamment de membres pour justifier le coût des projets qu'ils soutiennent ensemble).
+### Groupes d'électeurs avec des votes identiques
 
-### Groupes de votants ayant des votes identiques
-
-Prenons une élection de PB basée sur le vote d'approbation. Supposons que $t$ des $n$ votants aient soumis un bulletin identique, c'est-à-dire qu'ils ont tous voté pour le même ensemble de projets. Pour être concret, disons que ces $t$ votants votent pour les projets $P_1$, $P_2$ et $P_3$. Intuitivement, puisque ce groupe représente une fraction $t/n$ des votants, ils devraient être représentés dans le résultat par une fraction $t/n$ du budget.
+Considérons un scénario de budget participatif utilisant le vote par approbation.
+Supposons que $t$ des $n$ électeurs aient soumis un bulletin identique, c'est-à-dire que les $t$ électeurs ont tous
+sélectionné le même ensemble de projets.
+Plus concrètement, disons que ces $t$ électeurs ont sélectionné les projets $P_1$, $P_2$ et $P_3$.
+Intuitivement, puisque ce groupe représente une fraction $t/n$ des votants, les membres du groupe devraient être
+représentés dans le résultat final par une fraction de $t/n$ du budget.
 
 Supposons pour le moment que 
 $$
 \text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) \leqslant \frac{t}{n} \cdot B,
 $$
-où $B$ est le budget global. En d'autres termes, le groupe de votants est assez grand pour "mériter" que tous les projets pour lesquels ils ont voté soient financés. Dans ce cas, on peut prouver que la méthode des parts égales sélectionnera les trois projets.
+où $B$ est le budget global. En d'autres termes, le groupe d'électeurs est de taille suffisante afin de "contrôler"
+une part du budget permettant de financer tous les projets sélectionnés conjointement.
+Dans ce cas, on peut prouver que la méthode des parts égales sélectionnera les trois projets.
 
-Formellement, cette propriété peut être écrite comme suit :
+Formellement, cette propriété peut être décrite comme suit :
 
-> **Théorème**. Soit $\{P_1, P_2, \ldots, P_k\}$ un ensemble de projets, et supposons que $t$ des $n$ votants ont voté pour tous ces projets (et seulement ces projets). Supposons que le coût total de ces projets est au plus $t/n \cdot B$. Alors la méthode des parts égales sélectionnera les $k$ projets.
+> **Théorème**. Soit $\{P_1, P_2, \ldots, P_k\}$ un ensemble de $k$ projets, et supposons que $t$ des $n$ votants ont sélectionné tous ces projets (et seulement ces projets). Supposons que le coût total de ces projets est au plus $t/n \cdot B$. Alors, les $k$ projets seront gagnants avec la méthode des parts égales.
 
 <details>
-<summary>
-    Informations sur le cas où le coût des projets dépasse la limite
-</summary>
+    <summary>
+        Informations sur le cas où le coût des projets dépasse la limite
+    </summary>
 
-On peut également prouver une garantie similaire si le groupe d'électeurs approuve une collection de projets dont le coût total est supérieur à $t/n \cdot B$. Supposons que $t$ électeurs votent exactement pour les projets $P_1$, $P_2$, $P_3$, et $P_4$. Supposons que 
-$$
-\text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) + \text{coût}(P_4) > \frac{t}{n} \cdot B.
-$$
-Alors, la méthode des parts égales sélectionnera certains de ces projets qui, ensemble, coûtent "approximativement" $t/n \cdot B$.
+    On peut également prouver une garantie similaire si tous les membres du groupe d'électeurs ont sélectionné
+    un ensemble de projet dont le coût total est supérieur à $t/n \cdot B$.
+    Supposons que $t$ électeurs aient sélectionné uniquement les projets $P_1$, $P_2$, $P_3$, et $P_4$, et que
+    $$
+    \text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) + \text{coût}(P_4) > \frac{t}{n} \cdot B.
+    $$
+    Alors, la méthode des parts égales sélectionnera certains de ces projets qui, ensemble, coûtent "approximativement" $t/n \cdot B$.
 
-> **Théorème**. Soit $T = \{P_1, P_2, \ldots, P_k\}$ un ensemble de projets, et supposons que $t$ des $n$ électeurs ont voté pour tous ces projets (et seulement pour ces projets). Alors, la méthode des parts égales sélectionnera un sous-ensemble $T' \subseteq T$ de projets tels que pour chaque projet $P^* \in T$ qui n'a pas été sélectionné par la Méthode, on a $\sum_{P \in T'} \text{coût}(P) + \text{coût}(P^*) > t/n \cdot B$.
+    > **Théorème**. Soit $T = \{P_1, P_2, \ldots, P_k\}$ un ensemble de $k$ projets, et supposons que $t$ des $n$ électeurs ont sélectionné tous ces projets (et seulement ces projets). Alors, la méthode des parts égales sélectionnera un sous-ensemble $T' \subseteq T$ de projets tels que pour chaque projet $P^* \in T$ qui n'est pas gagnant, on a $\sum_{P \in T'} \text{coût}(P) + \text{coût}(P^*) > t/n \cdot B$.
 
 </details>
 
-### Groupes de votants avec des votes qui se chevauchent
+### Groupes d'électeurs avec des votes similaires mais pas identiques
 
-Dans les garanties mathématiques décrites ci-dessus, nous avons supposé que le groupe de votants a voté pour exactement le même ensemble de projets. En pratique, cependant, même les groupes de votants avec un fort accord ne voteront pas toujours pour le *même* ensemble de projets. Il est donc intéressant de voir si la méthode des parts égales sélectionnera des projets qui sont soutenus par un groupe de votants avec un accord élevé mais pas parfait. La réponse est oui: si un groupe de votants a un chevauchement suffisamment important dans leurs votes, alors la méthode des parts égales représentera le groupe.
+Pour les garanties mathématiques décrites ci-dessus, nous avons supposé que le groupe d'électeurs a sélectionné
+exactement le même ensemble de projets.
+En pratique, cependant, même les groupes d'électeurs très similaires ne voteront pas toujours de la *même* manière.
+Il est donc intéressant de voir si la méthode des parts égales sélectionnera des projets soutenus par un groupe d'électeurs
+très semblables, mais pas identiques.
+La réponse est oui : si un groupe d'électeurs vote de façon suffisamment similaire, alors le groupe sera représenté
+dans le résultat de la méthode des parts égales.
 
 <details>
-<summary>Détails sur la garantie mathématique</summary>
+    <summary>Détails sur la garantie mathématique</summary>
 
-Considérons une élection PB basée sur le vote d'approbation.
-En général, si $T = \{P_1, P_2, \ldots, P_k\}$ est un ensemble de projets, nous écrivons $\text{coût}(T) = \text{coût}(P_1) + \text{coût}(P_2) + \ldots + \text{coût}(P_k)$ pour le coût total des projets dans $T$.
-Supposons qu'un groupe de $t$ votants approuve tous les projets de l'ensemble $T$, mais que certains votants approuvent également d'autres projets qui ne sont pas dans $T$.
-Supposons que $\text{coût}(T)\leqslant t/n \cdot B$ (de sorte que le groupe de votants peut "se permettre" tous les projets de $T$ en n'utilisant que les parts de budget des membres du groupe).
-Alors, la méthode des parts égales garantit qu'au moins l'un des $t$ votants sera suffisamment représenté dans le résultat $W$: cela signifie qu'il existe un membre $i$ du groupe (qui a voté pour l'ensemble de projets $A_i$ (y compris tous les projets de $T$, donc $T \subseteq A_i$)) avec
-$$
-\text{coût}(A_i \cap W) \geqslant \text{coût}(T) - \text{coût}(P_j) \qquad \text{pour certains $P_j \in T$}.
-$$
-Dans cette expression, $A_i \cap W$ désigne l'ensemble des projets approuvés à la fois par le votant $i$ et inclus dans le résultat $W$.
+    Considérons un scénario de budget participatif utilisant le vote par approbation.
+    De manière général, si $T = \{P_1, P_2, \ldots, P_k\}$ est un ensemble de $k$ projets, nous écrivons
+    $\text{coût}(T) = \text{coût}(P_1) + \text{coût}(P_2) + \ldots + \text{coût}(P_k)$ pour le coût total des projets dans $T$.
+    Supposons qu'un groupe de $t$ électeurs ont tous sélectionné tous les projets de l'ensemble $T$, mais que certains
+    électeurs ont aussi sélectionné d'autres projets, en dehors de $T$.
+    Supposons que $\text{coût}(T)\leqslant t/n \cdot B$ (de sorte que le groupe d'électeurs peut "financer" tous les
+    projets de $T$ en n'utilisant que les parts de budget des membres du groupe).
+    Alors, la méthode des parts égales garantit qu'au moins l'un des $t$ électeurs sera suffisamment représenté dans le
+    résultat final $W$: cela signifie qu'il existe un membre $i$ du groupe (qui a sélectionné l'ensemble de projets $A_i$
+    (y compris tous les projets de $T$, donc $T \subseteq A_i$)) tel que:
+    $$
+    \text{coût}(A_i \cap W) \geqslant \text{coût}(T) - \text{coût}(P_j) \qquad \text{pour certains $P_j \in T$}.
+    $$
+    Dans cette expression, $A_i \cap W$ désigne l'ensemble des projets gagnants qui ont été sélectionnés par l'électeur $i$.
 
-Cette propriété est appelée "représentation justifiée étendue jusqu'à un projet" dans la littérature académique. Plus de détails peuvent être trouvés dans l'article de [Peters et al. (2021)](https://arxiv.org/abs/2008.13276) (en anglais).
+    Cette propriété est appelée "extended justified representation up to one project (EJR-1)" dans la littérature académique.
+    Plus de détails sont disponibles dans l'article de [Peters et al. (2021)](https://arxiv.org/abs/2008.13276) (en anglais).
 </details>
 
 ## Autres critères de vote de base
