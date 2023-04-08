@@ -1,0 +1,16 @@
+.costInputLabel {
+    display: block;
+    padding-left: 5px;
+    border-radius: 5px;
+}
+.costInputLabel:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+.costInput {
+    display: block;
+    max-width: 7.5em;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

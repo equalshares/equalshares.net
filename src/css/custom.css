@@ -296,7 +296,14 @@ iframe[src*="datawrapper"] {
 .project-2,
 .project-3,
 .project-4,
-.project-5
+.project-5,
+.project-6,
+.project-7,
+.project-8,
+.project-9,
+.project-10,
+.project-11,
+.project-12
 {
   padding: 2px 4px;
   margin: 0 1px;
@@ -309,7 +316,14 @@ iframe[src*="datawrapper"] {
 [data-theme='dark'] .project-2,
 [data-theme='dark'] .project-3,
 [data-theme='dark'] .project-4,
-[data-theme='dark'] .project-5
+[data-theme='dark'] .project-5,
+[data-theme='dark'] .project-6,
+[data-theme='dark'] .project-7,
+[data-theme='dark'] .project-8,
+[data-theme='dark'] .project-9,
+[data-theme='dark'] .project-10,
+[data-theme='dark'] .project-11,
+[data-theme='dark'] .project-12
 {
   box-shadow: none;
   border: 1px solid rgb(50, 50, 50);
@@ -335,6 +349,34 @@ iframe[src*="datawrapper"] {
   background-color: hsl(287, 55%, 90%);
   color: hsl(287, 60%, 20%);
 }
+.project-6 {
+  background-color: hsl(45, 58%, 90%);
+  color: hsl(45, 65%, 20%);
+}
+.project-7 {
+background-color: hsl(240, 50%, 90%);
+color: hsl(240, 65%, 20%);
+}
+.project-8 {
+background-color: hsl(100, 50%, 90%);
+color: hsl(100, 65%, 20%);
+}
+.project-9 {
+background-color: hsl(190, 50%, 90%);
+color: hsl(190, 65%, 20%);
+}
+.project-10 {
+background-color: hsl(310, 50%, 90%);
+color: hsl(310, 60%, 20%);
+}
+.project-11 {
+  background-color: hsl(15, 70%, 90%);
+  color: hsl(15, 65%, 20%);
+  }
+.project-12 {
+  background-color: hsl(180, 50%, 90%);
+  color: hsl(180, 65%, 20%);
+}
 [data-theme='dark'] .project-1 {
   background-color: hsl(202, 70%, 25%);
   color: hsl(202, 65%, 90%);
@@ -354,6 +396,34 @@ iframe[src*="datawrapper"] {
 [data-theme='dark'] .project-5 {
   background-color: hsl(287, 55%, 25%);
   color: hsl(287, 60%, 90%);
+}
+[data-theme='dark'] .project-6 {
+  background-color: hsl(45, 58%, 25%);
+  color: hsl(45, 65%, 90%);
+}
+[data-theme='dark'] .project-7 {
+  background-color: hsl(240, 50%, 25%);
+  color: hsl(240, 65%, 90%);
+}
+[data-theme='dark'] .project-8 {
+  background-color: hsl(100, 50%, 25%);
+  color: hsl(100, 65%, 90%);
+}
+[data-theme='dark'] .project-9 {
+  background-color: hsl(190, 50%, 25%);
+  color: hsl(190, 65%, 90%);
+}
+[data-theme='dark'] .project-10 {
+  background-color: hsl(310, 50%, 25%);
+  color: hsl(310, 60%, 90%);
+}
+[data-theme='dark'] .project-11 {
+  background-color: hsl(15, 70%, 25%);
+  color: hsl(15, 65%, 90%);
+}
+[data-theme='dark'] .project-12 {
+  background-color: hsl(180, 50%, 25%);
+  color: hsl(180, 65%, 90%);
 }
 
 /***************
