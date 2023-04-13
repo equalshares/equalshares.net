@@ -281,6 +281,13 @@ export function PlayApp() {
       {/* <BrowserOnly>
         {() => <Loader url={window.location.search} setInstance={updateInstance} /> }
       </BrowserOnly> */}
+      <p>todo: Random. Reset button with undo. Share. Export .pb file.</p>
+      <p>Budget: <CostInput cost={instance.budget} setCost={
+        (budget) => {
+          updateInstance({ ...instance, budget: budget });
+        }
+      } /></p>
+      <ProfileInput instance={instance} settings={settings} setInstance={updateInstance} />
       <ComputationResults rounds={rounds} />
     </div>
   );
