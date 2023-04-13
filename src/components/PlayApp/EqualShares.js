@@ -115,7 +115,8 @@ function costOfCommittee(cost, committee) {
 
 export function calculateRule(N, C, cost, budget, u) {
     var rounds = calculateRuleFixedBudget(N, C, cost, budget, u);
-    for (var i = 101; i <= 250; i++) {
+    let previousCommittee = [];
+    for (var i = 0; i <= 300; i++) {
         // check if current committee is exhaustive
         let committee = rounds[rounds.length - 1].committee;
         if (committee !== null) {
@@ -125,13 +126,16 @@ export function calculateRule(N, C, cost, budget, u) {
                 break;
             }
         }
-        let newRounds = calculateRuleFixedBudget(N, C, cost, budget * i / 100, u);
+        let newRounds = calculateRuleFixedBudget(N, C, cost, budget + i * N.length * Math.ceil(budget / 200), u);
         committee = newRounds[newRounds.length - 1].committee;
         // check if next committee exceeds budget
         if (committee !== null && costOfCommittee(cost, committee) > budget) {
             break;
         }
-        rounds = newRounds;
+        if (committee.toString() != previousCommittee.toString()) {
+            rounds = newRounds; // only update rounds if useful, to avoid unnecessarily inflating starting budget
+            previousCommittee = committee;
+        }
     }
     return rounds;
 }
