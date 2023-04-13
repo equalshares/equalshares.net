@@ -52,36 +52,49 @@ const projectNames = [
   (<span className="project-12">🪑 benches</span>),
 ];
 
-function UtilityInput({ utility, setUtility, totalUtilityOfVoter }) {
+function UtilityInput({ settings, utility, setUtility, totalUtilityOfVoter }) {
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const handleRating = (rating) => {
-    console.log(rating, utility, rating === utility);
-    if (rating === utility) {
-      setUtility(0);
-      // disable for 0.5 seconds
-      setIsDisabled(true);
-      setTimeout(() => setIsDisabled(false), 500);
-      console.log('reset');
-    } else {
-      setUtility(rating);
-    }
-  };
-  // <button onClick={() => setUtility(utility + 1)}>
-  //   {utility}
-  // </button>
-  return (
-    <div>
-      <Rating 
-        key={utility}
-        size={22}
-        style={{lineHeight: '18px'}}
-        initialValue={utility}
-        onClick={handleRating}
-        readonly={isDisabled}
+  if (settings.input == 'range') {
+    const handleRating = (rating) => {
+      console.log(rating, utility, rating === utility);
+      if (rating === utility) {
+        setUtility(0);
+        // disable for 0.5 seconds
+        setIsDisabled(true);
+        setTimeout(() => setIsDisabled(false), 500);
+        console.log('reset');
+      } else {
+        setUtility(rating);
+      }
+    };
+    return (
+      <div>
+        <Rating 
+          key={utility}
+          size={22}
+          style={{lineHeight: '18px'}}
+          initialValue={utility}
+          onClick={handleRating}
+          readonly={isDisabled}
+          />
+      </div>
+    );
+  } else if (settings.input == 'approval') {
+    const handleApproval = (e) => {
+      setUtility(e.target.checked ? 1 : 0);
+    };
+    return (
+      <div>
+        <input
+          type="checkbox"
+          checked={utility > 0}
+          onChange={handleApproval}
+          className={styles.approvalInput}
         />
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 function CostInput({ cost, setCost }) {
@@ -120,7 +133,7 @@ function CostInput({ cost, setCost }) {
 }
 
 
-function ProfileInput({ instance, setInstance }) {
+function ProfileInput({ instance, settings, setInstance }) {
   return (
     <div className={styles.profileInput}>
       <table>
@@ -128,25 +141,27 @@ function ProfileInput({ instance, setInstance }) {
           <tr>
             <th></th>
             {
-              instance.C.map((j) => (
-                <th key={j}>
-                  {projectNames[j]}
+              instance.N.map((i) => (
+                <th key={i}>
+                  Voter {i + 1}
                 </th>
               ))
             }
+            <th>Cost</th>
           </tr>
         </thead>
         <tbody>
           {
-            instance.N.map((i) => (
-              <tr key={i}>
+            instance.C.map((j) => (
+              <tr key={j}>
                 <td style={{ whiteSpace: 'nowrap' }}>
-                  Voter {i+1}
+                  {projectNames[j]}
                 </td>
                 {
-                  instance.C.map((j) => (
-                    <td key={j}>
+                  instance.N.map((i) => (
+                    <td key={i}>
                       <UtilityInput
+                        settings={settings}
                         utility={instance.u[j][i]}
                         totalUtilityOfVoter={sum(instance.C.map((j) => instance.u[j][i]))}
                         setUtility={(utility) => {
@@ -158,21 +173,12 @@ function ProfileInput({ instance, setInstance }) {
                     </td>
                   ))
                 }
-              </tr>
-            ))
-          }
-          <tr>
-            <td>
-              Cost
-            </td>
-            {
-              instance.C.map((j) => (
                 <td key={j}>
                   <CostInput cost={instance.cost[j]} setCost={(cost) => { setInstance({ ...instance, cost: { ...instance.cost, [j]: cost } }); }} />
                 </td>
-              ))
-            }
-          </tr>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>
@@ -191,7 +197,6 @@ function ProjectStatus({ budgets, spending }) {
 function ComputationResults({ rounds=[] }) {
   return (
     <div className={styles.profileInput}>
-      ComputationResults {rounds.length}
       {
         rounds.map((round, i) => (
               <div key={i}>
@@ -238,9 +243,9 @@ function ComputationResults({ rounds=[] }) {
 
 export function PlayApp() {
   let startingInstance = {
-    N: [...Array(11).keys()],
+    N: [...Array(7).keys()],
     C: [...Array(5).keys()],
-    budget: 1100,
+    budget: 700,
     cost: { 0: 700, 1: 400, 2: 250, 3: 200, 4: 100, 5: 10, 6: 10, 7: 10, 8: 10, 9: 10, 10: 10, 11: 10 },
   };
   let u = {};
@@ -253,7 +258,7 @@ export function PlayApp() {
   startingInstance.u = u;
 
   const startingSettings = {
-    input: "approval"
+    input: "range"
   };
 
   const [instance, setInstance] = useLocalStorage('PlayAppInstance3', startingInstance);
@@ -266,8 +271,6 @@ export function PlayApp() {
   function updateInstance(newInstance) {
     setRounds(calculateRule(newInstance.N, newInstance.C, newInstance.cost, newInstance.budget, newInstance.u));
     setInstance(newInstance);
-    console.log("newInstance:", newInstance);
-    console.log("rounds:", rounds);
   }
 
   function handleClick(e) {
@@ -278,8 +281,6 @@ export function PlayApp() {
       {/* <BrowserOnly>
         {() => <Loader url={window.location.search} setInstance={updateInstance} /> }
       </BrowserOnly> */}
-      <p>Random. Reset button with undo. Share. Set budget. Export .pb file.</p>
-      <ProfileInput instance={instance} setInstance={updateInstance} />
       <ComputationResults rounds={rounds} />
     </div>
   );
