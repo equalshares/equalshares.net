@@ -10,6 +10,14 @@ const katex = require('rehype-katex');
 const date = new Date();
 const isoDay = date.toISOString().split('T')[0];
 
+function getAnnouncementBar() {
+  switch(process.env.DOCUSAURUS_CURRENT_LOCALE) {
+    case "pl": return "<a href='/pl/resources/zielony-milion'>2023-04-26: Ogłoszono wyniki głosowania w ekologicznym budżecie partycypacyjnym Wieliczki, Zielony Milion</a>";
+    case "de": return "<a href='/pl/resources/zielony-milion'>2023-04-26: Das Wahlergebnis des Bürgerbudgets Grüne Million in Wieliczka wurden bekanntgegeben.</a>";
+    default: return "<a href='/pl/resources/zielony-milion'>2023-04-26: The vote results of Wieliczka's Green Million participatory budget have been announced</a>";
+  }
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Method of Equal Shares',
@@ -101,6 +109,13 @@ const config = {
             position: 'right',
           },
         ],
+      },
+      announcementBar: {
+        id: 'zielony-milion-results',
+        content: getAnnouncementBar(),
+        backgroundColor: '#eef7e9',
+        textColor: '#112b06',
+        isCloseable: true,
       },
       footer: {
         style: 'dark',
