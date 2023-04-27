@@ -14,7 +14,7 @@ function getAnnouncementBar() {
   switch(process.env.DOCUSAURUS_CURRENT_LOCALE) {
     case "pl": return "<a href='/pl/resources/zielony-milion'>2023-04-26: Ogłoszono wyniki głosowania w ekologicznym budżecie partycypacyjnym Wieliczki, Zielony Milion</a>";
     case "de": return "<a href='/pl/resources/zielony-milion'>2023-04-26: Das Wahlergebnis des Bürgerbudgets Grüne Million in Wieliczka wurden bekanntgegeben.</a>";
-    default: return "<a href='/pl/resources/zielony-milion'>2023-04-26: The vote results of Wieliczka's Green Million participatory budget have been announced</a>";
+    default: return "<a href='/resources/zielony-milion'>2023-04-26: The vote results of Wieliczka's Green Million participatory budget have been announced</a>";
   }
 }
 
