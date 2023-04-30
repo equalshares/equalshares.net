@@ -110,13 +110,13 @@ const config = {
           },
         ],
       },
-      announcementBar: {
-        id: 'zielony-milion-results',
-        content: getAnnouncementBar(),
-        backgroundColor: '#eef7e9',
-        textColor: '#112b06',
-        isCloseable: true,
-      },
+      // announcementBar: {
+      //   id: 'zielony-milion-results',
+      //   content: getAnnouncementBar(),
+      //   backgroundColor: '#eef7e9',
+      //   textColor: '#112b06',
+      //   isCloseable: true,
+      // },
       footer: {
         style: 'dark',
         links: [
