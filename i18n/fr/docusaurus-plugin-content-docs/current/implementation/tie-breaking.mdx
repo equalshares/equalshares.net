@@ -6,105 +6,142 @@ title: Rupture d'égalité
 import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
 import { Currency } from '@site/src/components/CurrencyChoice';
 
-# Comment résoudre les égalités ?
+# Départager les ex æquo
 
 <div class="summary">
 <b>Résumé</b> :
-Dans de rares cas, deux ou plusieurs projets peuvent être à égalité (par exemple, s'ils ont exactement le même coût et ont reçu exactement le même nombre de votes). Cela se produit avec une probabilité inférieure à 1%. Nous décrivons comment minimiser la probabilité d'égalité lors de l'implémentation de la méthode des parts égales. Cependant, si une égalité se produit quand même, elle devra peut-être être résolue par les responsables des élections en utilisant le hasard.
+Dans de rares cas, deux ou plusieurs projets peuvent être ex æquo  (par exemple, s'ils ont exactement le même coût et
+ont reçu exactement le même nombre de votes).
+Cela se produit avec une probabilité inférieure à 1%.
+Nous décrivons comment minimiser la probabilité qu'il y ait des ex æquo lors de l'implémentation de la méthode des parts égales.
+Cependant, si malgré tout des projets sont ex æquo, les responsables de l'élection devront décider, potentiellement au
+hasard, quel projet doit être sélectionné.
 </div>
 
-## Procédure recommandée pour résoudre les égalités
+## Procédure recommandée pour départager les ex æquo
 
 :::tip
 
-Un moyen facile d'éviter définitivement l'égalité est de s'assurer que deux projets n'ont pas le même coût (même si les coûts ne diffèrent que d'une <Currency>1</Currency>). Ainsi, une égalité ne se produira jamais si la procédure de résolution des égalités ci-dessous est suivie.
+Un moyen facile d'éviter définitivement les ex æquo est de s'assurer que deux projets n'ont pas le même coût (même si
+les coûts ne diffèrent que de <Currency>1</Currency>).
+Ainsi, deux projects ne seront jamais ex æquou si la procédure de départage des ex æquo présentée ci-dessous est suivie.
 
 :::
 
-Lors de l'exécution de la méthode des parts égales, une égalité peut se produire lorsque deux ou plusieurs projets ont le même nombre de votes effectifs. En isolation, les égalités sont peu probables dans les grandes élections (comme celles à l'échelle de la ville). Mais la méthode des parts égales est généralement exécutée plusieurs fois de suite pour déterminer le meilleur montant d'argent que les électeurs se voient attribuer au début de la méthode. (Voir [Complétions](completion) pour plus de détails.) Cela rend plus probable la rencontre d'une égalité, et l'égalité devra être résolue.
+Lors de l'exécution de la méthode des parts égales, des projets peuvent être ex æquo lorsqu'ils ont le même nombre de
+votes pondérés.
+Il est généralement peu probable que des projets soient ex æquo dans les grandes élections (comme celles à l'échelle de
+la ville).
+La méthode des parts égales est cependant souvent exécutée plusieurs fois de suite pour compléter le
+résultat (voir [Complétions](completion) pour plus de détails).
+Cela rend plus probable l'existence de projets ex æquo, qui doivent donc être départagés.
 
-Nous recommandons que lorsqu'il y a une égalité entre deux ou plusieurs projets, car ils ont le même nombre de votes effectifs à une étape de la méthode, l'égalité soit résolue par la procédure suivante :
+Nous recommandons que lorsqu'il des projets sont ex æquo, car ils ont le même nombre de votes pondérés,
+les projets soient départagés de la manière suivante :
 * Le projet le moins cher est sélectionné.
-* Si deux ou plusieurs des projets à égalité ont le même coût le plus bas, alors le projet (à coût le plus bas) avec le plus grand nombre de votes initiaux est sélectionné (c'est-à-dire le nombre de votes bruts du projet avant que le nombre de votes ne soit réduit au cours de l'exécution de la méthode des parts égales).
-* Si deux ou plusieurs projets ont le coût le plus bas et le même nombre de votes initiaux, l'égalité est résolue par tirage au sort, c'est-à-dire de manière uniforme au hasard.
+* Si deux ou plusieurs des projets ex æquo ont le même coût le plus bas, alors le projet (à coût le plus bas) avec le plus grand nombre de partisans initiaux est sélectionné (c'est-à-dire le nombre de partisans du projet, pas le nombre de votes pondérés).
+* Si deux ou plusieurs projets ont le coût le plus bas et le même nombre de votes initiaux, l'égalité est résolue par tirage au sort, c'est-à-dire en sélectionnant un projet aléatoirement selon une distribution uniforme.
 
-En tant que question de procédure, il y a deux façons de gérer l'utilisation potentielle du hasard :
-1. Avant de calculer le résultat de l'élection, les responsables des élections vérifient s'il existe des collections de projets ayant le même coût et le même nombre de votes initiaux. Pour chaque collection de projets potentiellement à égalité, ils déterminent un ordre de résolution des égalités, par exemple en tirant des noms d'un chapeau.
-2. En revanche, calculez le résultat de l'élection en utilisant une implémentation de la méthode des parts égales qui se termine par un message d'erreur si une égalité est rencontrée. Ce n'est que dans ce cas (improbable) que vous pouvez procéder comme dans l'option 1.
+Il y a deux façons de gérer l'utilisation d'un tirage au sort :
+1. Avant de calculer le résultat de l'élection, les responsables de l'élections vérifient s'il existe des ensemble de projets ayant le même coût et le même nombre de votes initiaux. Pour chaque ensemble de projets qui seront potentiellement ex æquo, un ordre de départage est déterminé, par exemple en tirant au sort les noms des projets.
+2. Autrement, le résultat de l'élection peut être calculé en utilisant une implémentation de la méthode des parts égales qui se termine par un message d'erreur si des projets sont ex æquo. Ce n'est que dans ce cas (improbable) que les décideurs peuvent alors procéder comme dans l'option 1.
 
 :::info Informations techniques
 
-Dans le cas improbable où l'aléatoire doit être utilisé, nous recommandons que les responsables des élections procèdent comme dans l'option 2 décrite ci-dessus : tirer au sort un ordre de résolution des égalités, puis exécuter la méthode des parts égales (en incluant l'achèvement) en utilisant cet ordre de résolution des égalités. Lors de l'utilisation de l'achèvement, il n'est pas conseillé de résoudre les égalités différemment pour différentes valeurs du budget initial.
+Dans le cas improbable où un tirage aléatoire doit être utilisé, nous recommandons que les responsables de l'élection
+procèdent comme dans l'option 2 décrite ci-dessus : tirer au sort un ordre de départage des ex æquo, puis exécuter la
+méthode des parts égales (en complétant le résultat) en utilisant cet ordre de départage.
+Lorsque le résultat est complété, il n'est pas conseillé de départager les ex æquo différemment pour différentes
+valeurs du budget initial.
 
 :::
 
 ## Exemples
 
 ### Exemple 1
-Pour illustrer cela, supposons que la méthode des parts égales aboutisse à la situation suivante, où trois projets restent disponibles pour la sélection :
+Pour illustrer cela, supposons que la méthode des parts égales aboutisse à la situation suivante, où trois projets
+peuvent être sélectionné :
 
-| Projet | Coût | Nombre de votes initial | Nombre de votes effectif |
+| Projet | Coût | Nombre de votes initial | Nombre de votes pondérés |
 | --- | --- | --- | --- |
 | Projet 1 | <Currency>600</Currency> | 500 | **200** |
 | Projet 2 | <Currency>700</Currency> | 300 | **200** |
 | Projet 3 | <Currency>100</Currency> | 150 | 100 |
 
-Les projets 1 et 2 ont le nombre de votes effectif le plus élevé, donc l'un d'entre eux doit être sélectionné.
-Comme ils ont le même nombre de votes effectif, nous devons les départager.
-Ainsi, la méthode sélectionne le **projet 1**, car son coût de <Currency>600</Currency> est inférieur au coût du projet 2, qui est de <Currency>700</Currency>.
+Les projets 1 et 2 ont le nombre de votes pondérés le plus élevé, donc l'un d'entre eux doit être sélectionné.
+Comme ils ont le même nombre de votes pondérés, nous devons les départager.
+Ainsi, la méthode sélectionne le **projet 1**, car son coût de <Currency>600</Currency> est inférieur à celui du projet 2,
+qui est de <Currency>700</Currency>.
 
 ### Exemple 2
 
 Voici un exemple similaire.
 
-| Projet | Coût | Nombre de votes initial | Nombre de votes effectif |
+| Projet | Coût | Nombre de votes initial | Nombre de votes pondérés |
 | --- | --- | --- | --- |
 | Projet 1 | <Currency>400</Currency> | 500 | **200** |
 | Projet 2 | <Currency>400</Currency> | 300 | **200** |
 | Projet 3 | <Currency>400</Currency> | 150 | **200** |
 
-Cette fois, les trois projets ont le même nombre de votes effectif, nous devons donc les départager.
-Les trois projets ont le même coût, nous devons donc les départager en regardant le nombre de votes initial.
-Ainsi, la méthode sélectionne le **projet 1**, car son nombre de votes initial de 500 est supérieur au nombre de votes initial des projets 2 et 3.
+Cette fois, les trois projets ont le même nombre de votes pondérés, nous devons donc les départager.
+Les trois projets ont le même coût, nous devons donc les départager selon leur nombre de votes initial.
+Ainsi, la méthode sélectionne le **projet 1**, car son nombre de votes initial de 500 est supérieur au nombre de votes
+initial des projets 2 et 3.
 
 ### Exemple 3
 
 Voici un dernier exemple.
 
-| Projet | Coût | Nombre de votes initial | Nombre de votes effectif |
+| Projet | Coût | Nombre de votes initial | Nombre de votes pondérés |
 | --- | --- | --- | --- |
 | Projet 1 | <Currency>400</Currency> | 500 | **200** |
 | Projet 2 | <Currency>400</Currency> | 500 | **200** |
 
-Les projets 1 et 2 ont le même nombre de votes effectif, nous devons donc les départager.
-Mais ils ont tous les deux le même coût et le même nombre de votes initial.
-Ainsi, la décision doit être prise par tirage au sort, par exemple en faisant lancer une pièce par l'officiel des élections.
+Les projets 1 et 2 ont le même nombre de votes pondérés, nous devons donc les départager.
+Cependant, ils ont tous les deux le même coût et le même nombre de votes initial.
+Ainsi, la décision doit être prise par tirage au sort, par exemple par un lancer de pièce.
 
-## Probabilité d'égalité
+## Probabilité d'existence de projets ex æquo
 
-En utilisant des simulations basées sur des données électorales de la bibliothèque [Pabulib] (http://pabulib.org/), il est possible d'estimer la probabilité d'une égalité.
-Ces simulations suggèrent qu'il est exceptionnellement rare (<1 %) d'avoir besoin d'utiliser le hasard pour rompre une égalité.
-En effet, dans presque tous les cas, toute égalité peut déjà être rompue en fonction des coûts du projet et des votes initiaux.
+À l'aide de simulations basées sur des données électorales disponible sur [Pabulib] (http://pabulib.org/), il est possible
+d'estimer la probabilité que des projets soient ex æquo.
+Ces simulations suggèrent qu'il est exceptionnellement rare (<1 %) d'avoir besoin d'utiliser le hasard pour départager
+des ex æquo.
+En effet, dans presque tous les cas, des projets ex æquo peuvent être départager en fonction des coûts du projet et des votes initiaux.
 
-Dans notre simulation, nous constatons que dans **seulement 0,6 % des cas**, il existe deux projets avec le même coût et le même nombre de votes.
-De plus, même dans les 0,6 % de cas avec des projets aussi similaires, il n'est souvent pas nécessaire de rompre cette égalité lors du calcul de la méthode des parts égales 
-(par exemple, parce que les projets liés n'ont pas un nombre de votes suffisamment élevé pour avoir une chance de gagner).
-Notre simulation suggère que dans **seulement 0,15 % des cas**, une égalité se produit lors du calcul de la méthode des parts égales qui doit être rompue par le sort.
+Dans notre simulation, nous constatons que dans **seulement 0,6 % des cas**, il existe deux projets ex æquo avec le même
+coût et le même nombre de votes.
+De plus, même dans les 0,6 % de cas avec des projets aussi similaires, il n'est souvent pas nécessaire de les départager
+lors du calcul de la méthode des parts égales (par exemple, parce que les projets liés n'ont pas un nombre de votes
+suffisamment élevé pour avoir une chance de gagner).
+Notre simulation suggère que dans **seulement 0,15 % des cas**, des projets sont ex æquo lors du calcul de la méthode
+des parts égales et doivent être départagés aléatoirement.
 
-La plupart des égalités trouvées dans notre simulation se produisent lors des élections dans la ville de Wrocław, qui impliquent un nombre assez restreint d'électeurs.
-Si nous excluons les élections de Wrocław de notre simulation, alors la probabilité d'égalités est encore plus faible :
-deux projets avec le même coût et le même nombre de votes initiaux ne se produisent que dans **0,26 % des cas**, et une égalité lors du calcul de la méthode des parts égales ne se produit que dans **0,09 % des cas**.
+Les cas de projets ex æquo dans notre simulation se produisent lors des élections dans la ville de Wrocław, qui
+impliquent un nombre assez restreint d'électeurs.
+Si nous excluons les élections de Wrocław de notre simulation, alors la probabilité que des projets soient ex æquo
+est encore plus faible : deux projets avec le même coût et le même nombre de votes initiaux ne se produisent que dans
+**0,26 % des cas**, et ils ne sont ex æquo lors du calcul de la méthode des parts égales ne se produit que dans **0,09 % des cas**.
 
 <details>
 <summary>Détails de la simulation</summary>
 
-La simulation a été effectuée en janvier 2023 en utilisant des données électorales de Pabulib basées sur des élections PB utilisant un vote d'approbation. Il y a 480 ensembles de données de ce type, provenant des villes polonaises de Gdansk, Varsovie, Wrocław et Zabrze. Lorsque l'on exclut les élections de Wrocław, la simulation implique 383 ensembles de données.
+La simulation a été effectuée en janvier 2023 en utilisant des données électorales de Pabulib basées sur des élections
+utilisant un vote d'approbation. Il y a 480 ensembles de données de ce type, provenant des villes polonaises de Gdansk,
+Varsovie, Wrocław et Zabrze. Lorsque l'on exclut les élections de Wrocław, la simulation implique 383 ensembles de données.
 
-Afin d'obtenir une estimation plus précise de la probabilité d'une égalité, pour chaque ensemble de données, nous avons exécuté une simulation 100 fois.
-À chaque itération, nous avons échantillonné de manière aléatoire entre 30 % et 80 % des électeurs de l'ensemble de données (obtenant ainsi une élection plus petite aléatoire), puis vérifié si la plus petite élection contenait une paire de projets avec le même coût et le même nombre de votes initiaux.
-Pour les cas où une telle paire de projets a été trouvée, nous avons ensuite vérifié si la méthode des parts égales (en utilisant la méthode de [complétion](completion) standard) rencontrerait une égalité lors du calcul du résultat de l'élection.
+Afin d'obtenir une estimation plus précise de la probabilité que des projets soient ex æquo, pour chaque ensemble de données,
+nous avons exécuté la simulation 100 fois.
+À chaque itération, nous avons échantillonné de manière aléatoire entre 30 % et 80 % des électeurs de l'ensemble de données
+(obtenant ainsi de manière aléatoire une élection plus petite), puis vérifié si la plus petite élection contenait deux
+projets avec le même coût et le même nombre de votes initiaux.
+Pour les cas où une telle paire de projets a été trouvée, nous avons ensuite vérifié si la méthode des parts égales
+(en [complétant le résultat](completion) de manière standard) rencontrerait une égalité lors du calcul du résultat de l'élection.
 
-Si nous ne regardons que les élections réelles et originales (sans échantillonner aléatoirement un sous-ensemble d'électeurs), une paire de projets avec le même coût et le même nombre de votes initiaux se produit dans 1,25 % des élections, avec une égalité rencontrée par la méthode des parts égales dans 0,21 % des élections. En excluant les élections de Wrocław, ces nombres sont de 0,5 % et 0,0 % respectivement.
+En ne considérant que les élections réelles et originales (sans échantillonner aléatoirement un sous-ensemble d'électeurs),
+ne paire de projets avec le même coût et le même nombre de votes initiaux se produit dans 1,25 % des élections.
+Les projets sont ex æquo lors du calcul de la méthode des parts égales dans 0,21 % des élections.
+En excluant les élections de Wrocław, ces nombres sont de 0,5 % et 0,0 % respectivement.
 
-Le code de simulation est [disponible sur GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
+Le code de la simulation est [disponible sur GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
 </details>

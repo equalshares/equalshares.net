@@ -93,18 +93,18 @@ Knapsack vote
 Ranked vote
 Distributing points
 
-Vote d'approbation 
-Vote au sac à dos 
-Vote classé 
-Répartition des points 
+Vote par approbation
+Vote sac à dos
+Vote par order de préférences
+Vote par valeurs
 
 # completion page
 
 Method of Equal Shares spends a larger part of the budget if voters vote for many projects
-La méthode des parts égales dépense une plus grande partie du budget si les électeurs votent pour de nombreux projets 
+La méthode des parts égales dépense une plus grande partie du budget si les électeurs sélectionnent de nombreux projets
 
 Warsaw data, 2020-22. For each minimum vote count, this shows what percent of the budget is spent by the Method of Equal Shares (without completion).
-Données de Varsovie, 2020-22. Pour chaque nombre minimum de votes, cela montre quel pourcentage du budget est dépensé par la Méthode des Parts Égales (sans finalisation). 
+Données de Varsovie, 2020-22. Pour chaque nombre minimum de votes, cela montre quel pourcentage du budget est dépensé par la méthode des parts égales (sans compléter le résultat).
 
 no minimum
 pas de minimum 
