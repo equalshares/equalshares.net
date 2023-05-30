@@ -7,9 +7,10 @@ import DWChart from 'react-datawrapper-chart';
 
 # Comment calculer les résultats du vote?
 
-## Le package `pabutools`
+## Le paquet Python `pabutools`
 
-Le package [`pabutools`](https://github.com/Grzesiek3713/pabutools) est un package Python gratuit et open-source qui contient des implémentations de plusieurs règles de vote pour la budgétisation participative, y compris la méthode des parts égales. 
+Le paquet [`pabutools`](https://github.com/Grzesiek3713/pabutools) est un paquet Python gratuit et open-source qui
+contient des implémentations de plusieurs règles de vote pour le budget participatif, y compris la méthode des parts égales.
 Il est disponible sur [GitHub](https://github.com/Grzesiek3713/pabutools). 
 Le package peut être installé via [PyPI](https://pypi.org/project/pabutools/) en utilisant `pip`:
 
@@ -19,26 +20,27 @@ pip install pabutools
 
 ## Extraits de code
 
-Ici, nous fournissons de courts extraits de code pour calculer les résultats de la méthode des parts égales dans plusieurs langages de programmation.
+Nous présentons ci-dessous de courts extraits de code pour calculer les résultats de la méthode des parts égales dans
+plusieurs langages de programmation.
 
 <details>
 <summary>Astuce générale pour accélérer le calcul</summary>
 <div>
 <p>
-Pendant le calcul, l'algorithme doit calculer à plusieurs reprises le "<a href="../explanation">nombre de votes effectifs</a>" de chaque projet,
-ce qui est une étape coûteuse. Cette partie peut être accélérée en ne recalculant le nombre de votes effectifs
-que si cela est nécessaire. 
+Pendant le calcul, l'algorithme doit calculer à plusieurs reprises le "<a href="../explanation">nombre de votes pondéré</a>"
+de chaque projet, ce qui est une étape coûteuse en temps de calcul.
+Cette partie peut être accélérée en ne recalculant le nombre de votes pondéré que si cela est nécessaire.
 </p>
 <p>
-L'observation principale est que le nombre de votes effectifs ne peut que diminuer à mesure que l'algorithme avance.
-Ce que nous faisons dans l'implémentation est le suivant:
-nous commençons par le projet qui avait le nombre de votes effectifs le plus élevé lors du tour précédent.
-Nous recalculons le nombre de votes effectifs de ce projet.
-Ensuite, nous comparons son nouveau nombre de votes effectifs avec le nombre de votes effectifs du projet
-avec le deuxième plus grand nombre de votes effectifs lors du tour précédent.
-Si le nouveau nombre de votes effectifs est supérieur au nombre de votes effectifs du deuxième projet,
-alors nous savons que nous avons trouvé le projet avec le nombre de votes effectifs le plus élevé au tour actuel
-(parce que tous les autres projets avaient auparavant un nombre de votes effectifs inférieur, qui dans l'intervalle
+L'observation principale est que le nombre de votes pondéré ne peut que diminuer à mesure que l'algorithme progresse.
+Dans notre implémentation, nous commençons par le projet qui avait le nombre de votes pondéré le plus élevé lors du tour
+précédent.
+Nous recalculons le nombre de votes pondéré de ce projet.
+Ensuite, nous comparons son nouveau nombre de votes pondéré avec le nombre de votes pondéré du projet
+avec le deuxième plus grand nombre de votes pondéré lors du tour précédent.
+Si le nouveau nombre de votes pondéré est supérieur au nombre de votes pondéré du deuxième projet,
+alors nous savons que nous avons trouvé le projet avec le nombre de votes pondéré le plus élevé au tour actuel
+(parce que tous les autres projets avaient auparavant un nombre de votes pondéré inférieur, qui dans l'intervalle
 n'a pu que diminuer encore davantage).
 Ainsi, nous pouvons le sélectionner immédiatement.
 </p>
