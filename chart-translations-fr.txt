@@ -104,7 +104,8 @@ Method of Equal Shares spends a larger part of the budget if voters vote for man
 La méthode des parts égales dépense une plus grande partie du budget si les électeurs sélectionnent de nombreux projets
 
 Warsaw data, 2020-22. For each minimum vote count, this shows what percent of the budget is spent by the Method of Equal Shares (without completion).
-Données de Varsovie, 2020-22. Pour chaque nombre minimum de votes, cela montre quel pourcentage du budget est dépensé par la méthode des parts égales (sans compléter le résultat).
+Données de Varsovie, 2020-22. Pour chaque nombre minimum de projets devant être sélectionnés, le pourcentage du budget
+dépensé par la méthode des parts égales (sans compléter le résultat) est présenté.
 
 no minimum
 pas de minimum 
@@ -113,9 +114,9 @@ pas de minimum
 # advice project proposers
 
 Minimum number of votes for a project to be eligible to win
-Nombre minimum de voix pour qu'un projet soit éligible à la victoire 
+Nombre minimum de voix pour qu'un projet puisse gagner
 
 
 Under the Method of Equal Shares, costlier projects need a higher number of votes to have a chance at winning. In this example, we consider a city with a budget of €100 000, and ask for projects of different cost, what percentage of votes they need to gather at minimum to be theoretically able to win.
-Selon la Méthode des Parts Égales, les projets plus coûteux nécessitent un nombre plus élevé de voix pour avoir une chance de gagner. Dans cet exemple, nous considérons une ville avec un budget de 100 000 €, et demandons pour des projets de coûts différents, quel pourcentage de voix ils doivent rassembler au minimum pour être théoriquement capables de gagner. 
+Avec la méthode des parts égales, les projets plus coûteux nécessitent un nombre plus élevé de voix pour avoir une chance de gagner. Dans cet exemple, nous considérons une ville avec un budget de 100 000 €, et présentons pour des projets de coûts différents, quel pourcentage de voix ils doivent rassembler au minimum pour être potentiellement gagnant.
 
