@@ -9,51 +9,76 @@ import { Currency } from '@site/src/components/CurrencyChoice';
 # Compléter le résultat de la méthode des parts égales
 
 <div class="summary">
-<b>Résumé :</b> Il existe plusieurs variantes de la méthode des parts égales. Dans sa variante la plus simple, la méthode peut ne pas dépenser tout le budget disponible (mais seulement environ 70% de celui-ci). Cela n'est généralement pas souhaitable, donc la méthode doit être « complétée ». Nous décrivons la méthode standard pour ce faire et discutons de certaines alternatives. La plupart des utilisateurs devraient utiliser la méthode standard, qui est également implémentée dans des packages logiciels.
+<b>Résumé :</b> Il existe plusieurs variantes de la méthode des parts égales. Dans sa variante la plus simple, la
+méthode peut ne pas dépenser tout le budget disponible (environ 70% du budget est utilisé en pratique).
+Cela n'est généralement pas souhaitable, le résultat doit donc être « complété ».
+La procédure standard pour compléter le résultat est présentée dans la suite, ainsi que des potentielles alternatives.
+Nous conseillons d'utiliser la procédure standard.
+C'est également celle qui est implémentée dans les paquets logiciels que nous distribuons.
 </div>
 
-Dans l'[explication](../explanation) de la méthode des parts égales, l'étape 1 dit :
+Dans l'[explication](../explanation) de la méthode des parts égales, l'étape 1 est :
 
-> Le budget global est divisé également entre les électeurs.
+> Diviser le budget global également entre les électeurs.
 
-Par exemple, si le budget global est de <Currency>100 000</Currency> et qu'il y a 1000 électeurs, chaque électeur se verrait attribuer une part de <Currency>100</Currency>.
-Cependant, lorsque nous calculons la méthode des parts égales avec cette division initiale du budget, nous constatons généralement que le résultat de l'élection n'utilise pas tout le budget.
-Cela est dû au fait que, pour certains électeurs, la méthode ne peut pas utiliser de manière productive la part de budget qui leur est attribuée.
-Par exemple, si un électeur ne vote que pour un projet, et que ce projet ne reçoit pas suffisamment de votes pour gagner, alors la méthode ne peut pas dépenser les <Currency>100</Currency> attribués à cet électeur.
+Par exemple, si le budget global est de <Currency>100 000</Currency> et qu'il y a 1000 électeurs, chaque électeur se
+reçoit une part de <Currency>100</Currency>.
+Cependant, lorsque nous calculons le résultat de la méthode des parts égales avec cette division initiale du budget,
+il est fréquent que le budget ne soit pas utilisé en entier.
+Cela est dû au fait que la méthode ne peut pas utiliser de manière efficace la part de budget reçu par certains électeurs.
+Par exemple, si un électeur ne sélectionne qu'un seul projet, et que ce projet ne reçoit pas suffisamment de votes pour
+gagner, alors la méthode des parts égales ne peut pas dépenser les <Currency>100</Currency> attribués à cet électeur.
 
-Dans les simulations utilisant les données de vote de Varsovie, la méthode des parts égales dépense environ 60 à 70 % du budget disponible.
+Dans les simulations utilisant les données de vote de Varsovie, la méthode des parts égales dépense environ 60 à 70 %
+du budget disponible.
 Bien sûr, les responsables des élections préfèrent généralement dépenser près de 100% du budget.
-Par conséquent, la méthode des parts égales doit être **complétée**, ce qui signifie que son résultat doit être modifié pour que presque tout le budget soit utilisé.
+Par conséquent, le résultat de la méthode des parts égales doit être **complété** de telle sorte que presque tout le
+budget soit utilisé.
 
 <details>
-<summary><SemiBold>Graphique</SemiBold> : Si tous les électeurs votent pour de nombreux projets, la complétion de la méthode n'est pas aussi cruciale.</summary>
+<summary><SemiBold>Graphique</SemiBold> : Si tous les électeurs sélectionnent de nombreux projets, il n'est pas aussi crucial de compléter le résultat de la méthode.</summary>
 
-La raison pour laquelle la méthode des parts égales ne dépense souvent que 60 à 70 % du budget disponible est que certains électeurs ne votent que pour un petit nombre de projets.
-Nous pouvons voir cet effet en lançant une simulation basée sur les données de Varsovie (2020-22).
+La raison pour laquelle la méthode des parts égales ne dépense souvent que 60 à 70 % du budget disponible est que
+certains électeurs ne sélectionnent qu'un petit nombre de projets.
+Cet effet peut être observé à l'aide de simulations basée sur les données de Varsovie (2020-22).
 
-À Varsovie, les électeurs sont autorisés à voter pour jusqu'à 15 projets dans leur district.
-Nous pouvons simuler ce qui se serait passé si Varsovie avait un nombre minimal de votes en place en ne comptant que les votes dans l'ensemble de données qui ont voté pour suffisamment de projets.
-De cette façon, nous pouvons simuler un nombre minimal de votes de 2, 3, 4, ..., 15.
-Pour chaque minimum, nous pouvons vérifier quel pourcentage du budget est utilisé par la méthode des parts égales lorsqu'elle est exécutée uniquement sur le sous-ensemble des votes ayant voté pour au moins le nombre minimal de projets.
+À Varsovie, les électeurs sont autorisés à sélectionner jusqu'à 15 projets dans leur district.
+Nous pouvons simuler ce qui se serait passé si Varsovie avait aussi un nombre minimal de projets devant être sélectionnés.
+Pour cela, nous ne prenons en compte que les électeurs qui ont voté pour suffisamment de projets.
+De cette façon, nous pouvons simuler un minimum allant de 2, 3, 4, ..., 15.
+Pour chaque minimum, nous pouvons vérifier quel pourcentage du budget est utilisé par la méthode des parts égales
+lorsqu'elle est exécutée uniquement sur le sous-ensemble des électeurs ayant sélectionné au moins le nombre minimal de
+projets.
 
-Les résultats suggèrent qu'une fois que les électeurs votent pour au moins 8 projets, plus de 90 % du budget est utilisé.
+Les résultats suggèrent qu'une fois que les électeurs sélectionnent au moins 8 projets, plus de 90 % du budget est utilisé.
 <Datawrapper src="//datawrapper.dwcdn.net/BdRdK/" />
 </details>
 
 ## Processus recommandé pour compléter le résultat
 
 L'idée de base est de donner aux électeurs une part initiale plus importante du budget.
-Dans l'exemple, au lieu de donner à chaque électeur <Currency>100</Currency>, nous pourrions leur donner <Currency>130</Currency>.
-Plus précisément, nous examinons chaque valeur possible de <Currency>100</Currency> à <Currency>200</Currency>, de <Currency>101</Currency> à <Currency>201</Currency>, et ainsi de suite.
+Par exemple, au lieu de donner à chaque électeur <Currency>100</Currency> (lorsque le budget est de <Currency>100 000</Currency>
+et qu'il y a 1000 électeurs), nous pourrions leur donner <Currency>130</Currency>.
+Plus précisément, nous examinons chaque valeur possible: <Currency>100</Currency>, <Currency>101</Currency>,
+<Currency>102</Currency>...
 Pour chaque valeur, nous calculons le résultat de la méthode des parts égales.
 Nous nous arrêtons dans l'un des deux cas suivants :
-* Le résultat est _exhaustif_, ce qui signifie que la limite du budget serait dépassée si nous ajoutions un projet supplémentaire au résultat.
-* Si nous devions exécuter la méthode des parts égales avec la valeur suivante, le résultat dépasserait la limite du budget.
+* Si résultat est _exhaustif_, c'est-à-dire si la limite budgétaire serait dépassée dans le cas où n'importe quel projet supplémentaire été ajouté au résultat.
+* Si le coût du résultat de la méthode des parts égales exécutée avec la valeur suivante dépasse le budget.
 
-Les résultats de la simulation suggèrent que la méthode des parts égales, complétée de cette manière, conserve ses propriétés d'équité souhaitables.
+Les résultats des simulations suggèrent que la méthode des parts égales, lorsque son résultat est complété de cette
+manière, conserve ses propriétés d'équité.
 
-Notez qu'en général, ce n'est pas un bon signe si nous devons augmenter la part initiale du budget des électeurs trop rapidement pour compléter le résultat. Dans ce cas, il y aura beaucoup plus d'argent virtuel distribué aux électeurs que ce qui est réellement dépensé, et donc certains électeurs auront beaucoup d'argent virtuel non dépensé. Cela signifie que certains électeurs ont pu dépenser beaucoup plus d'argent que d'autres électeurs pour leurs projets préférés. Cela conduit à une inégalité de l'influence que les électeurs ont sur le résultat.
-Une façon d'éviter d'avoir à augmenter la part initiale du budget trop rapidement est de demander aux électeurs de voter pour plusieurs projets. Par exemple, certaines villes [exigent des électeurs de voter pour au moins 3 projets](input-formats#minimum-number-of-approvals). Cela aide car une cause majeure d'argent virtuel non dépensé est que certains électeurs ne votent que pour un seul projet, qui n'obtient pas suffisamment de votes pour gagner. Dans ce cas, il est impossible pour la méthode des parts égales de dépenser l'argent virtuel attribué à l'électeur.
+Notez qu'il n'est en général pas désirable d'augmenter la part du budget initiale des électeurs trop largement.
+En effet, s'il y a beaucoup plus d'argent virtuel distribué aux électeurs que ce qui est réellement dépensé,
+certains électeurs auront beaucoup d'argent virtuel non dépensé.
+Cela signifie que certains électeurs ont pu dépenser beaucoup plus d'argent que d'autres électeurs pour leurs projets préférés.
+Cela conduit à une inégalité de l'influence que les électeurs ont sur le résultat.
+Une façon de limiter l'augmentation de la part du budget initiale est de demander aux électeurs de sélectionner plusieurs projets.
+Par exemple, certaines villes [exigent des électeurs de voter pour au moins 3 projets](input-formats#minimum-number-of-approvals).
+Cela évite notamment que certains électeurs ne sélectionne qu'un seul projet, qui n'obtiendrait alors pas suffisamment
+de votes pour gagner.
+Il serait alors impossible pour la méthode des parts égales de dépenser l'argent virtuel attribué à l'électeur.
 
 ## Autres méthodes pour compléter le résultat
 
@@ -61,4 +86,4 @@ Il existe également d'autres façons d'utiliser la partie du budget qui n'est p
 
 * <SemiBold>Conserver l'argent pour l'année prochaine</SemiBold>. Les fonds restants peuvent rester non dépensés et être utilisés pour augmenter le budget disponible l'année suivante.
 * <SemiBold>Financer les projets ayant le plus grand nombre de votes</SemiBold>. Les fonds restants peuvent être utilisés pour financer les projets ayant un nombre élevé de votes qui ont été ignorés par la méthode des parts égales. Cependant, cela conduira à un résultat moins équitable.
-* <SemiBold>Dépenser l'argent sur une solution de secours flexible</SemiBold>. Par exemple, à Chicago, une partie flexible du budget a été utilisée pour financer la réparation des nids-de-poule dans les rues.
+* <SemiBold>Dépenser l'argent pour une solution alternative</SemiBold>. Par exemple, à Chicago, une part variable du budget a été utilisée pour financer la réparation des nids-de-poule dans les rues.

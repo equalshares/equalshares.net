@@ -8,53 +8,79 @@ import { SemiBold } from '@site/src/components/MyComponents';
 
 # Comparaison avec d'autres systèmes de vote pour le budget participatif
 
-Sur cette page, nous comparons la méthode des parts égales avec d'autres systèmes de vote qui ont été utilisés par des villes ou qui ont été proposés par des universitaires ou des défenseurs de la réforme électorale.
+Sur cette page, nous comparons la méthode des parts égales avec d'autres systèmes de vote qui ont été, soit utilisés
+par dans certaines villes, soit proposés par des universitaires ou partisans d'une réforme électorale.
 
 ## Comparaison avec le système de vote standard
 
-Le système de vote utilisé par presque toutes les villes sélectionne tous les projets les plus populaires, à condition qu'ils rentrent dans la limite budgétaire.
-Il s'agit d'une méthode "utilitariste", qui garantit un résultat qui maximisera (approximativement) l'utilité totale des votants.
-Dans la littérature informatique, cette méthode est connue sous le nom de "greedy utilitarian". 
-Elle est "vorace" car elle procède étape par étape, et à chaque étape sélectionne les projets les plus populaires sans tenir compte de l'impact de cette décision sur les étapes futures.
+Le système de vote utilisé par presque toutes les villes sélectionne tous les projets les plus populaires, à condition
+que le budget le permette.
+Il s'agit d'une méthode "utilitariste", qui garantit un résultat qui maximise (approximativement) la satisfaction
+totale des électeurs.
+Dans la littérature académique, cette méthode est connue sous le nom de "greedy utilitarian" (méthode gloutonne
+utilitariste).
+Elle est "gloutonne" car elle procède étape par étape, et à chaque étape sélectionne les projets les plus populaires
+sans tenir compte de l'impact de cette décision sur les étapes futures.
 
 **Avantages** de la méthode standard, par rapport à la méthode des parts égales :
 * Elle est plus simple et plus facile à comprendre.
-* Elle conduit à une satisfaction moyenne des votants plus élevée car elle sélectionne les projets les plus populaires (mais la satisfaction est moins également répartie).
+* Elle conduit à une satisfaction moyenne des électeurs plus élevée, car elle sélectionne les projets les plus populaires (mais la satisfaction est répartie moins équitablement).
 * Elle tend à sélectionner un petit nombre de projets (qui ont tous un coût élevé), ce qui rend l'administration plus facile.
 
 **Inconvénients** de la méthode standard, par rapport à la méthode des parts égales :
-* Elle ne peut pas gérer automatiquement les divisions géographiques des villes en quartiers et en quartiers.
-* Certains votants ont beaucoup plus d'influence sur le résultat que d'autres, ce qui peut être considéré comme injuste.
-* Les petits projets bon marché ont très peu de chances d'être sélectionnés.
-* Les promoteurs de projets ont une incitation au gaspillage car la probabilité qu'un projet soit sélectionné est presque indépendante de son coût.
-* Les promoteurs de projets ont des incitations à "regrouper" plusieurs projets en un seul grand projet, ce qui conduit à des résultats globalement moins bons.
+* Elle ne peut pas prendre en compte automatiquement les divisions géographiques des villes en quartiers.
+* Certains électeurs ont beaucoup plus d'influence sur le résultat que d'autres, ce qui peut être considéré comme injuste.
+* Les projets les moins chers ont très peu de chances d'être sélectionnés.
+* Les citoyens en charge des projets sont incités au gaspillage car la probabilité qu'un projet soit sélectionné est presque indépendante de son coût.
+* Les citoyens en charge des projets sont incités à "regrouper" plusieurs projets en un seul grand projet, ce qui conduit à des résultats globalement moins bons.
 
 
-## Comparaison avec le Jugement Majoritaire à Paris {#majority-judgment}
+## Comparaison avec le Jugement Majoritaire utilisé à Paris {#majority-judgment}
 
-Paris utilisait le système de vote standard jusqu'en 2019, permettant à chaque électeur de voter pour 4 à 5 projets. En 2021, le gouvernement de la ville est passé à un système connu sous le nom de _jugement majoritaire_. Sous ce système de vote, chaque électeur peut _évaluer_ chaque projet (pas de limite quant au nombre de projets évalués). À Paris, il existe [quatre notes disponibles](https://budgetparticipatif.paris.fr/bp/plugins/download/NoticeJugementMajoritaireBP.pdf):
+Paris utilisait le système de vote standard jusqu'en 2019, permettant à chaque électeur de voter pour 4 à 5 projets.
+En 2021, la ville est passé à un système connu sous le nom de _jugement majoritaire_.
+Avec ce système de vote, chaque électeur peut _évaluer_ chaque projet (il n'y a pas de limite quant au nombre de projets
+évalués).
+À Paris, il existe [quatre notes disponibles](https://budgetparticipatif.paris.fr/bp/plugins/download/NoticeJugementMajoritaireBP.pdf) :
 
 * <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div> Coup de cœur / J'adore
 * <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> J'aime bien, c'est intéressant
 * <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(230,254,86)', border: '0.5px solid #888' }}></div> Pourquoi pas ?
 * <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(198,53,39)' }}></div> Je ne suis pas convaincu.
 
-Ensuite, pour chaque projet, nous calculons la _note médiane_, qui est la note telle que la moitié des électeurs ont donné une note égale ou supérieure, et l'autre moitié a donné une note égale ou inférieure. La ville sélectionne ensuite les 2 projets ayant la note médiane la plus élevée. (Dans les grands quartiers, elle sélectionne 3 projets.) Les meilleurs projets ont généralement tous une note médiane de <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> <i>J'aime bien, c'est intéressant</i>. Ainsi, la ville utilise un système de rupture d'égalité pour prendre une décision, mais elle n'a jamais précisé le système de rupture d'égalité qu'elle utilise.
+Ensuite, pour chaque projet, la _note médiane_ est calculée. Elle représente la note telle que la moitié des électeurs
+a donné une note égale ou supérieure, et l'autre moitié a donné une note égale ou inférieure.
+La ville sélectionne ensuite les 2 projets ayant la note médiane la plus élevée.
+(Dans les grands quartiers, 3 projets sont sélectionnés.)
+Les meilleurs projets ont généralement tous une note médiane de <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div> <i>J'aime bien, c'est intéressant</i>.
+Cependant, la mairie n'a jamais précisé comment sont sélectionnés les projets gagant lorsque plus que 2 ont la même note
+médiane.
 
-Un **avantage** du jugement majoritaire est qu'il permet aux électeurs d'exprimer une opinion très précise sur chaque projet, y compris une opinion négative.
+Un **avantage** du jugement majoritaire est qu'il permet aux électeurs d'exprimer une opinion très précise sur chaque
+projet, y compris une opinion négative.
 
-Un **inconvénient majeur** est qu'il peut sélectionner des projets qui ne bénéficient pas d'un soutien généralisé, comme nous l'expliquerons ci-dessous.
+Un **inconvénient majeur** est qu'il peut sélectionner des projets qui ne bénéficient pas d'un large soutien, comme nous
+l'expliquons ci-dessous.
 
 <h3>La différence entre les projets populaires et les projets de haute qualité</h3>
 
-Le système de vote standard utilisé par la plupart des villes, ainsi que la méthode des parts égales, ont pour objectif de sélectionner des projets populaires : de nombreuses personnes ont voté pour ces projets, et nous pouvons donc supposer que de nombreux résidents de la ville seraient heureux de voir le projet mis en œuvre. Ainsi, ces systèmes de vote permettent à la ville de découvrir quels projets ont le plus large soutien dans la population.
+Le système de vote standard utilisé par la plupart des villes, ainsi que la méthode des parts égales, ont pour objectif
+de sélectionner des projets populaires : de nombreuses personnes ont voté pour ces projets, et nous pouvons donc supposer
+que de nombreux résidents de la ville seraient heureux de voir le projet mis en œuvre.
+Ainsi, ces systèmes de vote permettent à la ville de découvrir quels projets ont le plus large soutien dans la population.
 
-La philosophie sous-jacente du jugement majoritaire (utilisé à Paris) est très différente : elle sélectionnera des projets qui sont de "haute qualité", dans la mesure où, pour chaque projet, une grande fraction des votants qui l'ont évalué conviennent que c'est un bon projet. Cela est vrai même si de nombreuses personnes ne se soucient pas du projet et n'expriment pas d'opinion à son sujet. En particulier, cela pourrait conduire à la sélection de projets qui n'intéressent que les personnes vivant dans la zone immédiate affectée par le projet, comme nous l'illustrerons maintenant à l'aide d'un exemple.
+La philosophie sous-jacente au jugement majoritaire (utilisé à Paris) est très différente : les projets de "haute qualité"
+sont sélectionnés, dans la mesure où, pour chaque projet, une large part des électeurs qui l'ont évalué conviennent que
+c'est un bon projet.
+Cela est vrai même si de nombreuses personnes ne se soucient pas du projet et n'expriment pas d'opinion à son sujet.
+Par example, cela peut conduire à la sélection de projets qui n'intéressent que les personnes vivant dans la zone immédiate
+du projet, comme nous l'illustrons dans l'exemple ci-dessous.
 
-Considérons l'exemple suivant, avec deux projets. Pour simplifier, supposons que nous ne prévoyons de sélectionner qu'un seul projet gagnant.
+Considérons l'exemple suivant, avec deux projets. Pour simplifier, supposons que nous ne prévoyons de sélectionner
+qu'un seul projet gagnant.
 
-* <SemiBold>Projet 1</SemiBold> a été évalué par 2220 votants. 1000 de ces votants (45%) lui ont donné la note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, et 550 autres votants (25%) lui ont donné la deuxième note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>. Par conséquent, la note médiane du Projet 1 est la deuxième note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>.
-* <SemiBold>Projet 2</SemiBold> a été évalué par 671 votants, beaucoup moins que les 2220 votants qui ont évalué le Projet 1. Peut-être est-ce le cas parce que le Projet 2 est d'un <SemiBold>intérêt très local</SemiBold>, et que les personnes qui ne vivent pas dans la zone immédiate n'ont pas donné de note au Projet 2. 400 de ces 671 votants (60%) ont donné la note la plus élevée au Projet 2 <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>. Comme c'est plus de la moitié des votants, la note médiane du Projet 2 est la note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
+* <SemiBold>Le projet 1</SemiBold> a été évalué par 2220 électeurs. 1000 de ces électeurs (45%) lui ont donné la note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>, et 550 autres électeurs (25%) lui ont donné la deuxième note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>. Par conséquent, la note médiane du projet 1 est la deuxième note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(96,212,70)' }}></div>.
+* <SemiBold>Le projet 2</SemiBold> a été évalué par 671 électeurs, beaucoup moins que les 2220 électeurs qui ont évalué le Projet 1. Cela peut être le cas si le projet 2 est d'un <SemiBold>intérêt très local</SemiBold>, et que les personnes qui ne vivent pas dans un certain quartier n'ont pas donné de note au projet 2. 400 de ces 671 électeurs (60%) ont donné la note la plus élevée au projet 2 <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.1em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>. Comme c'est plus de la moitié des électeurs, la note médiane du projet 2 est la note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>.
 
 La situation est représentée dans le graphique suivant.
 
@@ -62,15 +88,24 @@ La situation est représentée dans le graphique suivant.
 
 Le jugement majoritaire sélectionne ainsi **le projet 2**, car il a une note médiane plus élevée.
 
-Cependant, notez que 1000 votants ont donné la note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div> au projet 1, tandis que le projet 2 n'a obtenu la note la plus élevée que de 400 votants. Ainsi, le projet 2 est moins populaire. Selon les préférences du gouvernement de la ville, celui-ci peut considérer le projet 2 comme une mauvaise utilisation de l'argent car il satisfera beaucoup moins de résidents.
+Cependant, 1000 électeurs ont donné la note la plus élevée <div style={{ width: '0.9em', height: '0.9em', marginBottom: '-0.05em', display: 'inline-block', backgroundColor: 'rgb(61,117,50)' }}></div>
+au projet 1, tandis que le projet 2 n'a obtenu la note la plus élevée que de 400 électeurs.
+Ainsi, le projet 2 est moins populaire.
+Selon les préférences de la ville, le projet 2 peut ête considéré comme une mauvaise utilisation de l'argent publique
+car beaucoup moins de résidents seront satisfaits.
 
-Dans les villes utilisant la méthode des parts égales (ou même la méthode de vote standard), le projet 1 serait sélectionné plutôt que le projet 2.
+Dans les villes utilisant la méthode des parts égales (ou même la méthode de vote standard), le projet 1 serait
+sélectionné plutôt que le projet 2.
 
 ## Comparaison avec le vote quadratique {#quadratic-voting}
 
-Le vote quadratique vise à éviter les représentations stratégiques de l'intensité des préférences et ainsi à éviter une tyrannie de la majorité.
-Avec la méthode des parts égales, ces deux problèmes sont résolus par sa conception qui donne à chaque électeur une part égale du budget à décider.
-Ainsi, prétendre avoir des préférences intenses influencera principalement sa propre part du budget et une minorité aura toujours une part qui ne peut être enlevée par la majorité.
+Le vote quadratique vise à réduire les possibilités de manipulation stratégique liées à l'intensité des préférences et
+ainsi à éviter une tyrannie de la majorité.
+Avec la méthode des parts égales, ces deux problèmes sont résolus par sa conception qui donne à chaque électeur une part
+égale du budget.
+Ainsi, prétendre avoir des préférences fortes pour certains projets n'influencera que la propre part du budget d'un
+électeur et une minorité d'électeurs aura toujours une part du budget qui ne peut pas être prise par la majorité.
 
-En principe, une interface de vote quadratique pourrait être combinée avec la méthode des parts égales. 
-Mais nous pensons que cela ne vaut pas la peine d'utiliser le vote quadratique, étant donné la complexité supplémentaire pour les électeurs à comprendre et à utiliser le système.
+En principe, un système de vote quadratique pourrait être combiné avec la méthode des parts égales.
+Cependant, nous pensons que cela ne vaut pas la peine de le faire étant donné la complexité supplémentaire pour les
+électeurs à comprendre et à utiliser le système.

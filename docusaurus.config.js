@@ -10,6 +10,14 @@ const katex = require('rehype-katex');
 const date = new Date();
 const isoDay = date.toISOString().split('T')[0];
 
+function getAnnouncementBar() {
+  switch(process.env.DOCUSAURUS_CURRENT_LOCALE) {
+    case "pl": return "<a href='/pl/resources/zielony-milion'>2023-04-26: Ogłoszono wyniki głosowania w ekologicznym budżecie partycypacyjnym Wieliczki, Zielony Milion</a>";
+    case "de": return "<a href='/pl/resources/zielony-milion'>2023-04-26: Das Wahlergebnis des Bürgerbudgets Grüne Million in Wieliczka wurden bekanntgegeben.</a>";
+    default: return "<a href='/resources/zielony-milion'>2023-04-26: The vote results of Wieliczka's Green Million participatory budget have been announced</a>";
+  }
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Method of Equal Shares',
@@ -35,7 +43,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['de', 'en', 'pl'], //, 'fr'
+    locales: ['de', 'en', 'pl', 'fr']
   },
 
   presets: [
@@ -102,6 +110,13 @@ const config = {
           },
         ],
       },
+      // announcementBar: {
+      //   id: 'zielony-milion-results',
+      //   content: getAnnouncementBar(),
+      //   backgroundColor: '#eef7e9',
+      //   textColor: '#112b06',
+      //   isCloseable: true,
+      // },
       footer: {
         style: 'dark',
         links: [
@@ -154,15 +169,15 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-    stylesheets: [
-      {
-        href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-        type: 'text/css',
-        integrity:
-          'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-        crossorigin: 'anonymous',
-      },
-    ],
+    // stylesheets: [
+    //   {
+    //     href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+    //     type: 'text/css',
+    //     integrity:
+    //       'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+    //     crossorigin: 'anonymous',
+    //   },
+    // ],
     plugins : [
       async function faviconInjector(context, options) {
         return {

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Linki zewnętrzne
+title: Dodatkowe materiały
 ---
 
 # Linki zewnętrzne

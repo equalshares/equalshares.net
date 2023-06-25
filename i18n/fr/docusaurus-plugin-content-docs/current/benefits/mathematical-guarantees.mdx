@@ -8,11 +8,15 @@ import X from '/icons/x-circle.svg';
 
 # Garanties mathématiques d'équité
 
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"/>
+</head>
+
 <div class="summary">
-    <b>Résumé</b>:
-    La littérature académique a montré que la méthode des parts égales garantit à tous les groupes d'électeurs une
-    représentation appropriée dans le résultat.
-    Elle garantit également que tous projets recevant suffisant de soutien sera gagnant.
+<b>Résumé</b>:
+La littérature académique a montré que la méthode des parts égales garantit à tous les groupes d'électeurs une
+représentation appropriée dans le résultat.
+Elle garantit également que tous projets recevant suffisant de soutien sera gagnant.
 </div>
 
 La méthode des parts égales a été proposée et développée par des mathématiciens et des informaticiens qui ont prouvé
@@ -39,19 +43,19 @@ De manière formelle, cette propriété est formulée comme suit.
 > **Théorème**. Soit $P$ un projet et $\text{coût}(P)$ son coût. Supposons que $B$ est le budget total et $n$ le nombre total d'électeurs. Si au moins $n \cdot \text{coût}(P)/B$ électeurs sélectionnent $P$ et aucun autre projet, alors $P$ sera parmi les projets gagnants avec la méthode des parts égales.
 
 <details className="proof">
-    <summary>Preuve</summary>
+<summary>Preuve</summary>
 
-    Chacun des électeurs qui n'ont sélectionné que $P$ se voit attribuer une part de budget d'au moins $B/n$ au début du calcul de la méthode des parts égales.
-    (Il pourrait être supérieur à $B/n$ car nous [complétons](../implementation/completion) la méthode.)
+Chacun des électeurs qui n'ont sélectionné que $P$ se voit attribuer une part de budget d'au moins $B/n$ au début du calcul de la méthode des parts égales.
+(Il pourrait être supérieur à $B/n$ car nous [complétons](../implementation/completion) la méthode.)
 
-    Par conséquent, le montant total du budget attribué aux électeurs qui votent uniquement pour $P$ est d'au moins
-    $$
-    \underbrace{n \cdot \frac{\text{coût}(P)}{B}}_{\text{nombre d'électeurs}} \cdot \underbrace{\frac{B}{n}}_{\text{part du budget}} = \text{coût}(P).
-    $$
+Par conséquent, le montant total du budget attribué aux électeurs qui votent uniquement pour $P$ est d'au moins
+$$
+\underbrace{n \cdot \frac{\text{coût}(P)}{B}}_{\text{nombre d'électeurs}} \cdot \underbrace{\frac{B}{n}}_{\text{part du budget}} = \text{coût}(P).
+$$
 
-    Par définition, la méthode des parts égales ne se termine que lorsque plus aucun projet ne peut être financé par ses partisans.
-    Cela signifie que $P$ doit être parmi les projets gagnants, car les votants qui votent uniquement pour $P$ conservent
-    tout leur argent jusqu'à ce que $P$ soit sélectionné, et donc $P$ peut toujours être financé.
+Par définition, la méthode des parts égales ne se termine que lorsque plus aucun projet ne peut être financé par ses partisans.
+Cela signifie que $P$ doit être parmi les projets gagnants, car les électeurs qui votent uniquement pour $P$ conservent
+tout leur argent jusqu'à ce que $P$ soit sélectionné, et donc $P$ peut toujours être financé.
 </details>
 
 La méthode de vote standard pour le budget participatif (qui sélectionne simplement les projets les plus
@@ -67,7 +71,7 @@ projets qu'ils ont sélectionnés.
 
 Avec la méthode des parts égales, tout groupe d'électeur ayant sélectionné des projets similaires sera représenté dans
 le résultat final dans une mesure proportionnelle à la taille du groupe.
-Par exemple, un groupe de 20 % des votants peut s'attendre à influencer 20 % des dépenses du budget.
+Par exemple, un groupe de 20 % des électeurs peut s'attendre à influencer 20 % des dépenses du budget.
 De tels groupes d'électeurs peuvent être les parents d'enfants dans une école particulière, les résidents d'un quartier
 particulier ou les personnes se déplaçant à vélo par exemple.
 Les propriétés présentées ci-dessous garantissent que chacun de ces groupes soit représenté dans le résultat final
@@ -79,7 +83,7 @@ Considérons un scénario de budget participatif utilisant le vote par approbati
 Supposons que $t$ des $n$ électeurs aient soumis un bulletin identique, c'est-à-dire que les $t$ électeurs ont tous
 sélectionné le même ensemble de projets.
 Plus concrètement, disons que ces $t$ électeurs ont sélectionné les projets $P_1$, $P_2$ et $P_3$.
-Intuitivement, puisque ce groupe représente une fraction $t/n$ des votants, les membres du groupe devraient être
+Intuitivement, puisque ce groupe représente une fraction $t/n$ des électeurs, les membres du groupe devraient être
 représentés dans le résultat final par une fraction de $t/n$ du budget.
 
 Supposons pour le moment que 
@@ -92,22 +96,22 @@ Dans ce cas, on peut prouver que la méthode des parts égales sélectionnera le
 
 Formellement, cette propriété peut être décrite comme suit :
 
-> **Théorème**. Soit $\{P_1, P_2, \ldots, P_k\}$ un ensemble de $k$ projets, et supposons que $t$ des $n$ votants ont sélectionné tous ces projets (et seulement ces projets). Supposons que le coût total de ces projets est au plus $t/n \cdot B$. Alors, les $k$ projets seront gagnants avec la méthode des parts égales.
+> **Théorème**. Soit $\{P_1, P_2, \ldots, P_k\}$ un ensemble de $k$ projets, et supposons que $t$ des $n$ électeurs ont sélectionné tous ces projets (et seulement ces projets). Supposons que le coût total de ces projets est au plus $t/n \cdot B$. Alors, les $k$ projets seront gagnants avec la méthode des parts égales.
 
 <details>
-    <summary>
-        Informations sur le cas où le coût des projets dépasse la limite
-    </summary>
+<summary>
+Détails lorque le coût des projets dépasse la limite
+</summary>
 
-    On peut également prouver une garantie similaire si tous les membres du groupe d'électeurs ont sélectionné
-    un ensemble de projet dont le coût total est supérieur à $t/n \cdot B$.
-    Supposons que $t$ électeurs aient sélectionné uniquement les projets $P_1$, $P_2$, $P_3$, et $P_4$, et que
-    $$
-    \text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) + \text{coût}(P_4) > \frac{t}{n} \cdot B.
-    $$
-    Alors, la méthode des parts égales sélectionnera certains de ces projets qui, ensemble, coûtent "approximativement" $t/n \cdot B$.
+On peut également prouver une garantie similaire si tous les membres du groupe d'électeurs ont sélectionné
+un ensemble de projet dont le coût total est supérieur à $t/n \cdot B$.
+Supposons que $t$ électeurs aient sélectionné uniquement les projets $P_1$, $P_2$, $P_3$, et $P_4$, et que
+$$
+\text{coût}(P_1) + \text{coût}(P_2) + \text{coût}(P_3) + \text{coût}(P_4) > \frac{t}{n} \cdot B.
+$$
+Alors, la méthode des parts égales sélectionnera certains de ces projets qui, ensemble, coûtent "approximativement" $t/n \cdot B$.
 
-    > **Théorème**. Soit $T = \{P_1, P_2, \ldots, P_k\}$ un ensemble de $k$ projets, et supposons que $t$ des $n$ électeurs ont sélectionné tous ces projets (et seulement ces projets). Alors, la méthode des parts égales sélectionnera un sous-ensemble $T' \subseteq T$ de projets tels que pour chaque projet $P^* \in T$ qui n'est pas gagnant, on a $\sum_{P \in T'} \text{coût}(P) + \text{coût}(P^*) > t/n \cdot B$.
+> **Théorème**. Soit $T = \{P_1, P_2, \ldots, P_k\}$ un ensemble de $k$ projets, et supposons que $t$ des $n$ électeurs ont sélectionné tous ces projets (et seulement ces projets). Alors, la méthode des parts égales sélectionnera un sous-ensemble $T' \subseteq T$ de projets tels que pour chaque projet $P^* \in T$ qui n'est pas gagnant, on a $\sum_{P \in T'} \text{coût}(P) + \text{coût}(P^*) > t/n \cdot B$.
 
 </details>
 
@@ -122,41 +126,42 @@ La réponse est oui : si un groupe d'électeurs vote de façon suffisamment simi
 dans le résultat de la méthode des parts égales.
 
 <details>
-    <summary>Détails sur la garantie mathématique</summary>
+<summary>Détails sur la garantie mathématique</summary>
 
-    Considérons un scénario de budget participatif utilisant le vote par approbation.
-    De manière général, si $T = \{P_1, P_2, \ldots, P_k\}$ est un ensemble de $k$ projets, nous écrivons
-    $\text{coût}(T) = \text{coût}(P_1) + \text{coût}(P_2) + \ldots + \text{coût}(P_k)$ pour le coût total des projets dans $T$.
-    Supposons qu'un groupe de $t$ électeurs ont tous sélectionné tous les projets de l'ensemble $T$, mais que certains
-    électeurs ont aussi sélectionné d'autres projets, en dehors de $T$.
-    Supposons que $\text{coût}(T)\leqslant t/n \cdot B$ (de sorte que le groupe d'électeurs peut "financer" tous les
-    projets de $T$ en n'utilisant que les parts de budget des membres du groupe).
-    Alors, la méthode des parts égales garantit qu'au moins l'un des $t$ électeurs sera suffisamment représenté dans le
-    résultat final $W$: cela signifie qu'il existe un membre $i$ du groupe (qui a sélectionné l'ensemble de projets $A_i$
-    (y compris tous les projets de $T$, donc $T \subseteq A_i$)) tel que:
-    $$
-    \text{coût}(A_i \cap W) \geqslant \text{coût}(T) - \text{coût}(P_j) \qquad \text{pour certains $P_j \in T$}.
-    $$
-    Dans cette expression, $A_i \cap W$ désigne l'ensemble des projets gagnants qui ont été sélectionnés par l'électeur $i$.
+Considérons un scénario de budget participatif utilisant le vote par approbation.
+De manière général, si $T = \{P_1, P_2, \ldots, P_k\}$ est un ensemble de $k$ projets, nous écrivons
+$\text{coût}(T) = \text{coût}(P_1) + \text{coût}(P_2) + \ldots + \text{coût}(P_k)$ pour le coût total des projets dans $T$.
+Supposons qu'un groupe de $t$ électeurs ont tous sélectionné tous les projets de l'ensemble $T$, mais que certains
+électeurs ont aussi sélectionné d'autres projets, en dehors de $T$.
+Supposons que $\text{coût}(T)\leqslant t/n \cdot B$ (de sorte que le groupe d'électeurs peut "financer" tous les
+projets de $T$ en n'utilisant que les parts de budget des membres du groupe).
+Alors, la méthode des parts égales garantit qu'au moins l'un des $t$ électeurs sera suffisamment représenté dans le
+résultat final $W$: cela signifie qu'il existe un membre $i$ du groupe (qui a sélectionné l'ensemble de projets $A_i$
+(y compris tous les projets de $T$, donc $T \subseteq A_i$)) tel que:
+$$
+\text{coût}(A_i \cap W) \geqslant \text{coût}(T) - \text{coût}(P_j) \qquad \text{pour certains $P_j \in T$}.
+$$
+Dans cette expression, $A_i \cap W$ désigne l'ensemble des projets gagnants qui ont été sélectionnés par l'électeur $i$.
 
-    Cette propriété est appelée "extended justified representation up to one project (EJR-1)" dans la littérature académique.
-    Plus de détails sont disponibles dans l'article de [Peters et al. (2021)](https://arxiv.org/abs/2008.13276) (en anglais).
+Cette propriété est appelée "extended justified representation up to one project (EJR-1)" dans la littérature académique.
+Plus de détails sont disponibles dans l'article de [Peters et al. (2021)](https://arxiv.org/abs/2008.13276) (en anglais).
 </details>
 
 ## Autres critères de vote de base
 
-Il existe d'autres critères de vote de base qui ne sont pas des « garanties d'équité » dans les sens ci-dessus, mais qui valent tout de même la peine d'être mentionnés. Les critères suivants sont satisfaits par la méthode des parts égales :
+Il existe d'autres guaranties mathématiques qui ne traitent pas d'équité, mais qui valent tout de même la peine d'être
+mentionnés. La méthode des parts égales garantie les propriétés suivantes :
 
-* <SemiBold>Calculabilité en temps polynomial</SemiBold> : Le résultat de la méthode des parts égales peut être calculé en temps polynomial par un algorithme simple. Ainsi, les projets gagnants peuvent être déterminés rapidement, généralement en moins d'une minute même pour les élections dans les grandes villes.
-* <SemiBold>Indépendance des clones</SemiBold> : Par "clonage" d'un projet, nous entendons proposer une ou plusieurs copies identiques d'un projet déjà sur le bulletin de vote. Nous supposons que chaque électeur soutient tous les clones ou aucun d'entre eux. Dans la méthode des parts égales, on a : si un projet perdant est cloné, aucun des clones ne gagne ; et si un projet gagnant est cloné, alors au moins l'un des clones gagne.
-* <SemiBold>Monotonie</SemiBold> : Si un projet gagne et qu'un électeur modifie son vote en ajoutant une approbation au projet gagnant, alors ce projet continue de gagner.
-* <SemiBold>Monotonie de réduction de coût</SemiBold> : Si un projet gagne et que son coût est réduit, alors il reste gagnant. Si un projet perd et que son prix est augmenté, alors il reste perdant.
-* <SemiBold>Indépendance des bulletins vides</SemiBold> : Si nous ajoutons un électeur à l'élection qui n'approuve aucun des projets, le résultat ne change pas (en supposant que nous complétons la méthode de la manière habituelle).
-* <SemiBold>Étend la méthode de D'Hondt</SemiBold> : La méthode des parts égales (en utilisant l'achèvement standard) est une généralisation de la <a href="https://en.wikipedia.org/wiki/D%27Hondt_method">méthode de D'Hondt</a> qui est utilisée dans de nombreux pays pour élire des membres du parlement en utilisant un système de liste proportionnelle. La méthode de D'Hondt est un cas particulier de la méthode des parts égales où les "projets" sont les candidats au parlement, le coût de chaque "projet" est égal à 1, le budget équivaut au nombre de sièges disponibles, et chaque électeur approuve tous les membres d'un seul parti.
+* <SemiBold>Calculabilité en temps polynomial</SemiBold> : Le résultat de la méthode des parts égales peut être calculé en temps polynomial par un algorithme simple. Les projets gagnants peuvent donc être déterminés rapidement, généralement en moins d'une minute même pour les élections dans les grandes villes.
+* <SemiBold>Indépendance des clones</SemiBold> : L'action de cloner un projet consiste à introduire une ou plusieurs copies identiques du projet dans le processus. Nous supposons que chaque électeur sélectionne tous les clones ou aucun d'entre eux. La méthode des parts égales garantie que : si un projet perdant est cloné, aucun des clones ne gagne ; et si un projet gagnant est cloné, alors au moins l'un des clones gagne.
+* <SemiBold>Monotonie</SemiBold> : Si un projet gagne et qu'un électeur modifie son vote en ajoutant le projet gagnant à son bulletin, alors ce projet continue de gagner.
+* <SemiBold>Monotonie vis-à-vis d'une réduction des coûts</SemiBold> : Si un projet gagne et que son coût est réduit, alors il reste gagnant. Si un projet perd et que son prix est augmenté, alors il reste perdant.
+* <SemiBold>Indépendance des bulletins vides</SemiBold> : Si nous ajoutons un électeur à l'élection qui ne sélectionne aucun projet, le résultat ne change pas (en supposant que le résultat est complété avec la manière habituelle).
+* <SemiBold>Extension de la méthode de D'Hondt</SemiBold> : La méthode des parts égales (en complétant le résultat de manière standard) est une généralisation de la <a href="https://en.wikipedia.org/wiki/D%27Hondt_method">méthode de D'Hondt</a> qui est utilisée dans de nombreux pays pour élire des membres du parlement en utilisant un système de liste proportionnelle. La méthode de D'Hondt est un cas particulier de la méthode des parts égales où les "projets" sont les candidats au parlement, le coût de chaque "projet" est égal à 1, le budget équivaut au nombre de sièges disponibles, et chaque électeur sélectionne tous les membres d'un seul parti.
 
 Plusieurs autres critères ne sont toutefois pas satisfaits, notamment :
 <ul style={{ listStyleType: '"\\2717  "' }}>
 <li>Pareto-optimalité</li>
-<li>Monotonie de la limite de budget (un projet gagnant devrait rester gagnant si le budget disponible est augmenté)</li>
-<li>Proofness de stratégie (un électeur ne devrait pas être en mesure d'améliorer le résultat en changeant son vote)</li>
+<li>Monotonie vis-à-vis du budget (un projet gagnant devrait rester gagnant si le budget disponible est augmenté)</li>
+<li>Prévention des manipulations stratégiques (un électeur ne devrait pas être en mesure d'améliorer le résultat en changeant son vote)</li>
 </ul>

@@ -7,24 +7,29 @@ import Acronym from '@site/src/components/Acronym';
 
 # Plateformes de vote
 
-Ici, nous discutons de certains logiciels populaires pour l'exécution de plateformes de vote en ligne pour les budgets participatifs et comment ils sont compatibles avec la méthode des parts égales.
+Nous présentons à présent certaines plateformes populaires pour l'organisation de processus de budgets participatifs et
+leur compatibilité avec la méthode des parts égales.
 
 :::info
 
-En général, *n'importe quelle* plateforme qui permet l'un des [nombreux formats de bulletin](input-formats) compatibles avec la méthode des parts égales peut être utilisée.
-Après la phase de vote, les votes doivent simplement être exportés de la plateforme et le résultat de l'élection peut ensuite être calculé à l'aide de l'un des plusieurs [logiciels libres](computation) disponibles.
+En général, *n'importe quelle* plateforme qui permet d'utiliser l'un des [nombreux formats de bulletin](input-formats)
+compatibles avec la méthode des parts égales peut être utilisée.
+Après la phase de vote, les votes doivent simplement être exportés de la plateforme et le résultat de l'élection peut
+ensuite être calculé à l'aide de l'un des [logiciels libres](computation) disponibles.
 
 N'hésitez pas à [nous contacter](../contacts) pour obtenir des conseils.
 
 :::
 
-## Plateforme de Budget Participatif Stanford
+## Plateforme de Budget Participatif de Stanford
 
-La [Plateforme de Budget Participatif Stanford](https://pbstanford.edu/) est développée par l'équipe [Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) à l'Université de Stanford.
+La [Plateforme de Budget Participatif de Stanford](https://pbstanford.edu/) est développée par l'équipe
+[Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) à l'Université de Stanford.
 Le projet est open-source et gratuit.
 Il a été utilisé par un certain nombre de villes en Amérique du Nord et ailleurs.
 
-Les villes utilisant la plateforme de Stanford peuvent facilement la combiner avec la méthode des parts égales, en exportant les votes individuels, puis en calculant les résultats de l'élection avec un logiciel open-source séparé.
+Les villes utilisant la plateforme de Stanford peuvent facilement la combiner avec la méthode des parts égales, en
+exportant les votes individuels, puis en calculant les résultats de l'élection avec un logiciel open-source dédié.
 
 Il est facile d'exporter les données de vote depuis l'interface d'administration de la plateforme StanfordPB en naviguant vers
 * Analytics > Export to Excel > Individual votes. 
@@ -35,8 +40,13 @@ Cela produira un fichier `.csv` qui est facile à utiliser avec d'autres logicie
 
 ## Decidim
 
-[Decidim](https://decidim.org/) est un logiciel de plateforme populaire qui permet la participation citoyenne sous plusieurs formes différentes, y compris le budget participatif.
-Il a été utilisé initialement par Madrid puis par Barcelone.
-Pour le BP, il prend en charge les votes sac à dos (où les électeurs peuvent sélectionner autant de projets qu'ils le souhaitent, tant qu'ils rentrent dans la limite budgétaire) et le vote d'approbation avec une limite sur le nombre de votes.
+[Decidim](https://decidim.org/) est une plateforme qui permet la participation citoyenne sous plusieurs formes différentes,
+y compris le budget participatif.
+Elle a été utilisée initialement par Madrid puis par Barcelone.
+Pour le budget participatif, il prend en charge les votes sac à dos (où les électeurs peuvent sélectionner autant de
+projets qu'ils le souhaitent, tant qu'ils rentrent dans la limite budgétaire) et le vote par approbation avec une limite
+sur le nombre de projets sélectionnés.
 
-Malheureusement, Decidim n'a pas de moyen simple d'exporter les résultats de vote, donc un administrateur système devra directement interroger la base de données Decidim pour récupérer les données nécessaires pour calculer le résultat de l'élection lors de l'utilisation de la méthode des parts égales.
+Malheureusement, Decidim n'a pas de moyen simple d'exporter les résultats de vote.
+Un administrateur système devra directement interroger la base de données de Decidim pour récupérer les données
+nécessaires au calcul du résultat de l'élection avec la méthode des parts égales.

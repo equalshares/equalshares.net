@@ -1,21 +1,28 @@
 ---
 sidebar_position: 2
-title: Formats de bulletin
+title: Formats des bulletins
 ---
 
 import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
 
-# Formats de bulletin : Comment les électeurs peuvent-ils exprimer leurs préférences ?
+# Formats des bulletins : Comment les électeurs peuvent-ils exprimer leurs préférences ?
 
-Une partie importante de la décision concernant le système de vote pour le budget participatif est le choix du **format de bulletin**. Le format de bulletin fait référence à la façon dont le bulletin de vote est conçu et à la manière dont les électeurs sont autorisés à exprimer leurs préférences. Il existe plusieurs formats de bulletins différents couramment utilisés par les villes :
-* Le **vote d'approbation** (par exemple, les électeurs peuvent choisir jusqu'à 10 projets). &#10004; Nous recommandons ce format de bulletin. [[en savoir plus]](#approval-voting)
-* La **distribution de points** (par exemple, les électeurs peuvent répartir 10 points entre les projets, étant autorisés à donner plusieurs points au même projet). &#10004; Nous recommandons ce format de bulletin. [[en savoir plus]](#distributing-points)
-* Le **vote sac à dos** (les électeurs peuvent choisir autant de projets qu'ils le souhaitent, tant que le coût total des projets choisis ne dépasse pas la limite budgétaire). Nous ne recommandons pas ce format de bulletin. [[en savoir plus]](#knapsack-voting)
-* Le **vote classé** (par exemple, les électeurs peuvent classer 3 projets par ordre de préférence). Nous ne recommandons pas ce format de bulletin. [[en savoir plus]](#ranked-voting)
+Une partie importante du design du système de vote pour le budget participatif est le choix du **format de bulletin**.
+Le format de bulletin fait référence à la façon dont le bulletin de vote est conçu, et donc de la manière dont les électeurs
+peuvent exprimer leurs préférences.
+Il existe plusieurs formats de bulletins couramment utilisés dans différentes villes :
+* Le **vote par approbation** (par exemple, les électeurs sélectionnent jusqu'à 10 projets). &#10004; Nous recommandons ce format de bulletin. [[plus d'informations]](#approval-voting)
+* Le **vote par valeurs** (par exemple, les électeurs répartissent 10 points entre les projets, un même projet pouvant recevoir plusieurs points). &#10004; Nous recommandons ce format de bulletin. [[plus d'informations]](#distributing-points)
+* Le **vote sac à dos** (les électeurs sélectionnent autant de projets qu'ils le souhaitent, tant que le coût total des projets choisis ne dépasse pas le budget). Nous ne recommandons pas ce format de bulletin. [[plus d'informations]](#knapsack-voting)
+* Le **vote par ordre de préférence** (par exemple, les électeurs classent 3 projets par ordre de préférence). Nous ne recommandons pas ce format de bulletin. [[plus d'informations]](#ranked-voting)
 
-La méthode des parts égales est compatible avec tous ces formats de bulletins, les villes peuvent donc choisir le format de bulletin qui convient le mieux à leurs besoins. Dans ce qui suit, nous discutons des avantages et des inconvénients de chaque format de bulletin.
+La méthode des parts égales est compatible avec tous ces formats de bulletins, les villes peuvent donc choisir le format
+de bulletin qui convient le mieux à leurs besoins.
+Dans ce qui suit, nous discutons des avantages et des inconvénients de chaque format de bulletin.
 
-Nous **recommandons l'utilisation du vote d'approbation**, car c'est le format de bulletin le plus courant pour le budget participatif et il est facile à comprendre. La distribution de points est une bonne alternative qui permet aux électeurs d'exprimer des préférences plus détaillées.
+Nous **recommandons l'utilisation du vote par approbation**, car c'est le format de bulletin le plus courant pour le
+budget participatif et il est facile à comprendre.
+Le vote par valeurs est une bonne alternative qui permet aux électeurs d'exprimer des préférences plus détaillées.
 
 :::tip
 
@@ -23,12 +30,14 @@ Wikipedia a une [liste des villes utilisant le budget participatif](https://en.w
 
 :::
 
-## Vote d'approbation (recommandé) {#approval-voting}
+## Vote par approbation (recommandé) {#approval-voting}
 
-Dans le vote d'approbation, les électeurs peuvent choisir un certain nombre de projets qu'ils "approuvent" (pour lesquels ils votent). C'est le format de bulletin le plus courant pour le Budget Participatif.
+Dans le cas du vote par approbation, les électeurs peuvent choisir un certain nombre de projets qu'ils "approuvent"
+(c'est-à-dire qu'ils sélectionnent).
+C'est le format de bulletin le plus courant pour le budget participatif.
 
 * Avantage : ce format de bulletin est facile à comprendre et à utiliser.
-* Avantage : la méthode des parts égales est particulièrement facile à expliquer aux électeurs lorsqu'on utilise le vote d'approbation.
+* Avantage : la méthode des parts égales est particulièrement facile à expliquer aux électeurs lorsqu'on utilise le vote par approbation.
 
 ### Nombre maximum d'approbations
 
@@ -40,111 +49,159 @@ La plupart des villes imposent un nombre maximum d'approbations.
 * Jusqu'à **4** approbations : Paris (2018-19)
 * Jusqu'à **3** approbations : Toulouse (2022), Milan (2018), Rome (2019), Gdynia (2020-21)
 
-Nous recommandons un nombre maximum généreux pour permettre aux électeurs d'exprimer leur préférence complète.
+Nous recommandons un nombre maximum généreux pour permettre aux électeurs d'exprimer pleinement leur préférence.
 
 :::note
 
 Une autre possibilité à considérer est de ne pas imposer de nombre maximum de votes. Cela présente plusieurs avantages :
 * Les électeurs qui aiment de nombreux projets peuvent tous les soutenir.
-* Lorsqu'il y a un maximum, certains électeurs se sentiront obligés d'utiliser tous les votes disponibles ; sans maximum, cela est évité.
+* Lorsqu'il y a un maximum, certains électeurs se sentiront obligés d'utiliser tous les votes disponibles ; sans maximum, cela n'est pas le cas.
 * Notez que, en raison de la conception de la méthode des parts égales, les électeurs ne sont pas avantagés en votant pour peu ou pour beaucoup de projets, car chaque électeur contrôle une part égale du budget.
 
 :::
 
 ### Nombre minimum d'approbations
 
-Certaines villes imposent également un nombre minimum d'approbations, notamment Lausanne (en 2022) et Toulouse (en 2019), qui ont chacune exigé que les électeurs votent pour au moins 3 projets.
+Certaines villes imposent également un nombre minimum d'approbations, notamment Lausanne (en 2022) et Toulouse (en 2019),
+qui ont chacune exigé que les électeurs votent pour au moins 3 projets.
 
-Un avantage d'imposer un minimum est que les électeurs seront encouragés à s'engager avec l'ensemble de la liste des projets. Certains électeurs peuvent être venus pour voter pour un seul projet dont ils ont entendu parler, mais avec un minimum, ils doivent également regarder les autres projets. De plus, si un électeur vote pour plusieurs projets, la méthode des parts égales a une meilleure opportunité de satisfaire l'électeur si son projet préféré n'est pas choisi.
+Un avantage d'imposer un minimum est que les électeurs seront encouragés à s'engager avec l'ensemble de la liste des projets.
+Certains électeurs peuvent ne vouloir soutenir qu'un seul projet dont ils ont entendu parler, mais s'il y a un minimum,
+ils doivent également considérer les autres projets.
+De plus, si un électeur sélectionne plusieurs projets, la méthode des parts égales a une meilleure opportunité de
+satisfaire l'électeur si son projet préféré n'est pas choisi.
 
-Un inconvénient d'imposer un minimum est qu'il peut y avoir des électeurs qui veulent légitimement voter pour un seul projet, et cela pourrait être frustrant pour eux d'être obligés de voter pour des projets qu'ils ne souhaitent pas soutenir. Cela est moins susceptible d'être un problème lorsqu'il y a une grande variété de propositions.
+Un inconvénient d'imposer un minimum est qu'il peut y avoir des électeurs qui veulent légitimement voter pour un seul
+projet, et cela pourrait être frustrant pour eux d'être obligés de voter pour des projets qu'ils ne souhaitent pas soutenir.
+Cela est moins susceptible d'être un problème lorsqu'il y a une grande variété de propositions.
 
-## Distribution des points (recommandé) {#distributing-points}
+## Vote par valeurs (recommandé) {#distributing-points}
 
-Pour la distribution des points, chaque votant se voit attribuer un certain nombre de *points* (par exemple, 10 points) et peut les assigner aux projets comme il le souhaite.
-Par exemple, ils peuvent donner les 10 points à un seul projet, ou ils peuvent donner 1 point à 10 projets différents, ou toute autre combinaison.
-Ils peuvent également, par exemple, donner 1 point à 6 projets et 2 points chacun à 2 autres projets.
+Dans le cas du vote par valeurs, chaque électeur se voit attribuer un certain nombre de *points* (par exemple, 10 points)
+et peut les assigner aux projets comme il le souhaite.
+Par exemple, un électeur peut donner les 10 points à un seul projet, ou bien  1 point à 10 projets différents, ou toute
+autre combinaison.
+Il est également possible de donner, par exemple, 1 point à 6 projets et 2 points à 2 autres projets.
 
-Ce système est parfois également connu sous le nom de [vote cumulatif](https://en.wikipedia.org/wiki/Cumulative_voting). Il est utilisé par plusieurs villes :
+Ce système est parfois également connu sous le nom de [vote cumulatif](https://en.wikipedia.org/wiki/Cumulative_voting).
+Il est utilisé par plusieurs villes :
 
-* Częstochowa : distribuer **10 points**
-* Toulouse (2019) : distribuer **7 points**, chaque projet recevant au maximum 3 points
-* Strasbourg (2019, 2021) : distribuer **5 points**
-* Gdańsk (2016-2022) : distribuer **5 points**
+* Częstochowa : distribution de **10 points**
+* Toulouse (2019) : distribution de **7 points**, chaque projet recevant au maximum 3 points
+* Strasbourg (2019, 2021) : distribution de **5 points**
+* Gdańsk (2016-2022) : distribution de **5 points**
 
-Un avantage de ce système est que les votants ont beaucoup de flexibilité pour exprimer leurs préférences.
-Les votants qui ont de fortes convictions sur certains projets peuvent leur donner beaucoup de points.
-En même temps, les votants qui aiment de nombreux projets différents peuvent leur donner un petit nombre de points chacun.
+Un avantage de ce système est que les électeurs ont beaucoup de flexibilité pour exprimer leurs préférences.
+Les électeurs qui ont de fortes convictions sur certains projets peuvent leur donner beaucoup de points.
+En même temps, les électeurs qui aiment de nombreux projets différents peuvent leur donner un petit nombre de points chacun.
 
 :::tip Conseil
 
-Il convient de décourager les votants de placer tous leurs points sur un seul projet,
-car si ce projet ne gagne pas, leur vote n'a aucune influence.
+Il convient de décourager les électeurs de placer tous leurs points sur un seul projet, car si ce projet ne gagne pas,
+leur vote n'a aucune influence.
 
 :::
 
 ## Vote pondéré
 
-Le vote pondéré est similaire à la distribution de points, à la différence qu'il n'y a pas de limite supérieure au nombre de points qu'un électeur peut distribuer dans l'ensemble. Au lieu de cela, il y a une limite au nombre de points que l'électeur peut distribuer à un seul projet. Par exemple, cette limite pourrait être de 5 points; puis les électeurs peuvent décider pour chaque projet s'ils veulent lui donner 0, 1, 2, 3, 4 ou 5 points. Cela ressemble au système de notation 5 étoiles d'Amazon ou de Google Maps.
+Le vote pondéré est similaire au vote par valeurs à la différence qu'il n'y a pas de limite supérieure au nombre de
+points qu'un électeur peut distribuer au total.
+Il y a cependant une limite au nombre de points que l'électeur peut distribuer à un seul projet.
+Cette limite pourrait, par exemple, être de 5 points ; les électeurs pouvant décider pour chaque projet de donner
+0, 1, 2, 3, 4 ou 5 points.
+Cela ressemble au système de notation 5 étoiles d'Amazon ou de Google Maps.
 
-La méthode des parts égales fonctionne bien avec le vote pondéré, de la même manière qu'elle fonctionne pour la distribution de points. Les deux formats d'entrée, le vote pondéré et la distribution de points, sont de bons formats.
+La méthode des parts égales fonctionne bien avec le vote pondéré, de la même manière qu'elle fonctionne pour le vote par
+valeurs. Ces deux formats sont de bons formats.
 
-Paris (2021-23) utilise une version du vote pondéré pour son budget participatif, où les électeurs peuvent évaluer chaque projet sur une échelle de 4 points. Cependant, le système de vote global n'est pas basé sur le vote pondéré, car Paris utilise la méthode de vote "majoritaire" (judgment) (voir [comparaisons](../benefits/comparisons#majority-judgment)).
+Paris (2021-23) utilise une version du vote pondéré pour son budget participatif, où les électeurs peuvent évaluer
+chaque projet sur une échelle de 4 points.
+Cependant, le système de vote global n'est pas basé sur le vote pondéré, car Paris utilise la méthode de vote du
+"jugement majoritaire" (voir [comparaisons](../benefits/comparisons#majority-judgment)).
 
 ## Vote sac à dos
 
-Le vote sac à dos est similaire au vote d'approbation. Au lieu d'imposer un maximum d'approbations, les électeurs peuvent approuver autant de projets qu'ils le souhaitent, à condition que les projets sélectionnés ne dépassent pas la limite budgétaire. Cela est utilisé par un certain nombre de villes, notamment Madrid et Barcelone. Le vote sac à dos est le format d'entrée par défaut de la plateforme de vote `decidim`. Un avantage du vote sac à dos est que les électeurs seront mieux informés de la limite budgétaire.
+Le vote sac à dos est similaire au vote par approbation.
+Au lieu d'imposer un maximum d'approbations, les électeurs peuvent approuver autant de projets qu'ils le souhaitent,
+à condition que le coût des projets sélectionnés ne dépassent pas le budget.
+Cela est utilisé par un certain nombre de villes, notamment Madrid et Barcelone.
+Le vote sac à dos est le format d'entrée par défaut de la plateforme de vote `decidim`.
+Un avantage du vote sac à dos est qu'il force les électeurs à mieux comprendre les tenants et aboutissants de la
+contrainte budgétaire.
 
 :::attention Non recommandé
 Nous **ne recommandons pas** le vote sac à dos pour le budget participatif. Le vote sac à dos pose problème lorsque :
 
-* il y a beaucoup de projets bon marché, car les électeurs doivent sélectionner un grand nombre de projets pour remplir le budget, ce qui représente une charge de travail importante.
+* il y a beaucoup de projets peu coûteux, car les électeurs doivent sélectionner un grand nombre de projets pour remplir le budget, ce qui représente une charge de travail importante.
 * il y a des projets très coûteux, car les électeurs pourraient ne pas être en mesure de voter pour tous les projets qu'ils aiment. Cela peut conduire à de moins bons résultats électoraux.
 :::
 
-Cependant, la méthode des parts égales <SemiBold>est compatible avec le vote sac à dos</SemiBold>, et fonctionne de la même manière qu'avec le vote d'approbation.
+Cependant, la méthode des parts égales <SemiBold>est compatible avec le vote sac à dos</SemiBold>, et fonctionne de la
+même manière qu'avec le vote par approbation.
 
 ## Vote par ordre de préférence
 
-Certaines villes permettent aux électeurs de choisir d'abord un petit nombre de projets (généralement 3 à 5), puis de les classer par ordre de préférence. Par exemple, à Kraków (2019-21), les électeurs peuvent choisir 3 projets et les classer, où 3 points sont attribués au premier choix de l'électeur, 2 points au deuxième choix et 1 point au troisième choix.
+Certaines villes permettent aux électeurs de choisir d'abord un petit nombre de projets (généralement 3 à 5), puis de
+les classer par ordre de préférence.
+Par exemple, à Kraków (2019-21), les électeurs peuvent choisir 3 projets et les classer.
+Ensuite, 3 points sont attribués au premier choix de l'électeur, 2 points au deuxième choix et 1 point au troisième choix.
 
 :::caution Non recommandé
-Nous **ne recommandons pas** le vote par ordre de préférence pour le budget participatif. Nous pensons qu'il est préférable de laisser les électeurs distribuer eux-mêmes les points, plutôt que de les obliger à attribuer des points selon un classement. De plus, l'interface utilisateur (glisser-déposer) pour le vote par ordre de préférence peut être difficile à utiliser.
+Nous **ne recommandons pas** le vote par ordre de préférence pour le budget participatif.
+Nous pensons qu'il est préférable de laisser les électeurs distribuer eux-mêmes les points, plutôt que de les obliger à
+attribuer des points selon un classement.
+De plus, l'interface utilisateur (glisser-déposer) pour le vote par ordre de préférence peut être difficile à utiliser.
 :::
 
-Cependant, la méthode des parts égales <SemiBold>est compatible avec le vote par ordre de préférence</SemiBold>, car un classement peut être converti en une distribution de points. Comme discuté précédemment, Kraków le fait en convertissant un classement en points 3-2-1. Brest (2022) utilise le même système. Gdynia (2016-19) utilisait 5-4-3-2-1. New South Wales (2019) utilisait 10-5-3-2-1.
+Cependant, la méthode des parts égales <SemiBold>est compatible avec le vote par ordre de préférence</SemiBold>, car
+un classement peut être converti en un vote par valeurs.
+Comme discuté précédemment, Kraków le fait en convertissant un classement en points 3-2-1.
+Brest (2022) utilise le même système.
+Gdynia (2016-19) utilisait 5-4-3-2-1.
+New South Wales (2019) utilisait 10-5-3-2-1.
 
 Il n'y a pas de façon objective de décider comment convertir les classements en points.
 
 ## Vote pour un projet unique
 
-Certaines villes demandent aux électeurs de ne sélectionner qu'un seul projet pour voter.
+Certaines villes demandent aux électeurs de ne sélectionner qu'un seul projet.
 
 :::caution Non recommandé
-Nous **déconseillons fortement** de limiter les votes à un seul projet, car les électeurs ne peuvent pas exprimer leurs préférences de manière significative. Les électeurs qui votent pour un projet perdant n'ont aucune influence sur le résultat de l'élection. Ce format de bulletin est également biaisé contre les petits projets, car les électeurs sont plus susceptibles de voter pour un grand projet que pour un petit projet.
+Nous **déconseillons fortement** de limiter les votes à un seul projet, car les électeurs ne peuvent presque pas exprimer
+leurs préférences.
+Les électeurs qui votent pour un projet perdant n'ont aucune influence sur le résultat de l'élection.
+Ce format de bulletin est également biaisé contre les petits projets, car les électeurs sont plus susceptibles de voter
+pour un grand projet que pour un petit projet.
 :::
 
 ## Comparaison des formats de bulletin
 
 ### Facilité d'utilisation
 
-[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) ont mené une étude empirique avec 1 800 participants (recrutés via Amazon Mechanical Turk)
-afin de comparer différents formats de bulletin dans une élection de budget participatif. 
-Ils concluent que "l'approbation k mène à la meilleure expérience utilisateur". 
-Le graphique suivant montre le temps qu'il a fallu aux participants de l'étude pour compléter le processus de vote pour chaque format de bulletin.
+[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) ont mené une étude empirique avec
+1 800 participants (recrutés via Amazon Mechanical Turk) afin de comparer différents formats de bulletin dans une
+élection de budget participatif.
+Ils concluent que "le vote par approbation mène à la meilleure expérience utilisateur".
+Le graphique suivant montre le temps qu'il a fallu aux participants de l'étude pour compléter le processus de vote
+pour chaque format de bulletin.
 
-Dans cette étude, le vote d'approbation était limité à l'approbation de 5 projets, la distribution de points impliquait la distribution de 100 points, et le classement impliquait de classer tous les projets (10 ou 20).
+Dans cette étude, le vote par approbation était limité à l'approbation de 5 projets, le vote par valeur demandait
+la distribution de 100 points, et le vote par ordre de préférence impliquait de classer tous les projets (10 ou 20).
 
 <Datawrapper src="//datawrapper.dwcdn.net/iRn9Z/" />
 
 [Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) ont également demandé aux électeurs
 à quel point ils ont trouvé la tâche de vote facile. Ils rapportent que
-"[la distribution de points] a été évaluée comme assez facile à utiliser malgré le fait que ce soit l'un des formats les plus chronophages. 
-[Le vote d'approbation] a été évalué comme significativement plus facile à utiliser que tous les autres formats, sauf [la distribution de points]". 
-Les participants qui ont utilisé le vote d'approbation ont également donné la note d'accord la plus élevée lorsqu'on leur a posé la question "Dans quelle mesure le format de bulletin a-t-il pris en compte vos préférences ?".
+"[le vote par valeurs] a été évaluée comme assez facile à utiliser malgré le fait que ce soit l'un des formats les plus chronophages.
+[Le vote par approbation] a été évalué comme significativement plus facile à utiliser que tous les autres formats, sauf
+[le vote par valeurs]".
+Les participants qui ont utilisé le vote par approbation ont également donné la mention la plus élevée lorsqu'on
+leur a posé la question "Dans quelle mesure le format de bulletin a-t-il pris en compte vos préférences ?".
 
 ### Robustesse
 
-Des études expérimentales et des résultats de simulation suggèrent que le choix du format de bulletin n'a qu'un faible impact sur le résultat de l'élection.
-Par conséquent, le choix du format de bulletin n'est pas très important. 
-Cela pourrait être une raison de choisir le format de bulletin le plus facile à utiliser, qui est probablement le vote d'approbation.
+Des études expérimentales et des résultats de simulations suggèrent que le choix du format de bulletin n'a qu'un faible
+impact sur le résultat de l'élection.
+Par conséquent, le choix du format de bulletin n'est pas nécessairement très important.
+Cela pourrait être une raison de choisir le format de bulletin le plus facile à utiliser, qui est probablement le vote
+par approbation.

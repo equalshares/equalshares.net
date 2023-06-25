@@ -1,0 +1,199 @@
+---
+sidebar_position: 5
+hide_table_of_contents: false
+title: Wieliczka Zielony Milion
+---
+
+import { Datawrapper } from '@site/src/components/MyComponents';
+import { Currency } from '@site/src/components/CurrencyChoice';
+
+# Wieliczka Zielony Milion
+
+<head>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wieliczka Zielony Milion - Wyniki wyborów" />
+    <meta name="twitter:description" content="Strona prezentuje wyniki wyborów projektów w ramach akcji Zielony Milion, przeprowadzonej w Wieliczce w 2023 roku." />
+    <meta name="twitter:image" content="https://equalshares.net/social/og-zielony-milion.jpg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://equalshares.net/social/og-zielony-milion.jpg" />
+    <meta property="og:title" content="Wieliczka Zielony Milion - Wyniki wyborów" />
+    <meta property="og:description" content="Strona prezentuje wyniki wyborów projektów w ramach akcji Zielony Milion, przeprowadzonej w Wieliczce w 2023 roku." />
+</head>
+
+<div class="summary">
+<b>W skrócie</b>:
+Strona prezentuje wyniki wyborów projektów w ramach akcji Zielony Milion, przeprowadzonej w Wieliczce w 2023 roku.
+Ponieważ jest to pierwsze użycie metody równych udziałów, przedstawiamy również wyniki analizy porównującej nową metodę z tą, która jest najczęściej użwana w innych miastach.
+Wyniki tej analizy są bardzo pozytywne i pokazują, że dzięki metodzie równych udziałów znacząco zmniejszony został odsetek wyborców, którzy nie mieli wpływu na wynik wyborów,
+oraz uniknęliśmy wykluczenia projektów z południowej części gminy. 
+</div>
+
+<small>
+Zespół naukowy zaangażowany w opracowanie wyników: Jarosław Flis, Piotr Faliszewski, Dominik Peters, Grzegorz Pierczyński, Piotr Skowron i Stanisław Szufa.
+<br/>
+Data opublikowania: 2023-04-26.
+<br/>
+<a href="https://equalshares.net/pl/pdf/zielony-milion.pdf">Pobierz jako PDF.</a>
+</small>
+
+## Wyniki wyborów
+
+[<img src={require('@site/static/img/zielony-milion/plakt.jpeg').default} style={{ width: '180px', marginLeft: '15px', marginBottom: '5px', float: 'right' }} />](https://zb.wieliczka.eu/budzet-obywatelski)
+
+W wyborach wzięło udział <b>6586 mieszkańców</b>. Na każdego głosującego przypadała zatem kwota około <b><Currency>151</Currency>.</b>
+Ze względu na naturę metody ([zainteresowanych odsyłamy do szczegółowego opisu](../implementation/completion)) <b>kwota ta wzrosła do <Currency>313</Currency></b>. 
+Innymi słowy, każda grupa 100 wyborców mogła zdecydować o projekcie, którego koszt nie przekraczał <Currency>31 300</Currency>.
+Spośród zgłoszonych projektów, 64 zostały pozytywnie zweryfikowane od strony formalnejj, z czego 30 zostało wybranych do realizacji. Całkowity koszt wybranych projektów wynosi <Currency>995 079</Currency>.
+
+Poniżej przedstawiamy listę zgłoszonych projektów. <b>Projekty, które zostały wybrane do realizacji zostały oznaczone na zielono.</b>
+Przy każdym projekcie podajemy jego koszt i liczbę głosów, które otrzymał. Wielkość poziomych słupków jest proporcjonalna odpowiednio do kosztu oraz do liczby głosów. Ponadto, dla każdego projektu podajemy jego <b>efektywne poparcie</b>, 
+które jest procentową wartością opisującą w jakim stopniu wielkość poparcia przekracza próg wymagany do akceptacji projektu: wartość powyżej 100% oznacza, że projekt został wybrany, a wartość poniżej 100% oznacza, że projekt nie
+został wybrany. Przykładowo, wartość efektywnego poparcia na poziomie 60% oznacza, że projekt otrzymał 60% głosów wymaganych do akceptacji.
+
+Projekty mogły zostać niewybrane z jednego z następujących powodów:
+<ol>
+<li style={{ marginBottom: '10px' }}> projekt otrzymał zbyt mało głosów w stosunku do swojego kosztu, lub </li>
+<li> wyborcy, którzy głosowali na dany projekt głosowali również na inne bardziej popularne projekty, zatem ich głosy przełożyły się w pierwszej kolejności na sfinansowanie tych bardziej popularnych projektów.</li>
+</ol>
+
+Dostępny jest również techniczny raport z wykonania metody równych udziałów, który pozwala zweryfikować proces obliczania zwycięskich projektów (<a href="https://equalshares.net/pl/pdf/zielony-milion-explanation.pdf">Pobierz jako PDF</a>). 
+
+<Datawrapper src="//datawrapper.dwcdn.net/fXlKv/2/" />
+
+## Najczęściej zadawane pytania
+
+<details>
+<summary>
+Jak działa metoda równych udziałów?
+</summary>
+
+Przypisuje ona każdemu wyborcy taką samą wirtualną kwotę. W tym przypadku każdemu wyborcy przysługuje <Currency>313</Currency>. Metoda równych udziałów wybierze następnie najpopularniejsze projekty, ale tylko wtedy,
+gdy będzie można je opłacić z wirtualnych środków, które przysługują zwolennikom takich projektów. Jeśli zwolennicy projektu nie mają wystarczającej ilości środków, aby go opłacić, projekt zostanie pominięty.
+Dlatego jeśli projekt kosztuje <Currency>100 000</Currency>, to musi uzyskać co najmniej 320 głosów aby mieć szansę na bycie sfinansowanym. Oczywiście, taki projekt musi również zdobyć więcej głosów niż inne projekty, aby wygrać.
+
+Bardziej szczegółowy opis metody można znaleźć na [tej stronie](/explanation).
+</details>
+
+<details>
+<summary>
+Jakie są główne korzyści płynące ze stosowania metody równych udziałów?
+</summary>
+
+Daje ona każdemu wyborcy równy wpływ na wynik głosowania. Prowadzi to do bardziej sprawiedliwych wyników niż w przypadku użycia standardowej metody większościowej. 
+Poniżej przedstawiamy diagramy, które ilustrują przewagę metody równych udziałów. W szczególności widzimy, że więcej wyborców otrzymuje co najmniej jeden projekt, spośród tych na które zagłosowali.
+Zwycięskie projekty są ponadto równomierniej rozłożone w gminie, przez co żaden z obszarów gminy nie jest dyskryminowany.
+</details>
+
+<details>
+<summary>
+Dlaczego projekt nr 21 (Budowa ścieżki edukacyjno-ekologicznej w Laskowcu w Pawlikowicach) nie został wybrany?
+</summary>
+
+Nie został on wybrany, ponieważ wiele głosów oddanych na projekt nr 21 zostało wykorzystanych do sfinansowania bardziej popularnego projektu **nr 6** (Zielona Chorągwica - rewitalizacja terenów zielonych wraz z nasadzeniami).
+
+*Więcej szczegółów*: Projekty nr 24, 41, 40, 74, 19 i 6 miały więcej głosów niż projekt nr 21, dlatego zostały wybrane wcześniej. 
+43% głosujących na projekt nr 21 głosowało również na projekt nr 6 i z przysługujących im środków przekazało na niego <Currency>40 000</Currency>.
+Wyborcy popierający projekt nr 21 wykorzystali również łączną kwotę <Currency>22 700</Currency> aby sfinansować projekty nr 24, 41, 40, 74 i 19. Po zużyciu tych środków, głosującym na projekt nr 21 pozostało tylko <Currency>93 900</Currency>,
+co nie wystarczyło na opłacenie projektu nr 21 o koszcie <Currency>100 000</Currency>.
+</details>
+
+<details>
+<summary>
+Dlaczego projekt nr  16 (Zielony Mi(lion)etniów - zielona lekcja) nie został wybrany?
+</summary>
+
+Nie został on wybrany, ponieważ wiele głosów oddanych na projekt nr 16 zostało wykorzystanych do sfinansowania projektów **nr 6** (Zielona Chorągwica - rewitalizacja terenów zielonych wraz z nasadzeniami)
+(projekt ten był bardziej popularny niż projekt nr 16) i projektu **nr 70**. ("Rosnę latem, jesienią i na wiosnę" - utworzenie łąki kwietnej na skwerku między Przedszkolem Samorządowym w Mietniowie im. J. Latuska a świetlicą środowiskową w Mietniowie)
+(projekt ten był tańszy niż projekt nr 16, dzięki czemu uzyskał wyższą efektywną liczbę głosów).
+Wynik był jednak bardzo wyrównany, a projekt nr 16 **był bliski wygranej** (miał efektywne poparcie na poziomie 99%).
+
+
+*Więcej szczegółów*: Spośród wyborców głosujących na projekt nr 16, 52% głosowało również na projekt nr 6, a 64% na projekt nr 70.
+Wyborcy ci przekazali <Currency>38 700</Currency> z przysługujących im środków na projekt nr 6 oraz <Currency>11 800</Currency> na projekt nr 70.
+Wyborcy Ci przekazali również sumarycznie <Currency>17 000</Currency> na inne bardziej popularne projekty. Po zużyciu tych środków, wyborcom głosującym na projekt nr 16
+pozostało tylko <Currency>49 998</Currency>, co nie wystarczyło na opłacenie projektu nr 16 o koszcie <Currency>50 000</Currency>.
+</details>
+
+<details>
+<summary>
+Dlaczego projekt nr 87 (Rewitalizacja zielonego skweru na ekoplac zabaw i rekreacji w Śledziejowicach) nie został wybrany?
+</summary>
+
+Nie uzyskał on wystarczającej liczby głosów. Projekt nr 87 kosztował <Currency>74 000</Currency>. Uzyskał on głosy od 292 wyborcow, którym przysługiwało łącznie około <Currency>92 000</Currency>. 
+Choć początkowo wystarczyło to na opłacenie projektu nr 87, **po wybraniu 6 najpopularniejszych projektów**, tych 292 głosujących wykorzystało około <Currency>18 700</Currency> z przysługujących im środków
+(to dlatego, że część z tych wyborców głosowała również na niektóre z tych bardziej popularnych projektów).
+Głosującym na projekt nr 87 zostało zatem tylko <Currency>73 300</Currency>, co nie wystarczyło na opłacenie projektu nr 87 o koszcie <Currency>74 000</Currency>.
+
+Projekt nr 8 (Zielony Zakątek na Rynku) nie został wybrany z podobnych powodów.
+</details>
+
+## Porównanie metody równych udziałów z metodą większościową
+
+Ponieważ jest to pierwszy rok, kiedy Wieliczka używa metody równych udziałów, pojawia się naturalne pytanie o zysk w stosunku do metody większościowej, która jest najczęsciej używaną metodą w budżetach obywatelskich. Przeprowadziliśmy analizę, porównującą wyniki wyborów dla tych dwóch metod.
+Wyniki tej analizy jednoznacznie wskazują przewagę metody równych udziałów:
+<ol>
+<li style={{ marginBottom: '10px' }}> <b>Mniej wykluczonych wyborców.</b> Przy użyciu metody równych udziałów 18% wyborców nie otrzymało żadnego z projektów, na który zagłosowało. Gdyby użyć metody większościowej, ten odsetek wynosiłby aż 28%. Oznacza to, że dzięki metodzie równych udziałów,
+udało się w znacznym stopniu ograiczyć odsetek wyborców, którzy nie mieli realnego wpływu na wynik wyborów. Co więcej, większość z tych wyborców, którzy nie otrzymali żadnego projektu zagłosowała tylko na jeden projekt,
+zatem ich preferencje nie zawsze mogły zostać uwzględnione.
+Spośród wyborców, którzy zagłosowali na co najmniej dwa projekty odsetek tych, którzy nie otrzymali żadnego projektu wynosi jedynie 9% (przy metodzie więksozściowej byłby on dwukrotnie wyższy). </li>
+<Datawrapper src="//datawrapper.dwcdn.net/fW4mx/3/" />
+<li> <b>Wyższe średnie zadowolenie wyborców.</b> Dla przeciętnego wyborcy zostało wybranych 1,61 projektu na które taki wyborca zagłosował. Dla metody większościowej byłoby to 1,47, zatem metoda równych udziałów pozwoliła uzyskać 10% poprawę. </li>
+<li> <b>Więcej głosów przekładających się na realny wynik wyborów.</b> W stosunku do metody większościowej, metoda równych udziałów nie wybiera 4 projektów, które sumarycznie otrzymały 1453 głosów, za to wybiera 11 projektów,
+które łącznie otrzymały 2414 głosów. </li>
+<li> <b>Brak regionalnej dyskryminacji.</b> W oparciu o współrzędne GPS, na mapie Wieliczki zaznaczyliśmy projekty które zostały wybrane za pomocą metody równych udziałów (mapa niebieska z lewej strony)
+i które byłyby wybrane za pomocą metody większościowej (mapa czerwona z prawej strony). Wielkość kółek zaznaczonych na mapie odpowiada kosztom wybranych projektów. Gdyby użyć metody większościowej, to południowa część gminy zostałaby bez projektów. <b>Dzięki metodzie równych udziałów widzimy bardziej
+równomierne rozłożenie projektów; w szczególności widzimy, że mieszkańcy Byszyc i Gorzkowa oraz zachodniej części gminy nie zostali wykluczeni z procesu decyzyjnego</b>, co miałoby miejsce gdyby używać metody większościowej.
+</li>
+<div style={{display: 'flex', gap: '10px', marginTop: '13px', marginBottom: '13px'}}>
+    <div style={{width: '50%'}}>
+        <Datawrapper src="//datawrapper.dwcdn.net/fepmf/1/" />
+        <center><b>Metoda równych udziałów</b></center>
+    </div>
+    <div style={{width: '50%'}}>
+        <Datawrapper src="//datawrapper.dwcdn.net/byjIj/1/" />
+        <center><b>Metoda większościowa</b></center>
+    </div>
+</div>
+
+Poniżej, dla każdego punktu na mapie pokazujemy odległość od najbliższego zrealizowanego projektu. Ciemniejsze punkty oznaczają, że w pobliżu danej lokalizacji nie ma zrealizowanego projektu.
+Jeszcze raz widzimy, że metoda większościowa wykluczałaby części miasta, podczas gdy diagram dla metody równych udziałów jest jasny, a zatem wybrane projekty są równomierniej rozłożone na obszarze gminy.
+W szczególności, w przypadku metody równych udziałów, dla każdego mieszkańca gminy jego odległość od najbliższego zrealizowanego projektu wynosi nie więcej niż 3,4 km; w przypadku metody większościowej wartość ta wynosiłaby aż 6,1 km.
+
+<div style={{display: 'flex', gap: '10px', marginTop: '13px', marginBottom: '13px'}}>
+    <div style={{width: '50%'}}>
+        <img src={require('@site/static/img/zielony-milion/mes-heatmap.png').default} style={{ width: '88%' }} />
+        <center><b>Metoda równych udziałów</b></center>
+    </div>
+    <div style={{width: '50%'}}>
+        <img src={require('@site/static/img/zielony-milion/greedy-heatmap-legend.png').default} style={{ width: '88%' }} />
+        <center><b>Metoda większościowa</b></center>
+    </div>
+</div>
+
+
+<li style={{ marginBottom: '10px' }}><b>Bardziej równomierny rozkład zadowolenia wyborców</b>. Poniższy wykres przedstawia rozkład zadowolenia wyborców. Przykładowo, przy metodzie równych udziałów 45% wyborców otrzymało
+jeden projekt spośród tych na które zagłosowali, a 21,2% wyborców otrzymało dwa projekty.
+Widizmy, że dzięki metodzie równych udziałów rozkład zadowolenia jest bardziej równomierny, czyli mamy więcej wyborców, którzy otrzymali co najmniej jeden lub co najmniej dwa projekty spośród tych na które głosowali. Co więcej,
+jeżeli spojrzymy na to o jakiej kwocie zdecydował każdy wyborca, to standardowe odchylenie tych wartości zmalało o 18% w stosunku do metody większościowej.</li> 
+
+<Datawrapper src="//datawrapper.dwcdn.net/LtwLX/2/" />
+
+<li style={{ marginBottom: '10px' }}><b>Projekty o różnej wielkości mają równe szanse na wygraną</b>. 
+W porównaniu z metodą większościową, metoda równych udziałów nie wybiera kilku najdroższych projektów. Dzięki temu można sfinansować kilka popularnych mniejszych projektów.
+Dla wnioskodawców oznacza to, że warto zgłaszać również mniejsze, bardziej lokalne inicjatywy.
+</li> 
+
+<Datawrapper src="//datawrapper.dwcdn.net/pAi60/2/" />
+</ol>
+
+## Statystyki rozkładu głosów
+
+Poniżej przedstawiamy rozkład, który mówi na ile projektów głosowali wyborcy. Przykładowo, 3328 wyborców zagłosowało tylko na jeden projekt, 1456 zagłosowało na 2 projekty, itd.
+
+<Datawrapper src="//datawrapper.dwcdn.net/9EwHL/1/" />
+
+## Linki zewnętrzne
+
+* [Oficjalna strona z wynikami](https://zb.wieliczka.eu/budzet-obywatelski)
+* YouTube: [Ogłoszenie wyników](https://www.youtube.com/watch?v=OBbbMHHVwbo) [12:25 min] (2023-04-26)
+* Rzeczpospolita: ["Czy czeka nas rewolucja w budżetach obywatelskich?"](https://www.rp.pl/polityka/art38409241-czy-czeka-nas-rewolucja-w-budzetach-obywatelskich) (2023-04-28)
