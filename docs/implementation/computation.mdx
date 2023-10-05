@@ -19,6 +19,21 @@ The package can be installed via [PyPI](https://pypi.org/project/pabutools/) usi
 pip install pabutools
 ```
 
+You can use the package to read a [pabulib](http://pabulib.org/) file and compute the results of the Method of Equal Shares as follows:
+
+```python
+from pabutools.election import parse_pabulib, Cost_Sat
+from pabutools.rules import method_of_equal_shares, exhaustion_by_budget_increase
+instance, profile = parse_pabulib("filename.pb")
+winners = exhaustion_by_budget_increase(
+    instance, 
+    profile, 
+    rule=method_of_equal_shares, 
+    rule_params={'sat_class': Cost_Sat}, 
+    budget_step=len(profile))
+print(winners)
+```
+
 ## Code snippets
 
 Here, we provide short code snippets for computing the results of the Method of Equal Shares in several programming languages.
