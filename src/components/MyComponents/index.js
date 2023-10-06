@@ -15,7 +15,7 @@ import DWChart from 'react-datawrapper-chart';
 
 export function Datawrapper({src}) {
   return (
-    <DWChart src={src + (useColorMode().colorMode === "dark" ? '?dark=true' : '')} />
+    <DWChart src={src + (useColorMode().colorMode === "dark" ? '?dark=true' : '?dark=false')} />
   );
 }
 
