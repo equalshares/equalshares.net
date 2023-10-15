@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Benefits": {
+    "message": "Voordelen",
+    "description": "The label for category Benefits in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Implementation": {
+    "message": "Implementatie",
+    "description": "The label for category Implementation in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Resources": {
+    "message": "Resources",
+    "description": "The label for category Resources in sidebar tutorialSidebar"
+  }
+}

@@ -1,0 +1,132 @@
+---
+sidebar_position: 5
+title: Wiskundige garanties voor eerlijkheid
+---
+
+import { SemiBold } from '@site/src/components/MyComponents';
+import X from '/icons/x-circle.svg';
+
+# Wiskundige garanties voor eerlijkheid
+
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"/>
+</head>
+
+<div class="summary">
+<b>Samenvatting</b>:
+De academische literatuur heeft aangetoond dat de Methode van Gelijke Aandelen alle groepen kiezers een passende hoeveelheid vertegenwoordiging in het resultaat garandeert. Het garandeert ook dat projecten zullen winnen zolang ze een bepaalde minimale hoeveelheid steun krijgen.
+</div>
+
+De Methode van Gelijke Aandelen werd voorgesteld en ontwikkeld door wiskundigen en informatici die wiskundige stellingen bewezen die zeggen dat de methode eerlijkheid garandeert aan kiezers in bepaalde precieze zin. Op deze pagina zullen we enkele van hun resultaten beschrijven, zowel op een intuïtief niveau als in meer technische termen.
+
+Voor meer informatie kunt u ook de volgende bronnen raadplegen:
+[<img src={require('@site/static/img/abcbook.png').default} style={{ float: 'right', width: '100px' }} />](https://link.springer.com/book/10.1007/978-3-031-09016-5)
+
+* Het boek "Multi-Winner Voting with Approval Preferences" (2023) van Martin Lackner en Piotr Skowron, Open Access gepubliceerd door Springer ([gratis PDF beschikbaar](https://link.springer.com/book/10.1007/978-3-031-09016-5)). Merk op dat dit boek vooral focust op "multi-winnaar verkiezingen", waarbij we aannemen dat alle projecten dezelfde kosten hebben.
+* Het artikel "Proportional Participatory Budgeting with Additive Utilities" van Dominik Peters, Grzegorz Pierczyński, en Piotr Skowron. Beschikbaar [op arXiv](https://arxiv.org/abs/2008.13276).
+
+## Een project is gegarandeerd gefinancierd mits het een aantal "bullet" stemmen krijgt dat evenredig is aan de kosten {#bullet-votes}
+
+De eerste wiskundige garantie betreft individuele projecten: ze zijn zeker van financiering mits ze ten minste een bepaald minimum aantal unieke stemmen krijgen.
+
+Bijvoorbeeld, stel je een projectvoorstel voor met een kost die 5% van het totale beschikbare budget zou verbruiken. Dan, als minstens 5% van de kiezers voor dat project stemt _en voor geen andere projecten_, dan zal dit voorstel winnen volgens de Methode van Gelijke Aandelen.
+
+Hier is een formele manier om deze eigenschap te beschrijven:
+
+> **Stelling**. Laat $P$ een project zijn en laat $\text{cost}(P)$ de kosten van het voorstel zijn. Stel dat $B$ het totale budget is, en $n$ het totale aantal kiezers. Als ten minste $n \cdot \text{cost}(P)/B$ kiezers stemmen voor $P$ en geen andere projecten, dan zal $P$ bij de projecten horen die geselecteerd zijn door de Methode van Gelijke Aandelen.
+
+<details className="proof">
+<summary>Bewijs</summary>
+
+Elk van de kiezers die alleen voor $P$ stemde krijgt aan het begin van de berekening van de methode een budgetaandeel van ten minste $B/n$ toegewezen. (Het kan meer zijn dan $B/n$ omdat we de methode [afronden](../implementation/completion).)
+
+Daarom is het totale bedrag van het budget dat is toegewezen aan kiezers die alleen voor $P$ stemmen ten minste
+$$
+\underbrace{n \cdot \frac{\text{cost}(P)}{B}}_{\text{aantal kiezers}} \cdot \underbrace{\frac{B}{n}}_{\text{budgetaandeel}} = \text{cost}(P).
+$$
+
+Volgens de definitie van de Methode van Gelijke Aandelen eindigt het alleen wanneer er geen projecten meer betaald kunnen worden door hun ondersteuners. Maar dat betekent dat $P$ bij de geselecteerde projecten moet horen, omdat de kiezers die alleen voor $P$ stemmen al hun geld behouden totdat $P$ is geselecteerd, 
+en dus is $P$ altijd betaalbaar.
+</details>
+
+Bij de standaard stemmethode voor burgerbegroting (die gewoon de populairste projecten selecteert tot het budget op is), geldt geen vergelijkbare garantie. Zelfs een zeer kosteneffectief project (bijvoorbeeld met kosten van 1% van het budget) heeft mogelijk een groot aantal kiezers nodig (bijvoorbeeld meer dan 30%) om te winnen volgens de standaardmethode.
+
+Voor de garantie om geldig te zijn, is het noodzakelijk om aan te nemen dat de ondersteunende kiezers alleen het betreffende project ondersteunen en geen andere projecten, omdat de Methode van Gelijke Aandelen anders kan besluiten om die kiezers tevreden te stellen door enkele van de andere projecten te selecteren die zij ondersteunen.
+
+## Groepen met vergelijkbare stemmen zullen vertegenwoordigd worden in de uitkomst
+
+Volgens de Methode van Gelijke Aandelen kunnen groepen kiezers die op vergelijkbare projecten hebben gestemd, verwachten dat ze in de uitkomst vertegenwoordigd zijn naar een mate die evenredig is met de grootte van de groep. Bijvoorbeeld, een groep van 20% van de kiezers kan verwachten 20% van het budgetuitgaven te beïnvloeden.
+
+Dergelijke groepen kiezers kunnen bijvoorbeeld ouders van kinderen in een bepaalde school zijn, of bewoners van een bepaalde buurt, of mensen die met de fiets pendelen. De volgende eigenschappen zorgen ervoor dat elk van deze groepen in de uitkomst vertegenwoordigd zal worden (op voorwaarde dat ze genoeg leden hebben om de kosten van de projecten die ze gezamenlijk steunen te rechtvaardigen).
+
+### Groepen kiezers met identieke stemmen
+
+Laten we een PB-verkiezing op basis van instemmingsverkiezing overwegen.
+Stel dat $t$ van de $n$ kiezers een identieke stem heeft uitgebracht, dat wil zeggen dat ze allemaal op dezelfde set van projecten hebben gestemd.
+Stel concreet dat deze $t$ kiezers stemmen op de projecten $P_1$, $P_2$ en $P_3$.
+Intuïtief, omdat deze groep een fractie $t/n$ van de kiezers vormt, moeten ze in de uitkomst vertegenwoordigd zijn door een $t/n$ fractie van het budget.
+Laten we voorlopig aannemen dat 
+$$
+\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) \leqslant \frac{t}{n} \cdot B,
+$$
+waarbij $B$ het totale budget is. Met andere woorden, de groep kiezers is groot genoeg om "verdienen" dat alle projecten waarop ze hebben gestemd gefinancierd worden.
+In dit geval kan men bewijzen dat de Methode van Gelijke Aandelen alle drie projecten zal selecteren.
+
+Formeel kan deze eigenschap als volgt worden geschreven:
+
+> **Theorema**. Laat $\{P_1, P_2, \ldots, P_k\}$ een set van projecten zijn, en stel dat $t$ van de $n$ kiezers op al deze projecten (en alleen deze projecten) hebben gestemd. Stel dat de totale kosten van deze projecten hoogstens $t/n \cdot B$ zijn. Dan zal de Methode van Gelijke Aandelen alle $k$ projecten selecteren.
+
+<details>
+<summary>
+    Info over het geval waarin de projecten meer kosten dan de limiet
+</summary>
+
+Men kan ook een vergelijkbare garantie bewijzen als de groep kiezers een verzameling projecten goedkeurt die in totaal meer dan $t/n \cdot B$ kost. Stel dat $t$ kiezers precies stemmen voor de projecten $P_1$, $P_2$, $P_3$ en $P_4$. Stel dat
+$$
+\text{cost}(P_1) + \text{cost}(P_2) + \text{cost}(P_3) + \text{cost}(P_4) > \frac{t}{n} \cdot B.
+$$
+Dan zal de Methode van Gelijke Aandelen sommige van deze projecten selecteren die samen "ongeveer" $t/n \cdot B$ kosten.
+
+> **Theorema**. Laat $T = \{P_1, P_2, \ldots, P_k\}$ een set van projecten zijn, en stel dat $t$ van de $n$ kiezers voor al deze projecten (en alleen deze projecten) hebben gestemd. Dan zal de Methode van Gelijke Aandelen een subset $T' \subseteq T$ van projecten selecteren zodat voor elk project $P^* \in T$ dat niet door de Methode is geselecteerd, 
+we hebben $\sum_{P \in T'} \text{cost}(P) + \text{cost}(P^*) > t/n \cdot B$.
+
+</details>
+
+### Groepen kiezers met overlappende stemmen
+
+In de bovenstaande wiskundige garanties gingen we ervan uit dat de groep kiezers exact voor dezelfde set projecten stemde. In de praktijk stemmen echter zelfs groepen kiezers met een sterke overeenstemming niet altijd voor *exact* dezelfde set projecten. Het is daarom interessant om te zien of de Methode van Gelijke Aandelen projecten zal selecteren die worden ondersteund door een groep kiezers met een hoge maar niet perfecte overeenkomst. Het antwoord is ja: als een groep kiezers een voldoende grote overlap in hun stemmen heeft, dan zal de Methode van Gelijke Aandelen de groep vertegenwoordigen.
+
+<details>
+<summary>Details over de wiskundige garantie</summary>
+
+Laten we een burgerbegroting-verkiezing op basis van instemmingsverkiezing overwegen. 
+Over het algemeen, als \(T = \{P_1, P_2, \ldots, P_k\}\) een set projecten is, schrijven we \(\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)\) voor de totale kosten van de projecten in \(T\).
+Stel dat een groep van \(t\) kiezers alle projecten in de set \(T\) goedkeurt, maar dat sommige van de kiezers ook enkele andere projecten goedkeuren die niet in \(T\) zitten.
+Veronderstel dat \(\text{cost}(T)\leqslant t/n \cdot B\) (zodat de groep kiezers alle projecten in \(T\) kan "betalen" met alleen de budgetaandelen van de leden van de groep).
+Dan garandeert de Methode van Gelijke Aandelen dat ten minste één van de \(t\) kiezers voldoende vertegenwoordigd zal zijn in het resultaat \(W\): dit betekent dat er een lid \(i\) van de groep bestaat (die stemde voor de set projecten \(A_i\) (inclusief alle projecten in \(T\), dus \(T \subseteq A_i\)) met
+$$
+\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_j) \qquad \text{voor een bepaalde \(P_j \in T\)}.
+$$
+In deze uitdrukking staat \(A_i \cap W\) voor de set projecten die zowel door kiezer \(i\) worden goedgekeurd als die zijn opgenomen in het resultaat \(W\).
+
+Deze eigenschap wordt in de academische literatuur "uitgebreide gerechtvaardigde vertegenwoordiging tot één project" genoemd. Meer details zijn te vinden in het paper van [Peters et al. (2021)](https://arxiv.org/abs/2008.13276).
+</details>
+
+## Andere basisstemcriteria
+
+Er zijn andere basisstemcriteria die geen "fairness guarantees" zijn in de bovenstaande zin, maar toch het vermelden waard zijn. De volgende criteria worden vervuld door de Methode van Gelijke Aandelen:
+<!-- * <SemiBold>Unanimiteit</SemiBold>: Als een project door alle kiezers wordt ondersteund, dan wint het (uitgaande van een instemmingsverkiezing). -->
+
+* <SemiBold>Polynomiale tijd berekenbaarheid</SemiBold>: De uitkomst van de Methode van Gelijke Aandelen kan in polynomiale tijd worden berekend met een eenvoudig algoritme. Zo kunnen de winnende projecten meestal binnen een minuut worden bepaald, zelfs voor verkiezingen in grote steden.
+* <SemiBold>Onafhankelijkheid van klonen</SemiBold>: Met "klonen" van een project bedoelen we het voorstellen van één of meerdere identieke kopieën van een al bestaand project op het stembiljet. We gaan ervan uit dat elke kiezer ofwel alle of geen van de klonen ondersteunt. Onder de Methode van Gelijke Aandelen geldt het volgende: als een verliezend project wordt gekloond, winnen geen van de klonen; en als een winnend project wordt gekloond, dan wint ten minste één van de klonen.
+* <SemiBold>Monotonie</SemiBold>: Als een project wint en een kiezer verandert hun stembiljet door goedkeuring toe te voegen aan het winnende project, dan blijft dat project winnen.
+* <SemiBold>Korting monotonie</SemiBold>: Als een project wint en de kosten ervan worden verlaagd, blijft het winnen. Als een project verliest en de prijs ervan wordt verhoogd, blijft het verliezen.
+* <SemiBold>Onafhankelijkheid van lege stembiljetten</SemiBold>: Als we een kiezer toevoegen aan de verkiezing die geen van de projecten goedkeurt, verandert de uitkomst niet (ervan uitgaande dat we de methode op de gebruikelijke manier voltooien).
+* <SemiBold>Breidt de D'Hondt methode uit</SemiBold>: De Methode van Gelijke Aandelen (met standaard afronding) is een generalisatie van de <a href="https://nl.wikipedia.org/wiki/Methode-D%27Hondt">D'Hondt methode</a> die in veel landen wordt gebruikt om leden van het parlement te kiezen met een proportioneel partijlijstsysteem. De D'Hondt methode is een speciaal geval van de Methode van Gelijke Aandelen waarbij de "projecten" de kandidaten voor het parlement zijn, de kosten van elk "project" gelijk zijn aan 1, het budget gelijk is aan het beschikbare aantal zetels, en elke kiezer alle leden van precies één partij goedkeurt.
+
+Verschillende andere criteria worden echter niet gehaald, waaronder:
+<ul style={{ listStyleType: '"\\2717  "' }}>
+<li>Pareto-optimaliteit</li>
+<li>Budgetlimiet monotonie (een winnend project zou moeten blijven winnen als het beschikbare budget wordt verhoogd)</li>
+<li>Strategieproofheid (een kiezer zou het resultaat niet moeten kunnen verbeteren door hun stembiljet te veranderen)</li>
+</ul>

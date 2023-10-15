@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "Methode van Gelijk Aandelen",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Logo of the Method of Equal Shares",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Explanation": {
+    "message": "Explanation",
+    "description": "Navbar item with label Explanation"
+  },
+  "item.label.Benefits": {
+    "message": "Voordelen",
+    "description": "Navbar item with label Benefits"
+  },
+  "item.label.Implementation": {
+    "message": "Implementatie",
+    "description": "Navbar item with label Implementation"
+  },
+  "item.label.Resources": {
+    "message": "Resources",
+    "description": "Navbar item with label Resources"
+  },
+  "item.label.Contacts": {
+    "message": "Contacten",
+    "description": "Navbar item with label Contacts"
+  }
+}

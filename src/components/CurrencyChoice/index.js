@@ -44,6 +44,11 @@ export function Currency({ children }) {
       <span>{`${currency}`} {children}</span>
     );
   }
+  if (language === 'nl' && currency === '€') {
+    return (
+      <span>{`${currency}`} {children}</span>
+    );
+  }
   return (
     <span>{`${currency}`}{children}</span>
   );
@@ -65,6 +70,11 @@ export function CurrencyString({ amount=0 }) {
     );
   }
   if (language === 'de' && currency === '€') {
+    return (
+      `${currency} ${amount}`
+    );
+  }
+  if (language === 'nl' && currency === '€') {
     return (
       `${currency} ${amount}`
     );

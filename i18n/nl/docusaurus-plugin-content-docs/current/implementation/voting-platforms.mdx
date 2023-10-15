@@ -1,0 +1,42 @@
+---
+sidebar_position: 8
+title: Stemplatforms
+---
+
+import Acronym from '@site/src/components/Acronym';
+
+# Stemplatforms
+
+Hier bespreken we enkele populaire softwarepakketten voor het uitvoeren van online <Acronym acronym="PB" tooltip="burgerbegroting" /> stemplatforms en hoe ze compatibel zijn met de Methode van Gelijk Aandelen.
+
+:::info
+
+Over het algemeen kan *elk* platform dat een van de [vele invoerformaten](input-formats) ondersteunt die compatibel zijn met de Methode van Gelijke Aandelen worden gebruikt.
+Na de stemfase moeten de stemmen eenvoudigweg uit het platform worden geëxporteerd, en de stemresultaten kunnen vervolgens worden berekend met een van de verschillende beschikbare gratis [softwarepakketten](computation).
+
+:::
+
+Voel je vrij om [contact met ons op te nemen](../contacts) voor advies.
+
+## Stanford Burgerbegroting Platform
+
+Het [Stanford Burgerbegroting Platform](https://pbstanford.edu/) is ontwikkeld door het [Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) aan de Stanford University.
+Het project is open-source en gratis.
+Het is door een aantal steden in Noord-Amerika en elders gebruikt.
+
+Steden die het Stanford platform gebruiken, kunnen het gemakkelijk combineren met de Methode van Gelijke Aandelen, door de individuele stemmen te exporteren en vervolgens de verkiezingsresultaten te berekenen met een apart open-source softwarepakket.
+
+Het is eenvoudig om stemgegevens te exporteren vanuit de beheerinterface van het StanfordPB platform door te navigeren naar
+* Analytics > Exporteer naar Excel > Individuele stemmen.
+
+Dit levert een `.csv` bestand op dat eenvoudig door andere software te gebruiken is.
+
+<img src={require('@site/static/img/screenshot-standfordpb.png').default} width="600" style={{ boxShadow: '0 0 15px rgba(0,0,0,0.3)' }} />
+
+## Decidim
+
+[Decidim](https://decidim.org/) is een populair platformsoftware die burgers in verschillende vormen laat deelnemen, inclusief burgerbegroting.
+Het werd eerst door Madrid en daarna door Barcelona gebruikt.
+Voor PB ondersteunt het knapsack-stemmen (waarbij kiezers zoveel projecten kunnen selecteren als ze willen, zolang ze maar binnen het budget passen), en instemmingsverkiezing met een limiet op het aantal stemmen.
+
+Helaas heeft Decidim geen eenvoudige manier om stemresultaten te exporteren, dus een systeembeheerder zou de decidim-database rechtstreeks moeten raadplegen om de gegevens te verkrijgen die nodig zijn om de verkiezingsuitslag te berekenen bij het gebruik van de Methode van Gelijke Aandelen.

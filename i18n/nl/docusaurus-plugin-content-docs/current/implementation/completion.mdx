@@ -1,0 +1,65 @@
+---
+sidebar_position: 5
+title: Voltooiing
+---
+
+import { SemiBold, Datawrapper } from '@site/src/components/MyComponents';
+import { Currency } from '@site/src/components/CurrencyChoice';
+
+# Voltooiing van de Methode van Gelijke Aandelen
+
+<div class="summary">
+<b>Samenvatting</b>:
+Er zijn enkele verschillende varianten van de Methode van Gelijke Aandelen. In zijn eenvoudigste variant kan de methode niet het volledige beschikbare budget uitgeven (maar slechts ongeveer 70% ervan). Dit is meestal niet wenselijk, dus de methode moet worden "voltooid". We beschrijven de standaard manier om dit te doen en bespreken enkele alternatieven. De meeste gebruikers moeten de standaardmethode gebruiken, die ook in softwarepakketten is geïmplementeerd.
+</div>
+
+In de [uitleg](../explanation) van de Methode van Gelijke Aandelen, zegt Stap 1:
+
+> Het totale budget wordt gelijk verdeeld over de kiezers.
+
+Bijvoorbeeld, als het totale budget <Currency>100 000</Currency> is, en er zijn 1000 kiezers, dan zou elke kiezer een deel van <Currency>100</Currency> krijgen.
+Echter, wanneer we de Methode van Gelijke Aandelen berekenen met deze initiële verdeling van het budget, zullen we meestal ontdekken dat het verkiezingsresultaat niet het gehele budget gebruikt.
+Dit komt omdat voor sommige kiezers de methode het aan hen toegewezen budgetdeel niet productief kan gebruiken.
+Bijvoorbeeld, als een kiezer slechts voor 1 project stemt en dit project niet genoeg stemmen krijgt om te winnen, dan kan de methode de <Currency>100</Currency> die aan deze kiezer is toegewezen niet uitgeven.
+
+In simulaties met stemgegevens uit Warschau gebruikt de Methode van Gelijke Aandelen ongeveer 60-70% van het beschikbare budget.
+Uiteraard geven verkiezingsfunctionarissen meestal de voorkeur aan het uitgeven van bijna 100% van het budget.
+Daarom moet de Methode van Gelijke Aandelen worden **voltooid**, wat betekent dat het resultaat moet worden aangepast zodat bijna het gehele budget wordt gebruikt.
+
+<details>
+<summary><SemiBold>Grafiek</SemiBold>: Als alle kiezers voor veel projecten stemmen, is voltooiing niet zo cruciaal.</summary>
+
+De hoofdoorzaak van het feit dat de Methode van Gelijke Aandelen vaak slechts 60-70% van het beschikbare budget uitgeeft, is dat sommige kiezers slechts voor een klein aantal projecten stemmen.
+We kunnen dit effect zien door een simulatie uit te voeren op basis van gegevens uit Warschau (2020-22).
+
+In Warschau mogen kiezers op maximaal 15 projecten in hun district stemmen.
+We kunnen simuleren wat er zou zijn gebeurd als Warschau een minimum aantal stemmen had ingesteld door alleen die stemmen in de dataset te tellen die voor voldoende veel projecten hebben gestemd.
+Op deze manier kunnen we een minimum stemtelling van 2, 3, 4, ..., 15 simuleren.
+Voor elk minimum kunnen we controleren welk percentage van het budget wordt gebruikt door de Methode van Gelijke Aandelen wanneer alleen wordt uitgevoerd op de subset van stemmen die voor ten minste het minimum aantal projecten hebben gestemd.
+
+De resultaten suggereren dat wanneer kiezers voor minimaal 8 projecten stemmen, meer dan 90% van het budget wordt gebruikt.
+<Datawrapper src="//datawrapper.dwcdn.net/bPA91/2/" />
+</details>
+
+## Aanbevolen voltooiingsmethode
+
+Het basisidee is om kiezers een groter initiële budgetaandeel te geven.
+In het voorbeeld, in plaats van elke kiezer <Currency>100</Currency> te geven, zouden we ze <Currency>130</Currency> kunnen geven.
+Meer specifiek, we gaan door elke mogelijke waarde <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, enzovoorts.
+Voor elke waarde berekenen we de uitkomst van de Methode van Gelijke Aandelen.
+We stoppen in één van de twee gevallen:
+* De uitkomst is _uitputtend_, wat betekent dat het budgetlimiet zou worden overschreden als we een extra project aan de uitkomst zouden toevoegen.
+* Als we de Methode van Gelijke Aandelen zouden uitvoeren met de volgende hogere waarde, dan zou de resulterende uitkomst het budgetlimiet overschrijden.
+
+Simulatieresultaten suggereren dat de Methode van Gelijke Aandelen, op deze manier voltooid, zijn wenselijke eerlijkheidseigenschappen behoudt.
+
+Merk op dat het over het algemeen geen goed teken is als we het initiële budgetaandeel van de kiezers te veel moeten verhogen in het voltooiingsproces. In dit geval wordt er veel meer virtueel geld aan kiezers uitgedeeld dan daadwerkelijk wordt uitgegeven, en dus blijven sommige kiezers achter met veel onuitgegeven virtueel geld. Dit betekent dat sommige kiezers veel meer geld hebben kunnen besteden dan andere kiezers aan hun favoriete projecten. Dit leidt tot een ongelijkheid in de hoeveelheid invloed die kiezers hebben op de uitkomst.
+Een manier om te voorkomen dat het initiële budgetaandeel te veel moet worden verhoogd, is kiezers vragen om voor meerdere projecten te stemmen. Bijvoorbeeld, sommige steden [vereisen dat kiezers op minstens 3 projecten stemmen](input-formats#minimum-number-of-approvals). Dit helpt omdat een belangrijke oorzaak van onuitgegeven virtueel geld is omdat sommige kiezers slechts voor een enkel project stemmen, dat niet genoeg stemmen krijgt om te winnen. In dit geval is het onmogelijk voor de Methode van Gelijke Aandelen om het virtuele geld dat aan de kiezer is toegewezen uit te geven.
+
+## Andere voltooiingsmethoden
+
+Er zijn ook andere manieren om het deel van het budget dat niet wordt uitgegeven door de Methode van Gelijke Aandelen te gebruiken:
+
+* <SemiBold>Bewaar het geld voor het volgende jaar</SemiBold>. De resterende fondsen kunnen onuitgegeven blijven en worden gebruikt om het beschikbare budget in het volgende jaar te verhogen.
+* <SemiBold>Financier projecten met de hoogste stemmenaantallen</SemiBold>. De resterende fondsen kunnen worden gebruikt om projecten met veel stemmen te financieren die werden overgeslagen door de Methode van Gelijke Aandelen. Dit zal echter leiden tot een minder eerlijke uitkomst.
+* <SemiBold>Besteed het geld aan een flexibele reserveoplossing</SemiBold>. Bijvoorbeeld, in Chicago werd een flexibel deel van het budget gebruikt om straatreparaties van gaten te financieren.
