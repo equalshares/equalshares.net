@@ -4,10 +4,65 @@ title: Computation
 ---
 
 import DWChart from 'react-datawrapper-chart';
+import { CustomCodeSnippetGenerator, ComputeToolButton} from '@site/src/components/CodeSnippet';
 
 # How to compute the results?
 
-<!-- Todo: talk about using floats or fractions. -->
+## Online computation tool
+
+We provide an **online tool** for computing the results of the Method of Equal Shares. 
+It is available at [https://equalshares.net/compute](https://equalshares.net/compute).
+The tool is free to use and does not require any registration or installation.
+
+<ComputeToolButton>Open the online computation tool &rarr;</ComputeToolButton>
+
+The tool allows the user to upload a data file containing all the votes using the standard `.pb` format from [pabulib](http://pabulib.org/).
+It then computes the results of the Method of Equal Shares and displays them in a table, and also displays some additional statistics and information.
+The tool supports all standard variants of the Method of Equal Shares.
+
+No data is sent to any server; all computation is done locally in the user's browser. 
+Users can disconnect from the internet after loading the page, and the tool will continue to work.
+
+The tool only supports approval voting.
+
+<details>
+<summary>About the <code>.pb</code> file format</summary>
+<div>
+<p>
+The <code>.pb</code> file format is a standard format for storing participatory budgeting data.
+It is used by the <a href="http://pabulib.org/">pabulib</a> library.
+The format is a simple text format that can be edited with any text editor.
+It contains information about the election instance (e.g. the location, date, and budget of the election),
+about the projects (e.g. their names and costs), and about the votes (e.g. which projects each voter supports). 
+</p>
+<p>
+Here is a small example of a <code>.pb</code> file:
+</p>
+
+```
+META
+key;value
+description;Example election
+num_projects;3
+num_votes;4
+budget;100000
+vote_type;approval
+PROJECTS
+project_id;name;cost
+1;Project 1;5000
+2;Project 2;10000
+3;Project 3;85000
+VOTES
+voter_id;vote
+1;1,2
+2;1
+3;3
+4;1,2,3
+```
+</div>
+</details>
+
+
 
 ## The `pabutools` package
 
@@ -34,37 +89,14 @@ winners = exhaustion_by_budget_increase(
 print(winners)
 ```
 
-## Code snippets
+## Code generator
 
-Here, we provide short code snippets for computing the results of the Method of Equal Shares in several programming languages.
+Here, we provide short code snippets for computing the results of the Method of Equal Shares using Python or JavaScript.
+You can select the specific variant of the method that you wish to implement.
 
-<details>
-<summary>General trick to speed up the computation</summary>
-<div>
-<p>
-During the computation, the algorithm needs to repeatedly compute the "<a href="../explanation">effective vote count</a>" of each project,
-which is an expensive step. This part can be sped up by only recalculating the effective vote count
-if it matters. 
-</p>
-<p>
-The main observation is that the effective vote count <em>can only decrease</em> as the algorithm proceeds.
-What we do in the implementation is the following:
-we start with the project which had the highest effective vote count in the previous round.
-We re-calculate the effective vote count of this project.
-Then we compare its new effective vote count with the effective vote count of the project
-with the second-highest effective vote count in the previous round.
-If the new effective vote count is higher than the effective vote count of the second-highest project,
-then we know that we have found the project with the highest effective vote count in the current round
-(because all the other projects previously had a lower effective vote count, which in the mean
-time could only have decreased even further).
-Thus, we can immediately select it.
-</p>
-<p>
-This optimization is used in all the code snippets on this page.
-</p>
-</div>
-</details>
+<CustomCodeSnippetGenerator />
 
+<!--
 ### Python
 
 ```python
@@ -238,3 +270,54 @@ function equal_shares(N, C, cost, approvers, B) {
     return mes;
 }
 ```
+-->
+
+## General considerations
+
+<details>
+<summary>Algorithmic trick to speed up the computation</summary>
+<div>
+<p>
+During the computation, the algorithm needs to repeatedly compute the "<a href="../explanation">effective vote count</a>" of each project,
+which is an expensive step. This part can be sped up by only recalculating the effective vote count
+if it matters. 
+</p>
+<p>
+The main observation is that the effective vote count <em>can only decrease</em> as the algorithm proceeds.
+What we do in the implementation is the following:
+we start with the project which had the highest effective vote count in the previous round.
+We re-calculate the effective vote count of this project.
+Then we compare its new effective vote count with the effective vote count of the project
+with the second-highest effective vote count in the previous round.
+If the new effective vote count is higher than the effective vote count of the second-highest project,
+then we know that we have found the project with the highest effective vote count in the current round
+(because all the other projects previously had a lower effective vote count, which in the mean
+time could only have decreased even further).
+Thus, we can immediately select it.
+</p>
+<p>
+This optimization is used in all the code snippets on this page.
+</p>
+</div>
+</details>
+
+### Numerical accuracy: using floats or fractions?
+
+When computing the winners of an election that uses the Method of Equal Shares, we need to perform some calculations that involve fractions.
+For example, we need to divide the cost of a project by the number of its supporters to find out how much each supporter should contribute to the project.
+Computers typically represent numbers using "floating-point numbers", which are not exact representations of real numbers (for example, 1/3 cannot be represented exactly as a floating-point number because it has an infinite decimal expansion).
+This means that if we use floating-point numbers, we may get inexact results in some (rare) cases.
+In particular, when there is a tie (i.e. two projects have the same effective vote count), the floating-point implementation may assign a slightly different effective vote count to each project, and thus may select a different winner than the exact implementation.
+
+To avoid this problem, we can use a rational number implementation, which represents numbers as fractions of integers.
+Such implementations are typically slower (by about 4-10x) than floating-point implementations, but they are exact.
+The code generator above allows you to choose between a floating-point implementation and a rational number implementation.
+We recommend using the rational number implementation if you are computing official results, and using the floating-point implementation if you are just doing a quick test.
+The `pabutools` package uses the rational number implementation by default.
+
+### Comparison to academic literature
+
+In the academic literature, the Method of Equal Shares is often mathematically defined in such a way that it tends to select projects in order of decreasing cost-effectiveness (i.e. vote count divided by cost).
+In contrast, the method as described on this website tends to select projects in order of decreasing vote count.
+In the formal literature, this version of the method is sometimes referred to as using "cost utilities", because the version we are discussing here can be seen as using the cost of a project as a proxy for its utility for voters who approve it.
+It is important to keep this distinction in mind when comparing descriptions and pseudocode that are available in the academic literature.
