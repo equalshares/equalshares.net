@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useColorMode } from '@docusaurus/theme-common';
 import Translate, {translate} from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -10,8 +10,52 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 
-import DWChart from 'react-datawrapper-chart';
+// import DWChart from 'react-datawrapper-chart';
 
+import PropTypes from 'prop-types'
+
+export default function DWChart({ title, src, ...props }) {
+  const iframeRef = useRef()
+  const [height, setState] = useState(500)
+
+  const onMessage = useCallback(
+    ({ data = {}, source }) => {
+      if (
+        source !== iframeRef.current.contentWindow ||
+        typeof data === 'string' ||
+        !data['datawrapper-height']
+      )
+        return
+
+      setState(Object.values(data['datawrapper-height'])[0])
+    },
+    [setState, iframeRef]
+  )
+
+  useEffect(() => {
+    window.addEventListener('message', onMessage)
+    return () => window.removeEventListener('message', onMessage)
+  }, [height, setState, onMessage])
+
+  return (
+    <iframe
+      ref={iframeRef}
+      scrolling="no"
+      frameBorder="0"
+      width="100%"
+      {...props}
+      title={title}
+      src={src}
+      height={height}
+    />
+  )
+}
+
+DWChart.propTypes = {
+  title: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  loading: PropTypes.oneOf(['eager', 'lazy']),
+}
 
 export function Datawrapper({src}) {
   return (
