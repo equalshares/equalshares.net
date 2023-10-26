@@ -12,8 +12,6 @@ import "tippy.js/themes/light.css";
 
 // import DWChart from 'react-datawrapper-chart';
 
-import PropTypes from 'prop-types'
-
 export default function DWChart({ title, src, ...props }) {
   const iframeRef = useRef()
   const [height, setState] = useState(500)
@@ -49,12 +47,6 @@ export default function DWChart({ title, src, ...props }) {
       height={height}
     />
   )
-}
-
-DWChart.propTypes = {
-  title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  loading: PropTypes.oneOf(['eager', 'lazy']),
 }
 
 export function Datawrapper({src}) {
