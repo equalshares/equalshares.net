@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 export const ComputeToolButton = ({ children }) => {
     return (
-        <a href="https://equalshares.net/compute" target="_blank" className={styles.ComputeToolButton}>
+        <a href="https://equalshares.net/tools/compute" target="_blank" className={styles.ComputeToolButton}>
             {children}
         </a>
     );

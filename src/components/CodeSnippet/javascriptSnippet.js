@@ -76,43 +76,58 @@ function comparisonStep(choices) {
     let prefersGreedy = 0;
     `;
     if (choices.comparison == "satisfaction") {
-        code += `for (let i of N) {
-        `;
         if (scores) {
-            code += `const mes_satisfaction = sum(mes.map(c => u[i][c]));
-        const greedy_satisfaction = sum(greedy.map(c => u[i][c]));
-        `
-        } else {
-            code += `const mes_satisfaction = mes.filter(c => approvers[c].includes(i)).length;
-        const greedy_satisfaction = greedy.filter(c => approvers[c].includes(i)).length;
-        `;
-        }
-        code += `if (mes_satisfaction > greedy_satisfaction) {
+            code += `for (let i of N) {
+        const mesSatisfaction = sum(mes.map(c => u[i][c]));
+        const greedySatisfaction = sum(greedy.map(c => u[i][c]));
+        if (mesSatisfaction > greedySatisfaction) {
             prefersMES++;
-        } else if (greedy_satisfaction > mes_satisfaction) {
+        } else if (greedySatisfaction > mesSatisfaction) {
+            prefersGreedy++;
+        }
+    }
+    `;  
+        } else {
+            code += `const mesSatisfaction = {};
+    const greedySatisfaction = {};
+    for (let [candidates, satisfaction] of [[winners, mesSatisfaction], [greedy, greedySatisfaction]]) {
+        for (let c of candidates) {
+            for (let i of approvers[c]) {
+                if (!satisfaction[i]) {
+                    satisfaction[i] = 0;
+                }
+                satisfaction[i]++;
+            }
+        }
+    }
+    for (let i of N) {
+        if (mesSatisfaction[i] > greedySatisfaction[i]) {
+            prefersMES++;
+        } else if (greedySatisfaction[i] > mesSatisfaction[i]) {
             prefersGreedy++;
         }
     }
     `;
+        }
     } else if (choices.comparison == "exclusionRatio") {
         code += `// by taking a union of the approvers of a committee, 
     // figure out which voters approve at least one winner
-    const mes_approvals = new Set();
+    const mesApprovals = new Set();
     for (let c of mes) {
         for (let i of approvers[c]) {
-            mes_approvals.add(i);
+            mesApprovals.add(i);
         }
     }
-    const greedy_approvals = new Set();
+    const greedyApprovals = new Set();
     for (let c of greedy) {
         for (let i of approvers[c]) {
-            greedy_approvals.add(i);
+            greedyApprovals.add(i);
         }
     }
     for (let i of N) {
-        if (mes_approvals.has(i) && !greedy_approvals.has(i)) {
+        if (mesApprovals.has(i) && !greedyApprovals.has(i)) {
             prefersMES++;
-        } else if (greedy_approvals.has(i) && !mes_approvals.has(i)) {
+        } else if (greedyApprovals.has(i) && !mesApprovals.has(i)) {
             prefersGreedy++;
         }
     }
@@ -149,15 +164,15 @@ function mainFunction(choices) {
         code += `let currentCost = sum(mes.map(c => cost[c]));
     while (true) {
         // is current outcome exhaustive?
-        let is_exhaustive = true;
+        let isExhaustive = true;
         for (let extra of C) {
             if (!mes.includes(extra) && currentCost + cost[extra] <= B) {
-                is_exhaustive = false;
+                isExhaustive = false;
                 break;
             }
         }
         // if so, stop
-        if (is_exhaustive) {
+        if (isExhaustive) {
             break;
         }
         `;
@@ -202,22 +217,22 @@ function mainFunction(choices) {
 
 function utilitarianCompletion(choices) {
     const scores = choices.ballots == "score";
-    let code = `function utilitarianCompletion(N, C, cost, ${scores ? "totalUtility" : "approvers"}, B, already_winners) {
-    let winners = [...already_winners];
+    let code = `function utilitarianCompletion(N, C, cost, ${scores ? "totalUtility" : "approvers"}, B, alreadyWinners) {
+    let winners = [...alreadyWinners];
     let costSoFar = sum(winners.map(c => cost[c]));
     // sort candidates by score
-    let sorted_C = [...C];
+    let sortedC = [...C];
     `;
     if (scores) {
-        code += `sorted_C.sort((a, b) => totalUtility[b] - totalUtility[a]);
+        code += `sortedC.sort((a, b) => totalUtility[b] - totalUtility[a]);
     `;
     } else {
-        code += `sorted_C.sort((a, b) => approvers[b].length - approvers[a].length);
+        code += `sortedC.sort((a, b) => approvers[b].length - approvers[a].length);
     `;
     }
     code += `// for each candidate in order of decreasing score, 
     // try to add it to the committee
-    for (let c of sorted_C) {
+    for (let c of sortedC) {
         if (winners.includes(c) || costSoFar + cost[c] > B) {
             continue;
         }
