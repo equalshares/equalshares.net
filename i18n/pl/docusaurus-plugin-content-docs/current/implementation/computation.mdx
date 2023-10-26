@@ -5,8 +5,6 @@ title: Obliczanie wyników
 
 # Jak obliczyć, które projekty wygrały?
 
-<!-- Todo: talk about using floats or fractions. -->
-
 ## Pakiet oprogramowania `pabutools`
 
 Pakiet [`pabutools`](https://github.com/pbvoting/pabutools) to darmowy i open-source'owy pakiet w języku Python, który zawiera implementację kilku metod liczenia głosów dla budżetów obywatelskich, w tym metody równych udziałów.
@@ -16,6 +14,24 @@ Pakiet można zainstalować za pośrednictwem [PyPI](https://pypi.org/project/pa
 ```bash
 pip install pabutools
 ```
+
+Możesz użyć tego pakietu do odczytywania plików [pabulib](http://pabulib.org/) i obliczania wyników Metody Równych Udziałów, stosując poniższy kod w języku Python:
+
+```python
+from pabutools.election import parse_pabulib, Cost_Sat
+from pabutools.rules import method_of_equal_shares
+instance, profile = parse_pabulib("nazwa_pliku.pb")
+wygrani = method_of_equal_shares(
+    instance,
+    profile.as_multiprofile(),
+    sat_class=Cost_Sat,
+    voter_budget_increment=1 # użyj metody uzupełniania Add1
+)
+print(wygrani)
+```
+
+Więcej szczegółów można znaleźć w [dokumentacji pakietu]](https://pbvoting.github.io/pabutools/usage.html#method-of-equal-shares-mes).
+
 
 ## Fragmenty kodu
 

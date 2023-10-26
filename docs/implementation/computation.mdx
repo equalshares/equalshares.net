@@ -3,7 +3,6 @@ sidebar_position: 10
 title: Computation
 ---
 
-import DWChart from 'react-datawrapper-chart';
 import { CustomCodeSnippetGenerator, ComputeToolButton} from '@site/src/components/CodeSnippet';
 
 # How to compute the results?
@@ -11,7 +10,7 @@ import { CustomCodeSnippetGenerator, ComputeToolButton} from '@site/src/componen
 ## Online computation tool
 
 We provide an **online tool** for computing the results of the Method of Equal Shares. 
-It is available at [https://equalshares.net/compute](https://equalshares.net/compute).
+It is available at [https://equalshares.net/tools/compute](https://equalshares.net/tools/compute).
 The tool is free to use and does not require any registration or installation.
 
 <ComputeToolButton>Open the online computation tool &rarr;</ComputeToolButton>
@@ -78,16 +77,18 @@ You can use the package to read a [pabulib](http://pabulib.org/) file and comput
 
 ```python
 from pabutools.election import parse_pabulib, Cost_Sat
-from pabutools.rules import method_of_equal_shares, exhaustion_by_budget_increase
+from pabutools.rules import method_of_equal_shares
 instance, profile = parse_pabulib("filename.pb")
-winners = exhaustion_by_budget_increase(
-    instance, 
-    profile, 
-    rule=method_of_equal_shares, 
-    rule_params={'sat_class': Cost_Sat}, 
-    budget_step=len(profile))
+winners = method_of_equal_shares(
+    instance,
+    profile.as_multiprofile(),
+    sat_class=Cost_Sat,
+    voter_budget_increment=1 # use the completion method Add1
+)
 print(winners)
 ```
+
+More details are available in the [package documentation](https://pbvoting.github.io/pabutools/usage.html#method-of-equal-shares-mes).
 
 ## Code generator
 
