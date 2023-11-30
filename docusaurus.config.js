@@ -43,7 +43,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['de', 'en', 'pl', 'fr', 'nl']
+    locales: ['de', 'en', 'pl', 'fr'] //, 'nl']
   },
 
   presets: [
@@ -178,7 +178,18 @@ const config = {
     //     crossorigin: 'anonymous',
     //   },
     // ],
-    plugins : [
+    plugins: [
+      [
+        '@docusaurus/plugin-client-redirects',
+        {
+          redirects: [
+            {
+              from: '/resources/zielony-milion',
+              to: '/elections/zielony-milion',
+            },
+          ]
+        }
+      ],
       async function faviconInjector(context, options) {
         return {
           name: 'favicon-injector', // needed because Safari on iOS doesn't support SVG favicons
