@@ -91,9 +91,9 @@ const config = {
             label: 'Implementation',
           },
           {
-            to: 'resources',
+            to: 'elections',
             position: 'left',
-            label: 'Resources',
+            label: 'Elections',
           },
           {
             to: 'contacts',
@@ -139,8 +139,8 @@ const config = {
           {
           items: [
             {
-              to: 'resources',
-              label: 'Resources',
+              to: 'elections',
+              label: 'Elections',
             },
             {
               to: 'contacts',

@@ -15,10 +15,6 @@
     "message": "Implementierung",
     "description": "The label of footer link with label=Implementation linking to implementation"
   },
-  "link.item.label.Resources": {
-    "message": "Materialien",
-    "description": "The label of footer link with label=Resources linking to resources"
-  },
   "link.item.label.Contacts": {
     "message": "Kontakte",
     "description": "The label of footer link with label=Contacts linking to contacts"
@@ -34,5 +30,9 @@
   "copyright": {
     "message": "Webseite gepflegt von <a href=\"https://dominik-peters.de\" style=\"color:hsl(202, 100%, 70%)\">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL) und <a href=\"https://www.mimuw.edu.pl/~pskowron/\" style=\"color:hsl(202, 100%, 70%)\">Piotr Skowron</a> (Universität Warschau).",
     "description": "The footer copyright"
+  },
+  "link.item.label.Elections": {
+    "message": "Wahlen",
+    "description": "The label of footer link with label=Elections linking to elections"
   }
 }

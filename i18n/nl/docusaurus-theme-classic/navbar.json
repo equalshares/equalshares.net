@@ -26,5 +26,9 @@
   "item.label.Contacts": {
     "message": "Contacten",
     "description": "Navbar item with label Contacts"
+  },
+  "item.label.Elections": {
+    "message": "Elections",
+    "description": "Navbar item with label Elections"
   }
 }

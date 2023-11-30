@@ -14,5 +14,17 @@
   "sidebar.tutorialSidebar.category.Resources": {
     "message": "Resources",
     "description": "The label for category Resources in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Voordelen": {
+    "message": "Voordelen",
+    "description": "The label for category Voordelen in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Implementatie": {
+    "message": "Implementatie",
+    "description": "The label for category Implementatie in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Elections": {
+    "message": "Elections",
+    "description": "The label for category Elections in sidebar tutorialSidebar"
   }
 }

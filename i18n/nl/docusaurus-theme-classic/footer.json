@@ -34,5 +34,9 @@
   "copyright": {
     "message": "Website maintained by <a href=\"https://dominik-peters.de\" style=\"color:hsl(202, 100%, 70%)\">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL) and <a href=\"https://www.mimuw.edu.pl/~pskowron/\" style=\"color:hsl(202, 100%, 70%)\">Piotr Skowron</a> (University of Warsaw).",
     "description": "The footer copyright"
+  },
+  "link.item.label.Elections": {
+    "message": "Elections",
+    "description": "The label of footer link with label=Elections linking to elections"
   }
 }
