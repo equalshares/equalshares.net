@@ -101,6 +101,9 @@ details.proof p:last-child::after {
 [data-theme='dark'] .summary {
   background-color: hsl(240, 14%, 20%);
 }
+.summary p {
+  margin-bottom: 0;
+}
 
 .footer__bottom {
   font-size: 92%;
@@ -442,6 +445,7 @@ iframe[src*="datawrapper"] {
 
 .map-with-label > img {
   width: 100%;
+  height: auto;
 }
 
 .map-with-label > span {

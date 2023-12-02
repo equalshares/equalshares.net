@@ -38,22 +38,17 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.contentSectionFlex}>
   <div className={styles.ballotExplanation}>
-    <p>
     <strong style={{color: 'var(--ifm-color-primary)'}}>Budżet obywatelski</strong> pozwala mieszkańcom gmin aktywnie uczestniczyć w decyzjach budżetowych.
     Gmina przeznacza na ten cel część środków ze swojego budżetu. Każdy mieszkaniec może zgłosić propozycję projektu, a następnie odbywa się głosowanie. Zagłosować może każdy mieszkaniec gminy.
     W wyniku takiego głosowania wyłaniane są projekty, które zostaną zrealizowane przez gminę.
-    </p>
-    <p>
+    
     Głosowanie jest świetnym sposobem na zaangażowanie wielu obywateli w decyzje budżetowe. 
     Jednak wynik takiego głosowania nie zawsze bywa <strong style={{color: 'var(--ifm-color-primary)'}}>sprawiedliwy</strong>. Dzieje się tak ponieważ wiele miast po prostu wybiera projekty z największą liczbą głosów.
     Efekt jest taki, że często wybieranych jest kilka podobnych projektów. 
     Są to projekty, które są popularne wśród tej samej grupy wyborców. Głosy pozostałych wyborców są w efekcie pomijane.
-    </p>
-    <p>
+    
     Istnieje system głosowania, który jest bardziej sprawiedliwy i który prowadzi do bardziej reprezentatywnych wyników. Jest to 
-    <br/> 
-    <strong style={{color: 'var(--ifm-color-primary)'}}>metoda równych udziałów</strong>.
-    </p>
+    <br/><strong style={{color: 'var(--ifm-color-primary)'}}>metoda równych udziałów</strong>.
   </div>
   <div className={styles.approvalBallotExample}>
       <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; Karta do głosowania &mdash;</span>
@@ -71,24 +66,19 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.contentSection}>
   <h2>Główna idea</h2>
-  <p>
-    W ramach obliczania zwycięskich projektów (dzieje się to wszystko automatycznie i wirtualnie, bez angażowania wyborców)
-    dostępny budżet jest rozdzielany po równo pomiędzy głosujących. Każdy wyborca dysponuje więc na początku taką samą umowną kwotą.
-    Następnie po kolei rozważamy projekty zaczynając od tych, które uzyskały najwięcej głosów. Projekt zostaje wybrany, jeżeli wyborcy, któzy zagłosowali na ten projekt dysponują taką kwotą, która pozwala pokryć jego koszt.
-    Jeżeli projekt zostaje wybrany, to jego koszt dzielony jest po równo pomiędzy jego zwolenników.  Można więc sobie wyobrazić, że zwolennicy projektu „zrzucają się” na niego i zostają z mniejszą ilością środków.
-    W ramach kolejnych zakupów niektórzy wyborcy stopniowo tracą swoje umowne środki, aż w końcu nie mają ich wystarczająco dużo aby brać udział w kolejnych zrzutkach. 
-    W ten sposób głosy pozostałych wyborców, tych którzy nie mieli jeszcze wpływu na decyzje budżetowe, zaczynają być stopniowo brane pod uwagę.
-  </p>
+  W ramach obliczania zwycięskich projektów (dzieje się to wszystko automatycznie i wirtualnie, bez angażowania wyborców)
+  dostępny budżet jest rozdzielany po równo pomiędzy głosujących. Każdy wyborca dysponuje więc na początku taką samą umowną kwotą.
+  Następnie po kolei rozważamy projekty zaczynając od tych, które uzyskały najwięcej głosów. Projekt zostaje wybrany, jeżeli wyborcy, któzy zagłosowali na ten projekt dysponują taką kwotą, która pozwala pokryć jego koszt.
+  Jeżeli projekt zostaje wybrany, to jego koszt dzielony jest po równo pomiędzy jego zwolenników.  Można więc sobie wyobrazić, że zwolennicy projektu „zrzucają się” na niego i zostają z mniejszą ilością środków.
+  W ramach kolejnych zakupów niektórzy wyborcy stopniowo tracą swoje umowne środki, aż w końcu nie mają ich wystarczająco dużo aby brać udział w kolejnych zrzutkach. 
+  W ten sposób głosy pozostałych wyborców, tych którzy nie mieli jeszcze wpływu na decyzje budżetowe, zaczynają być stopniowo brane pod uwagę.
   <div className={styles.sankeyImage}>
       <div className={styles.sankeyContainer}>
         <Sankey />
       </div>
   </div>
-  <p>
-    Z punktu widzenia wyborcy nic się nie zmienia: wyborca jedynie musi zagłosować na te projekty, które popiera. 
-    Wynik działania metody równych udziałów możemy obliczyć na komputerze, przy użyciu jednego z programów o otwartym kodzie źródłowym.
-    
-  </p>
+  Z punktu widzenia wyborcy nic się nie zmienia: wyborca jedynie musi zagłosować na te projekty, które popiera. 
+  Wynik działania metody równych udziałów możemy obliczyć na komputerze, przy użyciu jednego z programów o otwartym kodzie źródłowym.
 </section>
 
 <section className={styles.contentSection}>
@@ -114,8 +104,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.contentSection}>
   <h2>O tej stronie</h2>
-  <p style={{ fontSize: '1.2em' }}>
-  Polska wersja strony jest <Link to="contacts">utrzymywana przez Piotra Skowrona (Uniwersytet Warszawski) i Dominika Petersa (CNRS, Université Paris Dauphine-PSL)</Link>.
-  Jej celem jest udostępnienie wiedzy na temat metody równych udziałów zainteresowanym obywatelom, urzędnikom i naukowcom.
-  </p>
+  <p style={{ fontSize: '1.2em' }}>Polska wersja strony jest <Link to="contacts">utrzymywana przez Piotra Skowrona (Uniwersytet Warszawski) i Dominika Petersa (CNRS, Université Paris Dauphine-PSL)</Link>.
+  Jej celem jest udostępnienie wiedzy na temat metody równych udziałów zainteresowanym obywatelom, urzędnikom i naukowcom.</p>
 </section>

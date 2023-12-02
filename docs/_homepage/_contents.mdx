@@ -37,25 +37,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.contentSectionFlex}>
   <div className={styles.ballotExplanation}>
-    <p>
         Many cities are using <strong style={{color: 'var(--ifm-color-primary)'}}>Participatory Budgeting</strong> to give residents a say in how public money is spent.
         The city government sets aside a part of its budget,
         allows anyone to propose projects, and then holds
         an election to decide which projects will be funded.
-    </p>
-    <p>
+       
         Voting is a great way to involve many citizens in the budget decision.
         However, the outcome of the election is not always fair.
         Because many cities simply choose the projects with the most votes,
         the budget is often spent on several similar projects that are popular with
         the same majority group of voters.
-    </p>
-    <p>
+       
         There is a voting system that leads to fairer outcomes, where each voter has an equal influence on the
         election outcome:
-        <br />
-        The <strong style={{color: 'var(--ifm-color-primary)'}}>Method of Equal Shares</strong>.
-    </p>
+        <br />The <strong style={{color: 'var(--ifm-color-primary)'}}>Method of Equal Shares</strong>.
   </div>
   <div className={styles.approvalBallotExample}>
       <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; PB Voting Ballot &mdash;</span>
@@ -73,24 +68,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.contentSection}>
   <h2>The Main Idea</h2>
-  <p>
       The basic idea of the Method of Equal Shares is that each voter is assigned an equal part of the budget.
       This part of the budget can only be used to fund projects that the voter has voted for.
       The method goes through all project proposals, beginning with the projects with the highest number of
       votes.
       It selects a project if it can be funded using the budget shares of those who voted for the project.
       The method divides the cost of a project equally among its supporters.
-  </p>
   <div className={styles.sankeyImage}>
       <div className={styles.sankeyContainer}>
         <Sankey />
       </div>
   </div>
-  <p>
       From the perspective of a voter, the voting experience is unchanged: they just need to fill out a ballot
       and select which projects they want to vote for. The Method of Equal Shares is then computed
       by the city (using one of the open-source implementations of the rule), thus making sure that the budget is spent fairly.
-  </p>
 </section>
 
 <section className={styles.contentSection}>
@@ -116,9 +107,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.contentSection}>
   <h2>About This Website</h2>
-  <p style={{ fontSize: '1.2em' }}>
-      This website was <Link to="contacts">constructed and is maintained by Dominik Peters (CNRS, Université Paris Dauphine-PSL) and Piotr Skowron (University of Warsaw)</Link>.
+  <p style={{ fontSize: '1.2em' }}>This website was <Link to="contacts">constructed and is maintained by Dominik Peters (CNRS, Université Paris Dauphine-PSL) and Piotr Skowron (University of Warsaw)</Link>.
       Its purpose is to collect resources about the Method of Equal Shares and to provide an explanation of the method to interested members of the public,
-      to city officials, and to researchers.
-  </p>
+      to city officials, and to researchers.</p>
 </section>
