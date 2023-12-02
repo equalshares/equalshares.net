@@ -100,14 +100,14 @@ In de bovenstaande wiskundige garanties gingen we ervan uit dat de groep kiezers
 <summary>Details over de wiskundige garantie</summary>
 
 Neem een burgerbegroting-verkiezing op basis van instemmingsverkiezing. 
-Over het algemeen, als \(T = \{P_1, P_2, \ldots, P_k\}\) een verzameling projecten is, schrijven we \(\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)\) voor de totale kosten van de projecten in \(T\).
-Stel dat een groep van \(t\) kiezers alle projecten in de verzameling \(T\) goedkeurt, maar dat sommige van de kiezers ook enkele andere projecten goedkeuren die niet in \(T\) zitten.
-Veronderstel dat \(\text{cost}(T)\leqslant t/n \cdot B\) (zodat de groep kiezers alle projecten in \(T\) kan "betalen" met alleen de budgetaandelen van de leden van de groep).
-Dan garandeert de Methode van Gelijke Aandelen dat ten minste één van de \(t\) kiezers voldoende vertegenwoordigd zal zijn in het resultaat \(W\): dit betekent dat er een lid \(i\) van de groep bestaat (die stemde voor de verzameling projecten \(A_i\) (inclusief alle projecten in \(T\), dus \(T \subseteq A_i\)) met
+Over het algemeen, als $T = \{P_1, P_2, \ldots, P_k\}$ een verzameling projecten is, schrijven we $\text{cost}(T) = \text{cost}(P_1) + \text{cost}(P_2) + \ldots + \text{cost}(P_k)$ voor de totale kosten van de projecten in $T$.
+Stel dat een groep van $t$ kiezers alle projecten in de verzameling $T$ goedkeurt, maar dat sommige van de kiezers ook enkele andere projecten goedkeuren die niet in $T$ zitten.
+Veronderstel dat $\text{cost}(T)\leqslant t/n \cdot B$ (zodat de groep kiezers alle projecten in $T$ kan "betalen" met alleen de budgetaandelen van de leden van de groep).
+Dan garandeert de Methode van Gelijke Aandelen dat ten minste één van de $t$ kiezers voldoende vertegenwoordigd zal zijn in het resultaat $W$: dit betekent dat er een lid $i$ van de groep bestaat (die stemde voor de verzameling projecten $A_i$ (inclusief alle projecten in $T$, dus $T \subseteq A_i$) met
 $$
-\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_j) \qquad \text{voor een bepaalde \(P_j \in T\)}.
+\text{cost}(A_i \cap W) \geqslant \text{cost}(T) - \text{cost}(P_j) \qquad \text{voor een bepaalde $P_j \in T$}.
 $$
-In deze uitdrukking staat \(A_i \cap W\) voor de verzameling projecten die zowel door kiezer \(i\) worden goedgekeurd als die zijn opgenomen in het resultaat \(W\).
+In deze uitdrukking staat $A_i \cap W$ voor de verzameling projecten die zowel door kiezer $i$ worden goedgekeurd als die zijn opgenomen in het resultaat $W$.
 
 Deze eigenschap wordt in de academische literatuur "uitgebreide gerechtvaardigde vertegenwoordiging tot één project" genoemd. Meer details zijn te vinden in het paper van [Peters et al. (2021)](https://arxiv.org/abs/2008.13276).
 </details>
@@ -115,7 +115,6 @@ Deze eigenschap wordt in de academische literatuur "uitgebreide gerechtvaardigde
 ## Andere basisstemcriteria
 
 Er zijn andere basisstemcriteria die geen "eerlijkheidsgaranties" zijn in de bovenstaande zin, maar toch het vermelden waard zijn. De volgende criteria worden vervuld door de Methode van Gelijke Aandelen:
-<!-- * <SemiBold>Unanimiteit</SemiBold>: Als een project door alle kiezers wordt ondersteund, dan wint het (uitgaande van een instemmingsverkiezing). -->
 
 * <SemiBold>Berekenbaarheid in polynomiale tijd </SemiBold>: De uitkomst van de Methode van Gelijke Aandelen kan in polynomiale tijd worden berekend met een eenvoudig algoritme. Zo kunnen de winnende projecten meestal binnen een minuut worden bepaald, zelfs voor verkiezingen in grote steden.
 * <SemiBold>Onafhankelijkheid van klonen</SemiBold>: Met "klonen" van een project bedoelen we het voorstellen van één of meerdere identieke kopieën van een al bestaand project op het stembiljet. We gaan ervan uit dat elke kiezer ofwel alle of geen van de klonen ondersteunt. Onder de Methode van Gelijke Aandelen geldt het volgende: als een verliezend project wordt gekloond, winnen geen van de klonen; en als een winnend project wordt gekloond, dan wint ten minste één van de klonen.
