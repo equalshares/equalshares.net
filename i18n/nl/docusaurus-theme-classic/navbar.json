@@ -28,7 +28,7 @@
     "description": "Navbar item with label Contacts"
   },
   "item.label.Elections": {
-    "message": "Elections",
+    "message": "Verkiezingen",
     "description": "Navbar item with label Elections"
   }
 }

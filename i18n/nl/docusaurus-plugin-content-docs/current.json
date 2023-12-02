@@ -24,7 +24,7 @@
     "description": "The label for category Implementatie in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Elections": {
-    "message": "Elections",
+    "message": "Verkiezingen",
     "description": "The label for category Elections in sidebar tutorialSidebar"
   }
 }
