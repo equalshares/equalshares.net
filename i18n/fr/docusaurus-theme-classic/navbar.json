@@ -28,7 +28,7 @@
     "description": "The alt text of navbar logo"
   },
   "item.label.Elections": {
-    "message": "Elections",
+    "message": "Élections",
     "description": "Navbar item with label Elections"
   }
 }

@@ -20,7 +20,7 @@
     "description": "The label for category Mise en œuvre in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Elections": {
-    "message": "Elections",
+    "message": "Élections",
     "description": "The label for category Elections in sidebar tutorialSidebar"
   }
 }
