@@ -1,0 +1,238 @@
+---
+sidebar_position: 10
+title: Berekening
+---
+
+# Hoe bereken je de resultaten?
+
+<!-- Todo: praten over het gebruik van drijvende komma's of breuken. -->
+
+## Het `pabutools` pakket
+
+Het [`pabutools`](https://github.com/pbvoting/pabutools) pakket is een gratis en open-source Python pakket dat implementaties bevat van verschillende stemregels voor burgerbegroting, waaronder de methode van gelijke aandelen.
+Het is beschikbaar op [GitHub](https://github.com/pbvoting/pabutools).
+Het pakket kan geïnstalleerd worden via [PyPI](https://pypi.org/project/pabutools/) met `pip`:
+
+```bash
+pip install pabutools
+```
+
+Je kunt het pakket gebruiken om een [pabulib](http://pabulib.org/) bestand te lezen en de resultaten van de methode van gelijke aandelen te berekenen als volgt:
+
+```python
+from pabutools.election import parse_pabulib, Cost_Sat
+from pabutools.rules import method_of_equal_shares, exhaustion_by_budget_increase
+instance, profile = parse_pabulib("filename.pb")
+winners = exhaustion_by_budget_increase(
+    instance, 
+    profile, 
+    rule=method_of_equal_shares, 
+    rule_params={'sat_class': Cost_Sat}, 
+    budget_step=len(profile))
+print(winners)
+```
+
+## Codefragmenten
+
+Hier bieden we korte codefragmenten voor het berekenen van de resultaten van de Methode van Gelijke Aandelen in verschillende programmeertalen.
+
+<details>
+<summary>Algemene truc om de berekening te versnellen</summary>
+<div>
+<p>
+Tijdens de berekening moet het algoritme herhaaldelijk de "<a href="../explanation">effectieve stemtelling</a>" van elk project berekenen,
+wat een kostbare stap is. Dit deel kan worden versneld door alleen de effectieve stemtelling opnieuw te berekenen
+als het ertoe doet. 
+</p>
+<p>
+De belangrijkste observatie is dat de effectieve stemtelling <em>alleen kan afnemen</em> naarmate het algoritme vordert.
+Wat we in de implementatie doen, is het volgende:
+we beginnen met het project dat in de vorige ronde de hoogste effectieve stemtelling had.
+We berekenen de effectieve stemtelling van dit project opnieuw.
+Vervolgens vergelijken we zijn nieuwe effectieve stemtelling met de effectieve stemtelling van het project
+met de op één na hoogste effectieve stemtelling in de vorige ronde.
+Als de nieuwe effectieve stemtelling hoger is dan de effectieve stemtelling van het op één na hoogste project,
+dan weten we dat we het project met de hoogste effectieve stemtelling in de huidige ronde hebben gevonden
+(omdat alle andere projecten eerder een lagere effectieve stemtelling hadden, die in de tussentijd
+alleen maar verder kon zijn afgenomen).
+Daarom kunnen we het direct selecteren.
+</p>
+<p>
+Deze optimalisatie wordt gebruikt in alle codefragmenten op deze pagina.
+</p>
+</div>
+</details>
+
+### Python
+
+```python
+def equal_shares_fixed_budget(N, C, cost, u, initial_budget):
+    # u[i,c] = utility of voter i for candidate c
+    budget = {i : initial_budget/len(N) for i in N}
+    committee = []
+    total_utility = {c : sum(u[i,c] for i in N) for c in C}
+    remaining = {c for c in C if cost[c] > 0 and total_utility[c] > 0} # throw away dummy candidates
+    approvers = {c : [i for i in N if u[i,c] > 0] for c in C}
+    previous_rho = {c : cost[c] / total_utility[c] for c in remaining}
+    while True:
+        best = None
+        best_rho = float('inf')
+        for c in sorted(remaining, key=lambda c : previous_rho[c]):
+            if previous_rho[c] > best_rho: # best possible rho for this round still isn't good enough
+                break
+            if sum(budget[i] for i in approvers[c]) < cost[c]: # unaffordable, can delete
+                remaining.remove(c)
+                continue
+            approvers[c].sort(key=lambda i : budget[i] / u[i,c])
+            paid_so_far = 0
+            denominator = total_utility[c]
+            for j in range(len(approvers[c])):
+                rho = (cost[c] - paid_so_far) / denominator
+                if rho * u[approvers[c][j], c] <= budget[approvers[c][j]]:
+                    # found best rho for this candidate
+                    previous_rho[c] = rho
+                    if rho < best_rho:
+                        best_rho = rho
+                        best = c
+                    break
+                paid_so_far += budget[approvers[c][j]]
+                denominator -= u[approvers[c][j],c]
+        if not best:
+            break
+
+        committee.append(best)
+        remaining.remove(best)
+        for i in approvers[best]:
+            budget[i] -= min(budget[i], best_rho * u[i,best])
+
+    return tuple(sorted(committee))
+
+def equal_shares(N, C, cost, u, budget):
+    "Equal Shares with budget completion"
+    committee = equal_shares_fixed_budget(N, C, cost, u, budget)
+    for percent in range(101, 400):
+        new_committee = equal_shares_fixed_budget(N, C, cost, u, budget * percent / 100)
+        if sum(cost[c] for c in new_committee) > budget + 0.001:
+            break
+        committee = new_committee
+    return committee
+```
+
+### Javascript
+
+```javascript
+function sum(xs) {
+    return xs.reduce((a, b) => a + b, 0);
+}
+
+function equal_shares_fixed_budget(N, C, cost, approvers, B) {
+    let budget = {};
+    for (let i of N) {
+        budget[i] = B / N.length;
+    }
+    let remaining = new Map(); // remaining candidate -> previous effective vote count
+    for (let c of C) {
+        if (cost[c] > 0 && approvers[c].length > 0) {
+            remaining.set(c, approvers[c].length);
+        }
+    }
+    let committee = [];
+    while (true) {
+        let best = null;
+        let best_eff_vote_count = 0;
+        let best_max_payment = Infinity;
+        // go through remaining candidates in order of decreasing previous effective vote count
+        let remaining_sorted = [...remaining.keys()];
+        remaining_sorted.sort((a, b) => remaining.get(b) - remaining.get(a));
+        for (let c of remaining_sorted) {
+            let previous_eff_vote_count = remaining.get(c);
+            if (previous_eff_vote_count < best_eff_vote_count) {
+                // c cannot be better than the best so far
+                break;
+            }
+            if (sum(approvers[c].map(i => budget[i])) < cost[c]) {
+                // c is not affordable
+                remaining.delete(c);
+                continue;
+            }
+            // calculate the effective vote count of c, which involves splitting the cost of c as equally as possible among its approvers
+            approvers[c].sort((a, b) => budget[a] - budget[b]);
+            let paid_so_far = 0;
+            let denominator = approvers[c].length; // this will be the number of approvers who can afford the max payment
+            for (let j = 0; j < approvers[c].length; j++) {
+                let i = approvers[c][j];
+                let max_payment = (cost[c] - paid_so_far) / denominator; // payment if remaining approvers pay equally
+                let eff_vote_count = cost[c] / max_payment;
+                if (max_payment > budget[i]) {
+                    // i cannot afford the max payment, so pays entire remaining budget
+                    paid_so_far += budget[i];
+                    denominator -= 1;
+                } else {
+                    // i (and all later approvers) can afford the max payment; stop here
+                    remaining.set(c, eff_vote_count);
+                    if (eff_vote_count > best_eff_vote_count) {
+                        best_eff_vote_count = eff_vote_count;
+                        best_max_payment = max_payment;
+                        best = c;
+                    }
+                    break;
+                }
+            }
+        }
+        if (!best) {
+            break;
+        }
+        committee.push(best);
+        for (let i of approvers[best]) {
+            budget[i] = budget[i] - Math.min(budget[i], best_max_payment);
+        }
+        remaining.delete(best);
+    }
+    return committee;
+}
+
+function equal_shares(N, C, cost, approvers, B) {
+    // Method of Equal Shares with Add1U completion
+    // Input:
+    //   N: list of voters
+    //   C: list of candidates
+    //   cost[c]: cost of candidate c
+    //   approvers[c]: list of voters who approve candidate c
+    //   B: budget
+    // Output:
+    //   committee: list of candidates
+    let mes = equal_shares_fixed_budget(N, C, cost, approvers, B);
+    let budget = B;
+    while (true) {
+        // is current outcome exhaustive?
+        let is_exhaustive = true;
+        for (let extra of C) {
+            if (!mes.includes(extra) && sum(mes.map(c => cost[c])) + cost[extra] <= B) {
+                is_exhaustive = false;
+                break;
+            }
+        }
+        if (is_exhaustive) {
+            break;
+        }
+        // would the next highest budget work?
+        let new_budget = budget + N.length;
+        let next_mes = equal_shares_fixed_budget(N, C, cost, approvers, new_budget);
+        if (sum(next_mes.map(c => cost[c])) <= B) {
+            budget = new_budget;
+            mes = next_mes;
+        } else {
+            break;
+        }
+    }
+    // in case there is remaining budget, add the next most popular projects
+    let sorted_C = [...C];
+    sorted_C.sort((a, b) => approvers[b].length - approvers[a].length);
+    for (let extra of sorted_C) {
+        if (!mes.includes(extra) && sum(mes.map(c => cost[c])) + cost[extra] <= B) {
+            mes.push(extra);
+        }
+    }
+    return mes;
+}
+```

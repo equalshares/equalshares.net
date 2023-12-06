@@ -8,13 +8,16 @@ import 'tippy.js/themes/light.css';
 
 import Translate, {translate} from '@docusaurus/Translate';
 
-export function UniversityLogo({ logo, uniName, link }) {
+export function UniversityLogo({ logo, uniName, link, maxWidth }) {
+  const imgStyle = maxWidth ? { maxWidth: maxWidth } : {};
+
   return (
     <Tippy content={<span><b>{uniName}</b><br/><Translate id="homepage.universityLogoTooltipContact">Contact:</Translate> {link}</span>} interactive theme='light' animation='none' duration={[300,0]}>
       <img
         src={require('@site/static/img/'+logo).default}
         alt={`Logo: ${uniName}`}
         id={`logo-${uniName}`}
+        style={imgStyle}
         />
     </Tippy>
   );

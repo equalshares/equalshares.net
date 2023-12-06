@@ -1,0 +1,109 @@
+import Link from '@docusaurus/Link';
+import styles from '@site/src/pages/index.module.css';
+import { UniversityLogo, BallotExampleOption } from '@site/src/components/HomepageComponents';
+import { CurrencySymbol } from '@site/src/components/CurrencyChoice';
+import Sankey from '@site/src/components/Sankey';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<section className={styles.universityLogos}>
+    <p>ontwikkeld en bestudeerd door onderzoekers aan universiteiten over de hele wereld</p>
+    <div className={styles.logoList}>
+        <UniversityLogo logo="logo-warsaw-en.svg" uniName="University of Warsaw" link={<a href="https://www.mimuw.edu.pl/~ps219737/">Piotr Skowron</a>} />
+        <UniversityLogo logo="logo-cnrs.svg" uniName="CNRS, France" link={<a href="http://dominik-peters.de/">Dominik Peters</a>} />
+        <UniversityLogo logo="logo-groningen.svg" uniName="Rijksuniversiteit Groningen" link={<a href="https://davidegrossi.me/">Davide Grossi</a>} maxWidth="9.3em" />
+        <UniversityLogo logo="logo-amsterdam-nl.svg" uniName="Universiteit van 'Amsterdam" link={<a href="https://simonrey.fr/">Simon Rey</a>} maxWidth="8em" />
+        <UniversityLogo logo="logo-agh.svg" uniName="AGH University of Science and Technology, Kraków" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
+        <UniversityLogo logo="logo-eth.svg" uniName="ETH Zurich" link={<a href="https://democracy.dsi.uzh.ch/member/joshua-yang/">Joshua Yang</a>} />
+        <UniversityLogo logo="logo-tu-berlin.svg" uniName="TU Berlin" link={<a href="https://sites.google.com/view/jannikpeters">Jannik Peters</a>} />
+    </div>
+</section>
+
+<section className={[styles.contentSection, styles.cities2023].join(' ')}>
+  <h2><span>Methode van Gelijke Aandelen in steden in 2023</span></h2>
+  <div className={styles.columns}>
+    <div>
+      <a href="https://www.stadtidee.aarau.ch/"><img src={useBaseUrl('/img/aarau.jpg')} width="100" height="100" /></a>
+      <a href="https://www.stadtidee.aarau.ch/">🇨🇭 Aarau "Stadtidee"</a>
+    </div>
+    <div>
+      <a href="https://zb.wieliczka.eu/budzet-obywatelski"><img src={useBaseUrl('/img/wielieczka.jpg')} width="100" height="100" /></a>
+      <a href="https://zb.wieliczka.eu/budzet-obywatelski">🇵🇱 Wieliczka "Green Million"</a>
+    </div>
+  </div>
+</section>
+
+<section className={styles.contentSectionFlex}>
+  <div className={styles.ballotExplanation}>
+    Veel steden gebruiken een <strong style={{color: 'var(--ifm-color-primary)'}}>Burgerbegroting</strong> om inwoners inspraak te geven in hoe openbaar geld wordt uitgegeven.
+    Het stadsbestuur reserveert een deel van haar begroting,
+    laat iedereen projectvoorstellen indienen en houdt vervolgens
+    een verkiezing om te beslissen welke projecten worden gefinancierd.
+    
+    Stemmen is een geweldige manier om veel burgers te betrekken bij de begrotingsbeslissing.
+    De uitkomst van de verkiezing is echter niet altijd eerlijk.
+    Omdat veel steden simpelweg de projecten kiezen met de meeste stemmen,
+    wordt het budget vaak uitgegeven aan verschillende soortgelijke projecten die populair zijn bij
+    dezelfde meerderheidsgroep van kiezers.
+    
+    Er is een stemsysteem dat leidt tot eerlijkere uitkomsten, waarbij elke kiezer een gelijke invloed heeft op de
+    verkiezingsuitslag:
+    <br />De <strong style={{color: 'var(--ifm-color-primary)'}}>Methode van Gelijke Aandelen</strong>.
+  </div>
+  <div className={styles.approvalBallotExample}>
+      <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; PB Stemformulier &mdash;</span>
+      <span>Beschikbaar budget: <CurrencySymbol/>3 000 000</span>
+      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Stem op maximaal 8 projecten</span>
+      <BallotExampleOption selected>Uitbreiding van de Openbare Bibliotheek <br /> Kosten: <CurrencySymbol/>200 000</BallotExampleOption>
+      <BallotExampleOption>Fietsenrekken op de Hoofdstraat <br /> Kosten: <CurrencySymbol/>70 000</BallotExampleOption>
+      <BallotExampleOption selected>Sportuitrusting in het Park <br /> Kosten: <CurrencySymbol/>50 000</BallotExampleOption>
+      <BallotExampleOption selected>Extra Openbare Toiletten <br /> Kosten: <CurrencySymbol/>600 000</BallotExampleOption>
+      <BallotExampleOption>Gratis Taalcursussen <br /> Kosten: <CurrencySymbol/>100 000</BallotExampleOption>
+      <BallotExampleOption>Toegankelijkheid van het Stadhuis verbeteren <br /> Kosten: <CurrencySymbol/>800 000</BallotExampleOption>
+      <BallotExampleOption>Renovatie Fontein op de Markt <br /> Kosten: <CurrencySymbol/>65 000</BallotExampleOption>
+  </div>
+</section>
+
+<section className={styles.contentSection}>
+  <h2>Het Belangrijkste Idee</h2>
+  Het basisidee van de Methode van Gelijke Aandelen is dat elke kiezer een gelijk deel van de begroting krijgt toegewezen.
+  Dit deel van de begroting kan alleen worden gebruikt om projecten te financieren waarvoor de kiezer heeft gestemd.
+  De methode bekijkt alle projectvoorstellen, beginnend met de projecten met het hoogste aantal stemmen.
+  Het kiest een project als het gefinancierd kan worden met de budgetaandelen van degenen die voor het project hebben gestemd.
+  De methode verdeelt de kosten van een project gelijkmatig onder zijn ondersteuners.
+  <div className={styles.sankeyImage}>
+      <div className={styles.sankeyContainer}>
+        <Sankey />
+      </div>
+  </div>
+  Vanuit het perspectief van de kiezers blijft de stemervaring ongewijzigd: ze hoeven alleen maar een stembiljet in te vullen
+  en te selecteren voor welke projecten ze willen stemmen. De uitkomst van de Methode van Gelijke Aandelen wordt vervolgens berekend
+  door de stad (met behulp van een van de open-source-implementaties van de regel), om zo te zorgen dat het budget eerlijk wordt besteed.
+</section>
+
+<section className={styles.contentSection}>
+  <h2>Wat U op Deze Website Kunt Vinden</h2>
+  <div className={styles.columns}>
+    <div>
+      <Link to="explanation"><img src={useBaseUrl('/img/fund.svg')}/></Link>
+      <Link to="explanation"><strong>Uitleg</strong></Link>
+      <Link to="explanation"><span>Een gedetailleerde uitleg, met voorbeelden, van hoe de Methode van Gelijke Aandelen werkt.</span></Link>
+    </div>
+    <div>
+      <Link to="benefits"><img src={useBaseUrl('/img/growth.svg')}/></Link>
+      <Link to="benefits"><strong>Voordelen</strong></Link>
+      <Link to="benefits"><span>Argumenten dat de Methode van Gelijke Aandelen leidt tot betere resultaten dan andere regels.</span></Link>
+    </div>
+    <div>
+      <Link to="implementation"><img src={useBaseUrl('/img/clipboard.svg')}/></Link>
+      <Link to="implementation"><strong>Implementatie</strong></Link>
+      <Link to="implementation"><span>Details en advies over hoe een verkiezing uit te voeren met de Methode van Gelijke Aandelen.</span></Link>
+    </div>
+  </div>
+</section>
+
+<section className={styles.contentSection}>
+  <h2>Over Deze Website</h2>
+  <p style={{ fontSize: '1.2em' }}>Deze website werd <Link to="contacts">gebouwd en wordt onderhouden door Dominik Peters (CNRS, Université Paris Dauphine-PSL) en Piotr Skowron (Universiteit van Warschau)</Link>.
+      Het doel is om middelen te verzamelen over de Methode van Gelijke Aandelen en een uitleg van de methode te bieden aan geïnteresseerde leden van het publiek,
+      aan stadsbestuurders en aan onderzoekers.</p>
+</section>

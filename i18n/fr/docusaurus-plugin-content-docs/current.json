@@ -18,5 +18,9 @@
   "sidebar.tutorialSidebar.category.Mise en œuvre": {
     "message": "Mise en œuvre",
     "description": "The label for category Mise en œuvre in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Elections": {
+    "message": "Élections",
+    "description": "The label for category Elections in sidebar tutorialSidebar"
   }
 }

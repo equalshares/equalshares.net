@@ -1,0 +1,229 @@
+---
+sidebar_position: 1
+title: Hogere en meer gelijke kiezerstevredenheid
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
+
+# Hogere en meer gelijke kiezerstevredenheid
+
+<div class="summary">
+<b>Samenvatting</b>:
+Volledige stemgegevens van burgerbegroting-verkiezingen in Warschau zijn openbaar beschikbaar, en we kunnen deze gebruiken om de verkiezingsuitslag te simuleren volgens de Methode van Gelijke Aandelen.
+We analyseren hoeveel projecten een gemiddelde kiezer goedkeurt in de verkiezingsuitslag en ontdekken dat dit aantal aanzienlijk hoger is met de Methode van Gelijke Aandelen dan met de daadwerkelijke uitslag.
+We vinden ook dat met de Methode van Gelijke Aandelen een groter deel van de kiezers tenminste één van de winnende projecten goedkeurt.
+Anderzijds ziet een gemiddelde kiezer iets minder financiering gaan naar de projecten waarvoor de kiezer heeft gestemd.
+</div>
+
+Bij het simuleren van de verkiezingsuitslagen in de burgerbegroting-verkiezingen van verschillende grote steden ontdekten we dat de kiezerstevredenheid zou toenemen bij het overschakelen naar de Methode van Gelijke Aandelen. Belangrijker nog, we vonden dat de tevredenheid gelijkmatiger is verdeeld onder de kiezers, en de minst tevreden kiezers zien aanzienlijk meer uitgaven aan hun voorkeursprojecten met de Methode van Gelijke Aandelen.
+
+Op deze pagina presenteren we de resultaten van een simulatie op verkiezingsgegevens van burgerbegroting-verkiezingen in Warschau, afkomstig van de [Pabulib bibliotheek](http://pabulib.org/). In de simulaties berekenen we wat de verkiezingsuitslag zou zijn geweest als Warschau de Methode van Gelijke Aandelen had gebruikt. We vergelijken deze uitslag met de daadwerkelijke verkiezingsuitslag, die wordt verkregen door simpelweg de projecten te selecteren met het hoogste aantal stemmen tot het budget op is.
+
+Onze conclusies zijn als volgt:
+
+* **Kiezers keuren gemiddeld meer winnende projecten goed.** In Warschau mogen kiezers stemmen op maximaal 10 projecten. In de daadwerkelijke uitslag keurden kiezers gemiddeld 4,5 van de winnende projecten goed, terwijl met de Methode van Gelijke Aandelen kiezers gemiddeld 6 van de winnende projecten goedkeurden. [[meer]](#meer-goedgekeurde-projecten)
+* **Meer kiezers hebben voor tenminste één van de winnende projecten gestemd.** In de daadwerkelijke uitslag stemde 87% van de kiezers voor tenminste één van de winnende projecten, terwijl met de Methode van Gelijke Aandelen 93% van de kiezers voor tenminste één van de winnende projecten stemde. [[meer]](#meer-tevreden-kiezers)
+* **Voor een gemiddelde kiezer wordt iets minder geld uitgegeven aan goedgekeurde projecten.** In de daadwerkelijke uitslag in 2022 keurde de gemiddelde kiezer projecten goed die in totaal 27% van het budget ontvingen, terwijl met de Methode van Gelijke Aandelen de gemiddelde kiezer projecten goedkeurde die 24% van het budget in totaal ontvingen. Dus op deze maatstaf doet de Methode van Gelijke Aandelen het iets slechter dan de daadwerkelijke uitslag. [[meer]](#minder-goedgekeurde-uitgaven)
+* **Kiezerstevredenheid is gelijkmatiger verdeeld.** Wanneer de standaard stemmethode wordt gebruikt, zijn sommige kiezers zeer tevreden en anderen krijgen 0 goedgekeurde projecten in de uitslag. In tegenstelling hiermee geeft de Methode van Gelijke Aandelen meer kiezers een gemiddeld tevredenheidsniveau waarbij ze tevreden zijn met tussen de 10% en 40% van de uitgaven. [[meer]](#gelijke-verdeling)
+
+## Kiezers keuren gemiddeld meer winnende projecten goed {#meer-goedgekeurde-projecten}
+
+Een natuurlijke manier om te meten hoe tevreden kiezers zijn met een verkiezingsuitslag is om te tellen voor hoeveel projecten in de uitslag een gemiddelde kiezer heeft gestemd.
+In Warschau stemt elke kiezer in 1 district en kan tot 10 projecten goedkeuren.
+Gemiddeld over alle districten en over de jaren 2020-22, ontdekten we dat de gemiddelde kiezer ongeveer 4,5 van de winnende projecten in de daadwerkelijke uitslag goedkeurt.
+Met de Methode van Gelijke Aandelen keurt de gemiddelde kiezer 6 van de winnende projecten goed, een aanzienlijke toename van 33%.
+
+Er is niet één district waar het gemiddelde aantal lager is volgens de Methode van Gelijke Aandelen.
+Aan de andere kant zijn er verschillende voorbeelden van districten waar het gemiddelde aantal goedgekeurde projecten bijna verdrievoudigde.
+Een onderliggende reden hiervoor is dat de Methode van Gelijke Aandelen de neiging heeft om meer projecten in het algemeen te selecteren, terwijl de standaard methode die momenteel in Warschau wordt gebruikt slechts een paar, zeer dure, projecten selecteert.
+
+Op de onderstaande kaarten laten we voor elk district het gemiddelde aantal goedgekeurde projecten zien voor de verkiezing in dat district.
+De derde kaart toont het procentuele verschil. Bijvoorbeeld, +85% betekent dat het gemiddelde aantal goedgekeurde projecten volgens de Methode van Gelijke Aandelen 1,85 keer het aantal volgens de daadwerkelijke uitslag is.
+
+<Tabs className="maps-tabs" groupId="years">
+    <TabItem value="2022" default>
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/number_approved_difference-2022.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2021">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/number_approved_difference-2021.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2020">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/number_approved_difference-2020.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+</Tabs>
+
+## Meer kiezers hebben voor ten minste één van de winnende projecten gestemd {#more-happy-voters}
+
+Eén van de doelen van de burgerbegroting is om een breed segment van de bevolking invloed te geven op begrotingsbeslissingen. Daarom is het wenselijk om een stemmethode te gebruiken waarbij een groot deel van de bevolking wordt vertegenwoordigd in de uitslag. Een minimale vereiste zou zijn dat voor een groot deel van de kiezers er ten minste één winnend project is waarop de kiezer heeft gestemd. Dit is ook wenselijk om een hoge deelname te krijgen: als een kiezer voor veel projecten stemt maar geen van hen wint, kan de kiezer ontmoedigd raken en voelen dat zijn/haar stem verspild was.
+
+In onze simulatie vinden we dat onder de Methode van Gelijke Aandelen een groter deel van de kiezers ten minste één winnend project krijgt van de projecten waarvoor ze hebben gestemd. Gemiddeld (over de jaren en districten) krijgt 93% van de kiezers ten minste één winnend project onder de Methode van Gelijke Aandelen, vergeleken met slechts 86% onder de werkelijke uitkomst. In sommige districten is het verschil erg groot: bijvoorbeeld in Bielany in 2022 krijgt 94% van de kiezers ten minste één winnend project onder de Methode van Gelijke Aandelen, vergeleken met slechts 80% onder de werkelijke uitkomst. In een klein aantal gevallen is het percentage kiezers met ten minste één winnend project lager onder de Methode van Gelijke Aandelen, maar met hoogstens 1 procentpunt.
+
+Op de kaarten hieronder tonen we voor elk district het percentage kiezers dat ten minste één winnend project krijgt van de projecten waarvoor ze hebben gestemd (als percentage).
+Op de "verschil"-kaart tonen we het verschil als een aantal procentpunten. Een positief getal duidt op een hoger percentage onder de Methode van Gelijke Aandelen en een negatief getal duidt op een lager percentage.
+
+<Tabs className="maps-tabs" groupId="years">
+    <TabItem value="2022" default>
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2022.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2021">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2021.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2020">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2020.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+</Tabs>
+
+## Voor een gemiddelde kiezer wordt iets minder geld besteed aan goedgekeurde projecten {#less-approved-spending}
+
+Hierboven zagen we dat onder de Methode van Gelijke Aandelen kiezers gemiddeld een groter aantal projecten in de uitslag goedkeuren.
+Een alternatieve manier om kiezerstevredenheid te meten, is kijken naar het totale bedrag dat wordt uitgegeven aan goedgekeurde projecten.
+Deze twee metingen kunnen verschillen, omdat een kiezer slechts 1 goedgekeurd project kan krijgen dat zeer groot en duur is,
+of veel kleine en goedkope projecten.
+
+In deze sectie berekenen we het percentage van het totale budget dat wordt besteed aan goedgekeurde projecten voor een gemiddelde kiezer.
+We vinden dat onder de Methode van Gelijke Aandelen iets minder geld wordt besteed aan goedgekeurde projecten voor een gemiddelde kiezer, meestal 3-4 procentpunten minder.
+Gemiddeld over de jaren en districten zien kiezers 27% van het budget besteed aan goedgekeurde projecten onder de werkelijke uitkomst, vergeleken met 24% onder de Methode van Gelijke Aandelen.
+
+De reden dat de Methode van Gelijke Aandelen niet zo goed presteert als de werkelijke uitkomst, is dat de standaard stemmethode kan worden gezien als een optimalisatie-algoritme dat een uitkomst selecteert die deze maat maximaliseert. Daarom moet elke andere uitkomst slechter zijn dan de werkelijke uitkomst. Bemoedigend is dat dit verschil niet erg groot is en de Methode van Gelijke Aandelen nog steeds goed presteert.
+
+<Tabs className="maps-tabs" groupId="years">
+    <TabItem value="2022" default>
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/spending_real_outcome-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/spending_equal_shares-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/spending_difference-2022.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2021">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/spending_real_outcome-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/spending_equal_shares-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/spending_difference-2021.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2020">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Daadwerkelijke Uitslag</span>
+                <img src={useBaseUrl('/img/maps/spending_real_outcome-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Methode van Gelijke Aandelen</span>
+                <img src={useBaseUrl('/img/maps/spending_equal_shares-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Verschil</span>
+                <img src={useBaseUrl('/img/maps/spending_difference-2020.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+</Tabs>
+
+## Kiezerstevredenheid is gelijkmatiger verdeeld {#equal-distribution}
+
+Hierboven zagen we dat in de werkelijke verkiezingsuitslag een gemiddelde kiezer iets meer uitgaven ziet aan goedgekeurde projecten vergeleken met de Methode van Gelijke Aandelen.
+Dit geldt echter niet voor alle kiezers: in de werkelijke uitkomst hebben sommige kiezers veel meer tevredenheid en anderen veel minder. Hiermee bedoelen we dat er meer kiezers zijn met zeer weinig uitgaven aan hun goedgekeurde projecten, en meer kiezers met zeer hoge uitgaven aan hun goedgekeurde projecten. Daarentegen is onder de Methode van Gelijke Aandelen de verdeling van uitgaven aan goedgekeurde projecten gelijkmatiger, en in het bijzonder zijn er meer kiezers die een gematigd bedrag zien uitgegeven aan hun goedgekeurde projecten.
+
+Dit fenomeen is te zien in de volgende grafiek. De grafiek laat bijvoorbeeld zien dat in de werkelijke uitkomst ongeveer 7 000 kiezers zien dat 20% van het budget naar door hen goedgekeurde projecten gaat. Onder de Methode van Gelijke Aandelen is dit aantal ongeveer 9 000 kiezers. Voor het gehele bereik tussen 5% en 40% van het budget dat naar goedgekeurde projecten gaat, heeft de Methode van Gelijke Aandelen meer kiezers op dat niveau dan de werkelijke uitkomst.
+
+<Datawrapper src="//datawrapper.dwcdn.net/0uQYY/3/" />

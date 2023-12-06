@@ -1,0 +1,49 @@
+.codeSnippetOptions > details {
+    --ifm-alert-background-color: hsl(220, 30%, 98%);
+    --docusaurus-details-decoration-color: hsl(220, 20%, 66%);
+    --ifm-alert-foreground-color: var(--ifm-color-info-contrast-foreground);
+    --ifm-alert-border-color: hsl(220, 50%, 66%);
+}
+
+.codeSnippetLabel {
+    display: block;
+}
+
+.codeSnippetLabel > input[type="radio"] {
+    margin-right: 5px;
+}
+
+.subOptionLabel {
+    display: block;
+    margin-left: 20px;
+}
+
+.subOptionLabel > input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.ComputeToolButton {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: #fff;
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.15);
+    background: var(--ifm-color-primary);
+    margin-top: -0.7rem;
+    margin-bottom: 1rem;
+}
+
+.ComputeToolButton:hover {
+    background: var(--ifm-color-primary-dark);
+    text-decoration: none;
+    color: #fff;
+}
+
+.ComputeToolButton:active {
+    background: var(--ifm-color-primary-dark);
+    text-decoration: none;
+    color: #fff;
+    transform: translateY(0.1rem);
+}

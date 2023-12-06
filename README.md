@@ -7,6 +7,7 @@ It is being developed and translated by:
 * [Dominik Peters](http://dominik-peters.de/) who is the main developer and did the translation to German.
 * [Piotr Skowron](https://www.mimuw.edu.pl/~ps219737/) who contributed to the content and did the translation to Polish.
 * [Simon Rey](https://simonrey.fr/) who is translating to French.
+* [Davide Grossi](https://davidegrossi.me/) and [Maaike Los](https://research.rug.nl/en/persons/maaike-venema-los) who are translating to Dutch.
 
 ## Development
 

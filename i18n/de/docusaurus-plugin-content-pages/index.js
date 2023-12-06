@@ -11,7 +11,7 @@ import HomepageContents from '@site/i18n/de/docusaurus-plugin-content-docs/curre
 export default function Home() {
   return (
     <Layout
-    description="Die Methode der gleichen Anteileist eine fairere Wahlmethode für partizipative Bürgerbudgets.">
+    description="Die Methode der gleichen Anteile ist eine fairere Wahlmethode für partizipative Bürgerbudgets.">
     <Head>
       <title>Methode der gleichen Anteile für Bürgerbudgets</title>
       <meta name="twitter:title" content="Methode der gleichen Anteile für Bürgerbudgets" />

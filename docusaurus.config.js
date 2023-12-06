@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 const math = require('remark-math');
 const katex = require('rehype-katex');
@@ -29,7 +29,7 @@ const config = {
   favicon: 'img/favicon.svg',
 
   customFields: {
-    currencySymbol: {en: '€', de: 'Fr. ', pl: 'zł', fr: '€'},
+    currencySymbol: {en: '€', de: 'Fr. ', pl: 'zł', fr: '€', nl: '€'},
     buildDate: isoDay,
   },
 
@@ -43,7 +43,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['de', 'en', 'pl', 'fr']
+    locales: ['de', 'en', 'pl', 'fr'] //, 'nl']
   },
 
   presets: [
@@ -91,9 +91,9 @@ const config = {
             label: 'Implementation',
           },
           {
-            to: 'resources',
+            to: 'elections',
             position: 'left',
-            label: 'Resources',
+            label: 'Elections',
           },
           {
             to: 'contacts',
@@ -139,8 +139,8 @@ const config = {
           {
           items: [
             {
-              to: 'resources',
-              label: 'Resources',
+              to: 'elections',
+              label: 'Elections',
             },
             {
               to: 'contacts',
@@ -178,7 +178,18 @@ const config = {
     //     crossorigin: 'anonymous',
     //   },
     // ],
-    plugins : [
+    plugins: [
+      [
+        '@docusaurus/plugin-client-redirects',
+        {
+          redirects: [
+            {
+              from: '/resources/zielony-milion',
+              to: '/elections/zielony-milion',
+            },
+          ]
+        }
+      ],
       async function faviconInjector(context, options) {
         return {
           name: 'favicon-injector', // needed because Safari on iOS doesn't support SVG favicons

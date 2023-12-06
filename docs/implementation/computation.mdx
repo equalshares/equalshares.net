@@ -3,53 +3,101 @@ sidebar_position: 10
 title: Computation
 ---
 
-import DWChart from 'react-datawrapper-chart';
+import { CustomCodeSnippetGenerator, ComputeToolButton} from '@site/src/components/CodeSnippet';
 
 # How to compute the results?
 
-<!-- Todo: talk about using floats or fractions. -->
+## Online computation tool
+
+We provide an **online tool** for computing the results of the Method of Equal Shares. 
+It is available at [https://equalshares.net/tools/compute](https://equalshares.net/tools/compute).
+The tool is free to use and does not require any registration or installation.
+
+<ComputeToolButton>Open the online computation tool &rarr;</ComputeToolButton>
+
+The tool allows the user to upload a data file containing all the votes using the standard `.pb` format from [pabulib](http://pabulib.org/).
+It then computes the results of the Method of Equal Shares and displays them in a table, and also displays some additional statistics and information.
+The tool supports all standard variants of the Method of Equal Shares.
+
+No data is sent to any server; all computation is done locally in the user's browser. 
+Users can disconnect from the internet after loading the page, and the tool will continue to work.
+
+The tool only supports approval voting.
+
+<details>
+<summary>About the <code>.pb</code> file format</summary>
+<div>
+<p>
+The <code>.pb</code> file format is a standard format for storing participatory budgeting data.
+It is used by the <a href="http://pabulib.org/">pabulib</a> library.
+The format is a simple text format that can be edited with any text editor.
+It contains information about the election instance (e.g. the location, date, and budget of the election),
+about the projects (e.g. their names and costs), and about the votes (e.g. which projects each voter supports). 
+</p>
+<p>
+Here is a small example of a <code>.pb</code> file:
+</p>
+
+```
+META
+key;value
+description;Example election
+num_projects;3
+num_votes;4
+budget;100000
+vote_type;approval
+PROJECTS
+project_id;name;cost
+1;Project 1;5000
+2;Project 2;10000
+3;Project 3;85000
+VOTES
+voter_id;vote
+1;1,2
+2;1
+3;3
+4;1,2,3
+```
+</div>
+</details>
+
+
 
 ## The `pabutools` package
 
-The [`pabutools`](https://github.com/Grzesiek3713/pabutools) package is a free and open-source Python package that contains implementations of several voting rules for participatory budgeting, including the Method of Equal Shares. 
-It is available on [GitHub](https://github.com/Grzesiek3713/pabutools). 
+The [`pabutools`](https://github.com/pbvoting/pabutools) package is a free and open-source Python package that contains implementations of several voting rules for participatory budgeting, including the Method of Equal Shares.
+It is available on [GitHub](https://github.com/pbvoting/pabutools).
 The package can be installed via [PyPI](https://pypi.org/project/pabutools/) using `pip`:
 
 ```bash
 pip install pabutools
 ```
 
-## Code snippets
+You can use the package to read a [pabulib](http://pabulib.org/) file and compute the results of the Method of Equal Shares as follows:
 
-Here, we provide short code snippets for computing the results of the Method of Equal Shares in several programming languages.
+```python
+from pabutools.election import parse_pabulib, Cost_Sat
+from pabutools.rules import method_of_equal_shares
+instance, profile = parse_pabulib("filename.pb")
+winners = method_of_equal_shares(
+    instance,
+    profile.as_multiprofile(),
+    sat_class=Cost_Sat,
+    voter_budget_increment=1 # use the completion method Add1
+)
+print(winners)
+```
 
-<details>
-<summary>General trick to speed up the computation</summary>
-<div>
-<p>
-During the computation, the algorithm needs to repeatedly compute the "<a href="../explanation">effective vote count</a>" of each project,
-which is an expensive step. This part can be sped up by only recalculating the effective vote count
-if it matters. 
-</p>
-<p>
-The main observation is that the effective vote count <em>can only decrease</em> as the algorithm proceeds.
-What we do in the implementation is the following:
-we start with the project which had the highest effective vote count in the previous round.
-We re-calculate the effective vote count of this project.
-Then we compare its new effective vote count with the effective vote count of the project
-with the second-highest effective vote count in the previous round.
-If the new effective vote count is higher than the effective vote count of the second-highest project,
-then we know that we have found the project with the highest effective vote count in the current round
-(because all the other projects previously had a lower effective vote count, which in the mean
-time could only have decreased even further).
-Thus, we can immediately select it.
-</p>
-<p>
-This optimization is used in all the code snippets on this page.
-</p>
-</div>
-</details>
+More details are available in the [package documentation](https://pbvoting.github.io/pabutools/usage.html#method-of-equal-shares-mes).
 
+## Code generator
+
+Here, we provide short code snippets for computing the results of the Method of Equal Shares using Python or JavaScript.
+You can select the specific variant of the method that you wish to implement.
+
+<CustomCodeSnippetGenerator />
+
+<!--
 ### Python
 
 ```python
@@ -109,68 +157,168 @@ def equal_shares(N, C, cost, u, budget):
 
 ```javascript
 function sum(xs) {
-    return xs.reduce((a, b) => a + b);
+    return xs.reduce((a, b) => a + b, 0);
 }
 
-function equal_shares_utility_based(N, C, cost, u, B) {
-    let budget = new Map();
+function equal_shares_fixed_budget(N, C, cost, approvers, B) {
+    let budget = {};
     for (let i of N) {
-        budget.set(i, B / N.length);
+        budget[i] = B / N.length;
     }
-    let remaining = new Map();
+    let remaining = new Map(); // remaining candidate -> previous effective vote count
     for (let c of C) {
-        let total_utility = sum(N.map(i => u[i][c]));
-        if (cost[c] > 0 && total_utility > 0) {
-            let info = {
-                total_utility: total_utility,
-                approvers: N.filter(i => u[i][c] > 0),
-                previous_rho: cost[c] / total_utility,
-            };
-            remaining.set(c, info);
+        if (cost[c] > 0 && approvers[c].length > 0) {
+            remaining.set(c, approvers[c].length);
         }
     }
     let committee = [];
     while (true) {
         let best = null;
-        let best_rho = Infinity;
+        let best_eff_vote_count = 0;
+        let best_max_payment = Infinity;
+        // go through remaining candidates in order of decreasing previous effective vote count
         let remaining_sorted = [...remaining.keys()];
-        remaining_sorted.sort((a, b) => remaining.get(a).previous_rho - remaining.get(b).previous_rho);
+        remaining_sorted.sort((a, b) => remaining.get(b) - remaining.get(a));
         for (let c of remaining_sorted) {
-            let info = remaining.get(c);
-            if (info.previous_rho > best_rho) {
+            let previous_eff_vote_count = remaining.get(c);
+            if (previous_eff_vote_count < best_eff_vote_count) {
+                // c cannot be better than the best so far
                 break;
             }
-            if (sum(info.approvers.map(i => budget.get(i))) < cost[c]) {
+            if (sum(approvers[c].map(i => budget[i])) < cost[c]) {
+                // c is not affordable
                 remaining.delete(c);
                 continue;
             }
-            info.approvers.sort((a, b) => budget.get(a) / u[a][c] - budget.get(b) / u[b][c]);
+            // calculate the effective vote count of c, which involves splitting the cost of c as equally as possible among its approvers
+            approvers[c].sort((a, b) => budget[a] - budget[b]);
             let paid_so_far = 0;
-            let denominator = info.total_utility;
-            for (let j = 0; j < info.approvers.length; j++) {
-                let i = info.approvers[j];
-                let rho = (cost[c] - paid_so_far) / denominator;
-                if (rho * u[i][c] <= budget.get(i)) {
-                    info.previous_rho = rho;
-                    if (rho < best_rho) {
-                        best_rho = rho;
+            let denominator = approvers[c].length; // this will be the number of approvers who can afford the max payment
+            for (let j = 0; j < approvers[c].length; j++) {
+                let i = approvers[c][j];
+                let max_payment = (cost[c] - paid_so_far) / denominator; // payment if remaining approvers pay equally
+                let eff_vote_count = cost[c] / max_payment;
+                if (max_payment > budget[i]) {
+                    // i cannot afford the max payment, so pays entire remaining budget
+                    paid_so_far += budget[i];
+                    denominator -= 1;
+                } else {
+                    // i (and all later approvers) can afford the max payment; stop here
+                    remaining.set(c, eff_vote_count);
+                    if (eff_vote_count > best_eff_vote_count) {
+                        best_eff_vote_count = eff_vote_count;
+                        best_max_payment = max_payment;
                         best = c;
                     }
                     break;
                 }
-                paid_so_far += budget.get(i);
-                denominator -= u[i][c];
             }
         }
         if (!best) {
             break;
         }
         committee.push(best);
-        for (let i of remaining.get(best).approvers) {
-            budget.set(i, budget.get(i) - Math.min(budget.get(i), best_rho * u[i][best]));
+        for (let i of approvers[best]) {
+            budget[i] = budget[i] - Math.min(budget[i], best_max_payment);
         }
         remaining.delete(best);
     }
     return committee;
 }
+
+function equal_shares(N, C, cost, approvers, B) {
+    // Method of Equal Shares with Add1U completion
+    // Input:
+    //   N: list of voters
+    //   C: list of candidates
+    //   cost[c]: cost of candidate c
+    //   approvers[c]: list of voters who approve candidate c
+    //   B: budget
+    // Output:
+    //   committee: list of candidates
+    let mes = equal_shares_fixed_budget(N, C, cost, approvers, B);
+    let budget = B;
+    while (true) {
+        // is current outcome exhaustive?
+        let is_exhaustive = true;
+        for (let extra of C) {
+            if (!mes.includes(extra) && sum(mes.map(c => cost[c])) + cost[extra] <= B) {
+                is_exhaustive = false;
+                break;
+            }
+        }
+        if (is_exhaustive) {
+            break;
+        }
+        // would the next highest budget work?
+        let new_budget = budget + N.length;
+        let next_mes = equal_shares_fixed_budget(N, C, cost, approvers, new_budget);
+        if (sum(next_mes.map(c => cost[c])) <= B) {
+            budget = new_budget;
+            mes = next_mes;
+        } else {
+            break;
+        }
+    }
+    // in case there is remaining budget, add the next most popular projects
+    let sorted_C = [...C];
+    sorted_C.sort((a, b) => approvers[b].length - approvers[a].length);
+    for (let extra of sorted_C) {
+        if (!mes.includes(extra) && sum(mes.map(c => cost[c])) + cost[extra] <= B) {
+            mes.push(extra);
+        }
+    }
+    return mes;
+}
 ```
+-->
+
+## General considerations
+
+<details>
+<summary>Algorithmic trick to speed up the computation</summary>
+<div>
+<p>
+During the computation, the algorithm needs to repeatedly compute the "<a href="../explanation">effective vote count</a>" of each project,
+which is an expensive step. This part can be sped up by only recalculating the effective vote count
+if it matters. 
+</p>
+<p>
+The main observation is that the effective vote count <em>can only decrease</em> as the algorithm proceeds.
+What we do in the implementation is the following:
+we start with the project which had the highest effective vote count in the previous round.
+We re-calculate the effective vote count of this project.
+Then we compare its new effective vote count with the effective vote count of the project
+with the second-highest effective vote count in the previous round.
+If the new effective vote count is higher than the effective vote count of the second-highest project,
+then we know that we have found the project with the highest effective vote count in the current round
+(because all the other projects previously had a lower effective vote count, which in the mean
+time could only have decreased even further).
+Thus, we can immediately select it.
+</p>
+<p>
+This optimization is used in all the code snippets on this page.
+</p>
+</div>
+</details>
+
+### Numerical accuracy: using floats or fractions?
+
+When computing the winners of an election that uses the Method of Equal Shares, we need to perform some calculations that involve fractions.
+For example, we need to divide the cost of a project by the number of its supporters to find out how much each supporter should contribute to the project.
+Computers typically represent numbers using "floating-point numbers", which are not exact representations of real numbers (for example, 1/3 cannot be represented exactly as a floating-point number because it has an infinite decimal expansion).
+This means that if we use floating-point numbers, we may get inexact results in some (rare) cases.
+In particular, when there is a tie (i.e. two projects have the same effective vote count), the floating-point implementation may assign a slightly different effective vote count to each project, and thus may select a different winner than the exact implementation.
+
+To avoid this problem, we can use a rational number implementation, which represents numbers as fractions of integers.
+Such implementations are typically slower (by about 4-10x) than floating-point implementations, but they are exact.
+The code generator above allows you to choose between a floating-point implementation and a rational number implementation.
+We recommend using the rational number implementation if you are computing official results, and using the floating-point implementation if you are just doing a quick test.
+The `pabutools` package uses the rational number implementation by default.
+
+### Comparison to academic literature
+
+In the academic literature, the Method of Equal Shares is often mathematically defined in such a way that it tends to select projects in order of decreasing cost-effectiveness (i.e. vote count divided by cost).
+In contrast, the method as described on this website tends to select projects in order of decreasing vote count.
+In the formal literature, this version of the method is sometimes referred to as using "cost utilities", because the version we are discussing here can be seen as using the cost of a project as a proxy for its utility for voters who approve it.
+It is important to keep this distinction in mind when comparing descriptions and pseudocode that are available in the academic literature.

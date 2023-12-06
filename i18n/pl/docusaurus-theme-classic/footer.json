@@ -34,5 +34,9 @@
   "copyright": {
     "message": "Polska wersja strony jest utrzymywana przez <a href=\"https://www.mimuw.edu.pl/~pskowron/\" style=\"color:hsl(202, 100%, 70%)\">Piotra Skowrona</a> (Uniwersytet Warszawski) i <a href=\"https://dominik-peters.de\" style=\"color:hsl(202, 100%, 70%)\">Dominika Petersa</a> (CNRS, Université Paris Dauphine-PSL).",
     "description": "The footer copyright"
+  },
+  "link.item.label.Elections": {
+    "message": "Wybory",
+    "description": "The label of footer link with label=Elections linking to elections"
   }
 }

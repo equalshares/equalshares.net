@@ -34,5 +34,9 @@
   "copyright": {
     "message": "Site web géré par <a href=\"https://dominik-peters.de\" style=\"color:hsl(202, 100%, 70%)\">Dominik Peters</a> (CNRS, Université Paris Dauphine-PSL).",
     "description": "The footer copyright"
+  },
+  "link.item.label.Elections": {
+    "message": "Élections",
+    "description": "The label of footer link with label=Elections linking to elections"
   }
 }

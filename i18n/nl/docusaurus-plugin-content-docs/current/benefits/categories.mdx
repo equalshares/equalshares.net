@@ -1,0 +1,95 @@
+---
+sidebar_position: 2
+title: Bevooroordeeldheid naar de populairste categorieën verminderen
+---
+
+import { Datawrapper } from '@site/src/components/MyComponents';
+
+# Verminder overbesteding aan de populairste categorieën
+
+<div class="summary">
+<b>Samenvatting</b>:
+De standaard stemmethode die de meeste steden gebruiken, kan systematisch leiden tot resultaten waarbij te veel geld wordt besteed aan projecten van één categorie en te weinig aan projecten van een andere categorie.
+Bijvoorbeeld, in het Bielany-district van Warschau in 2020, ging 35% van de stemmen naar onderwijsprojecten, maar slechts 6% van de financiering ging naar onderwijs.
+Simulaties tonen aan dat het gebruik van de Methode van Gelijk Aandelen deze vooringenomenheid aanzienlijk vermindert.
+</div>
+
+Meestal kunnen de projecten op het stembiljet bij burgerbegroting worden onderverdeeld in enkele brede categorieën, zoals:
+* Stedelijk groen en parken
+* Openbaar vervoer en wegen
+* Onderwijs
+* Cultuur en vrije tijd
+
+Steden organiseren vaak projecten per categorie om het voor kiezers makkelijker te maken de lijst met projecten te doorzoeken.
+Warschau, bijvoorbeeld, categoriseert projecten met 10 verschillende tags (waar projecten meerdere tags kunnen krijgen).
+Dit stelt ons in staat voor elke categorie te tellen hoeveel stemmen projecten in die categorie hebben ontvangen, en dit aantal te vergelijken met het bedrag dat is uitgegeven aan projecten in die categorie.
+
+De standaard stemmethode die in Warschau en de meeste andere steden wordt gebruikt, gaat gewoon door met het selecteren van de projecten met het hoogste aantal stemmen totdat het budget op is.
+In sommige gevallen kan dit ertoe leiden dat de populairste categorieën het meeste geld krijgen en er te weinig geld overblijft voor projecten in andere categorieën.
+
+Met behulp van simulaties hebben we dit effect gekwantificeerd. Voor de jaren 2020-22 hebben we de stemuitslag berekend die Warschau zou hebben gekregen als het de Methode van Gelijke Aandelen had gebruikt en dit vergeleken met de werkelijke uitslag.
+We hebben vervolgens voor elke categorie berekend welk deel van de stemmen naar projecten in die categorie ging. Voor de twee regels hebben we deze percentages vervolgens vergeleken met het percentage van het budget dat werd besteed aan projecten in die categorie.
+De resultaten voor verschillende districten van Warschau worden hieronder getoond.
+Elk punt in het grijze gebied komt overeen met een verkiezing waarbij de Methode van Gelijke Aandelen een resultaat opleverde dat meer leek op de stemverhoudingen tussen categorieën, vergeleken met de werkelijke uitslag.
+
+We kunnen zien dat de Methode van Gelijke Aandelen de overbesteding aan de populairste categorieën in vrijwel alle districten zou hebben verminderd, en in sommige gevallen aanzienlijk.
+Er zijn een paar uitzonderingen, maar in die gevallen presteerden de twee methoden even goed.
+
+<Datawrapper src="//datawrapper.dwcdn.net/E7ac1/2/" />
+
+Tip: u kunt uw muis boven de punten houden om meer informatie over de verkiezing te zien.
+
+<details>
+<summary>Details van de simulatie</summary>
+
+De simulatie werd uitgevoerd in januari 2023 met verkiezingsgegevens van de [Pabulib-bibliotheek](http://pabulib.org/) gebaseerd op
+PB-verkiezingen in Warschau in de jaren 2020, 2021 en 2022.
+Elk jaar waren er 19 verkiezingen: één voor elk van de 18 districten van Warschau en één voor de stad als geheel.
+In de simulatie hebben we alleen de districten in overweging genomen, voor in totaal 3 &middot; 18 = 54 datasets.
+Deze datasets zijn geannoteerd met categorieën: elk project wordt toegewezen aan (mogelijk meerdere) categorieën.
+Sommige projecten zijn niet aan een categorie toegewezen; voor het gemak beschouwen we ze als behorend tot een categorie van "geen tags".
+
+Vervolgens berekenden we de **stempercentages** voor elke categorie in elke verkiezing.
+In de eerste stap wordt elke kiezer vertegenwoordigd door 1 punt, dat gelijk wordt verdeeld over de projecten waarop de kiezer heeft gestemd.
+Bijvoorbeeld, als een kiezer op 4 projecten heeft gestemd (er is een maximum van 10 stemmen), krijgt elk van de 4 projecten 0,25 punt toegewezen.
+In de tweede stap verdelen we, voor elk project, de punten gelijk over de categorieën (tags) waartoe het behoort.
+Bijvoorbeeld, als een project 30 punten heeft en tot 3 categorieën behoort, krijgt elke categorie 10 punten toegewezen.
+Ten slotte berekenen we het percentage van het totale aantal punten dat elke categorie heeft ontvangen (d.w.z. we normaliseren de stempercentages om op te tellen tot 1).
+
+We berekenden vervolgens de uitkomst van de Methode van Gelijke Aandelen voor elke verkiezing.
+Voor zowel die uitkomst als de werkelijke uitkomst berekenden we de **budgetpercentages** voor elke categorie.
+Voor elk project dat in een van de uitkomsten was opgenomen, verdeelden we de kosten ervan gelijk over de categorieën waartoe het behoort.
+Bijvoorbeeld, als een project 600 kost en tot 3 categorieën behoort, krijgt elke categorie 200 toegewezen.
+Ten slotte berekenen we het percentage van de totale kosten dat elke categorie heeft ontvangen (d.w.z. we normaliseren de budgetpercentages om op te tellen tot 1).
+
+Nadat we het stem- en budgetpercentage hadden berekend, konden we de **afstand** tussen de twee uitkomsten berekenen.
+We doen dit met behulp van de "L1-afstand": we sommeren over alle categorieën en nemen de absolute waarde van het verschil tussen het stempercentage en het budgetpercentage voor die categorie.
+We voeren deze berekening uit voor zowel de werkelijke uitkomst als de uitkomst van de Methode van Gelijke Aandelen.
+De waarden in de grafiek zijn de verschillen tussen de twee L1-afstanden: een positieve waarde betekent dat de Methode van Gelijk Aandelen een resultaat opleverde dat dichter bij de stemverhoudingen tussen categorieën ligt dan de werkelijke uitslag, en een negatieve waarde betekent het tegenovergestelde.
+
+Het berekenen van de L1-afstand is eenvoudig en intuïtief, maar heeft zijn beperkingen.
+Het kan bijvoorbeeld niet vaststellen of het verschil tussen het stempercentage en het budgetpercentage voor één categorie hetzelfde is als het verschil voor een andere categorie (met andere woorden, het behandelt alle categorieën gelijk).
+Daarom is het mogelijk dat er subtiliteiten zijn die niet in deze analyse worden vastgelegd.
+Desalniettemin denken we dat deze methode een goed algemeen beeld geeft van de mate waarin de twee stemmethoden erin slagen de budgetten in overeenstemming te brengen met de stemverhoudingen tussen categorieën.
+
+</details>
+
+## Voorbeeld: Te weinig uitgaven aan onderwijsprojecten in Bielany, Warschau
+
+Om het positieve effect van de Methode van Gelijke Aandelen beter te begrijpen, kijken we naar een voorbeeld waar het daadwerkelijke resultaat veel slechter presteert.
+
+We kijken naar het [Bielany district](https://en.wikipedia.org/wiki/Bielany) van Warschau. 
+In elk van de jaren 2020, 2021, 2022 ging een aanzienlijk deel van de stemmen naar onderwijsprojecten.
+Er werd echter heel weinig geld uitgegeven aan onderwijsprojecten.
+Bijvoorbeeld in 2020 ging 35% van de stemmen naar onderwijsprojecten, maar slechts 6% van het budget werd besteed aan onderwijsprojecten.
+
+Hoewel er te weinig werd uitgegeven aan onderwijsprojecten, werd er te veel uitgegeven aan andere categorieën, vooral wat betreft openbare ruimte, milieu, en transport en wegen.
+Bijvoorbeeld in 2020 ging 34% van de stemmen naar deze categorieën, maar 55% van het budget werd aan deze categorieën uitgegeven.
+
+De Methode van Gelijke Aandelen zou het teveel uitgeven aan deze categorieën hebben verminderd (uitgaven 43%), en zou de uitgaven aan onderwijsprojecten hebben verhoogd (uitgaven 27%).
+
+<Datawrapper src="//datawrapper.dwcdn.net/dHS07/3/" />
+
+Wat is de onderliggende reden voor dit verschil? Het komt doordat de onderwijsprojecten voornamelijk kleinschalig en goedkoop waren (bijvoorbeeld het organiseren van een cursus in de zomer), terwijl de projecten in de categorieën met te veel uitgaven voornamelijk grootschalig en duur waren. De methode die werd gebruikt voor het daadwerkelijke resultaat (degene met te veel uitgaven) houdt geen rekening met de projectkosten en besteedt het grootste deel van het budget aan een paar van die projecten. De Methode van Gelijke Aandelen daarentegen houdt wel rekening met de projectkosten en besteedt het budget gelijkmatiger over alle projecten.
+
+Kijkend naar de grafiek zien we een afnemend stempercentage voor onderwijsprojecten in de loop van de tijd. Men zou kunnen speculeren dat indieners van dergelijke projecten na verloop van tijd ontmoedigd raken omdat hun voorstellen niet succesvol zijn, gezien de stemmethode die momenteel wordt gebruikt.

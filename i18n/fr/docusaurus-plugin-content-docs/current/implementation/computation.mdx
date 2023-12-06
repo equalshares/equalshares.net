@@ -3,15 +3,13 @@ sidebar_position: 10
 title: Calcul des résultats
 ---
 
-import DWChart from 'react-datawrapper-chart';
-
 # Comment calculer les résultats du vote?
 
 ## Le paquet Python `pabutools`
 
-Le paquet [`pabutools`](https://github.com/Grzesiek3713/pabutools) est un paquet Python gratuit et open-source qui
+Le paquet [`pabutools`](https://github.com/pbvoting/pabutools) est un paquet Python gratuit et open-source qui
 contient des implémentations de plusieurs règles de vote pour le budget participatif, y compris la méthode des parts égales.
-Il est disponible sur [GitHub](https://github.com/Grzesiek3713/pabutools). 
+Il est disponible sur [GitHub](https://github.com/pbvoting/pabutools).
 Le package peut être installé via [PyPI](https://pypi.org/project/pabutools/) en utilisant `pip`:
 
 ```bash
@@ -109,68 +107,117 @@ def equal_shares(N, C, cost, u, budget):
 
 ```javascript
 function sum(xs) {
-    return xs.reduce((a, b) => a + b);
+    return xs.reduce((a, b) => a + b, 0);
 }
 
-function equal_shares_utility_based(N, C, cost, u, B) {
-    let budget = new Map();
+function equal_shares_fixed_budget(N, C, cost, approvers, B) {
+    let budget = {};
     for (let i of N) {
-        budget.set(i, B / N.length);
+        budget[i] = B / N.length;
     }
-    let remaining = new Map();
+    let remaining = new Map(); // remaining candidate -> previous effective vote count
     for (let c of C) {
-        let total_utility = sum(N.map(i => u[i][c]));
-        if (cost[c] > 0 && total_utility > 0) {
-            let info = {
-                total_utility: total_utility,
-                approvers: N.filter(i => u[i][c] > 0),
-                previous_rho: cost[c] / total_utility,
-            };
-            remaining.set(c, info);
+        if (cost[c] > 0 && approvers[c].length > 0) {
+            remaining.set(c, approvers[c].length);
         }
     }
     let committee = [];
     while (true) {
         let best = null;
-        let best_rho = Infinity;
+        let best_eff_vote_count = 0;
+        let best_max_payment = Infinity;
+        // go through remaining candidates in order of decreasing previous effective vote count
         let remaining_sorted = [...remaining.keys()];
-        remaining_sorted.sort((a, b) => remaining.get(a).previous_rho - remaining.get(b).previous_rho);
+        remaining_sorted.sort((a, b) => remaining.get(b) - remaining.get(a));
         for (let c of remaining_sorted) {
-            let info = remaining.get(c);
-            if (info.previous_rho > best_rho) {
+            let previous_eff_vote_count = remaining.get(c);
+            if (previous_eff_vote_count < best_eff_vote_count) {
+                // c cannot be better than the best so far
                 break;
             }
-            if (sum(info.approvers.map(i => budget.get(i))) < cost[c]) {
+            if (sum(approvers[c].map(i => budget[i])) < cost[c]) {
+                // c is not affordable
                 remaining.delete(c);
                 continue;
             }
-            info.approvers.sort((a, b) => budget.get(a) / u[a][c] - budget.get(b) / u[b][c]);
+            // calculate the effective vote count of c, which involves splitting the cost of c as equally as possible among its approvers
+            approvers[c].sort((a, b) => budget[a] - budget[b]);
             let paid_so_far = 0;
-            let denominator = info.total_utility;
-            for (let j = 0; j < info.approvers.length; j++) {
-                let i = info.approvers[j];
-                let rho = (cost[c] - paid_so_far) / denominator;
-                if (rho * u[i][c] <= budget.get(i)) {
-                    info.previous_rho = rho;
-                    if (rho < best_rho) {
-                        best_rho = rho;
+            let denominator = approvers[c].length; // this will be the number of approvers who can afford the max payment
+            for (let j = 0; j < approvers[c].length; j++) {
+                let i = approvers[c][j];
+                let max_payment = (cost[c] - paid_so_far) / denominator; // payment if remaining approvers pay equally
+                let eff_vote_count = cost[c] / max_payment;
+                if (max_payment > budget[i]) {
+                    // i cannot afford the max payment, so pays entire remaining budget
+                    paid_so_far += budget[i];
+                    denominator -= 1;
+                } else {
+                    // i (and all later approvers) can afford the max payment; stop here
+                    remaining.set(c, eff_vote_count);
+                    if (eff_vote_count > best_eff_vote_count) {
+                        best_eff_vote_count = eff_vote_count;
+                        best_max_payment = max_payment;
                         best = c;
                     }
                     break;
                 }
-                paid_so_far += budget.get(i);
-                denominator -= u[i][c];
             }
         }
         if (!best) {
             break;
         }
         committee.push(best);
-        for (let i of remaining.get(best).approvers) {
-            budget.set(i, budget.get(i) - Math.min(budget.get(i), best_rho * u[i][best]));
+        for (let i of approvers[best]) {
+            budget[i] = budget[i] - Math.min(budget[i], best_max_payment);
         }
         remaining.delete(best);
     }
     return committee;
+}
+
+function equal_shares(N, C, cost, approvers, B) {
+    // Method of Equal Shares with Add1U completion
+    // Input:
+    //   N: list of voters
+    //   C: list of candidates
+    //   cost[c]: cost of candidate c
+    //   approvers[c]: list of voters who approve candidate c
+    //   B: budget
+    // Output:
+    //   committee: list of candidates
+    let mes = equal_shares_fixed_budget(N, C, cost, approvers, B);
+    let budget = B;
+    while (true) {
+        // is current outcome exhaustive?
+        let is_exhaustive = true;
+        for (let extra of C) {
+            if (!mes.includes(extra) && sum(mes.map(c => cost[c])) + cost[extra] <= B) {
+                is_exhaustive = false;
+                break;
+            }
+        }
+        if (is_exhaustive) {
+            break;
+        }
+        // would the next highest budget work?
+        let new_budget = budget + N.length;
+        let next_mes = equal_shares_fixed_budget(N, C, cost, approvers, new_budget);
+        if (sum(next_mes.map(c => cost[c])) <= B) {
+            budget = new_budget;
+            mes = next_mes;
+        } else {
+            break;
+        }
+    }
+    // in case there is remaining budget, add the next most popular projects
+    let sorted_C = [...C];
+    sorted_C.sort((a, b) => approvers[b].length - approvers[a].length);
+    for (let extra of sorted_C) {
+        if (!mes.includes(extra) && sum(mes.map(c => cost[c])) + cost[extra] <= B) {
+            mes.push(extra);
+        }
+    }
+    return mes;
 }
 ```

@@ -18,5 +18,9 @@
   "sidebar.tutorialSidebar.category.Implementierung": {
     "message": "Implementierung",
     "description": "The label for category Implementierung in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Elections": {
+    "message": "Wahlen",
+    "description": "The label for category Elections in sidebar tutorialSidebar"
   }
 }

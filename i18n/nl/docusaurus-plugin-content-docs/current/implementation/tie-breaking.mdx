@@ -1,0 +1,122 @@
+---
+sidebar_position: 4
+title: Gelijke stand doorbreken
+---
+
+import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
+import { Currency } from '@site/src/components/CurrencyChoice';
+
+# Hoe doorbreek je een gelijke stand?
+
+<div class="summary">
+<b>Samenvatting</b>:
+In zeldzame gevallen kunnen twee of meer projecten gelijk staan (bijvoorbeeld omdat ze precies dezelfde kosten hebben en precies hetzelfde aantal stemmen hebben ontvangen).
+Dit komt voor met een waarschijnlijkheid van minder dan 1%.
+We beschrijven hoe de kans op gelijke standen te minimaliseren wanneer de Methode van Gelijke Aandelen wordt geïmplementeerd.
+Als er echter nog steeds een gelijke stand optreedt, moet deze mogelijk door verkiezingsfunctionarissen worden doorbroken met behulp van willekeur.
+</div>
+
+## Aanbevolen procedure voor het doorbreken van een gelijke stand
+
+:::tip
+
+Een eenvoudige manier om zeker gelijke standen te vermijden, is ervoor te zorgen dat geen twee projecten dezelfde kosten hebben (zelfs als de kosten slechts verschillen met <Currency>1</Currency>). Dan zal een gelijke stand nooit voorkomen als de onderstaande procedure voor het doorbreken van de gelijke stand wordt gevolgd.
+
+:::
+
+Bij de uitvoering van de Methode van Gelijke Aandelen kan een gelijke stand optreden wanneer twee of meer projecten hetzelfde effectieve stemtotaal hebben.
+Op zichzelf zijn gelijke standen onwaarschijnlijk bij grote verkiezingen (zoals die op stedelijke schaal).
+Maar de Methode van Gelijke Aandelen wordt meestal meerdere keren achter elkaar uitgevoerd om het beste bedrag te bepalen dat de kiezers krijgen toegewezen aan het begin van de methode. 
+(Zie [Voltooiingen](completion) voor details.)
+Dit maakt het waarschijnlijker dat een gelijke stand wordt tegengekomen, en deze gelijke stand moet worden doorbroken.
+
+We raden aan dat wanneer er een gelijke stand is tussen twee of meer projecten, omdat ze op een bepaald punt van de methode hetzelfde effectieve stemtotaal hebben,
+de gelijke stand moet worden doorbroken volgens de volgende procedure:
+* Het project met de laagste kosten wordt geselecteerd.
+* Als twee of meer van de gelijkstaande projecten dezelfde laagste kosten hebben, wordt het (laagst kostende) project met het hoogste initiële stemtotaal geselecteerd (dat wil zeggen het ruwe stemtotaal van het project voordat het stemtotaal werd verminderd tijdens het uitvoeren van de Methode van Gelijke Aandelen).
+* Als twee of meer projecten de laagste kosten en hetzelfde initiële stemtotaal hebben, dan wordt de gelijke stand doorbroken door loting, d.w.z. volledig willekeurig.
+
+Procedureel gezien zijn er twee manieren om het potentiële gebruik van willekeur aan te pakken:
+1. Voordat de verkiezingsuitslag wordt berekend, controleren verkiezingsfunctionarissen of er verzamelingen projecten zijn die dezelfde kosten en hetzelfde initiële stemtotaal hebben. Voor elke dergelijke verzameling van mogelijk gelijkstaande projecten bepalen ze een volgorde voor het doorbreken van de gelijke stand, bijvoorbeeld door namen uit een hoed te trekken.
+2. Of, bereken de verkiezingsuitslag met een implementatie van de Methode van Gelijke Aandelen die eindigt met een foutmelding als een gelijke stand wordt aangetroffen. Ga alleen in dit (onwaarschijnlijke) geval verder zoals in Optie 1.
+
+:::info Technische info
+
+In het onwaarschijnlijke geval dat willekeur moet worden gebruikt, raden we aan dat
+verkiezingsfunctionarissen zoals beschreven in Optie 2 hierboven te werk gaan:
+willekeurig een volgorde voor het doorbreken van de gelijke stand trekken, en vervolgens de Methode van Gelijke Aandelen (inclusief de voltooiing) uitvoeren met die volgorde voor het doorbreken van de gelijke stand.
+Tijdens het gebruik van de voltooiing is het geen goed idee om de gelijke stand anders te doorbreken voor verschillende waarden van het initiële budget.
+
+:::
+
+## Voorbeelden
+
+### Voorbeeld 1
+Stel als voorbeeld dat de Methode van Gelijke Aandelen uitkomt in de volgende situatie, waarbij er nog drie projecten beschikbaar zijn voor selectie:
+
+| Project | Kosten | Initiële stemtelling | Effectieve stemtelling |
+| --- | --- | --- | --- |
+| Project 1 | <Currency>600</Currency> | 500 | **200** |
+| Project 2 | <Currency>700</Currency> | 300 | **200** |
+| Project 3 | <Currency>100</Currency> | 150 | 100 |
+
+Projecten 1 en 2 hebben de hoogste effectieve stemtelling, dus een van hen moet worden geselecteerd. 
+Aangezien ze dezelfde effectieve stemtelling hebben, moeten we een gelijkspel doorbreken.
+Daarom kiest de methode voor **Project 1**, omdat de kosten van <Currency>600</Currency> lager zijn dan de kosten van Project 2, welke <Currency>700</Currency> zijn.
+
+### Voorbeeld 2
+
+Hier is een soortgelijk voorbeeld.
+
+| Project | Kosten | Initiële stemtelling | Effectieve stemtelling |
+| --- | --- | --- | --- |
+| Project 1 | <Currency>400</Currency> | 500 | **200** |
+| Project 2 | <Currency>400</Currency> | 300 | **200** |
+| Project 3 | <Currency>400</Currency> | 150 | **200** |
+
+Deze keer hebben alle drie de projecten dezelfde effectieve stemtelling, dus opnieuw moeten we een gelijkspel doorbreken.
+Alle drie de projecten hebben dezelfde kosten, dus we moeten het gelijkspel doorbreken door naar de initiële stemtelling te kijken.
+Daarom kiest de methode voor **Project 1**, omdat de initiële stemtelling van 500 hoger is dan de initiële stemtelling van zowel Project 2 als van Project 3.
+
+### Voorbeeld 3
+
+Hier is een laatste voorbeeld.
+
+| Project | Kosten | Initiële stemtelling | Effectieve stemtelling |
+| --- | --- | --- | --- |
+| Project 1 | <Currency>400</Currency> | 500 | **200** |
+| Project 2 | <Currency>400</Currency> | 500 | **200** |
+
+Projecten 1 en 2 hebben dezelfde effectieve stemtelling, dus we moeten een gelijkspel doorbreken.
+Maar ze hebben beide dezelfde kosten en dezelfde initiële stemtelling.
+Daarom moet het gelijkspel door lot worden beslist, bijvoorbeeld door een muntje te laten opgooien door de verkiezingsfunctionaris.
+
+## Kans op gelijke standen
+
+Door simulaties uit te voeren op basis van verkiezingsgegevens uit de [Pabulib-bibliotheek](http://pabulib.org/) is het mogelijk om de waarschijnlijkheid van gelijke standen in te schatten.
+Deze simulaties suggereren dat het uiterst zeldzaam is (&lt;1%) om willekeur te moeten gebruiken om een gelijke stand te doorbreken.
+Dit komt omdat in bijna alle gevallen elke gelijke stand al kan worden doorbroken op basis van projectkosten en initiële stemtellingen.
+
+In onze simulatie vinden we dat in **slechts 0,6% van de gevallen** er twee projecten bestaan met exact dezelfde kosten en exact hetzelfde aantal stemmen.
+Bovendien is het zelfs in de 0,6% van de gevallen met zulke vergelijkbare projecten vaak niet nodig om deze gelijke stand te doorbreken bij het berekenen van de Methode van Gelijke Aandelen
+(bijvoorbeeld omdat de gelijkstaande projecten niet genoeg stemmen hebben om kans te maken op winnen).
+Onze simulatie suggereert dat in **slechts 0,15% van de gevallen** er een gelijke stand optreedt bij het berekenen van de Methode van Gelijke Aandelen die door lot moet worden doorbroken.
+
+De meeste gelijke standen in onze simulatie doen zich voor in verkiezingen in de stad Wrocław, die betrekking hebben op een relatief klein aantal kiezers.
+Als we de Wrocław-verkiezingen uitsluiten van onze simulatie, dan is de kans op gelijke standen zelfs nog lager:
+twee projecten met dezelfde kosten en hetzelfde initiële aantal stemmen komen voor in slechts 0,26% van de gevallen, 
+en een gelijke stand tijdens de berekening van de Methode van Gelijke Aandelen doet zich voor in **slechts 0,09% van de gevallen**.
+
+<details>
+<summary>Details van de simulatie</summary>
+
+De simulatie is uitgevoerd in januari 2023 met verkiezingsgegevens van Pabulib gebaseerd op PB-verkiezingen die instemmingsverkiezing gebruikten. Er zijn 480 van dergelijke datasets, afkomstig uit de Poolse steden Gdansk, Warschau, Wrocław en Zabrze. Wanneer we de Wrocław-verkiezingen uitsluiten, betreft de simulatie 383 datasets.
+
+Om een nauwkeurigere inschatting te krijgen van de waarschijnlijkheid van een gelijke stand, hebben we voor elke dataset de simulatie 100 keer uitgevoerd.
+In elke iteratie namen we willekeurig tussen 30% en 80% van de kiezers uit de dataset (waardoor een willekeurig kleinere verkiezing werd verkregen), en controleerden vervolgens of de kleinere verkiezing een paar projecten bevatte met dezelfde kosten en hetzelfde initiële aantal stemmen.
+Voor die gevallen waarin zo'n paar projecten werd gevonden, controleerden we vervolgens of de Methode van Gelijke Aandelen (met de standaard [afwerking](completion)-methode) een gelijke stand zou tegenkomen bij het berekenen van de verkiezingsuitslag.
+
+Als we alleen kijken naar de daadwerkelijke, originele verkiezingen (zonder willekeurig een deel van de kiezers te selecteren), dan komt een paar projecten met dezelfde kosten en hetzelfde initiële aantal stemmen voor in 1,25% van de verkiezingen, met Gelijk Aandelen die een gelijke stand tegenkomen in 0,21% van de verkiezingen. Exclusief de Wrocław-verkiezingen zijn de cijfers 0,5% en 0,0% respectievelijk.
+
+De simulatiecode is [beschikbaar op GitHub](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
+</details>

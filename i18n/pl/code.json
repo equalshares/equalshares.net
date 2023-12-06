@@ -59,7 +59,7 @@
   },
   "theme.ErrorPageContent.tryAgain": {
     "message": "Spróbuj ponownie",
-    "description": "The label of the button to try again when the page crashed"
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.NotFound.title": {
     "message": "Strona nie została znaleziona",
