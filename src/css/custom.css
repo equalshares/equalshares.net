@@ -115,6 +115,16 @@ details.proof p:last-child::after {
 
 .navbar__title {
   font-size: 1.2em;
+  overflow: visible;
+}
+
+.navbar__link {
+  white-space: nowrap;
+}
+
+.navbar__link[href*="implementation"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .currency-picker {
