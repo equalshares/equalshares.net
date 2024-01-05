@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Translate, { translate } from '@docusaurus/Translate';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import { Rating } from 'react-simple-star-rating'
+// import { Rating } from 'react-simple-star-rating'
 
 import { Currency } from '@site/src/components/CurrencyChoice';
 import { BudgetBars } from '@site/src/components/MyComponents';
@@ -56,30 +56,30 @@ function UtilityInput({ settings, utility, setUtility, totalUtilityOfVoter }) {
   const [isDisabled, setIsDisabled] = useState(false);
 
   if (settings.input == 'range') {
-    const handleRating = (rating) => {
-      console.log(rating, utility, rating === utility);
-      if (rating === utility) {
-        setUtility(0);
-        // disable for 0.5 seconds
-        setIsDisabled(true);
-        setTimeout(() => setIsDisabled(false), 500);
-        console.log('reset');
-      } else {
-        setUtility(rating);
-      }
-    };
-    return (
-      <div>
-        <Rating 
-          key={utility}
-          size={22}
-          style={{lineHeight: '18px'}}
-          initialValue={utility}
-          onClick={handleRating}
-          readonly={isDisabled}
-          />
-      </div>
-    );
+    // const handleRating = (rating) => {
+    //   console.log(rating, utility, rating === utility);
+    //   if (rating === utility) {
+    //     setUtility(0);
+    //     // disable for 0.5 seconds
+    //     setIsDisabled(true);
+    //     setTimeout(() => setIsDisabled(false), 500);
+    //     console.log('reset');
+    //   } else {
+    //     setUtility(rating);
+    //   }
+    // };
+    // return (
+    //   <div>
+    //     <Rating 
+    //       key={utility}
+    //       size={22}
+    //       style={{lineHeight: '18px'}}
+    //       initialValue={utility}
+    //       onClick={handleRating}
+    //       readonly={isDisabled}
+    //       />
+    //   </div>
+    // );
   } else if (settings.input == 'approval') {
     const handleApproval = (e) => {
       setUtility(e.target.checked ? 1 : 0);
@@ -258,7 +258,7 @@ export function PlayApp() {
   startingInstance.u = u;
 
   const startingSettings = {
-    input: "range"
+    input: "approval"
   };
 
   const [instance, setInstance] = useLocalStorage('PlayAppInstance3', startingInstance);
