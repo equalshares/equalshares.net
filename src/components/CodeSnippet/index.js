@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 import Details from '@theme/Details';
 
 import getJavaScriptCodeSnippet from './javascriptSnippet.js';
@@ -16,7 +17,6 @@ export const ComputeToolButton = ({ children }) => {
 }
 
 const generateCodeSnippet = (choices) => {
-    // Replace this function with the actual implementation
     if (choices.language === 'python') {
         return (<>
             <CodeBlock language='python' showLineNumbers title="equal_shares.py">
@@ -24,7 +24,12 @@ const generateCodeSnippet = (choices) => {
             </CodeBlock>
             </>);
     } else {
+        // tell people to get the fraction.js library from https://github.com/rawify/Fraction.js/blob/master/fraction.js
         return (<>
+        {choices.accuracy === 'fractions' ? 
+            <Admonition type="info">
+                To run the code, you need the <a href="https://github.com/rawify/Fraction.js/blob/master/fraction.js" target="_blank">fraction.js</a> library.
+            </Admonition> : null}
         <CodeBlock language='js' showLineNumbers title="EqualShares.js">
             {getJavaScriptCodeSnippet(choices)}
         </CodeBlock>
