@@ -39,7 +39,7 @@ function sum(xs) {
 
 function tieBreaking(choices) {
     const scores = choices.ballots == "score";
-    let code = `function breakTies(N, C, cost, ${scores ? "totalUtility" : "approvers"}, choices) {
+    let code = `function breakTies(voters, projects, cost, ${scores ? "totalUtility" : "approvers"}, choices) {
     let remaining = [...choices];
     `;
     for (let method of choices.tieBreaking.split(",")) {
@@ -71,13 +71,13 @@ function comparisonStep(choices) {
     }
     const scores = choices.ballots == "score";
     let code = `    // comparison step
-    const greedy = utilitarianCompletion(N, C, cost, ${scores ? "totalUtility" : "approvers"}, B, []);
+    const greedy = utilitarianCompletion(voters, projects, cost, ${scores ? "totalUtility" : "approvers"}, totalBudget, []);
     let prefersMES = 0;
     let prefersGreedy = 0;
     `;
     if (choices.comparison == "satisfaction") {
         if (scores) {
-            code += `for (let i of N) {
+            code += `for (let i of voters) {
         const mesSatisfaction = sum(mes.map(c => u[i][c]));
         const greedySatisfaction = sum(greedy.map(c => u[i][c]));
         if (mesSatisfaction > greedySatisfaction) {
@@ -100,7 +100,7 @@ function comparisonStep(choices) {
             }
         }
     }
-    for (let i of N) {
+    for (let i of voters) {
         if (mesSatisfaction[i] > greedySatisfaction[i]) {
             prefersMES++;
         } else if (greedySatisfaction[i] > mesSatisfaction[i]) {
@@ -124,7 +124,7 @@ function comparisonStep(choices) {
             greedyApprovals.add(i);
         }
     }
-    for (let i of N) {
+    for (let i of voters) {
         if (mesApprovals.has(i) && !greedyApprovals.has(i)) {
             prefersMES++;
         } else if (greedyApprovals.has(i) && !mesApprovals.has(i)) {
@@ -143,21 +143,21 @@ function comparisonStep(choices) {
 
 function mainFunction(choices) {
     const scores = choices.ballots == "score";
-    let code = `function equalShares(N, C, cost, ${scores ? "u" : "approvers"}, B) {
+    let code = `function equalShares(voters, projects, cost, ${scores ? "u" : "approvers"}, totalBudget) {
     `;
     if (scores) {
         // compute approvers and totalUtility from u
-        code += `const approvers = Object.fromEntries(C.map(c => [c, N.filter(i => u[i][c] > 0)]));
-    const totalUtility = Object.fromEntries(C.map(c => [c, sum(N.map(i => u[i][c]))]));
+        code += `const approvers = Object.fromEntries(projects.map(c => [c, voters.filter(i => u[i][c] > 0)]));
+    const totalUtility = Object.fromEntries(projects.map(c => [c, sum(voters.map(i => u[i][c]))]));
     `;
     }
-    code += `let mes = equalSharesFixedBudget(N, C, cost, ${scores ? "u, totalUtility, " : ""}approvers, B);
+    code += `let mes = equalSharesFixedBudget(voters, projects, cost, ${scores ? "u, totalUtility, " : ""}approvers, totalBudget);
 `;
     if (choices.completion.includes("add1")) {
         code += `    // add1 completion
 `;
         const integral = choices.add1options.includes("integral");
-        code += `    ${integral ? "// start with integral per-voter budget\n    " : ""}let budget = ${integral ? "Math.floor(B / N.length) * N.length" : "B"};
+        code += `    ${integral ? "// start with integral per-voter budget\n    " : ""}let budget = ${integral ? "Math.floor(totalBudget / voters.length) * voters.length" : "totalBudget"};
     `;
     const exhaustive = choices.add1options.includes("exhaustive");
     if (exhaustive) {
@@ -165,8 +165,8 @@ function mainFunction(choices) {
     while (true) {
         // is current outcome exhaustive?
         let isExhaustive = true;
-        for (let extra of C) {
-            if (!mes.includes(extra) && currentCost + cost[extra] <= B) {
+        for (let extra of projects) {
+            if (!mes.includes(extra) && currentCost + cost[extra] <= totalBudget) {
                 isExhaustive = false;
                 break;
             }
@@ -181,15 +181,15 @@ function mainFunction(choices) {
         `;
     }
     code += `// would the next highest budget work?
-        let nextBudget = budget + N.length;
-        let nextMes = equalSharesFixedBudget(N, C, cost, ${scores ? "u, totalUtility, " : ""}approvers, nextBudget);
+        let nextBudget = budget + voters.length;
+        let nextMes = equalSharesFixedBudget(voters, projects, cost, ${scores ? "u, totalUtility, " : ""}approvers, nextBudget);
         `;
     if (exhaustive) {
         code += `currentCost = sum(nextMes.map(c => cost[c]));
-        if (currentCost <= B) {
+        if (currentCost <= totalBudget) {
             `;
     } else {
-        code += `if (sum(nextMes.map(c => cost[c])) <= B) {
+        code += `if (sum(nextMes.map(c => cost[c])) <= totalBudget) {
             `;
     }
     code += `// yes, so continue with that budget
@@ -204,7 +204,7 @@ function mainFunction(choices) {
     }
     if (choices.completion == "utilitarian" || choices.completion == "add1u") {
         code += `    // utilitarian completion${choices.completion == "add1u" ? " after add1 (as part of add1u)" : ""}
-    mes = utilitarianCompletion(N, C, cost, ${scores ? "totalUtility" : "approvers"}, B, mes);
+    mes = utilitarianCompletion(voters, projects, cost, ${scores ? "totalUtility" : "approvers"}, totalBudget, mes);
 `;
     }
     code += comparisonStep(choices);
@@ -217,23 +217,23 @@ function mainFunction(choices) {
 
 function utilitarianCompletion(choices) {
     const scores = choices.ballots == "score";
-    let code = `function utilitarianCompletion(N, C, cost, ${scores ? "totalUtility" : "approvers"}, B, alreadyWinners) {
+    let code = `function utilitarianCompletion(voters, projects, cost, ${scores ? "totalUtility" : "approvers"}, totalBudget, alreadyWinners) {
     let winners = [...alreadyWinners];
     let costSoFar = sum(winners.map(c => cost[c]));
     // sort candidates by score
-    let sortedC = [...C];
+    let sortedProjects = [...projects];
     `;
     if (scores) {
-        code += `sortedC.sort((a, b) => totalUtility[b] - totalUtility[a]);
+        code += `sortedProjects.sort((a, b) => totalUtility[b] - totalUtility[a]);
     `;
     } else {
-        code += `sortedC.sort((a, b) => approvers[b].length - approvers[a].length);
+        code += `sortedProjects.sort((a, b) => approvers[b].length - approvers[a].length);
     `;
     }
     code += `// for each candidate in order of decreasing score, 
     // try to add it to the committee
-    for (let c of sortedC) {
-        if (winners.includes(c) || costSoFar + cost[c] > B) {
+    for (let c of sortedProjects) {
+        if (winners.includes(c) || costSoFar + cost[c] > totalBudget) {
             continue;
         }
         winners.push(c);
@@ -309,13 +309,13 @@ function fixedBudgetFunction(choices) {
             }
         }`;
     }
-    return `function equalSharesFixedBudget(N, C, cost, ${scores ? "u, totalUtility, " : ""}approvers, B) {
+    return `function equalSharesFixedBudget(voters, projects, cost, ${scores ? "u, totalUtility, " : ""}approvers, totalBudget) {
     let budget = {};
-    for (let i of N) {
-        budget[i] = ${fractions ? "new Fraction(B).div(N.length)" : "B / N.length"};
+    for (let i of voters) {
+        budget[i] = ${fractions ? "new Fraction(totalBudget).div(voters.length)" : "totalBudget / voters.length"};
     }
     let remaining = new Map(); // remaining candidate -> previous effective vote count
-    for (let c of C) {
+    for (let c of projects) {
         if (cost[c] > 0 && approvers[c].length > 0) {
             remaining.set(c, ${initialEffVoteCount});
         }
@@ -368,7 +368,7 @@ function fixedBudgetFunction(choices) {
             // no remaining candidates are affordable
             break;
         }
-        ${choices.tieBreaking != "" ? `best = breakTies(N, C, cost, ${scores ? "totalUtility" : "approvers"}, best);
+        ${choices.tieBreaking != "" ? `best = breakTies(voters, projects, cost, ${scores ? "totalUtility" : "approvers"}, best);
         ` : ""}if (best.length > 1) {
             throw new Error("Tie-breaking failed: tie between projects " + best.join(", ") 
                 + " could not be resolved. Another tie-breaking needs to be added.");

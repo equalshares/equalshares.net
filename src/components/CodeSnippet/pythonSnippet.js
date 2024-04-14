@@ -29,7 +29,7 @@ function fractionImport() {
 
 function tieBreaking(choices) {
     const scores = choices.ballots == "score";
-    let code = `def break_ties(N, C, cost, ${scores ? "total_utility" : "approvers"}, choices):
+    let code = `def break_ties(voters, projects, cost, ${scores ? "total_utility" : "approvers"}, choices):
     remaining = choices.copy()
     `;
     for (let method of choices.tieBreaking.split(",")) {
@@ -60,13 +60,13 @@ function comparisonStep(choices) {
     }
     const scores = choices.ballots == "score";
     let code = `    # comparison step
-    greedy = utilitarian_completion(N, C, cost, ${scores ? "total_utility" : "approvers"}, B, [])
+    greedy = utilitarian_completion(voters, projects, cost, ${scores ? "total_utility" : "approvers"}, total_budget, [])
     prefers_MES = 0
     prefers_greedy = 0
     `;
     if (choices.comparison == "satisfaction") {
         if (scores) {
-            code += `for i in N:
+            code += `for i in voters:
         mes_satisfaction = sum(u[i][c] for c in mes)
         greedy_satisfaction = sum(u[i][c] for c in greedy)
         if mes_satisfaction > greedy_satisfaction:
@@ -75,15 +75,15 @@ function comparisonStep(choices) {
             prefers_greedy += 1
     `
         } else {
-            code += `mes_satisfaction = {i : 0 for i in N}
-    greedy_satisfaction = {i : 0 for i in N}
+            code += `mes_satisfaction = {i : 0 for i in voters}
+    greedy_satisfaction = {i : 0 for i in voters}
     for c in mes:
         for i in approvers[c]:
             mes_satisfaction[i] += 1
     for c in greedy:
         for i in approvers[c]:
             greedy_satisfaction[i] += 1
-    for i in N:
+    for i in voters:
         if mes_satisfaction[i] > greedy_satisfaction[i]:
             prefers_MES += 1
         elif greedy_satisfaction[i] > mes_satisfaction[i]:
@@ -101,7 +101,7 @@ function comparisonStep(choices) {
     for c in greedy:
         for i in approvers[c]:
             greedy_approvals.add(i)
-    for i in N:
+    for i in voters:
         if i in mes_approvals and i not in greedy_approvals:
             prefers_MES += 1
         elif i in greedy_approvals and i not in mes_approvals:
@@ -117,21 +117,21 @@ function comparisonStep(choices) {
 
 function mainFunction(choices) {
     const scores = choices.ballots == "score";
-    let code = `def equal_shares(N, C, cost, ${scores ? "u" : "approvers"}, B):
+    let code = `def equal_shares(voters, projects, cost, ${scores ? "u" : "approvers"}, total_budget):
     `;
     if (scores) {
         // compute approvers and total_utility from u
-        code += `approvers = {c: [i for i in N if u[i][c] > 0] for c in C}
-    total_utility = {c: sum(u[i][c] for i in N) for c in C}
+        code += `approvers = {c: [i for i in voters if u[i][c] > 0] for c in projects}
+    total_utility = {c: sum(u[i][c] for i in voters) for c in projects}
     `;
     }
-    code += `mes = equal_shares_fixed_budget(N, C, cost, ${scores ? "u, total_utility, " : ""}approvers, B)
+    code += `mes = equal_shares_fixed_budget(voters, projects, cost, ${scores ? "u, total_utility, " : ""}approvers, total_budget)
 `;
     if (choices.completion.includes("add1")) {
         code += `    # add1 completion
 `;
         const integral = choices.add1options.includes("integral");
-        code += `    ${integral ? "# start with integral per-voter budget\n    " : ""}budget = ${integral ? "int(B / len(N)) * len(N)" : "B"}
+        code += `    ${integral ? "# start with integral per-voter budget\n    " : ""}budget = ${integral ? "int(total_budget / len(voters)) * len(voters)" : "total_budget"}
     `;
         const exhaustive = choices.add1options.includes("exhaustive");
         if (exhaustive) {
@@ -139,8 +139,8 @@ function mainFunction(choices) {
     while True:
         # is current outcome exhaustive?
         is_exhaustive = True
-        for extra in C:
-            if extra not in mes and current_cost + cost[extra] <= B:
+        for extra in projects:
+            if extra not in mes and current_cost + cost[extra] <= total_budget:
                 is_exhaustive = False
                 break
         # if so, stop
@@ -152,15 +152,15 @@ function mainFunction(choices) {
         `;
         }
         code += `# would the next highest budget work?
-        next_budget = budget + len(N)
-        next_mes = equal_shares_fixed_budget(N, C, cost, ${scores ? "u, total_utility, " : ""}approvers, next_budget)
+        next_budget = budget + len(voters)
+        next_mes = equal_shares_fixed_budget(voters, projects, cost, ${scores ? "u, total_utility, " : ""}approvers, next_budget)
         `;
         if (exhaustive) {
             code += `current_cost = sum(cost[c] for c in next_mes)
-        if current_cost <= B:
+        if current_cost <= total_budget:
             `;
         } else {
-            code += `if sum(cost[c] for c in next_mes) <= B:
+            code += `if sum(cost[c] for c in next_mes) <= total_budget:
             `;
         }
         code += `# yes, so continue with that budget
@@ -173,7 +173,7 @@ function mainFunction(choices) {
     }
     if (choices.completion == "utilitarian" || choices.completion == "add1u") {
         code += `    # utilitarian completion${choices.completion == "add1u" ? " after add1 (as part of add1u)" : ""}
-    mes = utilitarian_completion(N, C, cost, ${scores ? "total_utility" : "approvers"}, B, mes)
+    mes = utilitarian_completion(voters, projects, cost, ${scores ? "total_utility" : "approvers"}, total_budget, mes)
 `;
     }
     code += comparisonStep(choices); // this function call will also need to be translated to produce Python code
@@ -186,22 +186,22 @@ function mainFunction(choices) {
 
 function utilitarianCompletion(choices) {
     const scores = choices.ballots == "score";
-    let code = `def utilitarian_completion(N, C, cost, ${scores ? "total_utility" : "approvers"}, B, already_winners):
+    let code = `def utilitarian_completion(voters, projects, cost, ${scores ? "total_utility" : "approvers"}, total_budget, already_winners):
     winners = list(already_winners)
     cost_so_far = sum(cost[c] for c in winners)
     # sort candidates by score
-    sorted_C = `;
+    sorted_projects = `;
     if (scores) {
-        code += `sorted(C, key=lambda c: total_utility[c], reverse=True)
+        code += `sorted(projects, key=lambda c: total_utility[c], reverse=True)
     `;
     } else {
-        code += `sorted(C, key=lambda c: len(approvers[c]), reverse=True)
+        code += `sorted(projects, key=lambda c: len(approvers[c]), reverse=True)
     `;
     }
     code += `# for each candidate in order of decreasing score, 
     # try to add it to the committee
-    for c in sorted_C:
-        if c in winners or cost_so_far + cost[c] > B:
+    for c in sorted_projects:
+        if c in winners or cost_so_far + cost[c] > total_budget:
             continue
         winners.append(c)
         cost_so_far += cost[c]
@@ -270,10 +270,10 @@ function fixedBudgetFunction(choices) {
             else:
                 budget[i] = 0`;
     }
-    return `def equal_shares_fixed_budget(N, C, cost, ${scores ? "u, total_utility, " : ""}approvers, B):
-    budget = {i: ${fractions ? "Fraction(B, len(N))" : "B / len(N)"} for i in N}
+    return `def equal_shares_fixed_budget(voters, projects, cost, ${scores ? "u, total_utility, " : ""}approvers, total_budget):
+    budget = {i: ${fractions ? "Fraction(total_budget, len(voters))" : "total_budget / len(voters)"} for i in voters}
     remaining = {} # remaining candidate -> previous effective vote count
-    for c in C:
+    for c in projects:
         if cost[c] > 0 and len(approvers[c]) > 0:
             remaining[c] = ${initial_eff_vote_count}
     winners = []
@@ -316,10 +316,9 @@ function fixedBudgetFunction(choices) {
         if not best:
             # no remaining candidates are affordable
             break
-        ${choices.tieBreaking != "" ? `best = break_ties(N, C, cost, ${scores ? "total_utility" : "approvers"}, best)
+        ${choices.tieBreaking != "" ? `best = break_ties(voters, projects, cost, ${scores ? "total_utility" : "approvers"}, best)
         ` : ""}if len(best) > 1:
-            raise Exception("Tie-breaking failed: tie between projects " + ", ".join(best) +  \\
-                    "could not be resolved. Another tie-breaking needs to be added.")
+            raise Exception(f"Tie-breaking failed: tie between projects {best} could not be resolved. Another tie-breaking needs to be added.")
         best = best[0]
         winners.append(best)
         del remaining[best]
