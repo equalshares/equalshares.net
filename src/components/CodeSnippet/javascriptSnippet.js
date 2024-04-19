@@ -28,7 +28,7 @@ function getJavaScriptCodeSnippet(choices) {
 }
 
 function fractionImport() {
-    return `import Fraction from './libraries/fraction.js';
+    return `import Fraction from 'https://cdn.jsdelivr.net/npm/fraction.js@4.3.7/fraction.js';
 
 function sum(xs) {
     return xs.reduce((a, b) => a.add(b), new Fraction(0));
@@ -90,7 +90,7 @@ function comparisonStep(choices) {
         } else {
             code += `const mesSatisfaction = {};
     const greedySatisfaction = {};
-    for (let [candidates, satisfaction] of [[winners, mesSatisfaction], [greedy, greedySatisfaction]]) {
+    for (let [candidates, satisfaction] of [[mes, mesSatisfaction], [greedy, greedySatisfaction]]) {
         for (let c of candidates) {
             for (let i of approvers[c]) {
                 if (!satisfaction[i]) {
@@ -141,9 +141,54 @@ function comparisonStep(choices) {
     return code;
 }
 
+function docComment(choices) {
+    const scores = choices.ballots == "score";
+    let code = `/**
+* Computes the Method of Equal Shares for Participatory Budgeting.
+*
+* @param {Array} voters - A list of voter names.
+* @param {Array} projects - A list of project IDs.
+* @param {Object} cost - A dictionary mapping project IDs to their respective costs.
+`;
+    if (scores) {
+        code += `* @param {Object} u - An object mapping voter names to an object mapping project IDs to their respective scores, so that u[i][c] is the score voter i gives to project c.
+`;
+    } else {
+        code += `* @param {Object} approvers - An object mapping project IDs to the list of voters who approve them.
+`;
+    }
+    code += `* @param {number} totalBudget - The total budget available.
+* @returns {Array} A list of project IDs that are selected based on the Method of Equal Shares.
+*
+* @example
+* const voters = ["v1", "v2", "v3"];
+* const projects = ["p1", "p2", "p3"];
+* const cost = {"p1": 100, "p2": 50, "p3": 50};
+`;
+    if (scores) {
+        code += `* const u = {
+*     "v1": {"p1": 2, "p2": 1, "p3": 0},
+*     "v2": {"p1": 2, "p2": 1, "p3": 0},
+*     "v3": {"p1": 0, "p2": 0, "p3": 1}
+* };
+`;
+    } else {
+        code += `* const approvers = {"p1": ["v1", "v2"], "p2": ["v1"], "p3": ["v3"]};
+`;
+    }
+    code += `* const totalBudget = 150;
+*
+* const result = equalShares(voters, projects, cost, ${scores ? "u" : "approvers"}, totalBudget);
+* console.log(result); // Output: ["p1", "p3"]
+*/
+`;
+    return code;
+}
+
 function mainFunction(choices) {
     const scores = choices.ballots == "score";
-    let code = `function equalShares(voters, projects, cost, ${scores ? "u" : "approvers"}, totalBudget) {
+    let code = docComment(choices);
+    code += `function equalShares(voters, projects, cost, ${scores ? "u" : "approvers"}, totalBudget) {
     `;
     if (scores) {
         // compute approvers and totalUtility from u
@@ -309,6 +354,7 @@ function fixedBudgetFunction(choices) {
             }
         }`;
     }
+    const divisor = scores ? "paymentFactor" : "maxPayment";
     return `function equalSharesFixedBudget(voters, projects, cost, ${scores ? "u, totalUtility, " : ""}approvers, totalBudget) {
     let budget = {};
     for (let i of voters) {
@@ -345,8 +391,8 @@ function fixedBudgetFunction(choices) {
             let denominator = ${initialEffVoteCount};
             for (let i of approvers[c]) {
                 // compute payment if remaining approvers pay ${scores ? "proportional to their utility" : "equally"}
-                const ${scores ? "paymentFactor" : "maxPayment"} = ${fractions ? "new Fraction(cost[c]).sub(paidSoFar).div(denominator)" : "(cost[c] - paidSoFar) / denominator"}; 
-                const effVoteCount = ${fractions ? "new Fraction(cost[c]).div(maxPayment)" : "cost[c] / maxPayment"};
+                const ${divisor} = ${fractions ? "new Fraction(cost[c]).sub(paidSoFar).div(denominator)" : "(cost[c] - paidSoFar) / denominator"}; 
+                const effVoteCount = ${fractions ? `new Fraction(cost[c]).div(${divisor})` : `cost[c] / ${divisor}`};
                 if (${payEntireBudgetCondition}) {
                     // i cannot afford the payment, so pays entire remaining budget
                     paidSoFar ${fractions ? "= paidSoFar.add(budget[i])" : "+= budget[i]"};
@@ -370,8 +416,8 @@ function fixedBudgetFunction(choices) {
         }
         ${choices.tieBreaking != "" ? `best = breakTies(voters, projects, cost, ${scores ? "totalUtility" : "approvers"}, best);
         ` : ""}if (best.length > 1) {
-            throw new Error("Tie-breaking failed: tie between projects " + best.join(", ") 
-                + " could not be resolved. Another tie-breaking needs to be added.");
+            throw new Error("Tie-breaking failed: tie between projects [" + best.join(", ") 
+                + "] could not be resolved. Another tie-breaking needs to be added.");
         }
         best = best[0];
         winners.push(best);
