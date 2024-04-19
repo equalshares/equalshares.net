@@ -119,6 +119,49 @@ function mainFunction(choices) {
     const scores = choices.ballots == "score";
     let code = `def equal_shares(voters, projects, cost, ${scores ? "u" : "approvers"}, total_budget):
     `;
+    // docstring
+    code += `"""
+    Computes the Method of Equal Shares for Participatory Budgeting.
+
+    Args:
+        voters (list): A list of voter names.
+        projects (list): A list of project IDs.
+        cost (dict): A dictionary mapping project IDs to their respective costs.
+        `;
+    if (scores) {
+        code += `u (dict): A dictionary mapping voter names to a dictionary mapping project IDs to the voter's score for the project, so that u[i][c] is the score voter i gives to project c.
+        `;
+    } else {
+        code += `approvers (dict): A dictionary mapping project IDs to the list of voters who approve them.
+        `;
+    }
+    code += `total_budget (int): The total budget available.
+
+    Returns:
+        list: A list of project IDs that are selected by the Method of Equal Shares.
+
+    Example:
+        >>> equal_shares(
+        >>>    voters=["v1", "v2", "v3"], 
+        >>>    projects=["p1", "p2", "p3"],
+        >>>    cost={"p1": 100, "p2": 50, "p3": 50},
+        >>>    `;
+    if (scores) {
+        code += `u={
+        >>>        "v1": {"p1": 2, "p2": 1, "p3": 0},
+        >>>        "v2": {"p1": 2, "p2": 1, "p3": 0},
+        >>>        "v3": {"p1": 0, "p2": 0, "p3": 1}
+        >>>    },
+        `;
+    } else {
+        code += `approvers={"p1": ["v1", "v2"], "p2": ["v1"], "p3": ["v3"]},
+        `;
+    }
+    code += `>>>    total_budget=150)
+        ["p1", "p3"]
+
+    """
+    `;
     if (scores) {
         // compute approvers and total_utility from u
         code += `approvers = {c: [i for i in voters if u[i][c] > 0] for c in projects}
