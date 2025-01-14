@@ -5,6 +5,13 @@
     --ifm-alert-border-color: hsl(220, 50%, 66%);
 }
 
+[data-theme='dark'] .codeSnippetOptions > details {
+    --ifm-alert-background-color: hsl(220, 30%, 16%);
+    --docusaurus-details-decoration-color: hsl(220, 20%, 66%);
+    --ifm-alert-foreground-color: var(--ifm-color-info-contrast-foreground);
+    --ifm-alert-border-color: hsl(220, 50%, 26%);
+}
+
 .codeSnippetLabel {
     display: block;
 }
