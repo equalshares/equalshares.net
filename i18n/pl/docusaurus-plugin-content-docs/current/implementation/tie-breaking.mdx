@@ -27,7 +27,7 @@ Wówczas, jeśli zastosujemy poniższą procedurę, to losowanie nigdy nie będz
 Przy stosowaniu każdej metody liczenia głosów może wystąpić remis. W przypadku metody równych udziałów remis występuje gdy kilka projektów ma tę samą efektywną liczbę głosów.
 Remisy zdarzają się rzadko, zwłaszcza gdy mamy do czynienia z większymi wyborami (np. wyborami w skali miasta).
 Metoda równych udziałów jest jednak zwykle uruchamiana kilka razy z rzędu, aby ustalić jaką kwotę najlepiej rozdysponować pomiędzy wyborców. 
-(Dzieje się tak w przypadku [standardowego wariantu uzupełniania wyników obliczonych przez metodę równych udziałów](implementation/completion)).
+(Dzieje się tak w przypadku [standardowego wariantu uzupełniania wyników obliczonych przez metodę równych udziałów](completion)).
 Częste uruchamianie metody zwiększa prawdopodobieństwo napotkania remisu.
 
 Zalecamy, aby w przypadku wystąpienia remisu pomiędzy projektami (wynikającego z tego, że mają one taką samą efektywną liczbę głosów) stosować następującą procedurę:
@@ -112,7 +112,7 @@ Jeśli nie liczyć Wrocławia, mamy 383 instancje wyborcze.
 
 Aby uzyskać bardziej precyzyjne oszacowanie prawdopodobieństwa wystąpienia remisu, dla każdej instancji wyborczej przeprowadziliśmy symulację 100 razy.
 W każdej iteracji wybieraliśmy od 30% do 80% wyborców (czyli w losowy sposób zmniejszamy wybory), a następnie sprawdzaliśmy, czy istnieje para projektów o takim samym koszcie i takiej samej liczbie głosów.
-Jeśli takie projekty istniały, sprawdzaliśmy, czy metoda równych udziałów (wykorzystująca standardową metodę [uzupełniania](implementation/completion)) napotka remis.
+Jeśli takie projekty istniały, sprawdzaliśmy, czy metoda równych udziałów (wykorzystująca standardową metodę [uzupełniania](completion)) napotka remis.
 
 Jeśli spojrzymy tylko na oryginalne wybory (bez losowego zmniejszania),
 to para projektów o takim samym koszcie i takiej samej liczbie głosów występuje w 1,25% przypadków. Losowanie jest konieczne w 0,21% przypadków. Wyłączając wybory we Wrocławiu, liczby te wynoszą odpowiednio 0,5% i 0,0%.
