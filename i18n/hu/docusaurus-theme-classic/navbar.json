@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "Egyenlő Részvétel Módszere",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Az Egyenlő Részvétel Módszere logója",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Explanation": {
+    "message": "Magyarázat",
+    "description": "Navbar item with label Explanation"
+  },
+  "item.label.Benefits": {
+    "message": "Előnyök",
+    "description": "Navbar item with label Benefits"
+  },
+  "item.label.Implementation": {
+    "message": "Megvalósítás",
+    "description": "Navbar item with label Implementation"
+  },
+  "item.label.Elections": {
+    "message": "Elections",
+    "description": "Navbar item with label Elections"
+  },
+  "item.label.Contacts": {
+    "message": "Contacts",
+    "description": "Navbar item with label Contacts"
+  }
+}

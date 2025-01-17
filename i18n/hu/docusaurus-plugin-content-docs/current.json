@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Benefits": {
+    "message": "Benefits",
+    "description": "The label for category Benefits in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Implementation": {
+    "message": "Implementation",
+    "description": "The label for category Implementation in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Elections": {
+    "message": "Elections",
+    "description": "The label for category Elections in sidebar tutorialSidebar"
+  }
+}

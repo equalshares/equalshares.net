@@ -1,0 +1,120 @@
+import Link from '@docusaurus/Link';
+import styles from '@site/src/pages/index.module.css';
+import { UniversityLogo, BallotExampleOption } from '@site/src/components/HomepageComponents';
+import { CurrencySymbol } from '@site/src/components/CurrencyChoice';
+import Sankey from '@site/src/components/Sankey';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<section className={styles.universityLogos}>
+    <p>kutatók fejlesztették és tanulmányozták világszerte különböző egyetemeken</p>
+    <div className={styles.logoList}>
+        <UniversityLogo logo="logo-warsaw-en.svg" uniName="Varsói Egyetem" link={<a href="https://www.mimuw.edu.pl/~ps219737/">Piotr Skowron</a>} />
+        <UniversityLogo logo="logo-cnrs.svg" uniName="CNRS, Franciaország" link={<a href="http://dominik-peters.de/">Dominik Peters</a>} />
+        <UniversityLogo logo="logo-groningen-en.svg" uniName="Groningeni Egyetem" link={<a href="https://davidegrossi.me/">Davide Grossi</a>} maxWidth="9.3em" />
+        <UniversityLogo logo="logo-agh.svg" uniName="AGH Tudományos és Műszaki Egyetem, Krakkó" link={<a href="https://home.agh.edu.pl/~faliszew/">Piotr Faliszewski</a>} />
+        <UniversityLogo logo="logo-toronto.svg" uniName="Torontói Egyetem" link={<a href="https://www.cs.toronto.edu/~nisarg/index.html">Nisarg Shah</a>} />
+        <UniversityLogo logo="logo-eth.svg" uniName="ETH Zürich" link={<a href="https://democracy.dsi.uzh.ch/member/joshua-yang/">Joshua Yang</a>} />
+        <UniversityLogo logo="logo-tu-berlin.svg" uniName="TU Berlin" link={<a href="https://sites.google.com/view/jannikpeters">Jannik Peters</a>} />
+    </div>
+</section>
+
+<section className={[styles.contentSection, styles.cities2023].join(' ')}>
+  <div className={styles.columns}>
+    <div>
+      <Link to="https://kulturkomitee.win/infos/gefoerderte-projekte/"><img src={useBaseUrl('/img/winterthur.png')} width="100" height="100" /></Link>
+      <Link to="https://kulturkomitee.win/infos/gefoerderte-projekte/">🇨🇭 Winterthur</Link>
+    </div>
+    <div>
+      <Link to="https://www.assen.nl/top-idee-kom-ermee"><img src={useBaseUrl('/img/assen.png')} width="100" height="100" /></Link>
+      <Link to="https://www.assen.nl/top-idee-kom-ermee">🇳🇱 Assen</Link>
+    </div>
+    <div>
+      <Link to="elections/swiecie-2024"><img src={useBaseUrl('/img/swiecie.png')} width="100" height="100" /></Link>
+      <Link to="elections/swiecie-2024">🇵🇱 Świecie</Link>
+    </div>
+    <div>
+      <Link to="elections/aarau-2023"><img src={useBaseUrl('/img/aarau.jpg')} width="100" height="100" /></Link>
+      <Link to="elections/aarau-2023">🇨🇭 Aarau</Link>
+    </div>
+    <div>
+      <Link to="elections/zielony-milion"><img src={useBaseUrl('/img/wielieczka.jpg')} width="100" height="100" /></Link>
+      <Link to="elections/zielony-milion">🇵🇱 Wieliczka</Link>
+    </div>
+  </div>
+</section>
+
+<section className={styles.contentSectionFlex}>
+  <div className={styles.ballotExplanation}>
+        Sok város használja a <strong style={{color: 'var(--ifm-color-primary)'}}>közösségi költségvetés</strong>et annak érdekében, hogy a lakosok is beleszólhassanak a közpénzek elköltésébe.
+        A városi önkormányzat elkülöníti költségvetésének egy részét,
+        lehetővé teszi bárki számára projektek javaslását, majd
+        egy választást tartanak, hogy eldöntsék, mely projekteket finanszírozzák.
+       
+        A szavazás nagyszerű módja annak, hogy sok állampolgárt bevonjanak a költségvetési döntésekbe.
+        Azonban a választás eredménye nem mindig igazságos.
+        Mivel sok város egyszerűen a legtöbb szavazatot kapó projekteket választja ki,
+        a költségvetést gyakran hasonló projektekre költik, amelyek népszerűek
+        ugyanannak a többségi szavazói csoportnak.
+       
+        Létezik egy szavazási rendszer, amely igazságosabb eredményekhez vezet, és biztosítja, hogy minden szavazónak egyenlő befolyása legyen az
+        eredményre:
+        <br /><strong style={{color: 'var(--ifm-color-primary)'}}>az Egyenlő Részvétel Módszere</strong>.
+  </div>
+  <div className={styles.approvalBallotExample}>
+      <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; Közösségi költségvetési szavazólap &mdash;</span>
+      <span>Elérhető költségvetés: <CurrencySymbol/>3 000 000</span>
+      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Szavazz legfeljebb 8 projektre</span>
+      <BallotExampleOption selected>A nyilvános könyvtár bővítése <br /> Költség: <CurrencySymbol/>200 000</BallotExampleOption>
+      <BallotExampleOption>A főutcai kerékpártárolók <br /> Költség: <CurrencySymbol/>70 000</BallotExampleOption>
+      <BallotExampleOption selected>Sporteszközök a parkban <br /> Költség: <CurrencySymbol/>50 000</BallotExampleOption>
+      <BallotExampleOption selected>További nyilvános mosdók <br /> Költség: <CurrencySymbol/>600 000</BallotExampleOption>
+      <BallotExampleOption>Ingyenes nyelvtanfolyamok <br /> Költség: <CurrencySymbol/>100 000</BallotExampleOption>
+      <BallotExampleOption>A városháza akadálymentesítése <br /> Költség: <CurrencySymbol/>800 000</BallotExampleOption>
+      <BallotExampleOption>A piactéri szökőkút felújítása <br /> Költség: <CurrencySymbol/>65 000</BallotExampleOption>
+  </div>
+</section>
+
+<section className={styles.contentSection}>
+  <h2>A fő ötlet</h2>
+      Az Egyenlő Részvétel Módszerének alapötlete, hogy minden szavazónak egyenlő részt biztosítanak a költségvetésből.
+      Ez a költségvetési rész csak olyan projektek finanszírozására használható, amelyekre a szavazó szavazott.
+      A módszer végigmegy az összes projektjavaslaton, kezdve a legtöbb szavazatot kapott projektekkel.
+      Kiválaszt egy projektet, ha azt azok szavazati részéből lehet finanszírozni, akik erre a projektre szavaztak.
+      A módszer egyenlően osztja el a projekt költségét annak támogatói között.
+  <div className={styles.sankeyImage}>
+      <div className={styles.sankeyContainer}>
+        <Sankey />
+      </div>
+  </div>
+      A szavazók szempontjából a szavazási élmény nem változik: csak ki kell tölteniük a szavazólapot,
+      és kiválasztani, mely projekteket támogatják. Az Egyenlő Részvétel Módszerét ezután a város számolja ki
+      (az egyik nyílt forráskódú szabályimplementáció segítségével), így biztosítva, hogy a költségvetés igazságosan kerüljön felhasználásra.
+</section>
+
+<section className={styles.contentSection}>
+  <h2>Mit találhat ezen a weboldalon</h2>
+  <div className={styles.columns}>
+    <div>
+      <Link to="explanation"><img src={useBaseUrl('/img/fund.svg')}/></Link>
+      <Link to="explanation"><strong>Magyarázat</strong></Link>
+      <Link to="explanation"><span>Részletes magyarázat példákkal, hogyan működik az Egyenlő Részvétel Módszere.</span></Link>
+    </div>
+    <div>
+      <Link to="benefits"><img src={useBaseUrl('/img/growth.svg')}/></Link>
+      <Link to="benefits"><strong>Előnyök</strong></Link>
+      <Link to="benefits"><span>Érvek, hogy az Egyenlő Részvétel Módszere jobb eredményekhez vezet más szabályoknál.</span></Link>
+    </div>
+    <div>
+      <Link to="implementation"><img src={useBaseUrl('/img/clipboard.svg')}/></Link>
+      <Link to="implementation"><strong>Megvalósítás</strong></Link>
+      <Link to="implementation"><span>Részletek és tanácsok arról, hogyan lehet választást lebonyolítani az Egyenlő Részvétel Módszerével.</span></Link>
+    </div>
+  </div>
+</section>
+
+<section className={styles.contentSection}>
+  <h2>A weboldalról</h2>
+  <p style={{ fontSize: '1.2em' }}>Ezt a weboldalt <Link to="contacts">Dominik Peters (CNRS, Université Paris Dauphine-PSL) és Piotr Skowron (Varsói Egyetem)</Link> készítették és tartják karban.
+      Célja, hogy összegyűjtse az Egyenlő Részvétel Módszerével kapcsolatos erőforrásokat, és magyarázatot nyújtson a módszerről az érdeklődő nyilvánosság,
+      városi tisztviselők és kutatók számára.</p>
+</section>

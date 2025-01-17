@@ -1,0 +1,216 @@
+---
+sidebar_position: 1
+title: Magasabb és egyenlőbb választói elégedettség
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
+
+# Magasabb és egyenlőbb választói elégedettség
+
+<div class="summary">
+<b>Összefoglaló</b>:
+A varsói közösségi költségvetési választások teljes szavazási adatai nyilvánosan elérhetők, és ezeket felhasználhatjuk az egyenlő részvétel módszere szerinti választási eredmények szimulálására. 
+Elemzéseink azt mutatják, hogy az átlagos választó több nyertes projektet hagy jóvá az egyenlő részvétel módszere szerinti választási eredményekben, mint a valós eredményekben. 
+Továbbá azt is megállapítjuk, hogy az egyenlő részvétel módszere szerint nagyobb arányban vannak olyan választók, akik legalább egy nyertes projektre szavaztak. 
+Ugyanakkor az átlagos választó esetében valamivel kevesebb pénz jut az általa jóváhagyott projektekre.
+</div>
+
+A nagyvárosok közösségi költségvetési választásainak eredményeit szimulálva azt tapasztaltuk, hogy a választói elégedettség növekedne az egyenlő részvétel módszerére való áttéréssel. Ami még fontosabb, hogy az elégedettség egyenletesebben oszlana el a választók között, és a legkevésbé elégedett választók jelentősen több forrást látnának az általuk támogatott projektekre fordítva az egyenlő részvétel módszere szerint.
+
+Ezen az oldalon a varsói közösségi költségvetési választások adataival végzett szimulációk eredményeit mutatjuk be, amelyeket a [Pabulib könyvtárból](http://pabulib.org/) vettünk. A szimulációk során kiszámítottuk, hogy milyen lett volna a választási eredmény, ha Varsó az egyenlő részvétel módszerét alkalmazta volna. Összehasonlítjuk ezt az eredményt a tényleges választási eredménnyel, amelyet a legtöbb szavazatot kapott projektek kiválasztásával értek el, amíg a költségvetés ki nem merült.
+
+Következtetéseink a következők:
+
+* **Az átlagos választó több nyertes projektet hagy jóvá.** Varsóban a választók legfeljebb 10 projektre szavazhatnak. A tényleges eredményekben a választók átlagosan 4,5 nyertes projektet hagytak jóvá, míg az egyenlő részvétel módszere szerint ez a szám átlagosan 6-ra nő. [[bővebben]](#több-jóváhagyott-projekt)
+* **Több választó szavazott legalább egy nyertes projektre.** A tényleges eredményekben a választók 87%-a szavazott legalább egy nyertes projektre, míg az egyenlő részvétel módszere szerint ez az arány 93%. [[bővebben]](#több-elégedett-választó)
+* **Az átlagos választó esetében valamivel kevesebb pénz jut a jóváhagyott projektekre.** 2022-ben a tényleges eredmények szerint az átlagos választó által jóváhagyott projektek a költségvetés 27%-át kapták, míg az egyenlő részvétel módszere szerint ez az arány 24%. Ezen a téren tehát az egyenlő részvétel módszere valamivel rosszabbul teljesít, mint a tényleges eredmények. [[bővebben]](#kevesebb-jóváhagyott-költés)
+* **Az elégedettség egyenletesebben oszlik el.** A jelenlegi szavazási módszer alkalmazásakor egyes választók nagyon elégedettek, míg mások egyetlen jóváhagyott projektet sem kapnak. Az egyenlő részvétel módszere ezzel szemben több választónak biztosít közepes elégedettségi szintet, ahol 10% és 40% közötti költés jut az általuk támogatott projektekre. [[bővebben]](#egyenletes-eloszlás)
+
+## Az átlagos választó több nyertes projektet hagy jóvá {#több-jóváhagyott-projekt}
+
+A választói elégedettség mérésének természetes módja, hogy megszámoljuk, hány projekt szerepel az eredményben, amelyre egy átlagos választó szavazott. Varsóban minden választó egy körzetben szavaz, és legfeljebb 10 projektet hagyhat jóvá. Az összes körzet és a 2020-22 közötti évek átlaga alapján megállapítható, hogy az átlagos választó körülbelül 4,5 nyertes projektet hagy jóvá a tényleges eredményekben. Az egyenlő részvétel módszere szerint ez az átlagos szám 6-ra nő, ami 33%-os növekedést jelent.
+
+Egyik körzetben sem csökken az átlagos szám az egyenlő részvétel módszere szerint. Ezzel szemben több körzetben majdnem megháromszorozódik az átlagos jóváhagyott projektek száma. Ennek egyik alapvető oka, hogy az egyenlő részvétel módszere általában több projektet választ ki, míg a jelenlegi módszer csak néhány, de nagyon drága projektet választ.
+
+Az alábbi térképeken minden körzet esetében bemutatjuk az adott körzetben jóváhagyott projektek átlagos számát. A harmadik térkép a százalékos különbséget mutatja. Például a +85% azt jelenti, hogy az egyenlő részvétel módszere szerint az átlagos jóváhagyott projektek száma 1,85-szöröse a tényleges eredményének.
+
+<Tabs className="maps-tabs" groupId="years">
+    <TabItem value="2022" default>
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/number_approved_difference-2022.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2021">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/number_approved_difference-2021.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2020">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/number_approved_real_outcome-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/number_approved_equal_shares-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/number_approved_difference-2020.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+</Tabs>
+
+## Több választó szavazott legalább egy nyertes projektre {#több-elégedett-választó}
+
+A közösségi költségvetés célja, hogy a lakosság széles rétegei számára biztosítson befolyást a költségvetési döntésekre. Ezért célszerű olyan szavazási módszert alkalmazni, amelynél a lakosság nagy hányada képviselve van az eredményekben. Minimális követelmény, hogy a választók nagy hányadának legyen legalább egy nyertes projekt, amelyre szavaztak. Ez a magas részvétel szempontjából is előnyös: ha egy választó sok projektre szavaz, de egyik sem nyer, az csalódást okozhat, és úgy érezheti, hogy a szavazata kárba veszett.
+
+Szimulációinkban azt találtuk, hogy az egyenlő részvétel módszere szerint a választók nagyobb hányadának van legalább egy nyertes projektje, amelyre szavazott. Évek és körzetek átlagában az egyenlő részvétel módszere szerint a választók 93%-ának van legalább egy nyertes projektje, míg a tényleges eredmények szerint ez az arány 86%. Egyes körzetekben a különbség nagyon nagy: például Bielanyban 2022-ben a választók 94%-ának van legalább egy nyertes projektje az egyenlő részvétel módszere szerint, szemben a tényleges eredmények szerinti 80%-kal. Néhány esetben az egyenlő részvétel módszere szerint alacsonyabb a hányad, de legfeljebb 1 százalékponttal.
+
+Az alábbi térképeken bemutatjuk, hogy az egyes körzetekben a választók hány százalékának van legalább egy nyertes projektje, amelyre szavazott. A „különbség” térképen a különbséget százalékpontban ábrázoljuk. A pozitív szám az egyenlő részvétel módszere szerint magasabb hányadot, míg a negatív szám alacsonyabbat jelez.
+
+<Tabs className="maps-tabs" groupId="years">
+    <TabItem value="2022" default>
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2022.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2021">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2021.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2020">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-real_outcome-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-equal_shares-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/fraction-of-voters-with-positive-utility-difference-2020.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+</Tabs>
+
+## Az átlagos választó esetében valamivel kevesebb pénz jut a jóváhagyott projektekre {#kevesebb-jóváhagyott-költés}
+
+Korábban láthattuk, hogy az egyenlő részvétel módszere szerint az átlagos választó több projektet hagy jóvá az eredményekben. Az elégedettség másik mérési módja lehet az az összeg, amelyet a jóváhagyott projektekre fordítottak. Ez a két mérés eltérhet, mivel előfordulhat, hogy egy választó csak egy nagy és drága projektet kap meg, vagy sok kisebb és olcsóbb projektet.
+
+Ebben a szakaszban kiszámítjuk, hogy az átlagos választó által jóváhagyott projektekre a teljes költségvetés hány százalékát fordítják. Megállapítottuk, hogy az egyenlő részvétel módszere szerint az átlagos választó által jóváhagyott projektekre fordított pénz általában 3-4 százalékponttal kevesebb. Az évek és körzetek átlagában az egyenlő részvétel módszere szerint 24%-ot költöttek jóváhagyott projektekre, szemben a tényleges eredmények 27%-ával.
+
+Ez azért van, mert a jelenlegi szavazási módszer optimalizációs algoritmusként működik, amely az adott mérőszámot maximalizálja. Ezért minden más eredmény rosszabb kell, hogy legyen ezen a téren. Bátorító azonban, hogy a különbség nem túl nagy, és az egyenlő részvétel módszere így is jól teljesít.
+
+<Tabs className="maps-tabs" groupId="years">
+    <TabItem value="2022" default>
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/spending_real_outcome-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/spending_equal_shares-2022.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/spending_difference-2022.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2021">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/spending_real_outcome-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/spending_equal_shares-2021.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/spending_difference-2021.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+    <TabItem value="2020">
+        <div className="maps-display">
+            <div className="map-with-label">
+                <span>Tényleges eredmény</span>
+                <img src={useBaseUrl('/img/maps/spending_real_outcome-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Egyenlő részvétel módszere</span>
+                <img src={useBaseUrl('/img/maps/spending_equal_shares-2020.svg')} width="99" height="105" />
+            </div>
+            <div className="map-with-label">
+                <span>Különbség</span>
+                <img src={useBaseUrl('/img/maps/spending_difference-2020.svg')} width="99" height="105" />
+            </div>
+        </div>
+    </TabItem>
+</Tabs>
+
+## Az elégedettség egyenletesebben oszlik el {#egyenletes-eloszlás}
+
+Korábban láttuk, hogy a tényleges eredményekben egy átlagos választó kissé több költést kap a jóváhagyott projektekre, mint az egyenlő részvétel módszere szerint. Ez azonban nem igaz minden választóra: a tényleges eredményekben egyesek sokkal elégedettebbek, mások pedig kevésbé. Ez azt jelenti, hogy több olyan választó van, aki nagyon kevés költést lát az általa jóváhagyott projektekre, és több olyan, aki nagyon sokat. Az egyenlő részvétel módszere ezzel szemben egyenletesebben osztja el a költést, különösen azok között, akik mérsékelt mértékű elégedettséget érnek el.
+
+Ezt a jelenséget az alábbi diagramon láthatjuk. Például a diagram azt mutatja, hogy a tényleges eredményekben körülbelül 7 000 választó látja a költségvetés 20%-át jóváhagyott projektekre fordítva. Az egyenlő részvétel módszere szerint ez a szám körülbelül 9 000 választó. Az 5% és 40% közötti tartományban az egyenlő részvétel módszere szerint több választó ér el ezt az elégedettségi szintet, mint a tényleges eredmények szerint.
+
+<Datawrapper src="//datawrapper.dwcdn.net/0uQYY/3/" />

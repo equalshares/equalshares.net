@@ -1,0 +1,37 @@
+---
+sidebar_position: 8
+title: Szavazási platformok
+---
+
+import Acronym from '@site/src/components/Acronym';
+
+# Szavazási platformok
+
+Itt néhány népszerű szoftvercsomagról esik szó, amelyek online <Acronym acronym="PB" tooltip="Közösségi költségvetés" /> szavazási platformként használhatók, és hogy mennyire kompatibilisek az egyenlő részvétel módszerével.
+
+:::info
+
+Általánosságban *bármilyen* platform használható, amely támogatja az egyenlő részvétel módszeréhez kompatibilis [számos bemeneti formátum](input-formats) egyikét. A szavazási szakasz után egyszerűen exportálni kell a szavazatokat a platformról, és az eredmény kiszámítható az elérhető ingyenes [szoftvercsomagok](computation) egyikével.
+
+:::
+
+Keressen minket [kapcsolatfelvétel](../contacts) céljából tanácsadásért.
+
+## Stanford Participatory Budgeting Platform
+
+A [Stanford Participatory Budgeting Platform](https://pbstanford.edu/) a [Stanford Crowdsourced Democracy Team](https://voxpopuli.stanford.edu/) által fejlesztett, Stanford Egyetemen működő projekt. A projekt nyílt forráskódú és ingyenes. Számos városban használták Észak-Amerikában és máshol is.
+
+Azok a városok, amelyek a Stanford platformot használják, könnyen kombinálhatják azt az egyenlő részvétel módszerével, ha exportálják az egyéni szavazatokat, majd egy külön nyílt forráskódú szoftvercsomag segítségével kiszámítják a választási eredményeket.
+
+A szavazási adatok könnyen exportálhatók a StanfordPB platform adminisztrátori felületéről, az alábbi útmutatás szerint:
+* Elemzések > Exportálás Excelbe > Egyéni szavazatok.
+
+Ez egy `.csv` fájlt hoz létre, amelyet más szoftverek egyszerűen tudnak használni.
+
+<img src={require('@site/static/img/screenshot-standfordpb.png').default} width="600" style={{ boxShadow: '0 0 15px rgba(0,0,0,0.3)' }} />
+
+## Decidim
+
+A [Decidim](https://decidim.org/) egy népszerű platform szoftver, amely többféle polgári részvételi formát tesz lehetővé, beleértve a közösségi költségvetést is. Eredetileg Madrid, majd Barcelona használta. A közösségi költségvetéshez támogatja a zsákszavazást (ahol a választók annyi projektet választhatnak, amennyi belefér a költségvetési keretbe), valamint a több X-es szavazást szavazati korláttal.
+
+Sajnos a Decidim nem kínál egyszerű módot a szavazási eredmények exportálására, így a rendszeradminisztrátornak közvetlenül a Decidim adatbázisából kell lekérdeznie az adatokat, hogy az egyenlő részvétel módszerével kiszámítható legyen a választási eredmény.

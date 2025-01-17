@@ -1,0 +1,90 @@
+---
+sidebar_position: 5
+title: Matematikai méltányossági garanciák
+---
+
+import { SemiBold } from '@site/src/components/MyComponents';
+import X from '/icons/x-circle.svg';
+
+# Matematikai méltányossági garanciák
+
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"/>
+</head>
+
+<div class="summary">
+<b>Összefoglalás</b>:
+Az akadémiai szakirodalom kimutatta, hogy az egyenlő részvétel módszere garantálja, hogy a szavazók csoportjai megfelelő mértékű képviseletet kapjanak az eredményben. Továbbá biztosítja, hogy a projektek nyerjenek, amennyiben bizonyos minimális támogatást kapnak.
+</div>
+
+Az egyenlő részvétel módszerét matematikusok és informatikusok javasolták és fejlesztették ki, akik olyan matematikai tételeket bizonyítottak be, amelyek szerint a módszer meghatározott értelemben méltányosságot garantál a szavazók számára. 
+Ezen az oldalon néhány eredményüket fogjuk leírni intuitív szinten és technikai értelemben egyaránt.
+
+További információkért tekintse meg az alábbi forrásokat:
+[<img src={require('@site/static/img/abcbook.png').default} style={{ float: 'right', width: '100px' }} />](https://link.springer.com/book/10.1007/978-3-031-09016-5)
+
+* A "Multi-Winner Voting with Approval Preferences" (2023) című könyv Martin Lackner és Piotr Skowron szerkesztésében, amely Open Access formában jelent meg a Springer kiadásában ([ingyenes PDF letöltés](https://link.springer.com/book/10.1007/978-3-031-09016-5)).
+Ez a könyv elsősorban a "több nyertes választásokra" fókuszál, ahol feltételezzük, hogy minden projekt ugyanannyiba kerül.
+* A "Proportional Participatory Budgeting with Additive Utilities" című tanulmány Dominik Peters, Grzegorz Pierczyński és Piotr Skowron tollából. Elérhető az [arXiv-on](https://arxiv.org/abs/2008.13276).
+
+## Egy projekt garantáltan finanszírozásra kerül, ha elég "bullet" szavazatot kap a költségéhez viszonyítva {#bullet-votes}
+
+Az első matematikai garancia az egyes projektekre vonatkozik: biztosítva van, hogy finanszírozásra kerülnek, ha legalább egy minimális számú egyedi szavazatot kapnak.
+
+Egy konkrét példához vegyünk egy projektet, amely a teljes rendelkezésre álló költségvetés 5%-át igényli. 
+Ebben az esetben, ha a szavazók legalább 5%-a kizárólag erre a projektre szavaz, akkor ez a javaslat biztosan nyer az egyenlő részvétel módszere alapján.
+
+Az alábbiakban formálisan is megfogalmazzuk ezt a tulajdonságot:
+
+> **Tétel**. Legyen $P$ egy projekt, és legyen $\text{cost}(P)$ a javaslat költsége. Tegyük fel, hogy $B$ a teljes költségvetés, és $n$ a szavazók száma. Ha legalább $n \cdot \text{cost}(P)/B$ szavazó kizárólag $P$-re szavaz, akkor $P$ biztosan a kiválasztott projektek között lesz az egyenlő részvétel módszere alapján.
+
+<details className="proof">
+<summary>Bizonyítás</summary>
+
+Azok a szavazók, akik kizárólag $P$-re szavaztak, legalább $B/n$ költségvetési részesedést kapnak a módszer számításának kezdetén. (Ez több is lehet, mert a módszert [kiegészítjük](../implementation/completion).)
+
+Ezért a kizárólag $P$-re szavazókhoz rendelt költségvetési összeg legalább:
+$$
+\underbrace{n \cdot \frac{\text{cost}(P)}{B}}_{\text{szavazók száma}} \cdot \underbrace{\frac{B}{n}}_{\text{költségvetési részesedés}} = \text{cost}(P).
+$$
+
+Az egyenlő részvétel módszere csak akkor fejeződik be, ha több projektet már nem lehet támogatni a támogatóik révén. Ez azt jelenti, hogy $P$ biztosan a kiválasztott projektek között lesz, mert azok a szavazók, akik csak $P$-re szavaztak, megtartják minden pénzüket, amíg $P$ ki nem kerül a nyertes projektek közé, így $P$ mindig megfizethető.
+</details>
+
+A közösségi költségvetés hagyományos szavazási módszerével (amely egyszerűen a legnépszerűbb projekteket választja ki, amíg a költségvetés el nem fogy) nem biztosított hasonló garancia. Még egy nagyon költséghatékony projekt (például a költségvetés 1%-át igénylő) is jelentős számú szavazót (például több mint 30%-ot) igényelhet a győzelemhez a hagyományos módszerrel.
+
+A garancia érvényesüléséhez szükséges, hogy a támogató szavazók csak az adott projektet támogassák, és ne más projekteket is, mert különben az egyenlő részvétel módszere úgy dönthet, hogy a szavazókat más általuk támogatott projektek kiválasztásával elégíti ki.
+
+## Hasonló szavazatokat leadó csoportok képviseletet kapnak az eredményben
+
+Az egyenlő részvétel módszere szerint minden olyan szavazócsoport, amely hasonló projekteket támogat, elvárhatja, hogy az eredményben a csoport méretével arányosan képviselve legyen. Például egy szavazók 20%-át kitevő csoport elvárhatja, hogy a költségvetési kiadások 20%-ára befolyással legyen.
+
+Ilyen szavazócsoportok lehetnek például egy adott iskola szülői közössége, egy adott városrész lakói vagy kerékpárral közlekedők. Az alábbi tulajdonságok biztosítják, hogy ezek a csoportok képviselve legyenek az eredményben (feltéve, hogy elegendő tagjuk van a közösen támogatott projektek költségének igazolásához).
+
+### Azonos szavazatokat leadó szavazócsoportok
+
+Tegyük fel, hogy egy több X-es közösségi költségvetési választáson $t$ szavazó ugyanazt a szavazólapot adja le, azaz pontosan ugyanazokra a projektekre szavaz. Konkrétan, tegyük fel, hogy ezek a szavazók $P_1$, $P_2$ és $P_3$ projekteket támogatják. 
+Intuitíve, mivel ez a csoport a szavazók $t/n$ arányát teszi ki, az eredményben a költségvetés $t/n$ arányának megfelelő képviseletet várhatnak el.
+
+(Formális bizonyítás és további példák a dokumentumban követhetők.)
+
+### Átfedő szavazatokat leadó szavazócsoportok
+
+Még ha a szavazócsoport tagjai nem is teljesen azonosan szavaznak, a módszer továbbra is arányos képviseletet biztosít. Az átfedések kezelésére vonatkozó matematikai garanciák részletezése szintén megtalálható.
+
+## Egyéb szavazási kritériumok
+
+Az egyenlő részvétel módszere az alábbi alapvető szavazási kritériumoknak is megfelel:
+* <SemiBold>Polinomiális időben számítható</SemiBold>
+* <SemiBold>Klónfüggetlenség</SemiBold>
+* <SemiBold>Monotonicitás</SemiBold>
+* <SemiBold>Kedvezményes monotonicitás</SemiBold>
+* <SemiBold>Üres szavazólapoktól való függetlenség</SemiBold>
+* <SemiBold>A D'Hondt-módszer általánosítása</SemiBold>
+
+Néhány más kritériumnak azonban nem felel meg:
+<ul style={{ listStyleType: '"\\2717  "' }}>
+<li>Pareto-optimalitás</li>
+<li>Költségvetési limit monotonitása</li>
+<li>Stratégiai manipulációmentesség</li>
+</ul>

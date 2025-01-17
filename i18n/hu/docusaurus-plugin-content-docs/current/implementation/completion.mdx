@@ -1,0 +1,65 @@
+---
+sidebar_position: 5
+title: Kiegészítés
+---
+
+import { SemiBold, Datawrapper } from '@site/src/components/MyComponents';
+import { Currency } from '@site/src/components/CurrencyChoice';
+
+# Az egyenlő részvétel módszerének kiegészítése
+
+<div class="summary">
+<b>Összefoglaló</b>:
+Az egyenlő részvétel módszerének többféle változata létezik. A legegyszerűbb változatban előfordulhat, hogy a módszer nem használja fel a teljes rendelkezésre álló költségvetést (csak körülbelül 70%-át). Ez általában nem kívánatos, ezért a módszert „ki kell egészíteni”. Itt ismertetjük a szabványos kiegészítési módot, és megvitatjuk néhány alternatívát. A legtöbb felhasználó számára a szabványos módszer ajánlott, amelyet szoftvercsomagok is megvalósítanak.
+</div>
+
+Az [magyarázatban](../explanation) az egyenlő részvétel módszerének 1. lépése így szól:
+
+> A teljes költségvetést egyenlően osztják el a szavazók között.
+
+Például, ha a teljes költségvetés <Currency>100 000</Currency>, és 1000 szavazó van, akkor minden szavazó számára <Currency>100</Currency> rész jut.
+Azonban, amikor az egyenlő részvétel módszerét ezzel a kezdeti költségvetési felosztással számítjuk ki, általában azt tapasztaljuk, hogy a választási eredmény nem használja fel a teljes költségvetést.
+Ez azért van, mert egyes szavazók számára a módszer nem tudja hatékonyan felhasználni a hozzájuk rendelt költségvetési részt.
+Például, ha egy szavazó csak egy projektre szavaz, és ez a projekt nem kap elég szavazatot ahhoz, hogy nyerjen, akkor a módszer nem tudja elkölteni a szavazónak rendelt <Currency>100</Currency>-t.
+
+Varsói szavazási adatokon végzett szimulációk alapján az egyenlő részvétel módszere a rendelkezésre álló költségvetés körülbelül 60-70%-át használja fel.
+Természetesen a választási tisztviselők általában arra törekednek, hogy a költségvetés közel 100%-át elköltse.
+Ezért az egyenlő részvétel módszerét **ki kell egészíteni**, ami azt jelenti, hogy az eredményét módosítani kell, hogy szinte a teljes költségvetés felhasználásra kerüljön.
+
+<details>
+<summary><SemiBold>Diagram</SemiBold>: Ha minden szavazó több projektre szavaz, a kiegészítés kevésbé fontos.</summary>
+
+Az oka annak, hogy az egyenlő részvétel módszere gyakran csak a költségvetés 60-70%-át használja fel, az, hogy egyes szavazók csak kevés projektre szavaznak.
+Ezt a hatást varsói (2020-22) adatok alapján végzett szimulációval vizsgálhatjuk. 
+
+Varsóban a szavazók kerületükben legfeljebb 15 projektre szavazhatnak.
+Szimulálhatjuk, hogy mi történt volna, ha Varsóban minimális szavazatszámot írnak elő, azáltal, hogy csak azokat a szavazatokat vesszük figyelembe, amelyek elegendő számú projektre szavaztak.
+Így szimulálhatunk 2, 3, 4, ..., 15 minimális szavazatszámot.
+Minden minimális értéknél ellenőrizhetjük, hogy az egyenlő részvétel módszere a költségvetés hány százalékát használja fel, ha csak a megfelelő számú projektre szavazó szavazatok alapján számítjuk ki.
+
+Az eredmények azt mutatják, hogy ha a szavazók legalább 8 projektre szavaznak, a költségvetés több mint 90%-a felhasználásra kerül.
+<Datawrapper src="//datawrapper.dwcdn.net/bPA91/2/" />
+</details>
+
+## Ajánlott kiegészítési módszer
+
+Az alapötlet az, hogy a szavazóknak nagyobb kezdeti költségvetési részt adunk. 
+Például, ahelyett, hogy minden szavazónak <Currency>100</Currency>-t adnánk, <Currency>130</Currency>-at adhatunk.
+Pontosabban, minden lehetséges értéket végigpróbálunk: <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, és így tovább.
+Minden értéknél kiszámítjuk az egyenlő részvétel módszerének eredményét.
+Két esetben állunk meg:
+* Az eredmény _kimerítő_, ami azt jelenti, hogy a költségvetési határ túllépése következne, ha bármelyik további projektet hozzáadnánk az eredményhez.
+* Ha a következő magasabb értékkel futtatnánk az egyenlő részvétel módszerét, akkor az eredmény meghaladná a költségvetési határt.
+
+A szimulációs eredmények azt sugallják, hogy az ilyen módon kiegészített egyenlő részvétel módszere megtartja a kívánatos méltányossági tulajdonságait.
+
+Fontos megjegyezni, hogy általában nem jó jel, ha a kezdeti költségvetési részt túl sokat kell növelni a kiegészítési folyamat során. Ilyenkor sokkal több virtuális pénz kerül kiosztásra a szavazók között, mint amennyi ténylegesen elköltésre kerül, és ez azt eredményezi, hogy egyes szavazóknál sok el nem költött virtuális pénz marad. Ez azt jelenti, hogy egyes szavazók sokkal több pénzt költhettek el a kedvelt projektjeikre, mint más szavazók. Ez a szavazók befolyásának egyenlőtlenségéhez vezethet az eredményben.
+Egy módja annak, hogy elkerüljük a kezdeti költségvetési rész túlzott növelését, ha arra kérjük a szavazókat, hogy több projektre szavazzanak. Például néhány városban [előírják, hogy a szavazóknak legalább 3 projektre kell szavazniuk](input-formats#minimum-number-of-approvals). Ez azért segít, mert az el nem költött virtuális pénz fő oka az, hogy egyes szavazók csak egyetlen projektre szavaznak, amely nem kap elég szavazatot a nyeréshez. Ebben az esetben az egyenlő részvétel módszere képtelen elkölteni a szavazónak kiosztott virtuális pénzt.
+
+## Egyéb kiegészítési módszerek
+
+A költségvetés azon részének felhasználására, amelyet az egyenlő részvétel módszere nem használ fel, más módok is léteznek:
+
+* <SemiBold>Spórolás jövő évre</SemiBold>. A fennmaradó összegek megmaradhatnak, és növelhetik a következő év rendelkezésre álló költségvetését.
+* <SemiBold>Projektek finanszírozása a legtöbb szavazattal</SemiBold>. A fennmaradó összegek felhasználhatók olyan projektek finanszírozására, amelyek sok szavazatot kaptak, de kimaradtak az egyenlő részvétel módszere miatt. Ez azonban kevésbé méltányos eredményhez vezet.
+* <SemiBold>Rugalmas tartalékmegoldás</SemiBold>. Például Chicagóban a költségvetés egy rugalmas részét használták az úthibák kijavítására.

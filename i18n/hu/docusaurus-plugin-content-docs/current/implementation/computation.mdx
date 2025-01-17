@@ -1,0 +1,143 @@
+---
+sidebar_position: 10
+title: Számítás
+---
+
+import { CustomCodeSnippetGenerator, ComputeToolButton} from '@site/src/components/CodeSnippet';
+
+# Hogyan számítsuk ki az eredményeket?
+
+## Online számítási eszköz
+
+Egy **online eszközt** biztosítunk az egyenlő részvétel módszerének eredményeinek kiszámítására.
+Az eszköz elérhető a [https://equalshares.net/tools/compute](https://equalshares.net/tools/compute) címen.
+Az eszköz ingyenesen használható, és nem igényel regisztrációt vagy telepítést.
+
+<ComputeToolButton>Nyissa meg az online számítási eszközt &rarr;</ComputeToolButton>
+
+Az eszköz lehetővé teszi a felhasználók számára, hogy egy `.pb` formátumú fájlt töltsenek fel, amely az összes szavazatot tartalmazza, és a [pabulib](http://pabulib.org/) által használt szabványos formátum.
+Ezután kiszámítja az egyenlő részvétel módszerének eredményeit, és táblázatos formában megjeleníti azokat, valamint további statisztikákat és információkat nyújt.
+Az eszköz támogatja az egyenlő részvétel módszerének minden szabványos változatát.
+
+Az adatokat nem küldi el semmilyen szerverre; minden számítás a felhasználó böngészőjében történik.
+A felhasználók leválaszthatják az internetet az oldal betöltése után, és az eszköz továbbra is működni fog.
+
+Az eszköz csak a több X-es szavazást támogatja.
+
+<details>
+<summary>A <code>.pb</code> fájlformátumról</summary>
+<div>
+<p>
+A <code>.pb</code> fájlformátum a közösségi költségvetési adatok tárolásának szabványos formátuma.
+A <a href="http://pabulib.org/">pabulib</a> könyvtár használja.
+A formátum egy egyszerű szöveges formátum, amely bármely szövegszerkesztővel szerkeszthető.
+Információkat tartalmaz a választási esetről (például a helyszínről, dátumról és a választási költségvetésről),
+a projektekről (például azok nevéről és költségeiről), valamint a szavazatokról (például, hogy mely projekteket támogatja minden szavazó).
+</p>
+<p>
+Íme egy példa egy <code>.pb</code> fájlra:
+</p>
+
+```
+META
+key;value
+description;Példa választás
+num_projects;3
+num_votes;4
+budget;100000
+vote_type;approval
+PROJECTS
+project_id;name;cost
+1;Projekt 1;5000
+2;Projekt 2;10000
+3;Projekt 3;85000
+VOTES
+voter_id;vote
+1;1,2
+2;1
+3;3
+4;1,2,3
+```
+</div>
+</details>
+
+## A `pabutools` csomag
+
+A [`pabutools`](https://github.com/pbvoting/pabutools) csomag egy ingyenes és nyílt forráskódú Python-csomag, amely számos közösségi költségvetési szavazási szabályt, köztük az egyenlő részvétel módszerét is megvalósítja.
+A csomag elérhető a [GitHubon](https://github.com/pbvoting/pabutools).
+A csomagot a [PyPI](https://pypi.org/project/pabutools/) segítségével lehet telepíteni `pip`-pel:
+
+```bash
+pip install pabutools
+```
+
+A csomag segítségével beolvashat egy [pabulib](http://pabulib.org/) fájlt, és kiszámíthatja az egyenlő részvétel módszerének eredményeit a következő módon:
+
+```python
+from pabutools.election import parse_pabulib, Cost_Sat
+from pabutools.rules import method_of_equal_shares
+instance, profile = parse_pabulib("filename.pb")
+winners = method_of_equal_shares(
+    instance,
+    profile.as_multiprofile(),
+    sat_class=Cost_Sat,
+    voter_budget_increment=1 # a kiegészítési módszer Add1 használata
+)
+print(winners)
+```
+
+További részletek a [csomagdokumentációban](https://pbvoting.github.io/pabutools/usage.html#method-of-equal-shares-mes) érhetők el.
+
+## Kódgenerátor
+
+Itt rövid kódrészleteket biztosítunk az egyenlő részvétel módszerének Python vagy JavaScript segítségével történő kiszámításához.
+Kiválaszthatja a módszer azon változatát, amelyet meg szeretne valósítani.
+
+<CustomCodeSnippetGenerator />
+
+## Általános megfontolások
+
+<details>
+<summary>Algoritmikus trükk a számítás gyorsításához</summary>
+<div>
+<p>
+A számítás során az algoritmusnak ismételten ki kell számítania az egyes projektek "<a href="../explanation">effektív szavazatszámát</a>", ami egy költséges lépés.
+Ez a rész felgyorsítható, ha csak akkor számítjuk újra az effektív szavazatszámot, ha ez lényeges.
+</p>
+<p>
+A fő megfigyelés az, hogy az effektív szavazatszám <em>csak csökkenhet</em>, ahogy az algoritmus halad előre.
+Az implementációban a következőt tesszük:
+az előző körben a legmagasabb effektív szavazatszámú projekttel kezdjük.
+Újraszámoljuk ennek a projektnek az effektív szavazatszámát.
+Ezután összehasonlítjuk az új effektív szavazatszámát az előző körben második legmagasabb effektív szavazatszámú projekttel.
+Ha az új effektív szavazatszám magasabb, mint a második legmagasabb projekté,
+akkor tudjuk, hogy megtaláltuk a jelenlegi kör legmagasabb effektív szavazatszámú projektjét
+(mivel az összes többi projekt korábban alacsonyabb effektív szavazatszámmal rendelkezett, amely azóta csak tovább csökkenhetett).
+Így azonnal kiválaszthatjuk azt.
+</p>
+<p>
+Ez az optimalizálás minden ezen az oldalon található kódrészletben alkalmazva van.
+</p>
+</div>
+</details>
+
+### Numerikus pontosság: lebegőpontos számok vagy törtek?
+
+Az egyenlő részvétel módszerét használó választások nyerteseinek kiszámításakor törtekkel történő számításokat kell végezni.
+Például egy projekt költségét el kell osztani a támogatói számával, hogy megtudjuk, mennyit kell hozzájárulnia egy-egy támogatónak a projekthez.
+A számítógépek általában "lebegőpontos számokat" használnak, amelyek nem pontos reprezentációi a valós számoknak (például 1/3 nem ábrázolható pontosan lebegőpontos számmal, mert végtelen tizedes tört).
+Ez azt jelenti, hogy ha lebegőpontos számokat használunk, ritka esetekben pontatlan eredményeket kaphatunk.
+Különösen, ha döntetlen van (azaz két projektnek ugyanaz az effektív szavazatszáma), a lebegőpontos implementáció kissé eltérő effektív szavazatszámot rendelhet az egyes projektekhez, és így eltérő nyertest választhat, mint a pontos implementáció.
+
+Ennek a problémának az elkerülése érdekében használhatunk racionális szám implementációt, amely a számokat egész számok törteként ábrázolja.
+Az ilyen implementációk általában lassabbak (kb. 4-10x), mint a lebegőpontos implementációk, de pontosak.
+A fenti kódegenerátor lehetővé teszi, hogy lebegőpontos vagy racionális szám implementációt válasszon.
+Javasoljuk, hogy hivatalos eredmények számításához használja a racionális szám implementációt, míg gyors teszteléshez a lebegőpontos implementációt.
+A `pabutools` csomag alapértelmezés szerint a racionális szám implementációt használja.
+
+### Összehasonlítás az akadémiai irodalommal
+
+Az akadémiai irodalomban az egyenlő részvétel módszerét gyakran úgy határozzák meg matematikailag, hogy a projektek kiválasztását a költséghatékonyságuk (azaz a szavazatszám osztva a költséggel) csökkenő sorrendjében részesítse előnyben.
+Ezzel szemben, a módszer, ahogy ezen a weboldalon le van írva, a projektek kiválasztását a szavazatszám csökkenő sorrendjében részesíti előnyben.
+A formális irodalomban ezt a módszerváltozatot néha "költség-utilitásokkal" való módszerként említik, mivel az itt tárgyalt változat a projekt költségét proxyként használja a választók által érzett hasznosságára.
+Fontos ezt a különbséget szem előtt tartani, amikor összehasonlítjuk az akadémiai irodalomban elérhető leírásokat és pszeudokódokat.

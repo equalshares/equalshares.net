@@ -1,0 +1,122 @@
+---
+sidebar_position: 4
+title: Döntetlen feloldása
+---
+
+import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
+import { Currency } from '@site/src/components/CurrencyChoice';
+
+# Hogyan oldjuk fel a döntetleneket?
+
+<div class="summary">
+<b>Összefoglaló</b>:
+Ritka esetekben előfordulhat, hogy két vagy több projekt között döntetlen alakul ki (például azért, mert pontosan ugyanaz a költségük, és ugyanannyi szavazatot kaptak).
+Ennek valószínűsége kevesebb, mint 1%.
+Leírjuk, hogyan lehet minimalizálni a döntetlenek valószínűségét az egyenlő részvétel módszerének alkalmazásakor.
+Ha azonban mégis döntetlen alakul ki, azt a választási tisztviselőknek véletlenszerűséggel kell feloldaniuk.
+</div>
+
+## Ajánlott döntetlen-feloldási eljárás
+
+:::tip
+
+Egy egyszerű módja annak, hogy biztosan elkerüljük a döntetleneket, ha gondoskodunk arról, hogy egyetlen projekt költsége se legyen azonos egy másikéval (még akkor sem, ha a különbség csak <Currency>1</Currency>). Így a döntetlen soha nem fordul elő, ha az alábbi döntetlen-feloldási eljárást követjük.
+
+:::
+
+Az egyenlő részvétel módszerének végrehajtása során döntetlen akkor fordulhat elő, ha két vagy több projekt azonos effektív szavazatszámmal rendelkezik.
+Önmagában a döntetlenek valószínűsége alacsony nagyobb választásoknál (például városi szinten).
+Az egyenlő részvétel módszerét azonban általában többször is lefuttatják annak meghatározására, hogy mennyi pénzösszeg legyen kezdetben kiosztva a szavazók között.
+(További részletekért lásd: [Kiegészítések](completion).)
+Ez növeli annak valószínűségét, hogy döntetlen forduljon elő, amelyet fel kell oldani.
+
+Javasoljuk, hogy ha két vagy több projekt között döntetlen alakul ki az azonos effektív szavazatszám miatt a módszer valamelyik lépésében,
+akkor a döntetlent az alábbi eljárás szerint oldják fel:
+* A legkisebb költségű projektet választják ki.
+* Ha két vagy több döntetlenben lévő projekt költsége azonos, akkor a (legkisebb költségű) projektek közül azt választják, amelyik a legmagasabb kezdeti szavazatszámmal rendelkezik (vagyis a nyers szavazatszám a projekt esetében, mielőtt a szavazatszám csökkent volna az egyenlő részvétel módszerének alkalmazása során).
+* Ha két vagy több projekt költsége és kezdeti szavazatszáma is azonos, akkor a döntetlent sorsolással, például véletlenszerűen, egyenlő eséllyel oldják fel.
+
+Eljárási szempontból a véletlenszerűség alkalmazásának két módja van:
+1. A választási eredmény kiszámítása előtt a választási tisztviselők ellenőrzik, hogy vannak-e olyan projektek, amelyek költsége és kezdeti szavazatszáma azonos. Minden ilyen lehetséges döntetlenhez egy sorrendet állapítanak meg, például kalapból való névsorsolással.
+2. Alternatív megoldásként használhatunk egy olyan egyenlő részvétel módszert alkalmazó algoritmust, amely hibaüzenetet ad, ha döntetlen alakul ki. Csak ebben a (ritka) esetben járjanak el az 1. opció szerint.
+
+:::info Technikai információk
+
+Ha véletlenszerűség alkalmazására van szükség, javasoljuk, hogy
+a választási tisztviselők az itt leírt 2. opció szerint járjanak el:
+határozzanak meg egy döntetlen-feloldási sorrendet véletlenszerű sorsolással, majd futtassák le az egyenlő részvétel módszert (beleértve a kiegészítést) az adott döntetlen-feloldási sorrenddel.
+A kiegészítést alkalmazva nem jó ötlet különböző kezdeti költségvetési értékek esetén eltérő döntetlen-feloldási módszert alkalmazni.
+
+:::
+
+## Példák
+
+### 1. példa
+Például tegyük fel, hogy az egyenlő részvétel módszere a következő helyzetet eredményezi, ahol három projekt marad elérhető kiválasztásra:
+
+| Projekt | Költség | Kezdeti szavazatszám | Effektív szavazatszám |
+| --- | --- | --- | --- |
+| 1. projekt | <Currency>600</Currency> | 500 | **200** |
+| 2. projekt | <Currency>700</Currency> | 300 | **200** |
+| 3. projekt | <Currency>100</Currency> | 150 | 100 |
+
+Az 1. és a 2. projekt rendelkezik a legmagasabb effektív szavazatszámmal, ezért ezek közül kell választani.
+Mivel az effektív szavazatszámuk azonos, döntetlen-feloldásra van szükség.
+Az eljárás szerint az **1. projektet** választják ki, mivel annak <Currency>600</Currency> a költsége, ami alacsonyabb, mint a 2. projekt <Currency>700</Currency> költsége.
+
+### 2. példa
+
+Íme egy hasonló példa.
+
+| Projekt | Költség | Kezdeti szavazatszám | Effektív szavazatszám |
+| --- | --- | --- | --- |
+| 1. projekt | <Currency>400</Currency> | 500 | **200** |
+| 2. projekt | <Currency>400</Currency> | 300 | **200** |
+| 3. projekt | <Currency>400</Currency> | 150 | **200** |
+
+Ezúttal mindhárom projekt azonos effektív szavazatszámmal rendelkezik, ezért újra döntetlen-feloldásra van szükség.
+Mindhárom projekt költsége azonos, ezért a kezdeti szavazatszám alapján kell dönteni.
+Az eljárás szerint az **1. projektet** választják ki, mivel annak kezdeti szavazatszáma 500, ami magasabb, mint a 2. és 3. projekt kezdeti szavazatszáma.
+
+### 3. példa
+
+Íme egy utolsó példa.
+
+| Projekt | Költség | Kezdeti szavazatszám | Effektív szavazatszám |
+| --- | --- | --- | --- |
+| 1. projekt | <Currency>400</Currency> | 500 | **200** |
+| 2. projekt | <Currency>400</Currency> | 500 | **200** |
+
+Az 1. és a 2. projekt azonos effektív szavazatszámmal rendelkezik, ezért döntetlen-feloldásra van szükség.
+De mindkettő költsége és kezdeti szavazatszáma is azonos.
+Ezért a döntetlent sorsolással kell feloldani, például egy pénzfeldobással.
+
+## A döntetlenek valószínűsége
+
+A [Pabulib könyvtár](http://pabulib.org/) választási adatai alapján végzett szimulációk segítségével becsülhető a döntetlenek előfordulásának valószínűsége.
+Ezek a szimulációk azt sugallják, hogy rendkívül ritka (&lt;1%), hogy véletlenszerűséget kelljen alkalmazni egy döntetlen feloldásához.
+Ez azért van így, mert szinte minden esetben a döntetlen már a projekt költségei és kezdeti szavazatszámai alapján feloldható.
+
+Szimulációink szerint **csak az esetek 0,6%-ában** fordul elő, hogy két projekt pontosan azonos költséggel és azonos szavazatszámmal rendelkezik.
+Továbbá, még a projektek ilyen hasonlósága esetén is gyakran nincs szükség döntetlen-feloldásra az egyenlő részvétel módszerének számításakor
+(például azért, mert a döntetlen projektek nem rendelkeznek elég magas szavazatszámmal ahhoz, hogy esélyük legyen nyerni).
+Szimulációink szerint **csak az esetek 0,15%-ában** fordul elő, hogy az egyenlő részvétel módszere során döntetlent kell sorsolással feloldani.
+
+A szimulációk szerint a legtöbb döntetlen a wrocławi választásokban fordul elő, amelyek viszonylag kis számú választót érintenek.
+Ha kizárjuk a wrocławi választásokat a szimulációból, akkor a döntetlenek valószínűsége még alacsonyabb:
+két projekt azonos költséggel és azonos kezdeti szavazatszámmal csak az esetek 0,26%-ában fordul elő, 
+és az egyenlő részvétel módszere során döntetlen csak **az esetek 0,09%-ában** fordul elő.
+
+<details>
+<summary>A szimuláció részletei</summary>
+
+A szimulációt 2023 januárjában végezték a Pabulib választási adatain alapuló szimulációval, amelyek több X-es szavazási rendszert használó PB választásokból származnak. Ezek 480 adathalmazt tartalmaznak, a lengyelországi Gdańsk, Varsó, Wrocław és Zabrze városaiból. A wrocławi választások kizárásával a szimuláció 383 adathalmazt foglal magában. 
+
+A döntetlenek előfordulásának pontosabb becslése érdekében minden adathalmazon 100 szimulációt végeztünk.
+Minden iterációban véletlenszerűen kiválasztottuk a választók 30–80%-át az adathalmazból (így egy véletlenszerűen kisebb választást kaptunk), majd ellenőriztük, hogy a kisebb választás tartalmaz-e olyan projektek párját, amelyek azonos költséggel és azonos kezdeti szavazatszámmal rendelkeznek.
+Azoknál az eseteknél, ahol ilyen projektpárt találtunk, megvizsgáltuk, hogy az egyenlő részvétel módszere (a szokásos [kiegészítési](completion) módszer használatával) találkozik-e döntetlennel a választási eredmény kiszámításakor.
+
+Ha csak a tényleges, eredeti választásokat nézzük (anélkül, hogy véletlenszerűen kiválasztanánk egy részhalmazt a választókból), akkor a projektek azonos költséggel és azonos kezdeti szavazatszámmal az esetek 1,25%-ában fordulnak elő, az egyenlő részvétel módszere pedig az esetek 0,21%-ában találkozik döntetlennel. A wrocławi választások kizárásával ezek az arányok 0,5% és 0,0%.
+
+A szimulációs kód [elérhető a GitHubon](https://gist.github.com/DominikPeters/2208ca4c7c1464bc1d3956829195f20a).
+</details>

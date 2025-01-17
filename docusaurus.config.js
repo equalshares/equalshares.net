@@ -28,7 +28,7 @@ const config = {
   favicon: 'img/favicon.svg',
 
   customFields: {
-    currencySymbol: {en: '€', de: 'Fr. ', pl: 'zł', fr: '€', nl: '€'},
+    currencySymbol: {en: '€', de: 'Fr. ', pl: 'zł', fr: '€', nl: '€', hu: 'Ft'},
     buildDate: isoDay,
   },
 
@@ -42,7 +42,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['de', 'en', 'pl', 'fr'] //, 'nl']
+    locales: ['de', 'en', 'pl', 'fr', 'hu'] //, 'nl']
   },
 
   presets: [

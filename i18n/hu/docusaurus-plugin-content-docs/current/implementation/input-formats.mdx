@@ -1,0 +1,172 @@
+---
+sidebar_position: 2
+title: Bemeneti formátumok
+---
+
+import { Datawrapper, SemiBold } from '@site/src/components/MyComponents';
+
+# Bemeneti formátumok: Hogyan fejezhetik ki a szavazók a preferenciáikat?
+
+A közösségi költségvetéshez kapcsolódó szavazási rendszer megválasztásának fontos része a **bemeneti formátum** kiválasztása.  
+A bemeneti formátum a szavazólap tervezésére és arra vonatkozik, hogyan fejezhetik ki a szavazók a preferenciáikat.  
+Számos különböző bemeneti formátum létezik, amelyeket városok használnak:
+
+* **Több X-es szavazás** (például a szavazók legfeljebb 10 projektet választhatnak ki). &#10004; Ezt a formátumot ajánljuk. [[továbbiak]](#approval-voting)
+* **Pont-elosztós szavazás** (például a szavazók 10 pontot oszthatnak szét a projektek között, több pontot is adva egy-egy projektnek). &#10004; Ezt a formátumot ajánljuk. [[továbbiak]](#distributing-points)
+* **Zsákszavazás** (a szavazók annyi projektet választhatnak, amennyit szeretnének, feltéve, hogy a választott projektek összköltsége nem haladja meg a költségvetési korlátot). Nem ajánljuk ezt a formátumot. [[továbbiak]](#knapsack-voting)
+* **Rangsorolásos szavazás** (például a szavazók 3 projektet rangsorolhatnak preferenciájuk szerint). Nem ajánljuk ezt a formátumot. [[továbbiak]](#ranked-voting)
+
+Az egyenlő részvétel módszere kompatibilis mindezekkel a bemeneti formátumokkal, így a városok kiválaszthatják az igényeiknek leginkább megfelelőt.  
+A következőkben bemutatjuk az egyes bemeneti formátumok előnyeit és hátrányait.
+
+**A több X-es szavazást javasoljuk**, mert ez a leggyakoribb bemeneti formátum a közösségi költségvetésben, és könnyen érthető.  
+A pont-elosztós szavazás jó alternatíva, amely lehetővé teszi a szavazók számára, hogy részletesebb preferenciákat fejezzenek ki.
+
+:::tip
+
+A Wikipédián található egy [lista a közösségi költségvetést használó városokról](https://en.wikipedia.org/wiki/List_of_participatory_budgeting_votes), amely megemlíti az alkalmazott bemeneti formátumot is.
+
+:::
+
+## Több X-es szavazás (ajánlott) {#approval-voting}
+
+A több X-es szavazás során a szavazók bizonyos számú projektet választhatnak, amelyeket „jóváhagynak” (megszavaznak).  
+Ez a leggyakoribb bemeneti formátum a közösségi költségvetésben.
+
+* Előny: ez a formátum könnyen érthető és használható.
+* Előny: az egyenlő részvétel módszere különösen könnyen elmagyarázható a szavazóknak, ha több X-es szavazást alkalmaznak.
+
+### Jóváhagyások maximális száma
+
+A legtöbb város korlátozza a jóváhagyások számát.
+
+* Legfeljebb **15** jóváhagyás: Varsó (kerületi projektek, 2020 óta)
+* Legfeljebb **10** jóváhagyás: Varsó (városi projektek, 2020 óta), Lyon (2022)
+* Legfeljebb **5** jóváhagyás: Varsó (2015), Łódź (2017–21), Cambridge MA (2016–21), New York City (2015–19), Montreal (2021), Párizs (2015–17)
+* Legfeljebb **4** jóváhagyás: Párizs (2018–19)
+* Legfeljebb **3** jóváhagyás: Toulouse (2022), Milánó (2018), Róma (2019), Gdynia (2020–21)
+
+Javasoljuk, hogy a szavazók számára nagyvonalú maximális korlátot állítsanak be, hogy kifejezhessék teljes preferenciáikat.
+
+:::note
+
+Egy másik lehetőség, hogy *nincs* felső korlát a jóváhagyások számára. Ennek számos előnye van:
+* Azok a szavazók, akik sok projektet kedvelnek, támogathatják mindegyiket.
+* Ha van korlát, néhány szavazó úgy érezheti, hogy ki kell használnia az összes rendelkezésre álló szavazatot; korlát nélkül ez elkerülhető.
+* Az egyenlő részvétel módszerének kialakítása miatt a szavazók nincsenek előnyben, ha kevés vagy sok projektet szavaznak meg, mivel minden szavazó egyenlő részt kap a költségvetésből.
+
+:::
+
+### Jóváhagyások minimális száma
+
+Néhány város minimális jóváhagyást is előír, például Lausanne (2022-ben) és Toulouse (2019-ben), ahol a szavazóknak legalább 3 projektet kellett megszavazniuk.
+
+A minimális jóváhagyás előnye, hogy a szavazók jobban megismerkednek a projektek teljes listájával.  
+Egyes szavazók talán csak egy általuk ismert projektre akarnak szavazni, de a minimális szám miatt a többi projektet is át kell tekinteniük.  
+Ezenkívül, ha egy szavazó több projektre szavaz, az egyenlő részvétel módszerének jobb esélye van arra, hogy kielégítse a szavazót, ha a kedvenc projektjét nem választják ki.
+
+Hátránya lehet, hogy egyes szavazók valóban csak egy projektre szeretnének szavazni, és frusztráló lehet számukra, ha olyan projektekre is szavazniuk kell, amelyeket nem kívánnak támogatni. Ez kevésbé valószínű probléma, ha sokféle javaslat van.
+
+## Pont-elosztós szavazás (ajánlott) {#distributing-points}
+
+A pont-elosztós szavazásnál minden szavazó meghatározott számú *pontot* kap (például 10 pontot), amelyeket tetszés szerint oszthat szét a projektek között.  
+Például adhat mind a 10 pontot egyetlen projektre, vagy 1-1 pontot 10 különböző projektre, vagy bármilyen más kombinációban.  
+Adhat például 1-1 pontot 6 projektre, és 2-2 pontot 2 másik projektre.
+
+Ezt a rendszert néha [kumulatív szavazásként](https://en.wikipedia.org/wiki/Cumulative_voting) is ismerik. Több város is használja:
+
+* Częstochowa: **10 pont** elosztása
+* Toulouse (2019): **7 pont** elosztása, projektenként legfeljebb 3 pont
+* Strasbourg (2019, 2021): **5 pont** elosztása
+* Gdańsk (2016–22): **5 pont** elosztása
+
+Ennek a rendszernek az előnye, hogy a szavazók nagy rugalmassággal fejezhetik ki preferenciáikat.  
+Azok a szavazók, akik erősen preferálnak néhány projektet, sok pontot adhatnak nekik.  
+Ugyanakkor azok a szavazók, akik sok különböző projektet kedvelnek, mindegyiknek adhatnak egy kisebb pontszámot.
+
+:::tip Tanács
+
+A szavazókat érdemes lebeszélni arról, hogy az összes pontjukat egyetlen projektre adják,  
+mert ha ez a projekt nem nyer, akkor a szavazatuknak nincs hatása.
+
+:::
+
+## Tartományos szavazás
+
+A [tartományos szavazás](https://en.wikipedia.org/wiki/Range_voting) hasonló a pont-elosztós szavazáshoz, azzal a különbséggel, hogy nincs felső korlát az összesen kiosztható pontok számára.  
+Helyette a szavazók által egyetlen projektre kiosztható pontok száma van korlátozva.  
+Például ez a korlát lehet 5 pont; ekkor a szavazók eldönthetik, hogy egy projektre 0, 1, 2, 3, 4 vagy 5 pontot adnak.  
+Ez hasonlít az Amazonon vagy a Google Térképen megszokott 5 csillagos értékelési rendszerhez.
+
+Az egyenlő részvétel módszere jól működik a tartományos szavazással, hasonlóan a pont-elosztós szavazáshoz.  
+Mindkét rendszer jó bemeneti formátum.
+
+Párizs (2021–23) a tartományos szavazás egy változatát használja közösségi költségvetéséhez, ahol a szavazók egy 4-pontos skálán értékelhetik a projekteket.  
+Azonban az általános szavazási rendszer nem tartományos szavazáson alapul, mert Párizs a ["többségi ítélet" szavazási módszert](../benefits/comparisons#majority-judgment) alkalmazza.
+
+## Zsákszavazás
+
+A zsákszavazás hasonló a több X-es szavazáshoz. Ahelyett, hogy a jóváhagyások számát maximalizálnák, a szavazók annyi projektet támogathatnak, amennyit szeretnének, feltéve, hogy a választott projektek költsége nem haladja meg a költségvetési korlátot.  
+Számos város használja ezt a rendszert, különösen Madrid és Barcelona. A zsákszavazás a `decidim` [szavazási platform](voting-platforms) alapértelmezett bemeneti formátuma.
+
+Előny, hogy a szavazók jobban tisztában vannak a költségvetési korláttal.
+
+:::caution Nem ajánlott
+Nem ajánljuk a zsákszavazást a közösségi költségvetéshez.  
+A zsákszavazás problémákba ütközik, ha:
+* sok olcsó projekt van, mert a szavazóknak sok projektet kell választaniuk a költségvetés kitöltéséhez, ami nagy munkaterhet jelent.
+* vannak nagyon drága projektek, mert a szavazók nem tudják támogatni az összes projektet, amit kedvelnek. Ez rosszabb választási eredményekhez vezethet.
+:::
+
+Azonban az egyenlő részvétel módszere <SemiBold>kompatibilis a zsákszavazással</SemiBold>, és ugyanúgy működik, mint a több X-es szavazás esetén.
+
+## Rangsorolásos szavazás
+
+Egyes városok lehetővé teszik a szavazók számára, hogy először kiválasszanak egy kis számú projektet (általában 3–5), majd rangsorolják ezeket preferenciáik szerint.  
+Például Krakkó (2019–21) lehetővé tette a szavazók számára, hogy 3 projektet válasszanak ki és rangsoroljanak, ahol az első helyezett projekt 3 pontot, a második 2 pontot, a harmadik pedig 1 pontot kapott.
+
+:::caution Nem ajánlott
+Nem ajánljuk a rangsorolásos szavazást a közösségi költségvetéshez.  
+Úgy véljük, jobb, ha a szavazók maguk osztják szét a pontokat, ahelyett, hogy a rangsorolás alapján kényszerítenék rájuk a pontok kiosztását.  
+Emellett a felhasználói felület (húzd-és-ejtsd) a rangsorolásos szavazáshoz nehézkes lehet.
+:::
+
+Azonban az egyenlő részvétel módszere <SemiBold>kompatibilis a rangsorolásos szavazással</SemiBold>, mivel egy rangsorolás pontelosztássá alakítható.  
+Ahogy Krakkó is tette, 3-2-1 pontokat osztanak ki a rangsorolás alapján. Brest (2022) ugyanígy tesz. Gdynia (2016–19) az 5-4-3-2-1 rendszert alkalmazta. Új-Dél-Wales (2019) pedig a 10-5-3-2-1 rendszert használta.
+
+Nincs objektív módja annak, hogy hogyan alakítsák át a rangsorolást pontokká.
+
+## Szavazás egyetlen projektre
+
+Egyes városok arra kérik a szavazókat, hogy csak 1 projektet válasszanak ki szavazatukhoz.
+
+:::caution Nem ajánlott
+Erősen ellenjavalljuk, hogy a szavazatokat csak 1 projektre korlátozzák, mert így a szavazók nem tudják értelmesen kifejezni preferenciáikat.  
+Azok a szavazók, akik vesztes projektre szavaznak, nem gyakorolnak hatást a választási eredményre.  
+Ez a formátum emellett hátrányosan érinti a kisebb projekteket, mivel a szavazók nagyobb valószínűséggel szavaznak nagy projektre, mint kisebb projektre.
+:::
+
+## Bemeneti formátumok összehasonlítása
+
+### Használhatóság
+
+[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) empirikus vizsgálatot végzett 1 800 résztvevővel (az Amazon Mechanical Turkon keresztül toborozva)  
+a különböző bemeneti formátumok összehasonlítására egy közösségi költségvetési választáson.  
+Arra a következtetésre jutottak, hogy „a k-jóváhagyás vezet a legjobb felhasználói élményhez”.  
+Az alábbi ábra azt mutatja, hogy a vizsgálat résztvevői mennyi időt töltöttek a szavazási folyamat elvégzésével az egyes bemeneti formátumok esetében.
+
+Ebben a tanulmányban a több X-es szavazást 5 projekt jóváhagyására korlátozták, a pontelosztás során 100 pontot kellett elosztani, a rangsorolás során pedig az összes projektet (10 vagy 20) rangsorolni kellett.
+
+<Datawrapper src="//datawrapper.dwcdn.net/ioX3E/" />
+
+[Benadè et al. (2022)](https://www.gerdusbenade.com/files/22_pb_stability.pdf) azt is megkérdezte a szavazóktól, hogy mennyire tartották könnyűnek a szavazási feladatot.  
+Megállapították, hogy „[a pont-elosztós szavazást] meglehetősen könnyűnek értékelték, annak ellenére, hogy ez az egyik időigényesebb formátum.  
+[A több X-es szavazást] szignifikánsan könnyebbnek értékelték, mint az összes többi formátumot, kivéve [a pont-elosztós szavazást].”  
+Azok a résztvevők, akik több X-es szavazást használtak, a legmagasabb egyetértési pontszámot adták arra a kérdésre, hogy „Mennyire fejezte ki jól a bemeneti formátum a preferenciáit?”.
+
+### Robusztusság
+
+Kísérleti tanulmányok és szimulációs eredmények azt sugallják, hogy a bemeneti formátum választása csak kis hatással van a választási eredményekre.  
+Ezért a bemeneti formátum választása nem számít nagyon sokat.  
+Ez egy ok lehet arra, hogy azt a formátumot válasszák, amelyet a legkönnyebb használni, ami valószínűleg a több X-es szavazás.
+

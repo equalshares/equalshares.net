@@ -1,0 +1,275 @@
+---
+sidebar_position: 1
+title: Magyarázat
+---
+
+import { SemiBold, BudgetBars, WaterFilling } from '@site/src/components/MyComponents';
+import { Currency } from '@site/src/components/CurrencyChoice';
+
+# Az Egyenlő Részvétel Módszerének Magyarázata
+
+Ezen az oldalon elmagyarázzuk, hogyan működik az egyenlő részvétel módszere.
+A módszer két különböző bemeneti típussal alkalmazható:
+
+1. **Több X-es szavazás**, ahol minden szavazó néhány projektet támogat, de minden projektre azonos „erősséggel” szavaz. Például a szavazók legfeljebb 5 projektet választhatnak ki. További részletekért lásd ezt a Wikipédia-oldalt: [Approval Voting](https://en.wikipedia.org/wiki/Approval_voting).
+2. **Hasznossági értékek**, ahol minden szavazó egy hasznossági értéket rendel minden projekthez (0 vagy annál magasabb érték). Például a szavazók 10 pontot oszthatnak szét a projektek között. További részletekért lásd ezt a Wikipédia-oldalt: [Cardinal Voting](https://en.wikipedia.org/wiki/Cardinal_voting).
+
+A több X-es szavazás a hasznossági értékek speciális esete, ahol minden projekthez 0 vagy 1 hasznossági értéket rendelnek.
+Ezen az oldalon a módszert több X-es szavazásra magyarázzuk el, a hasznossági értékekre vonatkozó további információk hamarosan érkeznek.
+
+:::tip
+
+[Ugorjon le egy részletes példához](#example), ha inkább ezt szeretné.
+
+:::
+
+## Fő Mechanizmus {#main-mechanism}
+
+Először bemutatjuk a módszer fő elveit, majd elmagyarázzuk a technikai részleteket.
+
+1. A teljes költségvetést <SemiBold>egyenlően osztjuk szét</SemiBold> a szavazók között.
+:::tip Példa
+Tegyük fel, hogy a teljes költségvetés <Currency>1&thinsp;000&thinsp;000</Currency> (1 millió), és 100&thinsp;000 szavazó van. 
+Ekkor minden szavazóhoz <Currency>10</Currency> jut.
+:::
+
+2. <SemiBold>Eltávolítjuk</SemiBold> azokat a projekteket, amelyek költsége meghaladja az összes szavazó által kiosztott részarányt, akik szavaztak a projektre. 
+   (Hasznossági értékek esetén azoknak a szavazóknak az összesített részarányát vesszük, akik a projekthez 0-nál nagyobb értéket rendeltek.)
+:::tip Példa
+Tegyük fel, hogy egy projekt költsége <Currency>10&thinsp;000</Currency>, és 500 szavazatot kapott. 
+Mivel minden szavazónak <Currency>10</Currency> rész jutott,
+ez az 500 szavazó összesen <Currency>5&thinsp;000</Currency>-t tesz ki.
+Mivel a projekt költsége meghaladja az ő közös részarányukat, 
+a projektet nem lehet finanszírozni, ezért eltávolítjuk a figyelembe vételből.
+:::
+3. Ha nincs több projekt, a módszer számítása befejeződik.
+4. Ha maradtak projektek, kiszámítjuk minden projekt "[<SemiBold>effektív szavazatszámát</SemiBold>](#effective-vote-count)".
+:::note Magyarázat 
+Több X-es szavazás esetén a *szavazatszám* a projektre szavazók száma.
+Hasznossági értékeknél a szavazatszám a projekthez rendelt értékek összege.
+Az *effektív* szavazatszám kisebb, mint a szavazatszám, 
+mivel nem számoljuk azokat a szavazókat, akiknek nincs elég pénzük az egyenlő rész kifizetéséhez.
+:::
+5. Kiválasztjuk a <SemiBold>legmagasabb</SemiBold> effektív szavazatszámú projektet.
+   A projekt költségét [a lehető legegyenlőbben](#equal-split) osztjuk szét azok között a szavazók között, akik a projektre szavaztak.
+   Minden szavazó részét levonjuk a saját költségvetéséből.
+6. <SemiBold>Visszatérünk a 2. lépéshez</SemiBold>, hogy meghatározzuk a következő finanszírozandó projektet.
+
+:::info
+Az Egyenlő Részvétel Módszere a 3. lépésnél véget érhet anélkül, hogy a teljes rendelkezésre álló költségvetést elköltöttük volna.
+Ezért az 1. lépésben általában egy a ténylegesen rendelkezésre álló költségvetésnél nagyobb összeget használunk.
+Ez jobb eredményt eredményez.
+További információért lásd: [Kiegészítés](implementation/completion).
+:::
+
+## Hogyan oszthatjuk meg a projektek költségeit egyenlően {#equal-split}
+
+Az Egyenlő Részvétel Módszerének nyertes projektjeinek meghatározásakor kulcsfontosságú, hogy a projekt költségeit *a lehető legegyenlőbben* osszuk meg. 
+Ebben a részben elmagyarázzuk, mit jelent ez.
+
+Legyünk konkrétak: tegyük fel, hogy a teljes költségvetés <Currency>300</Currency>, és 10 szavazó van.
+Így az 1. lépésben minden szavazóhoz <Currency>30</Currency> kerül.
+Ezt az alábbi ábrán mutatjuk be, ahol minden szavazót egy <Currency>30</Currency> magasságú oszlop ábrázol.
+
+<BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} showPayments={false} />
+
+Tegyük fel, hogy van egy projekt, amely <Currency>50</Currency>-be kerül, és 5 szavazatot kapott az 5 bal oldali szavazótól.
+Ekkor a költségeket egyenlően oszthatjuk meg, minden támogató <Currency>10</Currency>-t fizet.
+Ezt az ábrán így mutatjuk:
+
+<BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} payments={[10,10,10,10,10,0,0,0,0,0]} />
+
+Van egy kicsit bonyolultabb eset, amikor néhány szavazó már elköltött egy részt a költségvetési részesedéséből, így nem lehetséges a projekt költségeit tökéletesen egyenlően szétosztani a támogatók között.
+
+Például vegyük ismét az <Currency>50</Currency>-es projektet, amelyet 5 bal oldali szavazó támogatott.
+De tegyük fel, hogy a legbaloldali szavazó már elköltötte a teljes <Currency>30</Currency>-os részesedését korábbi fordulókban.
+Ekkor a projekt költségeit csak a maradék 4 szavazó között lehet elosztani, akik mindegyike <Currency>12.50</Currency>-et fizet (mivel 4 &middot; <Currency>12.50</Currency> = <Currency>50</Currency>).
+
+<BudgetBars budgets={[0,30,30,30,30,30,30,30,30,30]} payments={[0,12.5,12.5,12.5,12.5,0,0,0,0,0]} />
+
+Egy másik példában tegyük fel, hogy a bal oldali két szavazónak csak <Currency>5</Currency> maradt költeni (mivel mindkettő már összesen <Currency>25</Currency>-öt elköltött korábbi fordulókban).
+Ebben az esetben a költségeket úgy osztjuk el, hogy először elvesszük a két szavazó teljes maradék költségvetését, amely összesen <Currency>5</Currency> + <Currency>5</Currency> = <Currency>10</Currency>.
+Ezután a maradék <Currency>40</Currency> költséget egyenlően osztjuk el a maradék 3 szavazó között, akik mindegyike <Currency>13.33</Currency>-et fizet (mivel 3 &middot; <Currency>13.33</Currency> = <Currency>40</Currency>).
+
+<BudgetBars budgets={[5,5,30,30,30,30,30,30,30,30]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} />
+
+Általánosságban véve a költségek egyenlő megosztásának eljárása a következő. Először megpróbáljuk a költségeket egyenlően elosztani (tehát a projekt költségét elosztjuk a támogatók számával). Ha egyes szavazóknak nincs elég költségvetésük ahhoz, hogy fedezzék a rájuk jutó részt, akkor ezeknek a szavazóknak annyit vonunk le, amennyi lehetséges (azaz a teljes maradék költségvetésüket). Ezután a következő lépésben megpróbáljuk a maradék költséget egyenlően elosztani a maradék szavazók között. Ha ez ismét nem lehetséges, annyit vonunk le, amennyit a szavazók tudnak fizetni, és így tovább. (Egy alternatív matematikai megfogalmazás szerint a projekt költségét úgy osztjuk meg a támogatók között, hogy bármely szavazó maximális hozzájárulása a lehető legkisebb legyen.)
+
+Kipróbálhatja, hogyan működik ez az alábbi példában, ahol egy projekt költségét (kezdetben <Currency>30</Currency>) osztják meg 5 támogató szavazó között. Ezeknek a szavazóknak a maradék költségvetése <Currency>10</Currency>, <Currency>10</Currency>, <Currency>10</Currency>, <Currency>20</Currency>, <Currency>30</Currency>. A projekt költségét a csúszka húzásával változtathatja, és láthatja, hogyan oszlik meg a költség a lehető legegyenlőbben az 5 szavazó között.
+
+<WaterFilling />
+
+Ebben a példában, ha a projekt költsége legfeljebb <Currency>50</Currency>, akkor a költségeket tökéletesen egyenlően lehet megosztani. <Currency>50</Currency> és <Currency>80</Currency> között a három szavazó, akiknek maradéka <Currency>10</Currency>, nem tudja a költségek egyenlő részét kifizetni, ezért a másik két szavazónak többet kell fizetnie.
+Vegye észre, hogy ha a csúszkát úgy állítja be, hogy a projekt költsége meghaladja a <Currency>80</Currency>-t, akkor a szavazóknak nincs elég költségvetésük a projekt finanszírozásához, így a projektet nem lehet támogatni.
+
+import EqualSharesLogo from '/img/equal-shares-logo.svg';
+
+:::info egyébként
+<EqualSharesLogo width="20" height="20" style={{ marginBottom: '-3px', marginRight: '3px' }} /> A logónkat ezek az ábrák ihlették, és a városi sziluett képét hivatottak megidézni.
+:::
+
+## Az effektív szavazatszám kiszámítása {#effective-vote-count}
+
+Az Egyenlő Részvétel Módszere nyertes projektjeinek meghatározásakor ki kell számolnunk az úgynevezett *effektív szavazatszámot*. Ebben a részben elmagyarázzuk, mit jelent ez.
+
+A legfontosabb szabály az, hogy <SemiBold>nem számoljuk azokat a szavazókat, akik már elköltötték az egész költségvetési részükhöz tartozó összeget</SemiBold>. Ennek az az oka, hogy ha egy szavazó már elköltötte az egész részét, akkor már kielégítettük az igényeit a kiválasztott projektekkel, így fontosabb olyan projekteket támogatni, amelyeket más szavazók preferálnak. Például egy <Currency>30</Currency> költségű projekt, amelyre 5 szavazat érkezett, de ebből 2 szavazó már elköltötte az összes pénzét, effektív szavazatszáma 3. Az alábbi ábra szemlélteti ezt a helyzetet.
+
+<BudgetBars budgets={[30,30,30,0,0]} payments={[10,10,10,0,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
+
+Az oszlopok alatti narancssárga dobozokban látható, hogy a 3 szavazó, akiknek maradt költségvetésük, mindegyike 1-et ad a projekt szavazatszámához, míg a 2, akiknek már nincs maradék költségvetésük, 0-t. Ez összesen 3 effektív szavazatot jelent.
+
+A második szabály szerint azok a szavazók, akiknek még van maradék költségvetésük, de nem elég ahhoz, hogy egyenlő részesedés szerint kifizessék a projekt költségét, <SemiBold>töredékként számítanak</SemiBold>. 
+Például, ha azok a szavazók, akiknek bőséges költségvetésük van, egyenként <Currency>10</Currency>-t fizetnek egy projektért, de egy másik szavazó csak <Currency>5</Currency>-et tud fizetni, akkor utóbbi szavazó csak fél szavazatot ér. Ez az effektus az alábbi példában látható, ahol egy <Currency>25</Currency> költségű projektet vizsgálunk.
+
+<BudgetBars budgets={[30,30,5,0,0]} payments={[10,10,5,0,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
+
+Ebben a példában látható, hogy a balról harmadik szavazó csak 0,5 szavazatot ér, így az összesített effektív szavazatszám 2,5.
+
+Az alábbi példában a csúszka mozgatásával állíthatja be a projekt költségét, és megnézheti, hogyan változik az effektív szavazatszám. Megfigyelhető, hogy az effektív szavazatszám csökken, ahogy a költség növekszik, mert magasabb költségek esetén egyes szavazók költségvetése nem elegendő az egyenlő részesedéshez.
+
+<WaterFilling showEffectiveVoteCounts={true} />
+
+## Példa 1 {#example}
+
+*Nézhet egy [videót a YouTube-on](https://www.youtube.com/watch?v=RYK3heBDKJ4)* [5:14 perc] *is, amely elmagyarázza ezt a példát.*
+
+Illusztráljuk a módszert egy egyszerű példával.
+Tegyük fel, hogy az összköltségvetés <Currency>1100</Currency>, és 11 szavazó van.
+
+Az szavazólapon 5 projekt szerepel, és több X-es szavazást használunk.
+Az alábbi táblázat tartalmazza a projekteket és azok költségeit.
+Minden szavazónál van egy oszlop, amely megmutatja, mely projekteket támogatta.
+Például a bal szélső szavazó a kerékpárutat és a kültéri edzőtermet választotta.
+
+| Projekt            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | szavazatszám |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-1">🚲 kerékpárút      </span> | <Currency>700</Currency> | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   | ✗ | 7 |
+| <span className="project-2">🏋️ kültéri edzőterem</span> | <Currency>400</Currency> | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   |   | 6 |
+| <span className="project-3">🌳 új park       </span>    | <Currency>250</Currency> |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | 5 |
+| <span className="project-4">🛝 új játszótér   </span>   | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 gyerek könyvtár</span>   | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+A legtöbb város egy egyszerű módszert használ a részvételi költségvetés nyerteseinek kiválasztására, ahol
+a szavazatok száma szerint haladnak végig a projekteken. Ebben az esetben kiválasztják
+a <span className="project-1">🚲 kerékpárutat</span> (7 szavazattal), majd a <span className="project-2">🏋️ kültéri edzőtermet</span> (6 szavazattal), majd megállnak, mert
+a költségvetés kimerült.
+Megjegyezhető, hogy ez a két "sportos" projekt nagyjából ugyanazoktól a szavazóktól kapott szavazatot.
+Ezzel szemben a "gyerekeknek" szóló projektek (<span className="project-4">🛝 új játszótér</span>, <span className="project-5">📚 gyerek könyvtár</span>) 
+egy másik szavazói csoport által lettek támogatva, akik képviselet nélkül maradnak. 
+
+:::info Spoiler
+Ahogy látni fogjuk, az Egyenlő Részvétel Módszere kiválasztja a <span className="project-1">🚲 kerékpárutat</span>, majd a <span className="project-4">🛝 új játszóteret</span>, és végül a <span className="project-5">📚 gyerek könyvtárat</span>.
+:::
+
+Az eredmény kiszámítását azzal kezdjük, hogy egyenlően osztjuk el a költségvetést a szavazók között.
+Így minden szavazó <Currency>100</Currency>-t kap.
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} showPayments={false} />
+
+Meg kell határoznunk az úgynevezett effektív szavazatszámot a legtöbb szavazatot kapott projektre, amely a <span className="project-1">🚲 kerékpárút</span>, 7 szavazattal. 
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[100,100,100,100,100,100,0,0,0,0,100]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
+
+Ebben az esetben a <span className="project-1">🚲 kerékpárút</span> effektív szavazatszáma 7. Az összes többi projektnek kisebb az effektív szavazatszáma (mivel az effektív szavazatszám csak kisebb lehet, mint a szavazatszám), és a következő legnépszerűbb projekt (a <span className="project-2">🏋️ kültéri edzőterem</span>) szavazatszáma csak 6.
+
+Így az Egyenlő Részvétel Módszere az elsőként a <span className="project-1">🚲 kerékpárutat</span> választja ki, és költségét egyenlően osztja el a támogatók között. Így a 7 szavazó, aki a <span className="project-1">🚲 kerékpárútra</span> szavazott, mindegyike <Currency>100</Currency>-t fizet, és így már nem marad költségvetésük.
+
+<BudgetBars budgets={[0,0,0,0,0,0,100,100,100,100,0]} showPayments={false} />
+
+Megjegyezhető, hogy azok közül, akik a <span className="project-2">🏋️ kültéri edzőterem</span> projektet támogatták, senkinek sem maradt költségvetése, így annak effektív szavazatszáma 0-ra csökkent. 
+Hasonlóképpen, azok közül, akik az <span className="project-3">🌳 új park</span> projektet támogatták, 3 szavazó már nem rendelkezik költségvetéssel, így annak effektív szavazatszáma 2-re csökkent.
+
+| Projekt            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effektív szavazatszám |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-2">🏋️ kültéri edzőterem</span> | <Currency>400</Currency> | — | — | — | — | — | — |   |   |   |   |   | **0** |
+| <span className="project-3">🌳 új park       </span>   | <Currency>250</Currency> |   | — |   | — | — |   | ✗ |   |   | ✗ |   | **2** |
+| <span className="project-4">🛝 új játszótér </span>    | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 gyerek könyvtár</span>  | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+Így a <span className="project-4">🛝 új játszótér</span> a legmagasabb szavazatszámmal rendelkezik, 4 szavazattal.
+Költsége <Currency>200</Currency>, amit egyenlően osztunk el a támogatói között, így mind a 4 szavazó, aki a <span className="project-4">🛝 új játszótér</span> projektet támogatta, <Currency>50</Currency>-t fizet:
+
+<BudgetBars budgets={[0,0,0,0,0,0,100,100,100,100,0]} payments={[0,0,0,0,0,0,50,50,50,50,0]} />
+
+Kiválasztjuk a <span className="project-4">🛝 új játszóteret</span> nyertes projektként, és levonjuk a kifizetéseket. Így a 4 támogató szavazónak <Currency>50</Currency>-je marad:
+
+<BudgetBars budgets={[0,0,0,0,0,0,50,50,50,50,0]} showPayments={false} overrideMax={100} />
+
+A <span className="project-5">📚 gyerek könyvtár</span> költsége <Currency>100</Currency>. A 3 szavazó, aki erre szavazott, összesen <Currency>150</Currency>-et rendelkezésre áll, így ez a projekt még megvalósítható.
+Mindegyikük <Currency>33.3</Currency>-t fizethet.
+
+<BudgetBars budgets={[0,0,0,0,0,0,50,50,50,50,0]} payments={[0,0,0,0,0,0,33.3,0,33.3,33.3,0]} overrideMax={100} />
+
+Kiválasztjuk a <span className="project-5">📚 gyerek könyvtárat</span> nyertes projektként, és levonjuk a kifizetéseket. A fennmaradó költségvetések a következők:
+
+<BudgetBars budgets={[0,0,0,0,0,0,16.7,50,16.7,16.7,0]} showPayments={false} overrideMax={100} />
+
+A fennmaradó projektek egyikét sem lehet megvalósítani a támogatók költségvetéséből, így befejeztük a választási eredmények kiszámítását.
+
+**Végső eredmény**: A nyertes projektek a <span className="project-1">🚲 kerékpárút</span>, a <span className="project-4">🛝 új játszótér</span>, és a <span className="project-5">📚 gyerek könyvtár</span>.
+
+## Példa 2 (bonyolultabb)
+
+A számítás kissé bonyolultabbá válik, ha a jobb szélső szavazó a <span className="project-2">🏋️ kültéri edzőterem</span>-re szavaz ahelyett, hogy a <span className="project-1">🚲 kerékpárút</span>-ra szavazna:
+
+| Projekt            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | szavazatszám |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-1">🚲 kerékpárút      </span> | <Currency>700</Currency> | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   |   | 6 |
+| <span className="project-2">🏋️ kültéri edzőterem</span> | <Currency>400</Currency> | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   | ✗ | 7 |
+| <span className="project-3">🌳 új park       </span>    | <Currency>250</Currency> |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | 5 |
+| <span className="project-4">🛝 új játszótér   </span>   | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 gyerek könyvtár</span>   | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+A részletek átvizsgálása tanulságos lesz.
+
+Ahogy korábban, a rendelkezésre álló költségvetést egyenlően osztjuk el a szavazók között, így mindenki kap <Currency>100</Currency>-t:
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} showPayments={false} />
+
+A legtöbb szavazatot kapott projekt ezúttal a <span className="project-2">🏋️ kültéri edzőterem</span>, amelyre 7 szavazat érkezett. A költségét egyenlően osztjuk el a támogatói között, így minden szavazó <Currency>400</Currency>/7 = <Currency>57.14</Currency>-t fizet.
+
+<BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[57,57,57,57,57,57,0,0,0,0,57]} />
+
+A <span className="project-2">🏋️ kültéri edzőterem</span> kiválasztásra kerül, és a kifizetéseket levonjuk. Az új költségvetések a következők:
+
+<BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} showPayments={false} />
+
+A következő legtöbb szavazatot kapott projekt a <span className="project-1">🚲 kerékpárút</span>, 6 szavazattal.
+A 6 szavazó támogatói összesen 6 &middot; <Currency>43</Currency> = <Currency>258</Currency>-ot tudnak fizetni, ami nem elég a <span className="project-1">🚲 kerékpárút</span> <Currency>700</Currency>-os költségének fedezésére.
+Így a kerékpárút nem megvalósítható, és effektív szavazatszáma 0-ra csökken.
+
+Ezért áttérünk a következő legtöbb szavazattal rendelkező projektre, amely a <span className="project-3">🌳 új park</span>, 5 szavazattal.
+Ha költségét, <Currency>250</Currency>-et egyenlően osztjuk el a támogatói között, akkor minden szavazónak <Currency>50</Currency>-t kellene fizetnie.
+De a <span className="project-3">🌳 új park</span> egyes támogatói csak <Currency>43</Currency>-ot tudnak fizetni, így nem tudják fedezni a <Currency>50</Currency>-es részüket.
+Ezért (ahogy [fent](#equal-split) leírtuk), a költséget úgy osztjuk el, hogy a három szavazó, akinek <Currency>43</Currency> maradt, mindegyikük <Currency>43</Currency>-t fizet, és a két szavazó, akinek <Currency>100</Currency> maradt, a fennmaradó <Currency>250</Currency> &minus; 3 &middot; <Currency>43</Currency> = <Currency>121</Currency>-et egyenlően osztja meg, így mindegyikük <Currency>60.5</Currency>-t fizet:
+
+<BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} payments={[0,43,0,43,43,0,60.5,0,0,60.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
+
+Mivel a <span className="project-3">🌳 új park</span> költségét nem tudtuk teljesen egyenlően megosztani, az effektív szavazatszámát a következőképpen kell kiszámítanunk:
+Az a két szavazó, aki <Currency>60.5</Currency>-et tudott fizetni, teljes szavazatnak számít, míg a három szavazó, aki <Currency>43</Currency>-t tudott fizetni, csak szavazat-töredékként számít, mégpedig 0,71 szavazatként (mert <Currency>43</Currency>/60.5 &approx; 0,71). Így az effektív szavazatszám 2 &plus; 3 &middot; 0.71 = 4.13, amit az alábbi táblázatban feltüntetünk:
+
+| Projekt            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effektív szavazatszám |
+|--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
+| <span className="project-1">🚲 kerékpárút      </span> | <Currency>700</Currency> | — | — | — | — | — | — |   |   |   |   |   | **0** |
+| <span className="project-3">🌳 új park       </span>    | <Currency>250</Currency> |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | **4.13** |
+| <span className="project-4">🛝 új játszótér   </span>   | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
+| <span className="project-5">📚 gyerek könyvtár</span>   | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
+
+(Az effektív szavazatszám a <span className="project-4">🛝 új játszótér</span> és a <span className="project-5">📚 gyerek könyvtár</span> esetében nem változik, mert azok költsége egyenlően elosztható a támogatók között.)
+
+Az effektív szavazatszám csökkenése ellenére a <span className="project-3">🌳 új park</span> továbbra is a legmagasabb effektív szavazatszámmal rendelkező projekt, így azt választjuk ki.
+A kifizetéseket levonjuk. Az új költségvetések a következők:
+
+<BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} showPayments={false} />
+
+A következő körben a <span className="project-4">🛝 új játszótér</span> kerül kiválasztásra, amelynek effektív szavazatszáma 3.31 (ami a legmagasabb):
+
+<BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} payments={[0,0,0,0,0,0,39.5,60.5,60.5,39.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
+
+A kifizetések levonása után a fennmaradó költségvetések a következők:
+
+<BudgetBars budgets={[43,0,43,0,0,43,0,39.5,39.5,0,43]} showPayments={false} overrideMax={100} />
+
+Ezen a ponton a fennmaradó projektek (különösen a <span className="project-5">📚 gyerek könyvtár</span>) már nem valósíthatók meg a támogatók fennmaradó költségvetéséből, így a módszer számítása véget ér.
+
+**Végső eredmény**: A nyertes projektek a <span className="project-2">🏋️ kültéri edzőterem</span>, a <span className="project-3">🌳 új park</span>, és a <span className="project-4">🛝 új játszótér</span>.
