@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Magyarázat
+title: Hogyan működik?
 ---
 
 import { SemiBold, BudgetBars, WaterFilling } from '@site/src/components/MyComponents';
@@ -11,23 +11,22 @@ import { Currency } from '@site/src/components/CurrencyChoice';
 Ezen az oldalon elmagyarázzuk, hogyan működik az egyenlő részvétel módszere.
 A módszer két különböző bemeneti típussal alkalmazható:
 
-1. **Több X-es szavazás**, ahol minden szavazó néhány projektet támogat, de minden projektre azonos „erősséggel” szavaz. Például a szavazók legfeljebb 5 projektet választhatnak ki. További részletekért lásd ezt a Wikipédia-oldalt: [Approval Voting](https://en.wikipedia.org/wiki/Approval_voting).
-2. **Hasznossági értékek**, ahol minden szavazó egy hasznossági értéket rendel minden projekthez (0 vagy annál magasabb érték). Például a szavazók 10 pontot oszthatnak szét a projektek között. További részletekért lásd ezt a Wikipédia-oldalt: [Cardinal Voting](https://en.wikipedia.org/wiki/Cardinal_voting).
+1. **Több X-es szavazás**, ahol minden szavazó egyenként szavazhat az ötletekre, de mindegyikre legfeljebb egyszer (azonos súllyal). Például a szavazók legfeljebb 5 ötletre szavazhatnak (legfeljebb ötöt X-elhetnek a szavazólapon). További részletekért lásd ezt a Wikipédia-oldalt: [Approval Voting](https://en.wikipedia.org/wiki/Approval_voting).
+2. **Pontozós (értékelős) szavazás**, ahol minden szavazó egy pontszámot adhat minden ötletre (pl. 0 és 5 között). Lehet olyat is, hogy a szavazók 10 pontot oszthatnak szét tetszőlegesen a kedvenc ötleteik között. További részletekért lásd ezt a Wikipédia-oldalt: [Cardinal Voting](https://en.wikipedia.org/wiki/Cardinal_voting).
 
-A több X-es szavazás a hasznossági értékek speciális esete, ahol minden projekthez 0 vagy 1 hasznossági értéket rendelnek.
-Ezen az oldalon a módszert több X-es szavazásra magyarázzuk el, a hasznossági értékekre vonatkozó további információk hamarosan érkeznek.
+A több X-es szavazás valójában az pontozós szavazás speciális esete (ahol minden ötletre csak 0 vagy 1 pontot lehet adni). Ezen az oldalon több X-es szavazással fogjuk bemutatni a módszert, később lesz szó a pontozós szavazásról és egyéb lehetőségekről is.
 
 :::tip
 
-[Ugorjon le egy részletes példához](#example), ha inkább ezt szeretné.
+[Rögtön egy részletesebb példához ugorhatsz](#example), ha szeretnél.
 
 :::
 
-## Fő Mechanizmus {#main-mechanism}
+## Fő mechanizmus {#main-mechanism}
 
-Először bemutatjuk a módszer fő elveit, majd elmagyarázzuk a technikai részleteket.
+Kezdjük a módszer főbb elveinek ismertetésével, majd ezután bemutatjuk a technikai részleteket.
 
-1. A teljes költségvetést <SemiBold>egyenlően osztjuk szét</SemiBold> a szavazók között.
+1. A teljes költségvetés <SemiBold>egyenlő arányban oszlik meg</SemiBold> a szavazók között.
 :::tip Példa
 Tegyük fel, hogy a teljes költségvetés <Currency>1&thinsp;000&thinsp;000</Currency> (1 millió), és 100&thinsp;000 szavazó van. 
 Ekkor minden szavazóhoz <Currency>10</Currency> jut.
