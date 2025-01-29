@@ -106,7 +106,7 @@ import EqualSharesLogo from '/img/equal-shares-logo.svg';
 <EqualSharesLogo width="20" height="20" style={{ marginBottom: '-3px', marginRight: '3px' }} /> Logónkat ezek az ábrák ihlették, és a város látképét képét hivatott megidézni.
 :::
 
-## Az effektív szavazatszám számítása {#effective-vote-count}
+## Az effektív szavazatszám kiszámítása {#effective-vote-count}
 
 Az egyenlő részvétel módszerében a nyertes ötletek meghatározásakor ki kell számolnunk az úgynevezett *effektív szavazatszámot*. Ebben a részben elmagyarázzuk, mit jelent ez.
 
@@ -255,8 +255,8 @@ Az a két szavazó, aki <Currency>60.5</Currency>-et tudott fizetni, teljes szav
 
 (Az effektív szavazatszám a <span className="project-4">🛝 új játszótér</span> és a <span className="project-5">📚 gyerekkönyvtár</span> esetében nem változik, mert azok költsége egyenlően elosztható a támogatók között.)
 
-Az effektív szavazatszám csökkenése ellenére a <span className="project-3">🌳 új park</span> továbbra is a legmagasabb effektív szavazatszámmal rendelkező ötlet, így azt választjuk ki.
-A kifizetéseket levonjuk. Az új költségvetések a következők:
+Az effektív szavazatszámának csökkenése ellenére a <span className="project-3">🌳 új park</span> továbbra is a legmagasabb effektív szavazatszámmal rendelkező ötlet, így azt választjuk ki.
+Az árát levonjuk a támogatóinak szavazóerejéből. Az új költségvetések a következők:
 
 <BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} showPayments={false} />
 
@@ -264,10 +264,10 @@ A következő körben a <span className="project-4">🛝 új játszótér</span>
 
 <BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} payments={[0,0,0,0,0,0,39.5,60.5,60.5,39.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
-A kifizetések levonása után a fennmaradó költségvetések a következők:
+A kifizetések levonása után a fennmaradó egyéni költségvetések a következők:
 
 <BudgetBars budgets={[43,0,43,0,0,43,0,39.5,39.5,0,43]} showPayments={false} overrideMax={100} />
 
-Ezen a ponton a fennmaradó ötletek (különösen a <span className="project-5">📚 gyerekkönyvtár</span>) már nem valósíthatók meg a támogatók fennmaradó költségvetéséből, így a módszer számítása véget ér.
+Ezen a ponton a fennmaradó ötletek (különösen a <span className="project-5">📚 gyerekkönyvtár</span>) már nem valósíthatók meg a szavazókra eső maradék összegből, így a folyamat véget ér.
 
-**Végeredmény**: A nyertes ötletek a <span className="project-2">🏋️ kondipark</span>, a <span className="project-3">🌳 új park</span>, és a <span className="project-4">🛝 új játszótér</span>.
+**Végeredmény**: A nyertes ötletek a <span className="project-2">🏋️ kondipark</span>, az <span className="project-3">🌳 új park</span>, és az <span className="project-4">🛝 új játszótér</span>.
