@@ -45,16 +45,16 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <section className={styles.contentSectionFlex}>
   <div className={styles.ballotExplanation}>
-        Sok város használ <strong style={{color: 'var(--ifm-color-primary)'}}>közösségi költségvetés</strong>t, hogy a polgárai közvetlenül beleszólhassanak a közpénzek elköltésébe.
+        Számos település és kerület használ <strong style={{color: 'var(--ifm-color-primary)'}}>közösségi költségvetés</strong>t, hogy a polgárai közvetlenül beleszólhassanak a közpénzek elköltésébe.
         Az önkormányzat elkülöníti költségvetésének egy részét,
-        lehetővé teszi bárki számára projektek javaslását, majd
-        egy szavazást tartanak, hogy eldöntsék, mely projekteket finanszírozzák.
+        lehetővé teszi bárki számára ötletek beküldését, majd
+        egy szavazást tartanak, hogy eldöntsék, mely ötleteket finanszírozzák.
        
         A szavazás nagyszerű módja annak, hogy sok állampolgárt bevonjanak a költségvetési döntésekbe.
-        Azonban a választás eredménye nem mindig igazságos.
-        Mivel sok város egyszerűen a legtöbb szavazatot kapó projekteket választja ki,
-        a költségvetést gyakran hasonló projektekre költik, amelyek népszerűek
-        ugyanannak a többségi szavazói csoportnak.
+        Azonban az eredmény nem mindig igazságos.
+        Sok város egyszerűen a legtöbb szavazatot szerző ötleteket hirdeti ki győztesnek,
+        a költségvetést gyakran hasonló ötletekre költik, amelyek
+        ugyanannak a szavazói csoportnak (többségnek vagy kisebbségnek) a tagjai között népszerűek.
        
         Létezik olyan szavazási módszer, amely igazságosabb eredményekhez vezet, és biztosítja, hogy minden szavazónak egyenlő befolyása legyen az
         eredményre:
@@ -63,7 +63,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   <div className={styles.approvalBallotExample}>
       <span style={{fontWeight: 500, fontSize: '110%'}}>&mdash; Szavazólap &mdash;</span>
       <span>Elérhető keret: 300 000 000 <CurrencySymbol/></span>
-      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Szavazz legfeljebb 8 ötletre</span>
+      <span style={{fontStyle: 'italic', marginBottom: '5px'}}>Szavazz legfeljebb 4 ötletre</span>
       <BallotExampleOption selected>A nyilvános könyvtár bővítése <br /> Költség: 20 000 000 <CurrencySymbol/></BallotExampleOption>
       <BallotExampleOption>Fő utcai kerékpártárolók <br /> Költség: 7 000 000 <CurrencySymbol/></BallotExampleOption>
       <BallotExampleOption selected>Sporteszközöket a parkba! <br /> Költség: 5 000 000 <CurrencySymbol/></BallotExampleOption>
@@ -77,9 +77,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 <section className={styles.contentSection}>
   <h2>A koncepció</h2>
       Az egyenlő részvétel módszerének alapelve az, hogy minden szavazóra a költségvetésből egyenlő rész jut.
-      A költségvetésnek ez a része csak olyan ötletek finanszírozására fordítható, amelyeket a választópolgár támogatott, amire szavazott.
+      A költségvetésnek ez a része csak olyan ötletek finanszírozására fordítható, amelyeket a választópolgár szavazatával támogatott.
       A módszer minden ötletet átnéz, kezdve a legtöbb szavazatot kapott ötlettel.
-      Akkor nyer egy ötlet, ha azt azok tudják a költségvetés rájuk eső részével "finanszírozni", akik erre a projektre szavaztak.
+      Akkor nyer egy ötlet, ha azt azok tudják a költségvetés rájuk eső részével "finanszírozni", akik erre a ötletre szavaztak.
       A módszer egyenlően osztja el egy ötlet költségét annak támogatói között.
   <div className={styles.sankeyImage}>
       <div className={styles.sankeyContainer}>
@@ -87,7 +87,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
       </div>
   </div>
       A választópolgár szemszögéből a szavazás változatlan: csak ki kell töltenie egy szokásos szavazólapot,
-      és kiválasztani,  és ki kell választania, melyik ötletekre szeretne szavazni. Az egyenlő részvétel módszerével ezután a város
+      amin kiválaszthatja, mely ötletekre szeretne szavazni. Az egyenlő részvétel módszerével ezután a város
       (a módszer egyik nyílt forráskódú implementációjával) megállapítja a győzteseket, így biztosítva a közösségi költségvetés igazságos elosztását.
 </section>
 
@@ -115,6 +115,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 <section className={styles.contentSection}>
   <h2>A weboldalról</h2>
   <p style={{ fontSize: '1.2em' }}>Ezt a weboldalt <Link to="contacts">Dominik Peters (CNRS, Université Paris Dauphine-PSL) és Piotr Skowron (Varsói Egyetem)</Link> készítette és tartja karban.
-      Célja, hogy összegyűjtse az Egyenlő Részvétel Módszerével kapcsolatos információkat összefoglalja, és magyarázatokat, útmutatókat adjon a módszerrel kapcsolatban közigazgatásban dolgozóknak, kutatóknak és egyéb érdeklődőknek.</p>
+      Célja, hogy az egyenlő részvétel módszerével kapcsolatos információkat összefoglalja és magyarázatokat, útmutatókat adjon a módszerrel kapcsolatban a közigazgatásban dolgozóknak, kutatóknak és egyéb érdeklődőknek.</p>
   
 </section>
