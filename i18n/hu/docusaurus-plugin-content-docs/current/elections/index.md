@@ -3,7 +3,11 @@ sidebar_position: 5
 title: Elections
 ---
 
-# Election Results
+# Használat - szavazási eredmények
+
+:::caution Fordítás hamarosan
+Az egyenlő részvétel módszerét használó egyes közösségi költségvetési szavazásokról szóló oldalak még nem érthetők el magyarul.
+:::
 
 On these pages, we present the results from participatory budgeting elections that have used the Method of Equal Shares, and discuss and analyze data from these elections.
 

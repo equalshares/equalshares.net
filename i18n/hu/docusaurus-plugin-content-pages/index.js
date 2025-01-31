@@ -11,15 +11,15 @@ import HomepageContents from '@site/i18n/hu/docusaurus-plugin-content-docs/curre
 export default function Home() {
   return (
     <Layout
-    description="Die Methode der gleichen Anteile ist eine fairere Wahlmethode für partizipative Bürgerbudgets.">
+    description="Az egyenlő részvétel módszere egy igazságosabb szavazási módszer közösségi költségvetésekhez">
     <Head>
-      <title>Methode der gleichen Anteile für Bürgerbudgets</title>
-      <meta name="twitter:title" content="Methode der gleichen Anteile für Bürgerbudgets" />
-      <meta name="twitter:description" content="Die Methode der gleichen Anteile ist eine fairere Wahlmethode für partizipative Bürgerbudgets." />
+      <title>Egyenlő részvétel módszere közösségi költségvetésekhez</title>
+      <meta name="twitter:title" content="Egyenlő részvétel módszere közösségi költségvetésekhez" />
+      <meta name="twitter:description" content="Az egyenlő részvétel módszere egy igazságosabb szavazási módszer közösségi költségvetésekhez." />
       <meta name="twitter:image" content="https://equalshares.net/social/og-main.png" />
       <meta property="og:image" content="https://equalshares.net/social/og-main.png" />
-      <meta property="og:title" content="Methode der gleichen Anteile für Bürgerbudgets" />
-      <meta property="og:description" content="Die Methode der gleichen Anteile ist eine fairere Wahlmethode für partizipative Bürgerbudgets." />
+      <meta property="og:title" content="Egyenlő részvétel módszere közösségi költségvetésekhez" />
+      <meta property="og:description" content="Az egyenlő részvétel módszere egy igazságosabb szavazási módszer közösségi költségvetésekhez." />
     </Head>
       <section className={styles.hero}>
         <div>

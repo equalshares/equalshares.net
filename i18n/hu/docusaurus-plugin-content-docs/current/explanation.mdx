@@ -8,11 +8,15 @@ import { Currency } from '@site/src/components/CurrencyChoice';
 
 # Hogyan működik az egyenlő részvétel módszere?
 
+:::caution Fordítás folyamatban
+Ez az oldal még nem kész magyarul.
+:::
+
 Ezen az oldalon elmagyarázzuk, hogyan működik az egyenlő részvétel módszere.
 A módszer két különböző bemeneti típussal alkalmazható:  
 
-1. **Több X-es szavazás**, ahol minden szavazó egyenként szavazhat az ötletekre, de mindegyikre legfeljebb egyszer (azonos súllyal). Például a szavazók legfeljebb 5 ötletre szavazhatnak (legfeljebb ötöt X-elhetnek a szavazólapon). További részletekért lásd ezt a Wikipédia-oldalt: [Approval Voting](https://en.wikipedia.org/wiki/Approval_voting).
-2. **Pontozós (értékelős) szavazás**, ahol minden szavazó egy pontszámot adhat minden ötletre (pl. 0 és 5 között). Lehet olyat is, hogy a szavazók 10 pontot oszthatnak szét tetszőlegesen a kedvenc ötleteik között. További részletekért lásd ezt a Wikipédia-oldalt: [Cardinal Voting](https://en.wikipedia.org/wiki/Cardinal_voting).
+1. **Több X-es szavazás**, ahol minden szavazó egyenként szavazhat az ötletekre, de mindegyikre legfeljebb egyszer (azonos súllyal). Például a szavazók legfeljebb 5 ötletre szavazhatnak (legfeljebb ötöt X-elhetnek a szavazólapon). További részletekért lásd ezt a Wikipédia-oldalt (angol!): [Approval Voting](https://en.wikipedia.org/wiki/Approval_voting).
+2. **Pontozós (értékelős) szavazás**, ahol minden szavazó egy pontszámot adhat minden ötletre (pl. 0 és 5 között). Lehet olyat is, hogy a szavazók 10 pontot oszthatnak szét tetszőlegesen a kedvenc ötleteik között. További részletekért lásd ezt a Wikipédia-oldalt (angol!): [Cardinal Voting](https://en.wikipedia.org/wiki/Cardinal_voting).
 
 A több X-es szavazás valójában az pontozós szavazás speciális esete (ahol minden ötletre csak 0 vagy 1 pontot lehet adni). Ezen az oldalon több X-es szavazással fogjuk bemutatni a módszert, később lesz szó a pontozós szavazásról és egyéb lehetőségekről is.
 
@@ -28,16 +32,16 @@ Kezdjük a módszer főbb elveinek ismertetésével, majd ezután bemutatjuk a t
 
 1. A teljes költségvetés <SemiBold>egyenlő arányban oszlik meg</SemiBold> a szavazók között.
 :::tip Példa
-Tegyük fel, hogy a teljes költségvetés <Currency>1&thinsp;000&thinsp;000</Currency> (1 millió), és 100&thinsp;000 szavazó van. 
-Ekkor minden szavazóra <Currency>10</Currency> jut.
+Tegyük fel, hogy a teljes költségvetés <Currency>100&thinsp;000&thinsp;000</Currency> (100 millió), és 10&thinsp;000 szavazó van. 
+Ekkor minden szavazóra <Currency>10&thinsp;000</Currency> jut.
 :::
 
 2. <SemiBold>Kiejtjük</SemiBold> azokat az ötleteket, amelyek többe kerülnek, mint a rá szavazók együttes részesedése a költségvetésből
    (Értékelős szavazatok esetén az összes olyan szavazó együttes részesedése, akik 0-nál több pontot adtak az ötletre.)
 :::tip Példa
-Tegyük fel, hogy egy ötlet <Currency>10&thinsp;000</Currency>-ba kerül, és 500 szavazatot kapott. 
-Mivel minden szavazóra <Currency>10</Currency> jutott,
-ennek az 500 szavazónak együttes részesedése összesen <Currency>5&thinsp;000</Currency>.
+Tegyük fel, hogy egy ötlet <Currency>10&thinsp;000&thinsp;000</Currency>-ba kerül, és 5000 szavazatot kapott. 
+Mivel minden szavazóra <Currency>10&thinsp;000</Currency> jutott,
+ennek az 5000 szavazónak együttes részesedése összesen <Currency>5&thinsp;000</Currency>.
 Mivel az ötlet többe kerül, mint a rá szavazók együttes részesedése, ezért nem finanszírozható. Az ötletet kiejtjük a versenyből.
 :::
 3. Ha nincs több ötlet, a módszer számítása befejeződik.
@@ -48,10 +52,10 @@ Több X-es szavazás esetén a *szavazatszám* az ötletet támogatók száma.
 Az *effektív* szavazatszám később kisebb lesz, mint a szavazatszám, 
 mivel nem levonást alkalmazunk, ha már egyesek "elköltötték" a rájuk eső összeg egy részét.
 :::
-5. Megválasztjuk a <SemiBold>legnagyobb</SemiBold> effektív szavazatszámú ötletet.
-   az ötlet költségét [a lehető legegyenlőbben](#equal-split) osztjuk szét azok között a szavazók között, akik az ötletre szavaztak.
-   Minden szavazó részét levonjuk a saját költségvetéséből.
-6. <SemiBold>Ezt ismételjük a 2. lépéstől</SemiBold>, amik ki nem választtottuk az összes finanszírozandó ötletet.
+5. A <SemiBold>legnagyobb</SemiBold> effektív szavazatszámú ötletet nyertesnek nyilvánítjuk.
+   Az ötlet költségét pedig [a lehető legegyenlőbben](#equal-split) osztjuk szét azok között a szavazók között, akik a nyertes ötletre szavaztak.
+   Minden szavazónál a költség rá eső részét levonjuk a költségvetés rá eső részéből.
+6. <SemiBold>Ezt addig ismételjük a 2. lépéstől</SemiBold>, amik ki nem választtottuk az összes finanszírozandó ötletet.
 
 :::info
 Az egyenlő részvétel módszerének számítása a 3. lépésnél véget érhet anélkül, hogy a teljes rendelkezésre álló összeget elköltöttük volna.
@@ -65,31 +69,31 @@ További információért lásd: [kiegészítési módszerek](implementation/com
 Az egyenlő részvétel módszerének nyertes ötletjeinek meghatározásakor kulcsfontosságú, hogy az ötlet költségeit *a lehető legegyenlőbben* osszuk meg. 
 Ebben a részben elmagyarázzuk, mit jelent ez.
 
-Nézzük meg egy konkrét példán keresztül tegyük fel, hogy a teljes költségvetés <Currency>300</Currency>, és 10 szavazó van.
-Így az 1. lépésben minden szavazóra <Currency>30</Currency> rész jut a költségvetésből.
-Ezt úgy ábrázoljuk a következő képen, hogy minden szavazót egy <Currency>30</Currency> magasságú oszlop jelképez.
+Nézzük meg egy konkrét példán keresztül tegyük fel, hogy a teljes költségvetés <Currency>300&thinsp;000</Currency>, és 10 szavazó van.
+Így az 1. lépésben minden szavazóra <Currency>30&thinsp;000</Currency> rész jut a költségvetésből.
+Ezt úgy ábrázoljuk a következő képen, hogy minden szavazót egy <Currency>30&thinsp;000</Currency> magasságú oszlop jelképez.
 
-<BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} showPayments={false} />
+<BudgetBars budgets={[30000,30000,30000,30000,30000,30000,30000,30000,30000,30000]} showPayments={false} />
 
-Tegyük fel, hogy van egy ötlet, amely <Currency>50</Currency>-be kerül, és 5 szavazatot kapott az 5 bal oldali szavazótól.
-Ekkor a költségeket egyenlően osztjuk meg, az ötlet minden támogatója <Currency>10</Currency>-t fizet.
+Tegyük fel, hogy van egy ötlet, amely <Currency>50&thinsp;000</Currency>-be kerül, és 5 szavazatot kapott az 5 bal oldali szavazótól.
+Ekkor a költségeket egyenlően osztjuk meg, az ötlet minden támogatója <Currency>10&thinsp;000</Currency>-t fizet.
 Ezt az ábrán így mutatjuk:
 
-<BudgetBars budgets={[30,30,30,30,30,30,30,30,30,30]} payments={[10,10,10,10,10,0,0,0,0,0]} />
+<BudgetBars budgets={[30000,30000,30000,30000,30000,30000,30000,30000,30000,30000]} payments={[10000,10000,10000,10000,10000,0,0,0,0,0]} />
 
 Egy kicsit bonyolultabb eset, amikor néhány szavazó már elköltött annyit a költségvetés rá eső részéből, hogy nem lehetséges az ötlet költségeit tökéletesen egyenlően szétosztani a támogatói között.
 
-Például vegyük ismét az <Currency>50</Currency>-es ötletet, amelyet 5 bal oldali szavazó támogatott.
-De tegyük fel, hogy a legbaloldali szavazó már elköltötte a teljes <Currency>30</Currency>-os rá jutó részt a korábbi fordulókban.
-Ekkor az ötlet költségeit csak a maradék 4 szavazó között lehet elosztani, akik mindegyike <Currency>12.50</Currency>-et fizet (mivel 4 &middot; <Currency>12.50</Currency> = <Currency>50</Currency>).
+Például vegyük ismét az <Currency>50&thinsp;000</Currency>-es ötletet, amelyet 5 bal oldali szavazó támogatott.
+De tegyük fel, hogy a legbaloldali szavazó már elköltötte a teljes <Currency>30&thinsp;000</Currency>-os rá jutó részt a korábbi fordulókban.
+Ekkor az ötlet költségeit csak a maradék 4 szavazó között lehet elosztani, akik mindegyike <Currency>12&thinsp;500</Currency>-et fizet (mivel 4 &middot; <Currency>12&thinsp;500</Currency> = <Currency>50&thinsp;000</Currency>).
 
-<BudgetBars budgets={[0,30,30,30,30,30,30,30,30,30]} payments={[0,12.5,12.5,12.5,12.5,0,0,0,0,0]} />
+<BudgetBars budgets={[0,30000,30000,30000,30000,30000,30000,30000,30000,30000]} payments={[0,12.5,12.5,12.5,12.5,0,0,0,0,0]} />
 
-A következő példában tegyük fel, hogy a bal oldali két szavazónál csak <Currency>5</Currency> maradt a korábbi fordulókból (mivel mindkettő már összesen <Currency>25</Currency>-öt "elköltött" sikeres ötletekre).
+A következő példában tegyük fel, hogy a bal oldali két szavazónál csak <Currency>5000</Currency> maradt a korábbi fordulókból (mivel mindkettő már összesen <Currency>25</Currency>-öt "elköltött" sikeres ötletekre).
 Ebben az esetben a költségeket úgy osztjuk el, hogy először elköltjük a két szavazó teljes maradék részesedését, amely összesen <Currency>5</Currency> + <Currency>5</Currency> = <Currency>10</Currency>.
 Ezután a maradék <Currency>40</Currency> költséget egyenlően osztjuk el a további 3 szavazó között, akik mindegyike <Currency>13.33</Currency>-et fizet (mivel 3 &middot; <Currency>13.33</Currency> = <Currency>40</Currency>).
 
-<BudgetBars budgets={[5,5,30,30,30,30,30,30,30,30]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} />
+<BudgetBars budgets={[5000,5000,30000,30000,30000,30000,30000,30000,30000,30000]} payments={[5,5,13.3,13.3,13.3,0,0,0,0,0]} />
 
 Általánosságban véve a költségek egyenlő megosztásának módszere így néz ki: Először megpróbáljuk a költségeket egyenlően elosztani (tehát az ötlet költségét elosztjuk a támogatók számával). Ha egyes szavazóknak nincs elég "pénzük" ahhoz, hogy fedezzék a rájuk jutó költségét az ötletnek, akkor ezeknél a szavazóknál annyit vonunk le a pénzükből, amennyi lehetséges (azaz a teljes maradék költségvetésüket). Ezután a következő lépésben megpróbáljuk a maradék költséget egyenlően elosztani az ötlet többi támogatója között. Ha ez ismét nem lehetséges, annyit vonunk le, amennyit a szavazók tudnak fizetni, és így tovább. (Egy alternatív matematikai megfogalmazás szerint az ötlet költségét úgy osztjuk meg a támogatók között, hogy bármely szavazó maximális hozzájárulása a lehető legkisebb legyen.)
 

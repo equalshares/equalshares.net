@@ -4,11 +4,11 @@
     "description": "The title in the navbar"
   },
   "logo.alt": {
-    "message": "Az Egyenlő Részvétel Módszere logója",
+    "message": "Az egyenlő részvétel módszerének logója",
     "description": "The alt text of navbar logo"
   },
   "item.label.Explanation": {
-    "message": "Magyarázat",
+    "message": "Hogyan működik?",
     "description": "Navbar item with label Explanation"
   },
   "item.label.Benefits": {
@@ -20,11 +20,11 @@
     "description": "Navbar item with label Implementation"
   },
   "item.label.Elections": {
-    "message": "Elections",
+    "message": "Használat",
     "description": "Navbar item with label Elections"
   },
   "item.label.Contacts": {
-    "message": "Contacts",
+    "message": "Kapcsolat",
     "description": "Navbar item with label Contacts"
   }
 }
