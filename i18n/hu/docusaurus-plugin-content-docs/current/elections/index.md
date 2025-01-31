@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Elections
+title: Használat
 ---
 
 # Használat - szavazási eredmények

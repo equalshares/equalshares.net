@@ -45,20 +45,20 @@
     "message": "A közösségi költségvetés összege {cityBudget}. It is divided equally between the 8 voters, so each voter gets {voterBudget}."
   },
   "sankey.cityLabel": {
-    "message": "Település",
+    "message": "Város",
     "description": "Label for the City on the left of the Sankey figure"
   },
   "sankey.projectLabel.leftTextLine1": {
-    "message": "Step 1: The budget is divided equally"
+    "message": "1. lépés: a költségvetés egyenlően oszlik el"
   },
   "sankey.projectLabel.leftTextLine2": {
-    "message": "among the voters"
+    "message": " a szavazók között"
   },
   "sankey.projectLabel.rightTextLine1": {
-    "message": "Step 2: Projects are funded with the shares"
+    "message": "1. lépés: Az ötleteket azokra a szavazókra "
   },
   "sankey.projectLabel.rightTextLine2": {
-    "message": "of those who voted for them"
+    "message": "eső részből finanszírozzák, akik támogatták"
   },
   "theme.ErrorPageContent.title": {
     "message": "Hiba történt a oldalon.",
