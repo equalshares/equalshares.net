@@ -34,7 +34,7 @@
     "message": "Ötlet"
   },
   "sankey.tooltipContributesAmount": {
-    "message": "(contributes {amount})",
+    "message": "(ennyivel járul hozzá: {amount})",
     "description": "used in tooltips of voters in the Sankey diagram to say that a voter contributes amount to a project"
   },
   "sankey.projectTooltip": {
