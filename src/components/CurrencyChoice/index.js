@@ -49,6 +49,14 @@ export function Currency({ children }) {
       <span>{`${currency}`} {children}</span>
     );
   }
+  if (language === 'hu') {
+    const amountString = children.toString();
+    const formattedAmount = amountString.endsWith('000')
+                            ? `${amountString.slice(0, -3).trim()} e` : amountString;
+    return (
+      <span>{formattedAmount} Ft</span>
+    );
+  }
   return (
     <span>{`${currency}`}{children}</span>
   );

@@ -59,6 +59,15 @@ export function SemiBold({ children }) {
   return <span style={{ fontWeight: 500 }}>{children}</span>;
 }
 
+function localize(number) {
+  const { i18n } = useDocusaurusContext();
+  const locale = i18n.currentLocale;
+  if (locale == 'hu' && number > 1000 && number % 1000 == 0) {
+    return (number / 1000).toLocaleString(locale);
+  }
+  return number.toLocaleString(locale);
+}
+
 export function BudgetBars({ 
     budgets = [], 
     payments = [], 
@@ -96,19 +105,19 @@ export function BudgetBars({
   let bars = budgets.map((budget, index) => {
     var barStyle = budget > 0 ? { height: absoluteHeight * budget/maxBudget + 'px' } : {};
     return (<div className="budget-bar-container" key={index.toString()}>
-      {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{budget.toLocaleString(locale)}</div>}
+      {showBudgets && budget/maxBudget < 0.9 && budget/maxBudget > 0.05 && <div className="budget-bar-label">{localize(budget)}</div>}
       <Tippy content={<span>
           <Translate id="explanation.budgetBars.tooltipBudget" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the budget amount.">Budget:</Translate> <Currency>{budget.toLocaleString(locale)}</Currency>
           {showPayments && <span><br/><Translate id="explanation.budgetBars.tooltipSpending" description="When hovering over a budget bar on the explanation page, a tooltip shows the voter's budget and spending. This is the label before the spending amount.">Spending:</Translate> <Currency>{payments[index].toLocaleString(locale)}</Currency></span>} 
         </span>} theme="light">
         <div className={budget > 0 ? 'budget-bar' : 'budget-bar budget-bar-zero'} style={barStyle}>
-          {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: absoluteHeight * payments[index]/maxBudget + 'px' }}>{payments[index].toLocaleString(locale)}</div>}
+          {showPayments && budget/maxBudget > 0.1  && <div className="payment-bar" style={{ height: absoluteHeight * payments[index]/maxBudget + 'px' }}>{localize(payments[index])}</div>}
         </div>
       </Tippy>
       {
         showEffectiveVoteCounts 
           ? (!isNaN(effectiveVoteCounts[index])
-            ? <div className="vote-count">{effectiveVoteCounts[index].toLocaleString(locale)}</div>
+            ? <div className="vote-count">{localize(effectiveVoteCounts[index])}</div>
             : <div className="empty-vote-count"></div>)
           : null
       }
