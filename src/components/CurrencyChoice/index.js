@@ -87,6 +87,11 @@ export function CurrencyString({ amount=0 }) {
       `${currency} ${amount}`
     );
   }
+  if (language === 'hu') {
+    return (
+      `${amount} ${currency}`
+    );
+  }
   return (
     `${currencySymbol}${amount}`
   );
