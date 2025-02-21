@@ -66,6 +66,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // metadata: [{name: 'robots', content: 'noindex'}],
+      metadata: [
+        {name: 'format-detection', content: 'telephone=no'},
+      ],
       navbar: {
         title: 'Method of Equal Shares',
         logo: {
