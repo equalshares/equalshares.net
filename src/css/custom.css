@@ -153,6 +153,23 @@ details.proof p:last-child::after {
   background-color: var(--ifm-dropdown-hover-background-color);
 }
 
+
+@media screen and (max-width: 1050px) {
+  .currentLanguageLabel {
+    display: none;
+  }
+
+  .navbar__item.dropdown {
+    padding-left: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .navbar__items--right .navbar__item, .navbar__items--right > div {
+    display: block;
+  }
+}
+
 /***************
  * Datawrapper embeds
  ***************/
