@@ -7,32 +7,29 @@ import { Datawrapper } from '@site/src/components/MyComponents';
 
 # Egyes kategóriák felülreprezentációjának csökkentése
 
-:::caution Fordítás folyamatban
-Ez az oldal még nem kész magyarul.
-:::
 
 <div class="summary">
 <b>Összefoglaló</b>:
-A legtöbb városban alkalmazott hagyományos szavazási módszer szisztematikusan olyan eredményekhez vezethet, ahol túl sok pénzt költenek egyes kategóriák projektjeire, míg más kategóriák projektjeire túl keveset.
-Például Varsó Bielany kerületében 2020-ban a szavazatok 35%-a oktatási projektekre érkezett, de a finanszírozásnak csak 6%-át fordították oktatásra.
-Szimulációk azt mutatják, hogy az egyenlő részvétel módszere jelentősen csökkenti ezt az elfogultságot.
+A legtöbb városban alkalmazott hagyományos szavazási módszerek szisztematikusan olyan eredményekhez vezethetnek, ahol túl sok pénzt költenek egyes kategóriába eső ötletekre, míg más ötletekre túl keveset.
+Például Varsó Bielany kerületében 2020-ban a szavazatok 35%-a oktatási projektekre érkezett, de a költségvetésnek csak 6%-át fordították oktatásra.
+Szimulációk azt mutatják, hogy az egyenlő részvétel módszere jelentősen csökkenti ezt a szisztematikus elfogultságot.
 </div>
 
-Általában a közösségi költségvetésben szereplő projekteket néhány széles kategóriába lehet sorolni, mint például:
-* Városi zöldterületek és parkok
+Általában a közösségi költségvetésben versengő ötleteket néhány széles kategóriába lehet sorolni, mint például:
+* Zöldfelületek és parkok
 * Tömegközlekedés és utak
 * Oktatás
 * Kultúra és szabadidő
 
-A városok gyakran kategóriákba sorolják a projekteket, hogy a szavazók számára könnyebben áttekinthető legyen a projektek listája. 
-Varsó például 10 különböző címkét használ a projektek kategorizálására (ahol a projektek több címkét is kaphatnak).
-Ez lehetővé teszi, hogy megszámoljuk, egy-egy kategória projektjei hány szavazatot kaptak, és összehasonlítsuk ezt azzal, hogy mennyi pénzt költöttek az adott kategória projektjeire.
+A városok gyakran kategóriákba sorolják az ötleteket, hogy a szavazók számára könnyebben áttekinthető legyen az szavazólapon szereplő ötletek listája. 
+Varsó például 10 különböző címkét használ az ötletek kategorizálására (ahol az ötletek több címkét is kaphatnak).
+Ez lehetővé teszi, hogy megszámoljuk, egy-egy kategória ötletei hány szavazatot kaptak, és összehasonlítsuk ezt azzal, hogy mennyi pénzt költöttek az adott kategóriába tartozó ötletekre.
 
-A Varsóban és más városokban alkalmazott hagyományos szavazási módszer egyszerűen a legtöbb szavazatot kapott projekteket választja ki addig, amíg a költségvetés kimerül.
-Bizonyos esetekben ez ahhoz vezethet, hogy a legnépszerűbb kategóriák kapják a legtöbb pénzt, miközben más kategóriák projektjeire túl kevés pénz marad.
+A Varsóban és más városokban alkalmazott hagyományos szavazási módszer egyszerűen a legtöbb szavazatot szerző ötleteket választja ki addig, amíg a költségvetésben van rá keret.
+Bizonyos esetekben ez ahhoz vezethet, hogy a legnépszerűbb kategóriák kapják a legtöbb pénzt, miközben más kategóriák ötleteire túl kevés pénz marad.
 
-Szimulációk segítségével számszerűsítettük ezt a hatást. A 2020-2022-es években kiszámítottuk, hogy Varsó milyen eredményeket ért volna el, ha az egyenlő részvétel módszerét alkalmazta volna, és összehasonlítottuk ezt a tényleges eredményekkel.
-Ezután minden kategória esetében kiszámítottuk, hogy az adott kategória projektjei hány százalékban kaptak szavazatokat. A két szabály esetében összehasonlítottuk ezeket az arányokat azzal, hogy a költségvetés hány százalékát fordították az adott kategória projektjeire.
+Szimulációk segítségével számszerűsítettük ezt a hatást. A 2020-2022-es évekre kiszámítottuk, hogy Varsó milyen eredményeket ért volna el, ha az egyenlő részvétel módszerét alkalmazta volna, és összehasonlítottuk ezt a tényleges eredményekkel.
+Ezután minden kategória esetében kiszámítottuk, hogy az adott kategória ötletei hány százalékban kaptak szavazatokat. A két szabály esetében összehasonlítottuk ezeket az arányokat azzal, hogy a költségvetés hány százalékát fordították az adott kategória ötleteire.
 Az eredmények Varsó különböző kerületeire vonatkozóan az alábbiakban láthatók.
 A szürke területen belüli pontok olyan választásokat jelölnek, ahol az egyenlő részvétel módszere közelebb hozta az eredményt a kategóriák közötti szavazatarányokhoz a tényleges eredményhez képest.
 
@@ -41,28 +38,28 @@ Van néhány kivétel, de ezekben az esetekben a két módszer hasonlóan teljes
 
 <Datawrapper src="//datawrapper.dwcdn.net/E7ac1/2/" />
 
-Tipp: az egyes pontokra rámutatva további információkat kaphat a választásokról.
+Tipp: az egyes pontokra rámutatva további információkat kaphatsz a választásokról.
 
 <details>
 <summary>A szimuláció részletei</summary>
 
-A szimulációt 2023 januárjában végeztük a [Pabulib könyvtár](http://pabulib.org/) választási adatai alapján, amelyek a 2020-as, 2021-es és 2022-es varsói közösségi költségvetési választásokból származnak.
+A szimulációt 2023 januárjában végeztük a [Pabulib könyvtár](http://pabulib.org/) szavazási adatai alapján, amelyek a 2020-as, 2021-es és 2022-es varsói közösségi költségvetési választásokból származnak.
 Minden évben 19 választás zajlott: egy-egy Varsó 18 kerületében, valamint egy az egész városra vonatkozóan.
 A szimulációban csak a kerületeket vettük figyelembe, összesen 3 &middot; 18 = 54 adatállománnyal.
-Ezek az adatállományok kategóriákkal vannak ellátva: minden projekt egy vagy több kategóriába tartozik. 
-Néhány projekt nincs kategóriába sorolva; kényelmi okokból ezeket a „nincs címke” kategóriába soroltuk.
+Ezek az adatállományok kategóriákkal vannak ellátva: minden ötlet egy vagy több kategóriába tartozik. 
+Néhány ötlet nincs kategóriába sorolva; kényelmi okokból ezeket a „nincs címke” kategóriába soroltuk.
 
 Ezután kiszámítottuk a kategóriák szavazatarányait minden választásra vonatkozóan.
-Az első lépésben minden szavazót 1 ponttal képviseltünk, amelyet egyenlő részre osztottunk a szavazó által támogatott projektek között.
-Például ha egy szavazó 4 projektre szavazott (a maximum 10 szavazatból), akkor mind a 4 projekt 0,25 pontot kapott.
-A második lépésben minden projekt pontjait egyenlően osztottuk szét az általa képviselt kategóriák között.
-Például ha egy projekt 30 pontot kapott, és 3 kategóriába tartozik, akkor minden kategória 10 pontot kapott.
+Az első lépésben minden szavazót 1 ponttal képviseltünk, amelyet egyenlő részre osztottunk a szavazó által támogatott ötlet között.
+Például ha egy szavazó 4 ötletre szavazott (a maximum 10 szavazatból), akkor mind a 4 ötlet 0,25 pontot kapott.
+A második lépésben minden ötlet pontjait egyenlően osztottuk szét az általa képviselt kategóriák között.
+Például ha egy ötlet 30 pontot kapott, és 3 kategóriába tartozik, akkor minden kategória 10 pontot kapott.
 Végül kiszámítottuk az egyes kategóriák által kapott összes pont arányát (vagyis normalizáltuk a szavazatarányokat, hogy az összegük 1 legyen).
 
 Ezután kiszámítottuk az egyenlő részvétel módszerének eredményeit minden választásra vonatkozóan. 
 Mind az így kapott eredményre, mind a tényleges eredményre kiszámítottuk az egyes kategóriák költségvetési arányait.
-Az egyes projektek költségeit egyenlően osztottuk el a projektekhez tartozó kategóriák között.
-Például ha egy projekt költsége 600 volt, és 3 kategóriába tartozott, akkor minden kategória 200-at kapott.
+Az egyes ötletek költségeit egyenlően osztottuk el a ötletekhez tartozó kategóriák között.
+Például ha egy ötlet költsége 600 volt, és 3 kategóriába tartozott, akkor minden kategória 200-at kapott.
 Végül kiszámítottuk az egyes kategóriák által kapott összes költség arányát (vagyis normalizáltuk a költségvetési arányokat, hogy az összegük 1 legyen).
 
 Miután kiszámítottuk a szavazat- és költségvetési arányokat, kiszámítottuk a két eredmény közötti **távolságot**.
@@ -77,7 +74,7 @@ Más távolságokat is használtunk (például KL-divergencia), de azt találtuk
 
 ## Példa: Alulköltés az oktatási projektekre Bielany-ban, Varsóban
 
-Az egyenlő részvétel módszerének pozitív hatásának jobb megértése érdekében nézzünk egy példát, ahol a tényleges eredmény sokkal rosszabbul teljesít.
+Az egyenlő részvétel módszerének pozitív hatásának jobb megértése érdekében nézzünk egy példát, ahol az szavazás tényleges eredménye (hagyományos módszerrel) sokkal rosszabbul teljesít.
 
 Vizsgáljuk meg Varsó [Bielany kerületét](https://en.wikipedia.org/wiki/Bielany). 
 2020-ban, 2021-ben és 2022-ben az oktatási projektek jelentős részesedést kaptak a szavazatokból.
@@ -93,4 +90,4 @@ Az egyenlő részvétel módszere csökkentette volna a túlköltést ezekre a k
 
 Mi az alapvető oka ennek a különbségnek? Az, hogy az oktatási projektek többnyire kis léptékűek és olcsók voltak (például egy nyári tanfolyam megszervezése), míg a túlköltést eredményező kategóriák projektjei többnyire nagyszabásúak és drágák voltak. A tényleges eredményt eredményező módszer (amely a túlköltést eredményezte) nem veszi figyelembe a projektköltségeket, és a költségvetés nagy részét néhány ilyen projektre fordítja. Az egyenlő részvétel módszere viszont figyelembe veszi a projektköltségeket, és a költségvetést egyenletesebben osztja el az összes projekt között.
 
-A diagramot vizsgálva csökkenő szavazati arányt látunk az oktatási projektek esetében az idő múlásával. Feltételezhető, hogy az ilyen projektek előterjesztői idővel elbátortalanodnak, mert a jelenleg alkalmazott szavazási módszer miatt javaslataik nem sikeresek.
+A diagramot vizsgálva csökkenő szavazati arányt látunk az oktatási projektek esetében az idő múlásával. Feltételezhető, hogy az ilyen ötletek előterjesztői idővel elbátortalanodnak, mert a jelenleg alkalmazott szavazási módszer miatt javaslataik nem sikeresek.
