@@ -8,10 +8,6 @@ import { Currency } from '@site/src/components/CurrencyChoice';
 
 # Hogyan működik az egyenlő részvétel módszere?
 
-:::caution Fordítás folyamatban
-Ez az oldal még nem kész magyarul.
-:::
-
 Ezen az oldalon elmagyarázzuk, hogyan működik az egyenlő részvétel módszere.
 A módszer két különböző bemeneti típussal alkalmazható:  
 
@@ -141,7 +137,7 @@ Tegyük fel, hogy az összköltségvetés <Currency>1100</Currency> (az egyszer�
 Az szavazólapon 5 ötlet szerepel, és több X-es szavazást használunk.
 Az alábbi táblázat tartalmazza az ötleteket és azok költségeit.
 Minden szavazót egy oszlopban mutatunk, itt látjuk, ki mely ötleteket támogatta.
-Például a bal szélső szavazó a kerékpárutat és a kültéri edzőtermet választotta.
+Például a bal szélső szavazó a kerékpárutat és a kondiparkot választotta.
 
 | ötlet            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | szavazatszám |
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -153,7 +149,7 @@ Például a bal szélső szavazó a kerékpárutat és a kültéri edzőtermet v
 
 A legtöbb város egy egyszerű módszert használ a részvételi költségvetés nyerteseinek kiválasztására, ahol
 a szavazatok száma szerint haladnak végig az ötleteken. Ebben az esetben kiválasztják
-a <span className="project-1">🚲 kerékpárutat</span> (7 szavazattal), majd a <span className="project-2">🏋️ kültéri edzőtermet</span> (6 szavazattal), majd megállnak, mert
+a <span className="project-1">🚲 kerékpárutat</span> (7 szavazattal), majd a <span className="project-2">🏋️ kondipark</span> (6 szavazattal), majd megállnak, mert
 a költségvetés kimerült.
 Láthatjuk, hogy ebben a példában ez a két "sportos" ötlet nagyjából ugyanazoktól a szavazóktól kapott szavazatokat.
 Ezzel szemben a "gyerekeknek szóló ötleteket" (<span className="project-4">🛝 új játszótér</span>, <span className="project-5">📚 gyerekkönyvtár</span>) 
@@ -212,7 +208,7 @@ A fennmaradó ötletek egyikét sem lehet megvalósítani a támogatóik közöt
 
 ## 2. példa (bonyolultabb)
 
-A számítás kissé bonyolultabbá válik, ha a jobb szélső szavazó a <span className="project-2">🏋️ kondipark</span>-re szavaz ahelyett, hogy a <span className="project-1">🚲 kerékpárút</span>-ra szavazna:
+A számítás kissé bonyolultabbá válik, ha a jobb szélső szavazó a <span className="project-2">🏋️ kondiparkra</span> szavaz a a <span className="project-1">🚲 kerékpárút</span> helyett:
 
 | ötlet            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | szavazatszám |
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -222,17 +218,17 @@ A számítás kissé bonyolultabbá válik, ha a jobb szélső szavazó a <span 
 | <span className="project-4">🛝 új játszótér   </span>   | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
 | <span className="project-5">📚 gyerekkönyvtár</span>   | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
 
-A részletek átvizsgálása tanulságos lesz.
+A részletek áttekintése tanulságos lesz.
 
-Ahogy korábban, a rendelkezésre álló költségvetést egyenlően osztjuk el a szavazók között, így mindenki kap <Currency>100</Currency>-t:
+Ahogy korábban, a rendelkezésre álló költségvetést egyenlően osztjuk el a szavazók között, így mindenkire jut <Currency>100</Currency>:
 
 <BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} showPayments={false} />
 
-A legtöbb szavazatot kapott ötlet ezúttal a <span className="project-2">🏋️ kondipark</span>, amelyre 7 szavazat érkezett. A költségét egyenlően osztjuk el a támogatói között, így minden szavazó <Currency>400</Currency>/7 = <Currency>57.14</Currency>-t fizet.
+A legtöbb szavazatot szerző ötlet ezúttal a <span className="project-2">🏋️ kondipark</span>, amelyre 7 szavazat érkezett. A költségét egyenlően osztjuk el a támogatói között, így minden szavazó <Currency>400</Currency>/7 = <Currency>57.14</Currency>-t fizet.
 
 <BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[57,57,57,57,57,57,0,0,0,0,57]} />
 
-A <span className="project-2">🏋️ kondipark</span> kiválasztásra kerül, és a kifizetéseket levonjuk. Az új költségvetések a következők:
+A <span className="project-2">🏋️ kondipark</span> kiválasztásra kerül, és a kifizetéseket levonjuk. Az új egy főre eső összegek a következők:
 
 <BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} showPayments={false} />
 
@@ -240,14 +236,14 @@ A következő legtöbb szavazatot kapott ötlet a <span className="project-1">�
 A 6 szavazó támogatói összesen 6 &middot; <Currency>43</Currency> = <Currency>258</Currency>-ot tudnak fizetni, ami nem elég a <span className="project-1">🚲 kerékpárút</span> <Currency>700</Currency>-os költségének fedezésére.
 Így a kerékpárút nem megvalósítható, és effektív szavazatszáma 0-ra csökken.
 
-Ezért áttérünk a következő legtöbb szavazattal rendelkező ötletre, amely a <span className="project-3">🌳 új park</span>, 5 szavazattal.
+Ezért áttérünk a következő legtöbb szavazattal rendelkező ötletre, amely az <span className="project-3">🌳 új park</span>, 5 szavazattal.
 Ha költségét, <Currency>250</Currency>-et egyenlően osztjuk el a támogatói között, akkor minden szavazónak <Currency>50</Currency>-t kellene fizetnie.
-De a <span className="project-3">🌳 új park</span> egyes támogatói csak <Currency>43</Currency>-ot tudnak fizetni, így nem tudják fedezni a <Currency>50</Currency>-es részüket.
-Ezért (ahogy [fent](#equal-split) leírtuk), a költséget úgy osztjuk el, hogy a három szavazó, akinek <Currency>43</Currency> maradt, mindegyikük <Currency>43</Currency>-t fizet, és a két szavazó, akinek <Currency>100</Currency> maradt, a fennmaradó <Currency>250</Currency> &minus; 3 &middot; <Currency>43</Currency> = <Currency>121</Currency>-et egyenlően osztja meg, így mindegyikük <Currency>60.5</Currency>-t fizet:
+De az <span className="project-3">🌳 új park</span> egyes támogatói csak <Currency>43</Currency>-ot tudnak fizetni, így nem tudják fedezni a <Currency>50</Currency>-os részüket.
+Ezért (ahogy [fent](#equal-split) leírtuk), a költséget úgy osztjuk el, hogy a három szavazó, akinek <Currency>43</Currency> maradt, egyenként <Currency>43</Currency>-t fizet, és a két szavazó között, akinél <Currency>100</Currency> maradt, a fennmaradó <Currency>250</Currency> &minus; 3 &middot; <Currency>43</Currency> = <Currency>121</Currency>-et egyenlően oszlik meg, így mindegyikük <Currency>60.5</Currency>-t fizet:
 
 <BudgetBars budgets={[43,43,43,43,43,43,100,100,100,100,43]} payments={[0,43,0,43,43,0,60.5,0,0,60.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
-Mivel a <span className="project-3">🌳 új park</span> költségét nem tudtuk teljesen egyenlően megosztani, az effektív szavazatszámát a következőképpen kell kiszámítanunk:
+Mivel az <span className="project-3">🌳 új park</span> költségét nem tudtuk teljesen egyenlően elosztani, az effektív szavazatszámát a következőképpen kell kiszámítanunk:
 Az a két szavazó, aki <Currency>60.5</Currency>-et tudott fizetni, teljes szavazatnak számít, míg a három szavazó, aki <Currency>43</Currency>-t tudott fizetni, csak szavazat-töredékként számít, mégpedig 0,71 szavazatként (mert <Currency>43</Currency>/60.5 &approx; 0,71). Így az effektív szavazatszám 2 &plus; 3 &middot; 0.71 = 4.13, amit az alábbi táblázatban feltüntetünk:
 
 | ötlet            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effektív szavazatszám |
@@ -264,11 +260,11 @@ Az árát levonjuk a támogatóinak szavazóerejéből. Az új költségvetések
 
 <BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} showPayments={false} />
 
-A következő körben a <span className="project-4">🛝 új játszótér</span> kerül kiválasztásra, amelynek effektív szavazatszáma 3.31 (ami a legmagasabb):
+A következő körben az <span className="project-4">🛝 új játszótér</span> kerül kiválasztásra, amelynek effektív szavazatszáma 3.31 (ami a legmagasabb):
 
 <BudgetBars budgets={[43,0,43,0,0,43,39.5,100,100,39.5,43]} payments={[0,0,0,0,0,0,39.5,60.5,60.5,39.5,0]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
-A kifizetések levonása után a fennmaradó egyéni költségvetések a következők:
+A levonás után a fennmaradó egy szavazóra eső összegek a következők:
 
 <BudgetBars budgets={[43,0,43,0,0,43,0,39.5,39.5,0,43]} showPayments={false} overrideMax={100} />
 
