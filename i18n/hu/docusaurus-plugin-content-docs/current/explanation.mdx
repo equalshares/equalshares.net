@@ -155,12 +155,12 @@ A legtöbb város egy egyszerű módszert használ a részvételi költségveté
 a szavazatok száma szerint haladnak végig az ötleteken. Ebben az esetben kiválasztják
 a <span className="project-1">🚲 kerékpárutat</span> (7 szavazattal), majd a <span className="project-2">🏋️ kültéri edzőtermet</span> (6 szavazattal), majd megállnak, mert
 a költségvetés kimerült.
-Megjegyezhető, hogy ez a két "sportos" ötlet nagyjából ugyanazoktól a szavazóktól kapott szavazatot.
-Ezzel szemben a "gyerekeknek" szóló ötletek (<span className="project-4">🛝 új játszótér</span>, <span className="project-5">📚 gyerekkönyvtár</span>) 
-egy másik szavazói csoport által lettek támogatva, akik képviselet nélkül maradnak. 
+Láthatjuk, hogy ebben a példában ez a két "sportos" ötlet nagyjából ugyanazoktól a szavazóktól kapott szavazatokat.
+Ezzel szemben a "gyerekeknek szóló ötleteket" (<span className="project-4">🛝 új játszótér</span>, <span className="project-5">📚 gyerekkönyvtár</span>) 
+egy másik szavazói csoport támogatta, akik képviselet nélkül maradnak. 
 
 :::info Spoiler
-Ahogy látni fogjuk, az egyenlő részvétel módszere kiválasztja a <span className="project-1">🚲 kerékpárutat</span>, majd a <span className="project-4">🛝 új játszóteret</span>, és végül a <span className="project-5">📚 gyerekkönyvtárat</span>.
+Ahogy látni fogjuk, az egyenlő részvétel módszere ebben a példában a <span className="project-1">🚲 kerékpárutat</span>, majd az <span className="project-4">🛝 új játszóteret</span>, és végül a <span className="project-5">📚 gyerekkönyvtárat</span> választaná.
 :::
 
 Az eredmény kiszámítását azzal kezdjük, hogy egyenlően osztjuk el a költségvetést a szavazók között.
@@ -168,18 +168,18 @@ Az eredmény kiszámítását azzal kezdjük, hogy egyenlően osztjuk el a költ
 
 <BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} showPayments={false} />
 
-Meg kell határoznunk az úgynevezett effektív szavazatszámot a legtöbb szavazatot kapott ötletre, amely a <span className="project-1">🚲 kerékpárút</span>, 7 szavazattal. 
+Meg kell határoznunk az úgynevezett effektív szavazatszámot a legtöbb szavazatot szerző ötletre, amely a <span className="project-1">🚲 kerékpárút</span>, 7 szavazattal. 
 
 <BudgetBars budgets={[100,100,100,100,100,100,100,100,100,100,100]} payments={[100,100,100,100,100,100,0,0,0,0,100]} showEffectiveVoteCounts={true} showTotalEffectiveVoteCount={true} />
 
-Ebben az esetben a <span className="project-1">🚲 kerékpárút</span> effektív szavazatszáma 7. Az összes többi ötletnek kisebb az effektív szavazatszáma (mivel az effektív szavazatszám csak kisebb lehet, mint a szavazatszám), és a következő legnépszerűbb ötlet (a <span className="project-2">🏋️ kondipark</span>) szavazatszáma csak 6.
+Ebben az esetben a <span className="project-1">🚲 kerékpárút</span> effektív szavazatszáma 7. Az összes többi ötletnek biztosan kisebb az effektív szavazatszáma (mivel az effektív szavazatszám csak kisebb lehet, mint a szavazatszám), és a következő legnépszerűbb ötlet (a <span className="project-2">🏋️ kondipark</span>) szavazatszáma csak 6.
 
-Így az egyenlő részvétel módszere az elsőként a <span className="project-1">🚲 kerékpárutat</span> választja ki, és költségét egyenlően osztja el a támogatók között. Így a 7 szavazó, aki a <span className="project-1">🚲 kerékpárútra</span> szavazott, mindegyike <Currency>100</Currency>-t fizet, és így már nem marad költségvetésük.
+Így az egyenlő részvétel módszere (is) elsőként a <span className="project-1">🚲 kerékpárutat</span> nevezi ki győztesnek, és költségét egyenlően osztja el a támogatók között. Így a 7 szavazó, aki a <span className="project-1">🚲 kerékpárútra</span> szavazott, mindegyike <Currency>100</Currency>-t "fizet", és így már nem marad játuk jutó pénzösszeg.
 
 <BudgetBars budgets={[0,0,0,0,0,0,100,100,100,100,0]} showPayments={false} />
 
-Megjegyezhető, hogy azok közül, akik a <span className="project-2">🏋️ kondipark</span> ötletet támogatták, senkinek sem maradt költségvetése, így annak effektív szavazatszáma 0-ra csökkent. 
-Hasonlóképpen, azok közül, akik az <span className="project-3">🌳 új park</span> ötletet támogatták, 3 szavazó már nem rendelkezik költségvetéssel, így annak effektív szavazatszáma 2-re csökkent.
+Látjuk, hogy egyben éppen senkinek, aki a <span className="project-2">🏋️ kondipark</span> ötlet támogatta "nem maradt pénze", így annak effektív szavazatszáma 0-ra csökkent. 
+Hasonlóképpen, azok közül, akik az <span className="project-3">🌳 új park</span> ötletet támogatták, 3 szavazó már nem rendelkezik maradék összeggel ("szavazóerővel"), így annak effektív szavazatszáma 2-re csökkent.
 
 | ötlet            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effektív szavazatszám |
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -188,27 +188,27 @@ Hasonlóképpen, azok közül, akik az <span className="project-3">🌳 új park
 | <span className="project-4">🛝 új játszótér </span>    | <Currency>200</Currency> |   |   |   |   |   |   | ✗ | ✗ | ✗ | ✗ |   | 4 |
 | <span className="project-5">📚 gyerekkönyvtár</span>  | <Currency>100</Currency> |   |   |   |   |   |   | ✗ |   | ✗ | ✗ |   | 3 |
 
-Így a <span className="project-4">🛝 új játszótér</span> a legmagasabb szavazatszámmal rendelkezik, 4 szavazattal.
-Költsége <Currency>200</Currency>, amit egyenlően osztunk el a támogatói között, így mind a 4 szavazó, aki a <span className="project-4">🛝 új játszótér</span> ötletet támogatta, <Currency>50</Currency>-t fizet:
+Így az <span className="project-4">🛝 új játszótér</span> rendelkezik a legmagasabb (effektív) szavazatszámmal, 4 szavazattal.
+Költsége <Currency>200</Currency>, amit egyenlően osztunk el a támogatói között, így mind a 4 szavazó, aki az <span className="project-4">🛝 új játszótér</span> ötletet támogatta, <Currency>50</Currency>-t "fizet":
 
 <BudgetBars budgets={[0,0,0,0,0,0,100,100,100,100,0]} payments={[0,0,0,0,0,0,50,50,50,50,0]} />
 
-Kiválasztjuk a <span className="project-4">🛝 új játszóteret</span> nyertes ötletként, és levonjuk a kifizetéseket. Így a 4 támogató szavazónak <Currency>50</Currency>-je marad:
+Kiválasztjuk az <span className="project-4">🛝 új játszóteret</span> nyertes ötletként, és levonjuk az árát a támogatóinak szavazóerejéből/vásárlóerejéből. Így a 4 támogató szavazónak <Currency>50</Currency>-ja marad:
 
 <BudgetBars budgets={[0,0,0,0,0,0,50,50,50,50,0]} showPayments={false} overrideMax={100} />
 
-A <span className="project-5">📚 gyerekkönyvtár</span> költsége <Currency>100</Currency>. A 3 szavazó, aki erre szavazott, összesen <Currency>150</Currency>-et rendelkezésre áll, így ez az ötlet még megvalósítható.
+A <span className="project-5">📚 gyerekkönyvtár</span> költsége <Currency>100</Currency>. A 3 szavazónak, aki erre szavazott, összesen <Currency>150</Currency> áll rendelkezésére, így ez az ötlet még megvalósítható.
 Mindegyikük <Currency>33.3</Currency>-t fizethet.
 
 <BudgetBars budgets={[0,0,0,0,0,0,50,50,50,50,0]} payments={[0,0,0,0,0,0,33.3,0,33.3,33.3,0]} overrideMax={100} />
 
-Kiválasztjuk a <span className="project-5">📚 gyerekkönyvtárat</span> nyertes ötletként, és levonjuk a kifizetéseket. A fennmaradó költségvetések a következők:
+Kiválasztjuk a <span className="project-5">📚 gyerekkönyvtárat</span> nyertes ötletként, és levonjuk az árát. A fennmaradó egyes szavazókra jutó összegek a következők:
 
 <BudgetBars budgets={[0,0,0,0,0,0,16.7,50,16.7,16.7,0]} showPayments={false} overrideMax={100} />
 
-A fennmaradó ötletek egyikét sem lehet megvalósítani a támogatók költségvetéséből, így befejeztük a választási eredmények kiszámítását.
+A fennmaradó ötletek egyikét sem lehet megvalósítani a támogatóik között megoszló pénzből, így befejeztük a szavazási eredmények számítását.
 
-**Végső eredmény**: A nyertes ötletek a <span className="project-1">🚲 kerékpárút</span>, a <span className="project-4">🛝 új játszótér</span>, és a <span className="project-5">📚 gyerekkönyvtár</span>.
+**Végeredmény**: A nyertes ötletek a <span className="project-1">🚲 kerékpárút</span>, az <span className="project-4">🛝 új játszótér</span>, és a <span className="project-5">📚 gyerekkönyvtár</span>.
 
 ## 2. példa (bonyolultabb)
 
