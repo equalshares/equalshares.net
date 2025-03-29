@@ -8,10 +8,6 @@ import { Currency } from '@site/src/components/CurrencyChoice';
 
 # Az egyenlő részvétel módszerének kiegészítése
 
-:::caution Fordítás hamarosan
-Ez az oldal még nem készült el magyarul.
-:::
-
 <div class="summary">
 <b>Összefoglaló</b>:
 Az egyenlő részvétel módszerének többféle változata létezik. A legegyszerűbb változatban előfordulhat, hogy a módszer nem használja fel a teljes rendelkezésre álló költségvetést (csak körülbelül 70%-át). Ez általában nem kívánatos, ezért a módszert „ki kell egészíteni”. Itt ismertetjük a szabványos kiegészítési módot, és megvitatjuk néhány alternatívát. A legtöbb felhasználó számára a szabványos módszer ajánlott, amelyet szoftvercsomagok is megvalósítanak.
@@ -28,20 +24,20 @@ Például, ha egy szavazó csak egy ötletre szavaz, és ez az ötlet nem kap el
 
 Varsói szavazási adatokon végzett szimulációk alapján az egyenlő részvétel módszere a rendelkezésre álló költségvetés körülbelül 60-70%-át használja fel.
 Természetesen a választási tisztviselők általában arra törekednek, hogy a költségvetés közel 100%-át elköltse.
-Ezért az egyenlő részvétel módszerét **ki kell egészíteni**, ami azt jelenti, hogy az eredményét módosítani kell, hogy szinte a teljes költségvetés felhasználásra kerüljön.
+Ezért az egyenlő részvétel módszerét **ki kell egészíteni**, ami azt jelenti, hogy az eredményét módosítani kell annak érdekében, hogy lehetőleg a teljes költségvetés felhasználásra kerüljön.
 
 <details>
-<summary><SemiBold>Diagram</SemiBold>: Ha minden szavazó több projektre szavaz, a kiegészítés kevésbé fontos.</summary>
+<summary><SemiBold>Diagram</SemiBold>: Ha minden szavazó számos ötletre szavaz, a kiegészítés kevésbé fontos.</summary>
 
-Az oka annak, hogy az egyenlő részvétel módszere gyakran csak a költségvetés 60-70%-át használja fel, az, hogy egyes szavazók csak kevés projektre szavaznak.
+Az oka annak, hogy az egyenlő részvétel módszere önmagában gyakran csak a költségvetés 60-70%-át használja fel, az, hogy egyes szavazók csak kevés ötletre szavaznak.
 Ezt a hatást varsói (2020-22) adatok alapján végzett szimulációval vizsgálhatjuk. 
 
-Varsóban a szavazók kerületükben legfeljebb 15 projektre szavazhatnak.
-Szimulálhatjuk, hogy mi történt volna, ha Varsóban minimális szavazatszámot írnak elő, azáltal, hogy csak azokat a szavazatokat vesszük figyelembe, amelyek elegendő számú projektre szavaztak.
+Varsóban a szavazók kerületükben legfeljebb 15 ötletre szavazhatnak.
+Leszimulálhatjuk, hogy mi történt volna, ha Varsóban minimális szavazatszámot írnak elő, azáltal, hogy csak azokat a szavazatokat vesszük figyelembe, amelyeken elegendő számú ötletet támogattak.
 Így szimulálhatunk 2, 3, 4, ..., 15 minimális szavazatszámot.
-Minden minimális értéknél ellenőrizhetjük, hogy az egyenlő részvétel módszere a költségvetés hány százalékát használja fel, ha csak a megfelelő számú projektre szavazó szavazatok alapján számítjuk ki.
+Minden minimális értéknél ellenőrizhetjük, hogy az egyenlő részvétel módszere a költségvetés hány százalékát használja fel, ha csak a megfelelő számú ötletre szavazók alapján számítjuk ki.
 
-Az eredmények azt mutatják, hogy ha a szavazók legalább 8 projektre szavaznak, a költségvetés több mint 90%-a felhasználásra kerül.
+Az eredmények azt mutatják, hogy ha a szavazók legalább 8 ötletre szavaznak, a költségvetés több mint 90%-a felhasználásra kerül.
 <Datawrapper src="//datawrapper.dwcdn.net/bPA91/2/" />
 </details>
 
@@ -52,18 +48,18 @@ Például, ahelyett, hogy minden szavazónak <Currency>100</Currency>-t adnánk,
 Pontosabban, minden lehetséges értéket végigpróbálunk: <Currency>100</Currency>, <Currency>101</Currency>, <Currency>102</Currency>, és így tovább.
 Minden értéknél kiszámítjuk az egyenlő részvétel módszerének eredményét.
 Két esetben állunk meg:
-* Az eredmény _kimerítő_, ami azt jelenti, hogy a költségvetési határ túllépése következne, ha bármelyik további projektet hozzáadnánk az eredményhez.
-* Ha a következő magasabb értékkel futtatnánk az egyenlő részvétel módszerét, akkor az eredmény meghaladná a költségvetési határt.
+* Az eredmény _kimerítő_, ami azt jelenti, hogy a költségvetési határt túllépnénk, ha még egy ötletet hozzáadnánk az eredményhez.
+* Ha a eggyel magasabb értékkel futtatnánk az egyenlő részvétel módszerét, akkor az eredmény meghaladná a költségvetési korlátot.
 
-A szimulációs eredmények azt sugallják, hogy az ilyen módon kiegészített egyenlő részvétel módszere megtartja a kívánatos méltányossági tulajdonságait.
+A szimulációs eredmények azt sugallják, hogy az ilyen módon kiegészített egyenlő részvétel módszere megtartja a módszer kívánatos méltányossági tulajdonságait.
 
-Fontos megjegyezni, hogy általában nem jó jel, ha a kezdeti költségvetési részt túl sokat kell növelni a kiegészítési folyamat során. Ilyenkor sokkal több virtuális pénz kerül kiosztásra a szavazók között, mint amennyi ténylegesen elköltésre kerül, és ez azt eredményezi, hogy egyes szavazóknál sok el nem költött virtuális pénz marad. Ez azt jelenti, hogy egyes szavazók sokkal több pénzt költhettek el a kedvelt projektjeikre, mint más szavazók. Ez a szavazók befolyásának egyenlőtlenségéhez vezethet az eredményben.
-Egy módja annak, hogy elkerüljük a kezdeti költségvetési rész túlzott növelését, ha arra kérjük a szavazókat, hogy több projektre szavazzanak. Például néhány városban [előírják, hogy a szavazóknak legalább 3 projektre kell szavazniuk](input-formats#minimum-number-of-approvals). Ez azért segít, mert az el nem költött virtuális pénz fő oka az, hogy egyes szavazók csak egyetlen projektre szavaznak, amely nem kap elég szavazatot a nyeréshez. Ebben az esetben az egyenlő részvétel módszere képtelen elkölteni a szavazónak kiosztott virtuális pénzt.
+Fontos megjegyezni, hogy általában nem jó jel, ha a kezdeti egy főre jutó költségvetési részt túl sokat kell növelni a kiegészítési folyamat során. Ilyenkor sokkal több virtuális pénz kerül kiosztásra a szavazók között, mint amennyi ténylegesen elköltésre kerül, és ez azt eredményezi, hogy egyes szavazóknál sok el nem költött virtuális pénz marad. Ez azt jelenti, hogy egyes szavazók sokkal több pénzt költhettek el a kedvelt ötleteikre, mint más szavazók. Ez a szavazók rahatásának egyenlőtlenségéhez vezethet az eredményben.
+Egy módja annak, hogy elkerüljük a kezdeti költségvetési rész túlzott növelését, ha arra kérjük a szavazókat, hogy több ötletre szavazzanak. Például néhány városban [előírják, hogy a szavazóknak legalább 3 projektre kell szavazniuk](input-formats#minimum-number-of-approvals). Ez azért segít, mert az el nem költött virtuális pénz fő oka az, hogy egyes szavazók csak egyetlen ötletre szavaznak, amely nem kap elég szavazatot a győzelemhez. Ebben az esetben az egyenlő részvétel módszere képtelen elkölteni a szavazónak kiosztott virtuális pénzt.
 
 ## Egyéb kiegészítési módszerek
 
-A költségvetés azon részének felhasználására, amelyet az egyenlő részvétel módszere nem használ fel, más módok is léteznek:
+A közösségi költségvetés azon részének felhasználására, amelyet az egyenlő részvétel módszere nem használ fel, más módok is léteznek:
 
-* <SemiBold>Spórolás jövő évre</SemiBold>. A fennmaradó összegek megmaradhatnak, és növelhetik a következő év rendelkezésre álló költségvetését.
-* <SemiBold>Projektek finanszírozása a legtöbb szavazattal</SemiBold>. A fennmaradó összegek felhasználhatók olyan projektek finanszírozására, amelyek sok szavazatot kaptak, de kimaradtak az egyenlő részvétel módszere miatt. Ez azonban kevésbé méltányos eredményhez vezet.
-* <SemiBold>Rugalmas tartalékmegoldás</SemiBold>. Például Chicagóban a költségvetés egy rugalmas részét használták az úthibák kijavítására.
+* <SemiBold>Tartalék a következő évre</SemiBold>. A fennmaradó összegek megmaradhatnak, és növelhetik a következő év rendelkezésre álló költségvetését (továbbgördülés).
+* <SemiBold>A legtöbb szavazatot szerző ötletek finanszírozása</SemiBold>. A fennmaradó összegek felhasználhatók olyan ötletek finanszírozására, amelyek sok szavazatot kaptak, de kimaradtak az egyenlő részvétel módszere miatt. Ez azonban kevésbé méltányos eredményhez vezet.
+* <SemiBold>Rugalmas tartalékmegoldás</SemiBold>. Például Chicagóban a költségvetés egy maradék részét úthibák kijavítására használták.

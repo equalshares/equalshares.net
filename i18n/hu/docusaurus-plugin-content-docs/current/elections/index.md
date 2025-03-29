@@ -17,6 +17,6 @@ Ezeken az oldalakon bemutatjuk egyes olyan közösségi költségvetések eredm�
 
 | Település | Szavazás elnevezése | Election date | Budget | Image | |
 | --- | --- | --- | --- | --- | --- |
-| 🇵🇱 Wieliczka | Zielony Milion ("Zöld Millió") | 2023-04-26 | PLN 1 000 000 | [<img src={require('@site/static/img/wielieczka.jpg').default} style={{ width: '100px' }} />](/elections/zielony-milion) | [[more]](/elections/zielony-milion) |
-| 🇨🇭 Aarau | Stadtidee ("városi ötlet") | 2023-06-25 | CHF 50 000 | [<img src={require('@site/static/img/aarau.jpg').default} style={{ width: '100px' }} />](/elections/aarau-2023) | [[more]](/elections/aarau-2023) |
-| 🇵🇱 Świecie | BO 2024 | 2023-09-25 | PLN 1 070 000 | [<img src={require('@site/static/img/swiecie.png').default} style={{ width: '100px' }} />](/elections/swiecie-2024) | [[more]](/elections/swiecie-2024) |
+| 🇵🇱 Wieliczka | Zielony Milion ("Zöld Millió") | 2023-04-26 | PLN 1 000 000 | [<img src={require('@site/static/img/wielieczka.jpg').default} style={{ width: '100px' }} />](/elections/zielony-milion) | [[bővebben]](/elections/zielony-milion) |
+| 🇨🇭 Aarau | Stadtidee ("városi ötlet") | 2023-06-25 | CHF 50 000 | [<img src={require('@site/static/img/aarau.jpg').default} style={{ width: '100px' }} />](/elections/aarau-2023) | [[bővebben]](/elections/aarau-2023) |
+| 🇵🇱 Świecie | BO 2024 | 2023-09-25 | PLN 1 070 000 | [<img src={require('@site/static/img/swiecie.png').default} style={{ width: '100px' }} />](/elections/swiecie-2024) | [[bővebben]](/elections/swiecie-2024) |
