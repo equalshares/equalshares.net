@@ -6,7 +6,7 @@ title: Használat
 # Használat - szavazási eredmények
 
 :::caution Fordítás folyamatban
-Az egyenlő részvétel módszerét használó egyes közösségi költségvetési szavazásokról szóló oldalak többsége még nem érthető el magyarul.
+Az egyenlő részvétel módszerét használó egyes közösségi költségvetési szavazásokról szóló oldalak egy része még nem érthető el magyarul.
 :::
 
 Ezeken az oldalakon bemutatjuk egyes olyan közösségi költségvetések eredményét, ahol az egyenlő részvétel módszerét használták a szavazási adatok részletes áttekintésével és elemzésével.
