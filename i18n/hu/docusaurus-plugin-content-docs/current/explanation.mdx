@@ -210,7 +210,7 @@ A fennmaradó ötletek egyikét sem lehet megvalósítani a támogatóik közöt
 
 A számítás kissé bonyolultabbá válik, ha a jobb szélső szavazó a <span className="project-2">🏋️ kondiparkra</span> szavaz a a <span className="project-1">🚲 kerékpárút</span> helyett:
 
-| ötlet            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | szavazatszám |
+| ötlet            | költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | szavazatszám |
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
 | <span className="project-1">🚲 kerékpárút      </span> | <Currency>700</Currency> | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   |   | 6 |
 | <span className="project-2">🏋️ kondipark</span> | <Currency>400</Currency> | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |   |   |   |   | ✗ | 7 |
@@ -246,7 +246,7 @@ Ezért (ahogy [fent](#equal-split) leírtuk), a költséget úgy osztjuk el, hog
 Mivel az <span className="project-3">🌳 új park</span> költségét nem tudtuk teljesen egyenlően elosztani, az effektív szavazatszámát a következőképpen kell kiszámítanunk:
 Az a két szavazó, aki <Currency>60.5</Currency>-et tudott fizetni, teljes szavazatnak számít, míg a három szavazó, aki <Currency>43</Currency>-t tudott fizetni, csak szavazat-töredékként számít, mégpedig 0,71 szavazatként (mert <Currency>43</Currency>/60.5 &approx; 0,71). Így az effektív szavazatszám 2 &plus; 3 &middot; 0.71 = 4.13, amit az alábbi táblázatban feltüntetünk:
 
-| ötlet            | Költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effektív szavazatszám |
+| ötlet            | költség  | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | 👤 | effektív szavazatszám |
 |--------------------|---------|---|---|---|---|---|---|---|---|---|---|---|---|
 | <span className="project-1">🚲 kerékpárút      </span> | <Currency>700</Currency> | — | — | — | — | — | — |   |   |   |   |   | **0** |
 | <span className="project-3">🌳 új park       </span>    | <Currency>250</Currency> |   | ✗ |   | ✗ | ✗ |   | ✗ |   |   | ✗ |   | **4.13** |
